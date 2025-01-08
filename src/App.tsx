@@ -4,13 +4,14 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/Home';
 import { SoftwareDevelopment } from './pages/SoftwareDevelopment';
+import { Consulting } from './pages/Consulting';
 import { AISolutions } from './pages/AISolutions';
 import { Cybersecurity } from './pages/Cybersecurity';
 import { Contact } from './pages/Contact';
 
 export function App() {
   useEffect(() => {
-    document.title = "Cocode.dk - Software Development";
+    document.title = "Cocode.dk - AI First Strategies";
   }, []);
 
   return (
@@ -19,8 +20,9 @@ export function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/software-development" element={<SoftwareDevelopment />} />
           <Route path="/ai-solutions" element={<AISolutions />} />
+          <Route path="/software-development" element={<SoftwareDevelopment />} />
+          <Route path="/consulting" element={<Consulting />} />
           <Route path="/cybersecurity" element={<Cybersecurity />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
