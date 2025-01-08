@@ -47,14 +47,11 @@ export const handler = async (event) => {
 
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
-    console.log(secretKey);
-    console.log(recaptchaResponse);
-
     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`;
 
     const recaptchaRes = await fetch(verificationUrl, { method: 'POST' });
     const recaptchaData = await recaptchaRes.json();
-    console.log(recaptchaData);
+
     if (!recaptchaData.success) {
         return {
             statusCode: 400,

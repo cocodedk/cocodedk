@@ -21,6 +21,7 @@ const validationSchema = Yup.object({
 
 export function ContactForm() {
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const [status, setStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
 
   const formik = useFormik({
     initialValues: {
@@ -31,24 +32,32 @@ export function ContactForm() {
       message: ''
     },
     validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       if (executeRecaptcha) {
         const token = await executeRecaptcha('contact_form');
 
-        // Send form data along with the reCAPTCHA token to the backend
-        const response = await fetch('/.netlify/functions/form-handler', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...values,
-            'g-recaptcha-response': token
-          }),
-        });
+        try {
+          const response = await fetch('/.netlify/functions/form-handler', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ...values,
+              'g-recaptcha-response': token
+            }),
+          });
 
-        const result = await response.json();
-        console.log(result);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          setStatus('success');
+          resetForm(); // Clear the form on success
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          setStatus('error');
+        }
       }
     }
   });
@@ -139,6 +148,17 @@ export function ContactForm() {
       >
         Send Message
       </button>
+
+      {status === 'success' && (
+        <div className="mt-4 p-4 rounded-lg bg-green-50 border border-green-200">
+          <p className="text-green-700 font-medium">Form submitted successfully!</p>
+        </div>
+      )}
+      {status === 'error' && (
+        <div className="mt-4 p-4 rounded-lg bg-red-50 border border-red-200">
+          <p className="text-red-700 font-medium">There was an error submitting the form.</p>
+        </div>
+      )}
     </form>
   );
 }
