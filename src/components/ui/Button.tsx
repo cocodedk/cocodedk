@@ -4,13 +4,15 @@ import { cn } from '../../utils/cn';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'outline';
   children: React.ReactNode;
+  ariaLabel?: string;
 }
 
-export function Button({ 
-  variant = 'primary', 
-  children, 
+export function Button({
+  variant = 'primary',
+  children,
   className,
-  ...props 
+  ariaLabel,
+  ...props
 }: ButtonProps) {
   const variants = {
     primary: 'bg-blue-500 hover:bg-blue-600 text-white',
@@ -18,12 +20,13 @@ export function Button({
   };
 
   return (
-    <button 
+    <button
       className={cn(
         'px-8 py-3 rounded-full transition-colors flex items-center gap-2',
         variants[variant],
         className
       )}
+      aria-label={ariaLabel}
       {...props}
     >
       {children}
