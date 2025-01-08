@@ -31,17 +31,15 @@ export function CompanyInfo() {
           </div>
         </div>
 
+        {/*
         <div className="flex items-start gap-4">
           <MapPin className="w-6 h-6 text-blue-400 flex-shrink-0" />
           <div>
             <h3 className="font-medium">Address</h3>
-            <p className="text-gray-400">
-              Magistervej 54<br />
-              2400 Copenhagen<br />
-              Denmark
-            </p>
+            <p className="text-gray-400">123 Main St, City, Country</p>
           </div>
         </div>
+        */}
       </div>
     </div>
   );

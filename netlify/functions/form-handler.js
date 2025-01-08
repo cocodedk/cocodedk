@@ -15,7 +15,7 @@ export const handler = async (event) => {
         email,
         phone,
         message,
-        purpose,
+        reason,
         purposeOther,
         'g-recaptcha-response': recaptchaResponse
     } = JSON.parse(event.body);
@@ -30,7 +30,7 @@ export const handler = async (event) => {
         !nameRegex.test(name) ||
         !emailRegex.test(email) ||
         !phoneRegex.test(phone) ||
-        !validPurposes.includes(purpose)) {
+        !validPurposes.includes(reason)) {
         return {
             statusCode: 400,
             body: JSON.stringify({ error: 'Invalid input data' }),
@@ -38,7 +38,7 @@ export const handler = async (event) => {
     }
 
     // Additional validation for 'other' purpose
-    if (purpose === 'other' && !purposeOther?.trim()) {
+    if (reason === 'other' && !purposeOther?.trim()) {
         return {
             statusCode: 400,
             body: JSON.stringify({ error: 'Please specify the purpose' }),
@@ -47,15 +47,19 @@ export const handler = async (event) => {
 
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
+    console.log(secretKey);
+    console.log(recaptchaResponse);
+
     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`;
 
     const recaptchaRes = await fetch(verificationUrl, { method: 'POST' });
     const recaptchaData = await recaptchaRes.json();
-
+    console.log(recaptchaData);
     if (!recaptchaData.success) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'CAPTCHA verification failed' }),
+            // body: JSON.stringify({ error: 'CAPTCHA verification failed' }),
+            body: JSON.stringify({ error: 'CAPTCHA verification failed', details: recaptchaData['error-codes'] }),
         };
     }
 
@@ -66,12 +70,12 @@ export const handler = async (event) => {
         text: `Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Purpose: ${purpose === 'other' ? `Other (${purposeOther})` : purpose}
+Purpose: ${reason === 'other' ? `Other (${purposeOther})` : reason}
 Message: ${message}`,
         html: `<strong>Name:</strong> ${name}<br>
 <strong>Email:</strong> ${email}<br>
 <strong>Phone:</strong> ${phone}<br>
-<strong>Purpose:</strong> ${purpose === 'other' ? `Other (${purposeOther})` : purpose}<br>
+<strong>Purpose:</strong> ${reason === 'other' ? `Other (${purposeOther})` : reason}<br>
 <strong>Message:</strong> ${message}`,
     };
 
