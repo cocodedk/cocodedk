@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -22,6 +22,12 @@ const validationSchema = Yup.object({
 export function ContactForm() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [status, setStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Focus on the name input when component mounts
+    nameInputRef.current?.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -69,6 +75,7 @@ export function ContactForm() {
           Name *
         </label>
         <input
+          ref={nameInputRef}
           id="name"
           type="text"
           {...formik.getFieldProps('name')}

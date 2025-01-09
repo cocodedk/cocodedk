@@ -45,13 +45,11 @@ export function AISolutions() {
           <h1 className="text-4xl md:text-6xl font-bold text-center mb-8">
             Intelligent AI Integration for Your Business
           </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto text-center leading-relaxed mb-12">
-            <ul className="list-disc list-inside text-left">
-              <li>Transform your business tools with intelligent AI integration tailored to your needs.</li>
-              <li>At CoCode.dk, we specialize in adding AI capabilities to your existing applications.</li>
-              <li>Enable data-driven efficiency without disrupting your workflow.</li>
-            </ul>
-          </p>
+          <ul className="text-xl text-gray-300 max-w-4xl mx-auto text-left leading-relaxed mb-12 list-disc list-inside">
+            <li>Transform your business tools with intelligent AI integration tailored to your needs.</li>
+            <li>At CoCode.dk, we specialize in adding AI capabilities to your existing applications.</li>
+            <li>Enable data-driven efficiency without disrupting your workflow.</li>
+          </ul>
         </div>
       </section>
 

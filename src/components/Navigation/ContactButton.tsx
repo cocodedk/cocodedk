@@ -1,9 +1,14 @@
-import React from 'react';
+import { Link } from 'react-router-dom'
 
-export function ContactButton() {
+const ContactButton = () => {
   return (
-    <button className="bg-blue-500 hover:bg-blue-600 transition-colors px-4 py-2 rounded-full text-sm">
+    <Link
+      to="/contact"
+      className="px-6 py-2 text-white bg-primary rounded-full hover:bg-primary-dark transition-colors"
+    >
       Contact Us
-    </button>
-  );
+    </Link>
+  )
 }
+
+export default ContactButton

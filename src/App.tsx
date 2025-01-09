@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navigation } from './components/Navigation';
-import { Footer } from './components/Footer';
+import { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/Home';
 import { SoftwareDevelopment } from './pages/SoftwareDevelopment';
 import { Consulting } from './pages/Consulting';
-import { AISolutions } from './pages/AISolutions';
+import { AISolutions } from './pages/AISolutions.tsx';
 import { Cybersecurity } from './pages/Cybersecurity';
 import { Contact } from './pages/Contact';
+import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
 
 export function App() {
   useEffect(() => {
@@ -15,7 +16,10 @@ export function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter future={{
+      v7_startTransition: true,
+      v7_relativeSplitPath: true
+    }}>
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
         <Navigation />
         <Routes>
@@ -28,6 +32,6 @@ export function App() {
         </Routes>
         <Footer />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
