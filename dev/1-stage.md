@@ -50,12 +50,11 @@ An interactive network graph visualization showcasing the services and technolog
    - Responsive width constraints
    - Dynamic layering based on node overlap
 
-7. [x] Dynamic infoBox layering:
-   - Maintains original top-right position
-   - Automatically moves behind nodes when overlapping central area
-   - Uses ResizeObserver to detect size changes
-   - Checks overlap with central node position
-   - Smooth z-index transitions
+7. [x] Auto-trimming infoBox:
+   - Removes oldest entry (bottom-most) when near screen bottom
+   - Checks position on resize/update
+   - Maintains at least 50px margin from screen edge
+   - Preserves newest entries at top
 
 8. [ ] Animation stability improvements:
    - Add animation queue system

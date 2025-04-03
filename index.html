@@ -370,7 +370,7 @@
             if (el !== header) el.classList.add('old-entry');
           });
         }
-      }, 10);
+      }, 5);
     }
 
     // Mouse move event handler
@@ -461,11 +461,30 @@
       });
 
       infoBox.classList.toggle('canvas-overlap', overlap);
+      return overlap;
+    }
+
+    function checkInfoBoxHeight() {
+      const infoBoxRect = infoBox.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Check if bottom edge is within 50px of screen bottom
+      if (infoBoxRect.bottom > viewportHeight - 50) {
+        // Remove oldest entry (last child element)
+        if (infoBox.children.length > 1) {
+          infoBox.removeChild(infoBox.lastElementChild);
+        }
+      }
     }
 
     // Create ResizeObserver for infoBox
     const resizeObserver = new ResizeObserver(entries => {
-      checkInfoBoxOverlap();
+      checkInfoBoxHeight(); // New height check
+      if (checkInfoBoxOverlap()) {
+        infoBox.classList.add('canvas-overlap');
+      } else {
+        infoBox.classList.remove('canvas-overlap');
+      }
     });
 
     resizeObserver.observe(infoBox);
