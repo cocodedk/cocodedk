@@ -44,6 +44,9 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       z-index: 100;
       font-family: 'Courier New', Courier, monospace;
+      line-height: 1.5;
+      white-space: normal;
+      transition: all 0.2s ease;
     }
     #debug {
       position: absolute;
@@ -57,6 +60,24 @@
       border-radius: 3px;
       max-width: 500px;
       z-index: 1000;
+    }
+    .new-entry {
+      color: #00ff00;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .entry-separator {
+      border-top: 1px solid #444;
+      margin: 12px 0;
+      opacity: 0.6;
+    }
+    .old-entry {
+      color: #88ff88;
+      opacity: 0.7;
+    }
+    .busy {
+      border-color: #ff4444 !important;
+      box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
     }
   </style>
 </head>
@@ -148,6 +169,13 @@
 
     // Track hover state
     let hoveredNode = null;
+
+    // Add at the top of the script
+    let animationState = {
+      active: false,
+      currentInterval: null,
+      queue: []
+    };
 
     // Helper function to resize canvas and maintain centering
     function resizeCanvas() {
@@ -283,28 +311,50 @@
       });
     }
 
-    // Function to prepend text with teletype effect
-    function applyTextEffect(newText, element, delimiter = '\n---\n') {
-        const originalContent = element.textContent;
-        let currentNewText = '';
-        let index = 0;
+    // Modified applyTextEffect
+    function applyTextEffect(newText, element) {
+      // Queue system
+      if (animationState.active) {
+        animationState.queue.push(newText);
+        element.style.cursor = 'progress';
+        return;
+      }
 
-        // Store original content to preserve existing text
-        const existingContent = originalContent ? delimiter + originalContent : '';
+      animationState.active = true;
+      const entryContainer = document.createElement('div');
+      const header = document.createElement('div');
+      header.className = 'new-entry';
 
-        const interval = setInterval(() => {
-          if (index < newText.length) {
-            // Build new text with scrambling effect
-            currentNewText = newText.substring(0, index) +
+      element.prepend(entryContainer);
+      entryContainer.appendChild(header);
+
+      let index = 0;
+      animationState.currentInterval = setInterval(() => {
+        if (index < newText.length) {
+          header.textContent = newText.substring(0, index) +
                             String.fromCharCode(33 + Math.floor(Math.random() * 94));
-            element.textContent = currentNewText + existingContent;
-            index++;
-          } else {
-            // Finalize with complete new text
-            clearInterval(interval);
-            element.textContent = newText + existingContent;
+          index++;
+        } else {
+          clearInterval(animationState.currentInterval);
+          header.textContent = newText;
+          // Add separator
+          const separator = document.createElement('div');
+          separator.className = 'entry-separator';
+          entryContainer.appendChild(separator);
+
+          // Process queue
+          animationState.active = false;
+          if (animationState.queue.length > 0) {
+            applyTextEffect(animationState.queue.shift(), element);
           }
-        }, 50);
+          element.style.cursor = 'default';
+
+          // Mark previous entries
+          Array.from(element.querySelectorAll('.new-entry')).forEach(el => {
+            if (el !== header) el.classList.add('old-entry');
+          });
+        }
+      }, 40);
     }
 
     // Mouse move event handler
@@ -341,6 +391,12 @@
 
     // Click event handler
     canvas.addEventListener('click', (e) => {
+      if (animationState.active) {
+        infoBox.classList.add('busy');
+        setTimeout(() => infoBox.classList.remove('busy'), 200);
+        return;
+      }
+
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
@@ -348,8 +404,6 @@
       const clicked = getMouseNode(mx, my);
       if (clicked) {
         infoBox.style.display = 'block';
-        const delimiter = '\n---\n';
-        // Apply text effect only to the new text
         applyTextEffect(clicked.info, infoBox);
         debug.textContent += `\nClicked: ${clicked.id}`;
       } else {

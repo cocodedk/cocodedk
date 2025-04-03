@@ -49,7 +49,9 @@ An interactive network graph visualization showcasing the services and technolog
    - Ensure the infoBox is slightly offset to avoid overlapping with the node
    - Enhance readability and maintain context for the user
 
-7. [ ] Create a function to prepend text to the infoBox:
-   - Define a function `prependTextToInfoBox` to add new text before existing content.
-   - Ensure the function uses a delimiter to separate new and old text.
-   - Integrate the function into the click event handler for nodes.
+7. [ ] Animation stability improvements:
+   - Add animation queue system
+   - Implement interval cleanup for previous animations
+   - Add click debouncing during active animations
+   - Create proper animation state management
+   - Add visual feedback for click registration
