@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +15,8 @@
     }
     canvas {
       display: block;
+      width: 100%;
+      height: 100%;
     }
     #tooltip {
       position: absolute;
@@ -34,12 +35,28 @@
       right: 20px;
       width: 300px;
       background: #1a1a1a;
-      color: #fff;
+      color: #0f0;
       border: 1px solid #444;
       border-radius: 10px;
       padding: 15px;
       font-size: 14px;
       display: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    #debug {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: #fff;
+      font-size: 12px;
+      font-family: monospace;
+      background: rgba(0,0,0,0.5);
+      padding: 5px;
+      border-radius: 3px;
+      max-width: 500px;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -47,73 +64,217 @@
   <canvas id="graph"></canvas>
   <div id="tooltip"></div>
   <div id="infoBox"></div>
+  <div id="debug"></div>
   <script>
+    // Debug element
+    const debug = document.getElementById('debug');
+
+    // Initialize canvas and context
     const canvas = document.getElementById('graph');
     const ctx = canvas.getContext('2d');
     const tooltip = document.getElementById('tooltip');
     const infoBox = document.getElementById('infoBox');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
+    // Node colors and styles
+    const colors = {
+      default: {
+        fill: '#333',
+        stroke: '#aaa',
+        text: '#fff'
+      },
+      hover: {
+        fill: '#4a4a4a',
+        stroke: '#ddd',
+        text: '#fff'
+      },
+      categories: {
+        'cocode.dk': { fill: '#2a4858', stroke: '#6aadc9' },
+        'Software': { fill: '#1e5c66', stroke: '#60c2cc' },
+        'Cybersecurity': { fill: '#662e1e', stroke: '#cc7d60' },
+        'Clients': { fill: '#665c1e', stroke: '#ccc060' },
+        'Contact': { fill: '#421e66', stroke: '#9760cc' }
+      }
+    };
+
+    // Define nodes with updated structure
     const nodes = [
-      { id: 'Software', x: 400, y: 300, r: 40, info: 'Custom software systems using Django, React, Neo4j.' },
-      { id: 'Python', x: 250, y: 200, r: 25, info: 'Backend logic, APIs, automation in Python.' },
-      { id: 'Django', x: 550, y: 200, r: 25, info: 'Secure web applications using Django framework.' },
-      { id: 'Neo4j', x: 250, y: 400, r: 25, info: 'Graph data modeling for assets and compliance.' },
-      { id: 'Cybersecurity', x: 550, y: 400, r: 30, info: 'Security assessments, compliance audits, pentest support.' },
-      { id: 'Compliance', x: 700, y: 300, r: 20, info: 'Frameworks: CIS18, DORA, NIS2, ISO27000.' },
-      { id: 'Audit', x: 700, y: 450, r: 20, info: 'Gap assessments, evidence collection, remediation.' },
-      { id: 'Podcast', x: 100, y: 300, r: 20, info: 'Persian podcasts about Jungian psychology.' },
-      { id: 'AI Integrations', x: 400, y: 150, r: 25, info: 'Integrate AI models into workflows and assessments.' },
-      { id: 'AI Wrappers', x: 600, y: 100, r: 25, info: 'Custom LLM wrappers for processing and automation.' },
-      { id: 'Vibe Coding', x: 100, y: 450, r: 25, info: 'Creative, expressive coding projects with personality.' },
+        { id: 'cocode.dk', x: 0, y: 0, r: 50, info: 'cocode.dk is a freelance IT consultancy based in Denmark specializing in custom software development, graph databases, and cybersecurity services including compliance and audit automation.', category: 'cocode.dk' },
+
+        { id: 'Software', x: 0, y: -150, r: 40, info: 'Full-stack custom software solutions built with modern frameworks such as Django and React. Scalable, maintainable systems designed for business efficiency.', category: 'Software' },
+        { id: 'Cybersecurity', x: 0, y: 150, r: 40, info: 'Cybersecurity consulting including gap assessments, pentest coordination, risk remediation, and framework compliance (CIS18, NIST, ISO).', category: 'Cybersecurity' },
+        { id: 'Clients', x: 150, y: 0, r: 40, info: 'Real-world freelance IT and security projects delivered across Europe. Includes Django apps, CMDB reviews, and automated compliance tools.', category: 'Clients' },
+        { id: 'Contact', x: -150, y: 0, r: 40, info: 'Reach out to cocode.dk for IT consultancy or cybersecurity projects. Email: info@cocode.dk — based in Denmark, fluent in English, Danish, and Persian.', category: 'Contact' },
+
+        { id: 'Python', x: -100, y: -200, r: 30, info: 'Backend automation, API development, scripting, and data processing using Python — the core language for robust digital infrastructure.', category: 'Software' },
+        { id: 'Django', x: 0, y: -250, r: 30, info: 'Development of secure, scalable web applications using Django. Includes admin systems, APIs, authentication and integrations.', category: 'Software' },
+        { id: 'Neo4j', x: 100, y: -200, r: 30, info: 'Graph database expertise for mapping infrastructure, assets, systems, and relationships. Used for CMDB modeling and control tracking.', category: 'Software' },
+        { id: 'AI Integrations', x: -70, y: -300, r: 30, info: 'Implementation of AI features like LLMs (GPT, Claude, Mistral) in workflows, from risk evaluations to automated audits and insight generation.', category: 'Software' },
+        { id: 'AI Wrappers', x: 70, y: -300, r: 30, info: 'Custom logic layers around large language models for task-specific automation, data enhancement, and secure contextual use.', category: 'Software' },
+
+        { id: 'Compliance', x: -100, y: 200, r: 30, info: 'Specialized in CIS18, DORA, NIS2, ISO27000 compliance through graph-based audit mapping, evidence collection, and scope tracking.', category: 'Cybersecurity' },
+        { id: 'Audit', x: 100, y: 200, r: 30, info: 'Design and execution of cybersecurity gap assessments, audits, control mappings, and remediation project documentation.', category: 'Cybersecurity' },
+
+        { id: 'Podcast', x: -100, y: -50, r: 30, info: 'Psychology podcast in Persian language focused on Jungian concepts such as archetypes, individuation, and culture through a depth psychology lens.', category: 'Contact' },
+        { id: 'Vibe Coding', x: 200, y: -150, r: 30, info: 'Creative coding and interface design with expressive elements, custom interactions, and unique structural logic that reflects thinking patterns.', category: 'Software' },
     ];
 
+    console.log('Nodes defined:', nodes.length);
+
+    // Define links between nodes
     const links = [
+      // Main branches from center
+      ['cocode.dk', 'Software'],
+      ['cocode.dk', 'Cybersecurity'],
+      ['cocode.dk', 'Clients'],
+      ['cocode.dk', 'Contact'],
+
+      // Software connections
       ['Software', 'Python'],
       ['Software', 'Django'],
       ['Software', 'Neo4j'],
-      ['Software', 'Cybersecurity'],
-      ['Cybersecurity', 'Compliance'],
-      ['Cybersecurity', 'Audit'],
-      ['Software', 'Podcast'],
       ['Software', 'AI Integrations'],
       ['Software', 'AI Wrappers'],
-      ['Software', 'Vibe Coding']
+      ['Software', 'Vibe Coding'],
+
+      // Cybersecurity connections
+      ['Cybersecurity', 'Compliance'],
+      ['Cybersecurity', 'Audit'],
+
+      // Other connections
+      ['Contact', 'Podcast']
     ];
 
+    console.log('Links defined:', links.length);
+
+    // Track hover state
+    let hoveredNode = null;
+
+    // Helper function to resize canvas and maintain centering
+    function resizeCanvas() {
+      console.log('Resizing canvas to window size:', window.innerWidth, 'x', window.innerHeight);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      debug.textContent = `Canvas size: ${canvas.width} x ${canvas.height}`;
+      centerGraph();
+      drawGraph();
+    }
+
+    // Function to calculate text width and adjust node radius if needed
+    function calculateNodeRadius(node) {
+      ctx.font = '12px sans-serif';
+      const textWidth = ctx.measureText(node.id).width;
+      // Ensure radius is at least wide enough to contain text plus padding
+      return Math.max(node.r, (textWidth / 2) + 10);
+    }
+
+    // Function to center the graph in the canvas
+    function centerGraph() {
+      console.log('Centering graph');
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      nodes.forEach(node => {
+        // Store original position as offsets from center
+        if (!node.hasOwnProperty('offsetX')) {
+          node.offsetX = node.x;
+          node.offsetY = node.y;
+        }
+
+        // Update position based on canvas center
+        node.x = centerX + node.offsetX;
+        node.y = centerY + node.offsetY;
+
+        // Ensure radius is appropriate for text
+        node.r = calculateNodeRadius(node);
+      });
+
+      // Log the position of the central node
+      const centralNode = nodes.find(n => n.id === 'cocode.dk');
+      if (centralNode) {
+        console.log('Central node position:', centralNode.x, centralNode.y);
+        debug.textContent += `\nCenter node: ${centralNode.x.toFixed(0)},${centralNode.y.toFixed(0)}`;
+      }
+    }
+
+    // Function to draw a node
     function drawNode(node) {
+      // Determine if this is the hovered node
+      const isHovered = (node === hoveredNode);
+
+      // Get appropriate colors
+      let fillColor, strokeColor, textColor;
+
+      if (isHovered) {
+        fillColor = colors.hover.fill;
+        strokeColor = colors.hover.stroke;
+        textColor = colors.hover.text;
+      } else if (colors.categories[node.category]) {
+        fillColor = colors.categories[node.category].fill;
+        strokeColor = colors.categories[node.category].stroke;
+        textColor = colors.default.text;
+      } else {
+        fillColor = colors.default.fill;
+        strokeColor = colors.default.stroke;
+        textColor = colors.default.text;
+      }
+
+      // Draw node circle
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-      ctx.fillStyle = '#333';
+      ctx.fillStyle = fillColor;
       ctx.fill();
-      ctx.strokeStyle = '#aaa';
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = isHovered ? 2 : 1;
       ctx.stroke();
-      ctx.fillStyle = '#fff';
+
+      // Draw node text
+      ctx.fillStyle = textColor;
       ctx.font = '12px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(node.id, node.x, node.y);
     }
 
+    // Function to draw a link between nodes
     function drawLink(from, to) {
+      if (!from || !to) {
+        console.error('Missing node in link', from, to);
+        return;
+      }
+
       ctx.beginPath();
       ctx.moveTo(from.x, from.y);
       ctx.lineTo(to.x, to.y);
       ctx.strokeStyle = '#555';
+      ctx.lineWidth = 1;
       ctx.stroke();
     }
 
+    // Function to draw the entire graph
     function drawGraph() {
+      console.log('Drawing graph');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw links first (so they appear behind nodes)
       links.forEach(link => {
         const from = nodes.find(n => n.id === link[0]);
         const to = nodes.find(n => n.id === link[1]);
+
+        if (!from || !to) {
+          console.error('Could not find nodes for link:', link);
+          return;
+        }
+
         drawLink(from, to);
       });
+
+      // Draw nodes on top
       nodes.forEach(drawNode);
+
+      console.log('Graph drawn');
     }
 
+    // Function to find a node under the mouse cursor
     function getMouseNode(mx, my) {
       return nodes.find(node => {
         const dx = mx - node.x;
@@ -122,35 +283,92 @@
       });
     }
 
+    // Function to prepend text with teletype effect
+    function applyTextEffect(newText, element, delimiter = '\n---\n') {
+        const originalContent = element.textContent;
+        let currentNewText = '';
+        let index = 0;
+
+        // Store original content to preserve existing text
+        const existingContent = originalContent ? delimiter + originalContent : '';
+
+        const interval = setInterval(() => {
+          if (index < newText.length) {
+            // Build new text with scrambling effect
+            currentNewText = newText.substring(0, index) +
+                            String.fromCharCode(33 + Math.floor(Math.random() * 94));
+            element.textContent = currentNewText + existingContent;
+            index++;
+          } else {
+            // Finalize with complete new text
+            clearInterval(interval);
+            element.textContent = newText + existingContent;
+          }
+        }, 50);
+    }
+
+    // Mouse move event handler
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
-      const hovered = getMouseNode(mx, my);
-      if (hovered) {
-        tooltip.style.left = `${hovered.x + 10}px`;
-        tooltip.style.top = `${hovered.y + 10}px`;
-        tooltip.textContent = hovered.id;
+
+      // Find node under cursor
+      const nodeUnderCursor = getMouseNode(mx, my);
+
+      // Handle hover effects
+      if (nodeUnderCursor) {
+        // Update tooltip
+        tooltip.style.left = `${e.clientX + 10}px`;
+        tooltip.style.top = `${e.clientY + 10}px`;
+        tooltip.textContent = nodeUnderCursor.id;
         tooltip.style.opacity = 1;
+
+        // Set hover state
+        if (hoveredNode !== nodeUnderCursor) {
+          hoveredNode = nodeUnderCursor;
+          drawGraph(); // Redraw with hover effect
+        }
       } else {
+        // Reset hover state
         tooltip.style.opacity = 0;
+        if (hoveredNode !== null) {
+          hoveredNode = null;
+          drawGraph(); // Redraw without hover effect
+        }
       }
     });
 
+    // Click event handler
     canvas.addEventListener('click', (e) => {
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
+
       const clicked = getMouseNode(mx, my);
       if (clicked) {
-        infoBox.innerText = clicked.info;
         infoBox.style.display = 'block';
+        const delimiter = '\n---\n';
+        // Apply text effect only to the new text
+        applyTextEffect(clicked.info, infoBox);
+        debug.textContent += `\nClicked: ${clicked.id}`;
       } else {
         infoBox.style.display = 'none';
       }
     });
 
-    drawGraph();
+    // Window resize handler
+    window.addEventListener('resize', resizeCanvas);
+
+    // Initial rendering
+    console.log('Starting initial rendering');
+    resizeCanvas();
+
+    // Force a redraw after a short delay to ensure canvas is properly sized
+    setTimeout(() => {
+      console.log('Forced redraw after timeout');
+      resizeCanvas();
+    }, 100);
   </script>
 </body>
 </html>
