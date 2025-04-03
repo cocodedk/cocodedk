@@ -49,7 +49,14 @@ An interactive network graph visualization showcasing the services and technolog
    - Ensure the infoBox is slightly offset to avoid overlapping with the node
    - Enhance readability and maintain context for the user
 
-7. [ ] Animation stability improvements:
+7. [x] Dynamic infoBox layering:
+   - Maintains original top-right position
+   - Automatically moves behind nodes when overlapping central area
+   - Uses ResizeObserver to detect size changes
+   - Checks overlap with central node position
+   - Smooth z-index transitions
+
+8. [ ] Animation stability improvements:
    - Add animation queue system
    - Implement interval cleanup for previous animations
    - Add click debouncing during active animations

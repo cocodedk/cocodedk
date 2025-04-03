@@ -17,6 +17,8 @@
       display: block;
       width: 100%;
       height: 100%;
+      z-index: 2;
+      position: relative;
     }
     #tooltip {
       position: absolute;
@@ -47,6 +49,7 @@
       line-height: 1.5;
       white-space: normal;
       transition: all 0.2s ease;
+      transition: z-index 0.3s ease;
     }
     #debug {
       position: absolute;
@@ -78,6 +81,17 @@
     .busy {
       border-color: #ff4444 !important;
       box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+    }
+    .canvas-overlap {
+      z-index: 1;
+    }
+    #infoBox.canvas-overlap {
+      z-index: 1;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    #infoBox:not(.canvas-overlap) {
+      z-index: 100;
     }
   </style>
 </head>
@@ -354,7 +368,7 @@
             if (el !== header) el.classList.add('old-entry');
           });
         }
-      }, 40);
+      }, 10);
     }
 
     // Mouse move event handler
@@ -423,6 +437,39 @@
       console.log('Forced redraw after timeout');
       resizeCanvas();
     }, 100);
+
+    // Add after node definitions
+    function checkInfoBoxOverlap() {
+      const infoBoxRect = infoBox.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
+
+      // Check overlap with any node
+      const overlap = nodes.some(node => {
+        const nodeX = canvasRect.left + node.x;
+        const nodeY = canvasRect.top + node.y;
+        const nodeRight = nodeX + node.r;
+        const nodeBottom = nodeY + node.r;
+
+        return (
+          nodeX < infoBoxRect.right &&
+          nodeRight > infoBoxRect.left &&
+          nodeY < infoBoxRect.bottom &&
+          nodeBottom > infoBoxRect.top
+        );
+      });
+
+      infoBox.classList.toggle('canvas-overlap', overlap);
+    }
+
+    // Create ResizeObserver for infoBox
+    const resizeObserver = new ResizeObserver(entries => {
+      checkInfoBoxOverlap();
+    });
+
+    resizeObserver.observe(infoBox);
+
+    // Add initial check
+    setTimeout(() => checkInfoBoxOverlap(), 100);
   </script>
 </body>
 </html>
