@@ -44,10 +44,11 @@ An interactive network graph visualization showcasing the services and technolog
    - Create a consistent node/link data structure
    - Improve variable naming and organization
 
-6. [x] Improve infoBox positioning:
-   - Dynamically position the infoBox relative to the clicked node
-   - Ensure the infoBox is slightly offset to avoid overlapping with the node
-   - Enhance readability and maintain context for the user
+6. [x] infoBox positioning:
+   - Centered horizontally at top of screen
+   - Maintains 20px top margin
+   - Responsive width constraints
+   - Dynamic layering based on node overlap
 
 7. [x] Dynamic infoBox layering:
    - Maintains original top-right position

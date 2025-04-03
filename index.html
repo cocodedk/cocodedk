@@ -34,9 +34,10 @@
     #infoBox {
       position: absolute;
       top: 20px;
-      right: 20px;
-      width: 375px;
-      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      max-width: 95%;
       background: #1a1a1a;
       color: #0f0;
       border: 1px solid #444;
@@ -446,7 +447,7 @@
 
       // Check overlap with any node
       const overlap = nodes.some(node => {
-        const nodeX = canvasRect.left + node.x;
+        const nodeX = canvasRect.left + node.x - (node.r * 2);
         const nodeY = canvasRect.top + node.y;
         const nodeRight = nodeX + node.r;
         const nodeBottom = nodeY + node.r;
