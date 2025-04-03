@@ -1,14 +1,156 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocode.dk - AI First Strategies</title>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LebH7IqAAAAANGIypOF3e5rtgycU6M11ZCIDmLS" async defer></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cocode.dk</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #0d0d0d;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    #tooltip {
+      position: absolute;
+      background: #222;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    #infoBox {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="graph"></canvas>
+  <div id="tooltip"></div>
+  <div id="infoBox"></div>
+  <script>
+    const canvas = document.getElementById('graph');
+    const ctx = canvas.getContext('2d');
+    const tooltip = document.getElementById('tooltip');
+    const infoBox = document.getElementById('infoBox');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const nodes = [
+      { id: 'Software', x: 400, y: 300, r: 40, info: 'Custom software systems using Django, React, Neo4j.' },
+      { id: 'Python', x: 250, y: 200, r: 25, info: 'Backend logic, APIs, automation in Python.' },
+      { id: 'Django', x: 550, y: 200, r: 25, info: 'Secure web applications using Django framework.' },
+      { id: 'Neo4j', x: 250, y: 400, r: 25, info: 'Graph data modeling for assets and compliance.' },
+      { id: 'Cybersecurity', x: 550, y: 400, r: 30, info: 'Security assessments, compliance audits, pentest support.' },
+      { id: 'Compliance', x: 700, y: 300, r: 20, info: 'Frameworks: CIS18, DORA, NIS2, ISO27000.' },
+      { id: 'Audit', x: 700, y: 450, r: 20, info: 'Gap assessments, evidence collection, remediation.' },
+      { id: 'Podcast', x: 100, y: 300, r: 20, info: 'Persian podcasts about Jungian psychology.' },
+      { id: 'AI Integrations', x: 400, y: 150, r: 25, info: 'Integrate AI models into workflows and assessments.' },
+      { id: 'AI Wrappers', x: 600, y: 100, r: 25, info: 'Custom LLM wrappers for processing and automation.' },
+      { id: 'Vibe Coding', x: 100, y: 450, r: 25, info: 'Creative, expressive coding projects with personality.' },
+    ];
+
+    const links = [
+      ['Software', 'Python'],
+      ['Software', 'Django'],
+      ['Software', 'Neo4j'],
+      ['Software', 'Cybersecurity'],
+      ['Cybersecurity', 'Compliance'],
+      ['Cybersecurity', 'Audit'],
+      ['Software', 'Podcast'],
+      ['Software', 'AI Integrations'],
+      ['Software', 'AI Wrappers'],
+      ['Software', 'Vibe Coding']
+    ];
+
+    function drawNode(node) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+      ctx.fillStyle = '#333';
+      ctx.fill();
+      ctx.strokeStyle = '#aaa';
+      ctx.stroke();
+      ctx.fillStyle = '#fff';
+      ctx.font = '12px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(node.id, node.x, node.y);
+    }
+
+    function drawLink(from, to) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.strokeStyle = '#555';
+      ctx.stroke();
+    }
+
+    function drawGraph() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      links.forEach(link => {
+        const from = nodes.find(n => n.id === link[0]);
+        const to = nodes.find(n => n.id === link[1]);
+        drawLink(from, to);
+      });
+      nodes.forEach(drawNode);
+    }
+
+    function getMouseNode(mx, my) {
+      return nodes.find(node => {
+        const dx = mx - node.x;
+        const dy = my - node.y;
+        return dx * dx + dy * dy < node.r * node.r;
+      });
+    }
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const hovered = getMouseNode(mx, my);
+      if (hovered) {
+        tooltip.style.left = `${hovered.x + 10}px`;
+        tooltip.style.top = `${hovered.y + 10}px`;
+        tooltip.textContent = hovered.id;
+        tooltip.style.opacity = 1;
+      } else {
+        tooltip.style.opacity = 0;
+      }
+    });
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const clicked = getMouseNode(mx, my);
+      if (clicked) {
+        infoBox.innerText = clicked.info;
+        infoBox.style.display = 'block';
+      } else {
+        infoBox.style.display = 'none';
+      }
+    });
+
+    drawGraph();
+  </script>
+</body>
 </html>
