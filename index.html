@@ -271,8 +271,8 @@
       ctx.lineWidth = isHovered ? 2 : 1;
       ctx.stroke();
 
-      // Draw node text
-      ctx.fillStyle = textColor;
+      // Draw node text (revert to white)
+      ctx.fillStyle = '#ffffff'; // Force white text
       ctx.font = '12px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -370,7 +370,7 @@
             if (el !== header) el.classList.add('old-entry');
           });
         }
-      }, 5);
+      }, 10);
     }
 
     // Mouse move event handler
