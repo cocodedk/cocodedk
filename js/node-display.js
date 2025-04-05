@@ -116,7 +116,7 @@ function createNodeLinks() {
 }
 
 // Create a visual link between two nodes
-function createLink(fromNode, toNode) {
+function createLink(fromNode, toNode, spacingMultiplier = 1) {
   const linkElement = document.createElement('div');
   linkElement.className = 'node-link';
 
@@ -135,14 +135,14 @@ function createLink(fromNode, toNode) {
     scaleFactor = 0.8;
   }
   if (window.innerWidth <= 480) {
-    scaleFactor = 0.6;
+    scaleFactor = 0.75; // Match the updated scale factor
   }
 
-  // Apply scale factor to positions
-  const fromX = centerX + fromNode.x * scaleFactor;
-  const fromY = centerY + fromNode.y * scaleFactor;
-  const toX = centerX + toNode.x * scaleFactor;
-  const toY = centerY + toNode.y * scaleFactor;
+  // Apply scale factor and spacing multiplier to positions
+  const fromX = centerX + (fromNode.x * spacingMultiplier) * scaleFactor;
+  const fromY = centerY + (fromNode.y * spacingMultiplier) * scaleFactor;
+  const toX = centerX + (toNode.x * spacingMultiplier) * scaleFactor;
+  const toY = centerY + (toNode.y * spacingMultiplier) * scaleFactor;
 
   // Calculate distance and angle
   const dx = toX - fromX;
@@ -290,30 +290,49 @@ function adjustNodesForScreenSize() {
 
   // Adjust scale factor for mobile
   let scaleFactor = 1;
+  let spacingMultiplier = 1; // Default spacing multiplier
+
   if (window.innerWidth <= 768) {
     scaleFactor = 0.8;
   }
   if (window.innerWidth <= 480) {
-    scaleFactor = 0.6;
+    scaleFactor = 0.75; // Increased from 0.7 for better visibility
+    spacingMultiplier = 1.2; // Add more spacing between nodes at 480px
   }
 
   // Update node positions and sizes
   nodes.forEach(nodeData => {
     const nodeElement = document.getElementById(`node-${nodeData.id}`);
     if (nodeElement) {
-      // Scale size
-      const size = nodeData.r * 2 * scaleFactor;
+      // Scale size but ensure minimum sizes for touch targets
+      let size = nodeData.r * 2 * scaleFactor;
+
+      // Set minimum size for proper touch targets on mobile
+      if (window.innerWidth <= 480) {
+        size = Math.max(size, 54); // Increased minimum size from 48px to 54px
+      } else if (window.innerWidth <= 768) {
+        size = Math.max(size, 44);
+      }
+
       nodeElement.style.width = `${size}px`;
       nodeElement.style.height = `${size}px`;
 
+      // Apply spacing multiplier to spread nodes out more at 480px
+      const adjustedX = nodeData.x * spacingMultiplier;
+      const adjustedY = nodeData.y * spacingMultiplier;
+
       // Update position
-      nodeElement.style.left = `${centerX + nodeData.x * scaleFactor - (nodeData.r * scaleFactor)}px`;
-      nodeElement.style.top = `${centerY + nodeData.y * scaleFactor - (nodeData.r * scaleFactor)}px`;
+      nodeElement.style.left = `${centerX + adjustedX * scaleFactor - (size / 2)}px`;
+      nodeElement.style.top = `${centerY + adjustedY * scaleFactor - (size / 2)}px`;
 
       // Adjust font size
       const labelElement = nodeElement.querySelector('.node-label');
       if (labelElement) {
-        const fontSize = Math.max(10, Math.min(16, nodeData.r / 3 * scaleFactor));
+        // Larger font size for smaller screens but keep it proportional to node size
+        let fontSize = Math.max(12, Math.min(16, nodeData.r / 3 * scaleFactor));
+        if (window.innerWidth <= 480) {
+          fontSize = Math.max(13, fontSize); // Minimum 13px font on small screens
+        }
         labelElement.style.fontSize = `${fontSize}px`;
       }
     }
@@ -333,7 +352,8 @@ function adjustNodesForScreenSize() {
     const toNode = nodes.find(n => n.id === toNodeId);
 
     if (fromNode && toNode) {
-      createLink(fromNode, toNode);
+      // Pass the spacing multiplier to createLink
+      createLink(fromNode, toNode, spacingMultiplier);
     }
   });
 }
