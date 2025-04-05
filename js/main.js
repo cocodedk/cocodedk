@@ -965,11 +965,45 @@ document.getElementById('langToggle').addEventListener('click', function() {
     const expanded = menu.classList.contains('active');
     this.setAttribute('aria-expanded', expanded);
 
+    // Add tooltip effect
+    if (expanded) {
+      const tooltip = document.createElement('div');
+      tooltip.className = 'lang-tooltip';
+      tooltip.textContent = 'Choose your language';
+      tooltip.style.position = 'fixed';
+      tooltip.style.top = (this.getBoundingClientRect().bottom + 10) + 'px';
+      tooltip.style.right = '20px';
+      tooltip.style.backgroundColor = 'rgba(0,0,0,0.8)';
+      tooltip.style.color = '#fff';
+      tooltip.style.padding = '8px 12px';
+      tooltip.style.borderRadius = '4px';
+      tooltip.style.fontSize = '14px';
+      tooltip.style.zIndex = '1002';
+      tooltip.style.opacity = '0';
+      tooltip.style.transition = 'opacity 0.3s ease';
+      document.body.appendChild(tooltip);
+
+      // Fade in tooltip
+      setTimeout(() => {
+        tooltip.style.opacity = '1';
+      }, 10);
+
+      // Remove tooltip after 3 seconds
+      setTimeout(() => {
+        tooltip.style.opacity = '0';
+        setTimeout(() => {
+          if (tooltip.parentNode) {
+            document.body.removeChild(tooltip);
+          }
+        }, 300);
+      }, 3000);
+    }
+
     // Add escape key listener when menu is open
     if (expanded) {
-    document.addEventListener('keydown', closeMenuOnEscape);
+      document.addEventListener('keydown', closeMenuOnEscape);
     } else {
-    document.removeEventListener('keydown', closeMenuOnEscape);
+      document.removeEventListener('keydown', closeMenuOnEscape);
     }
 });
 
@@ -1113,4 +1147,74 @@ window.addEventListener('scroll', () => {
     if (infoBox.style.display === 'block') {
     checkInfoBoxHeight();
     }
+});
+
+// Add scroll effect for header
+window.addEventListener('scroll', function() {
+  const headerContainer = document.querySelector('.header-container');
+  const scrollPos = window.scrollY;
+
+  if (scrollPos > 50) {
+    headerContainer.style.background = 'linear-gradient(to bottom, rgba(20, 10, 30, 0.9), rgba(20, 10, 30, 0.7))';
+    headerContainer.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+  } else {
+    headerContainer.style.background = 'linear-gradient(to bottom, rgba(20, 10, 30, 0.7), transparent)';
+    headerContainer.style.boxShadow = 'none';
+  }
+});
+
+// Add responsive position handling for language toggle
+function updateTogglePosition() {
+  const langToggle = document.getElementById('langToggle');
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const isMobile = window.innerWidth <= 768;
+  const scrollPosition = window.scrollY;
+
+  // Default position
+  let topPosition = '20px';
+  let rightPosition = '20px';
+
+  if (isMobile) {
+    if (isLandscape) {
+      // In landscape mobile, position in bottom right
+      topPosition = 'auto';
+      langToggle.style.bottom = '20px';
+    } else {
+      // In portrait mobile, adjust based on scroll
+      if (scrollPosition > 100) {
+        // When scrolled down, move to bottom right for easier access
+        topPosition = 'auto';
+        langToggle.style.bottom = '20px';
+      } else {
+        // When at top, position in top right
+        topPosition = '15px';
+        langToggle.style.bottom = 'auto';
+      }
+    }
+
+    // Add floating animation when repositioned to bottom
+    if (langToggle.style.bottom && langToggle.style.bottom !== 'auto') {
+      langToggle.classList.add('floating');
+    } else {
+      langToggle.classList.remove('floating');
+    }
+  } else {
+    // On desktop, keep in top right
+    topPosition = '20px';
+    langToggle.style.bottom = 'auto';
+    langToggle.classList.remove('floating');
+  }
+
+  langToggle.style.top = topPosition;
+  langToggle.style.right = rightPosition;
+}
+
+// Listen for changes that would affect position
+window.addEventListener('resize', updateTogglePosition);
+window.addEventListener('scroll', updateTogglePosition);
+window.addEventListener('orientationchange', updateTogglePosition);
+
+// Initialize position
+document.addEventListener('DOMContentLoaded', function() {
+  updateTogglePosition();
 });
