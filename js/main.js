@@ -1,6 +1,6 @@
 
-const DEBUG_MODE = true;
-const LOGGER_MODE = true;
+const DEBUG_MODE = false;
+const LOGGER_MODE = false;
 
 const debug = document.getElementById('debug');
 
