@@ -16,6 +16,9 @@
 - Developed modular node animation system in a separate file (node-animation.js)
 - Created animation presets library with different visual modes (subtle, showcase, interactive)
 - Added animation controls in debug panel to switch between animation modes
+- Created a secure modal for displaying contact information with human verification
+- Implemented obfuscation techniques to protect email and phone from web scrapers
+- Styled the Contact node with gold/amber colors to make it visually distinct
 
 ### Previously Completed
 1. ✅ Restructured the node layout:

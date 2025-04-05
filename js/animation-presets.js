@@ -52,7 +52,8 @@ const AnimationPresets = {
       amplitude: 4,
       frequency: 0.2,
       repeat: 'infinite',
-      duration: 5500 // Slightly different timing
+      duration: 3000,
+      easing: 'easeInOutElastic' // Special animation for Contact
     }
   ],
 

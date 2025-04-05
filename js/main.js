@@ -33,7 +33,7 @@ const colors = {
         'Software': { fill: '#0077cc', stroke: '#33ccff', text: '#ffffff' },
         'Cybersecurity': { fill: '#cc0044', stroke: '#ff6688', text: '#ffffff' },
         'Clients': { fill: '#cc8800', stroke: '#ffcc33', text: '#000000' },
-        'Contact': { fill: '#8800cc', stroke: '#cc66ff', text: '#ffffff' }
+        'Contact': { fill: '#f1c40f', stroke: '#f39c12', text: '#000000' }
     }
 };
 
@@ -72,7 +72,7 @@ const categoryHoverColors = {
   'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
   'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
   'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
-  'Contact': { fill: '#aa00ee', stroke: '#dd88ff', text: '#ffffff' }
+  'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' }
 };
 
 // Define nodes with updated structure
@@ -911,9 +911,9 @@ canvas.addEventListener('mousemove', (e) => {
 // Click event handler
 canvas.addEventListener('click', (e) => {
     if (animationState.active) {
-    infoBox.classList.add('busy');
-    setTimeout(() => infoBox.classList.remove('busy'), 200);
-    return;
+      infoBox.classList.add('busy');
+      setTimeout(() => infoBox.classList.remove('busy'), 200);
+      return;
     }
 
     const rect = canvas.getBoundingClientRect();
@@ -922,23 +922,31 @@ canvas.addEventListener('click', (e) => {
 
     const clicked = getMouseNode(mx, my);
     if (clicked) {
-    // Track selected node
-    lastClickedNode = clicked;
+      // Track selected node for glow effect
+      lastClickedNode = clicked;
 
-    infoBox.style.display = 'block';
-    // Clear previous content before adding new text
-    applyTextEffect(clicked.translations[currentLanguage], infoBox);
+      // Special handling for Contact node
+      if (clicked.id === 'Contact') {
+        // The modal handling is done in contact-modal.js
+        // Just update the glow effect here
+        drawGraph();
+        return;
+      }
 
-    // Get the node text in current language for debug output
-    const nodeText = (clicked.labels && clicked.labels[currentLanguage])
-      ? clicked.labels[currentLanguage]
-      : clicked.id;
+      infoBox.style.display = 'block';
+      // Clear previous content before adding new text
+      applyTextEffect(clicked.translations[currentLanguage], infoBox);
 
-    debug.textContent += `\nClicked: ${nodeText}`;
+      // Get the node text in current language for debug output
+      const nodeText = (clicked.labels && clicked.labels[currentLanguage])
+        ? clicked.labels[currentLanguage]
+        : clicked.id;
+
+      debug.textContent += `\nClicked: ${nodeText}`;
     } else {
-    // Clear selection when clicking empty space
-    lastClickedNode = null;
-    infoBox.style.display = 'none';
+      // Clear selection when clicking empty space
+      lastClickedNode = null;
+      infoBox.style.display = 'none';
     }
 
     // Redraw to show selection glow

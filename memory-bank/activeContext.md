@@ -34,6 +34,8 @@ The project is currently focusing on enhancing both the functionality and visual
 - Added toggle functionality for language menu on mobile
 - Implemented modular node animation system with multiple animation patterns
 - Created animation presets for different visualization modes (subtle, showcase)
+- Added secure contact modal with human verification to protect contact details
+- Implemented obfuscation for sensitive contact information to prevent web scrapers
 
 ## Active Decisions
 - Using vanilla JavaScript without external libraries for visualization
