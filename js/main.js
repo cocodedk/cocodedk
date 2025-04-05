@@ -1,5 +1,11 @@
 // Debug element
+const DEBUG_MODE = false;
+
 const debug = document.getElementById('debug');
+
+if (!DEBUG_MODE) {
+    debug.style.display = 'none';
+}
 
 // Initialize canvas and context
 const canvas = document.getElementById('graph');
@@ -693,7 +699,9 @@ function resizeCanvas() {
     console.log('Resizing canvas to window size:', window.innerWidth, 'x', window.innerHeight);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    debug.textContent = `Canvas size: ${canvas.width} x ${canvas.height}`;
+    if (DEBUG_MODE) {
+        debug.textContent = `Canvas size: ${canvas.width} x ${canvas.height}`;
+    }
     centerGraph();
     drawGraph();
 }
@@ -734,8 +742,9 @@ function centerGraph() {
     // Log the position of the central node
     const centralNode = nodes.find(n => n.id === 'cocode.dk');
     if (centralNode) {
-    console.log('Central node position:', centralNode.x, centralNode.y);
-    debug.textContent += `\nCenter node: ${centralNode.x.toFixed(0)},${centralNode.y.toFixed(0)}`;
+        if (DEBUG_MODE) {
+            debug.textContent += `\nCenter node: ${centralNode.x.toFixed(0)},${centralNode.y.toFixed(0)}`;
+        }
     }
 }
 
@@ -991,7 +1000,9 @@ canvas.addEventListener('click', (e) => {
         ? clicked.labels[currentLanguage]
         : clicked.id;
 
-      debug.textContent += `\nClicked: ${nodeText}`;
+      if (DEBUG_MODE) {
+        debug.textContent += `\nClicked: ${nodeText}`;
+      }
     } else {
       // Clear selection when clicking empty space
       lastClickedNode = null;
