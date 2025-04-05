@@ -27,10 +27,13 @@ The project is currently focusing on enhancing both the functionality and visual
 - Added accessibility features including keyboard navigation and ARIA attributes
 - Updated node labels to dynamically reflect the selected language
 - Changed background to purple gradient for better aesthetics
+- Added category-specific hover colors for improved visual feedback
 - Removed redundant tooltip system in favor of cleaner UI with glow effects
 - Moved CSS styles from inline to external stylesheet (styles.css)
 - Moved JavaScript code from inline to external file (main.js)
 - Added toggle functionality for language menu on mobile
+- Implemented modular node animation system with multiple animation patterns
+- Created animation presets for different visualization modes (subtle, showcase)
 
 ## Active Decisions
 - Using vanilla JavaScript without external libraries for visualization

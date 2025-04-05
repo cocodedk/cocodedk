@@ -6,6 +6,12 @@ const canvas = document.getElementById('graph');
 const ctx = canvas.getContext('2d');
 const infoBox = document.getElementById('infoBox');
 
+// Check if animation system is available
+let nodeAnimationSystem;
+if (typeof NodeAnimation !== 'undefined') {
+  nodeAnimationSystem = NodeAnimation;
+}
+
 // Track hovered and selected nodes
 let hoveredNode = null;
 let lastClickedNode = null;
@@ -29,7 +35,45 @@ const colors = {
         'Clients': { fill: '#cc8800', stroke: '#ffcc33', text: '#000000' },
         'Contact': { fill: '#8800cc', stroke: '#cc66ff', text: '#ffffff' }
     }
-    };
+};
+
+// Color utility functions
+function lightenColor(hex, percent) {
+  // Convert hex to RGB
+  let r = parseInt(hex.substring(1, 3), 16);
+  let g = parseInt(hex.substring(3, 5), 16);
+  let b = parseInt(hex.substring(5, 7), 16);
+
+  // Lighten
+  r = Math.min(255, Math.floor(r * (1 + percent / 100)));
+  g = Math.min(255, Math.floor(g * (1 + percent / 100)));
+  b = Math.min(255, Math.floor(b * (1 + percent / 100)));
+
+  // Convert back to hex
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+function getContrastColor(hex) {
+  // Convert hex to RGB
+  const r = parseInt(hex.substring(1, 3), 16);
+  const g = parseInt(hex.substring(3, 5), 16);
+  const b = parseInt(hex.substring(5, 7), 16);
+
+  // Calculate luminance - using relative luminance formula
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  // Return black for bright colors, white for dark colors
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
+// Category-specific hover colors
+const categoryHoverColors = {
+  'cocode.dk': { fill: '#0077aa', stroke: '#33eeff', text: '#ffffff' },
+  'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
+  'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
+  'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
+  'Contact': { fill: '#aa00ee', stroke: '#dd88ff', text: '#ffffff' }
+};
 
 // Define nodes with updated structure
 const nodes = [
@@ -660,10 +704,18 @@ function drawNode(node) {
 
     // Determine colors based on node state and category
     let fillColor, strokeColor, textColor;
+
     if (isHovered) {
-        fillColor = colors.hover.fill;
-        strokeColor = colors.hover.stroke;
-        textColor = colors.hover.text;
+        // Use category-specific hover colors
+        if (categoryHoverColors[node.category]) {
+            fillColor = categoryHoverColors[node.category].fill;
+            strokeColor = categoryHoverColors[node.category].stroke;
+            textColor = categoryHoverColors[node.category].text;
+        } else {
+            fillColor = colors.hover.fill;
+            strokeColor = colors.hover.stroke;
+            textColor = colors.hover.text;
+        }
     } else if (colors.categories[node.category]) {
         fillColor = colors.categories[node.category].fill;
         strokeColor = colors.categories[node.category].stroke;
@@ -743,26 +795,31 @@ function drawLink(from, to) {
 
 // Function to draw the entire graph
 function drawGraph() {
-    console.log('Drawing graph');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  console.log('Drawing graph');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw links first (so they appear behind nodes)
-    links.forEach(link => {
+  // Apply any active animations to node positions
+  if (nodeAnimationSystem && typeof nodeAnimationSystem.updateNodePositions === 'function') {
+    nodeAnimationSystem.updateNodePositions(nodes);
+  }
+
+  // Draw links first (so they appear behind nodes)
+  links.forEach(link => {
     const from = nodes.find(n => n.id === link[0]);
     const to = nodes.find(n => n.id === link[1]);
 
     if (!from || !to) {
-        console.error('Could not find nodes for link:', link);
-        return;
+      console.error('Could not find nodes for link:', link);
+      return;
     }
 
     drawLink(from, to);
-    });
+  });
 
-    // Draw nodes on top
-    nodes.forEach(drawNode);
+  // Draw nodes on top
+  nodes.forEach(drawNode);
 
-    console.log('Graph drawn');
+  console.log('Graph drawn');
 }
 
 // Function to find a node under the mouse cursor

@@ -132,6 +132,52 @@
       <div class="lang-code">FR</div>
     </div>
   </div>
+
+  <!-- External JavaScript -->
+  <script src="js/node-animation.js"></script>
+  <script src="js/animation-presets.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Animation configuration -->
+  <script>
+    // Initialize animations when the main script is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof NodeAnimation !== 'undefined' && typeof AnimationPresets !== 'undefined') {
+        // Use the subtle preset by default
+        NodeAnimation.initFromConfig(AnimationPresets.subtle);
+
+        // Add animation controls to debug menu
+        const debugEl = document.getElementById('debug');
+        debugEl.innerHTML += '\n\nAnimation Controls:';
+        debugEl.innerHTML += '\n- Click to toggle animations';
+
+        // Add click handler to toggle between animation presets
+        let currentPreset = 'subtle';
+        debugEl.addEventListener('click', function() {
+          // Cycle through presets
+          switch(currentPreset) {
+            case 'subtle':
+              NodeAnimation.reset(nodes);
+              NodeAnimation.initFromConfig(AnimationPresets.showcase);
+              currentPreset = 'showcase';
+              debugEl.innerHTML += '\nActive: Showcase animations';
+              break;
+            case 'showcase':
+              NodeAnimation.reset(nodes);
+              // No animations
+              currentPreset = 'none';
+              debugEl.innerHTML += '\nActive: No animations';
+              break;
+            case 'none':
+              NodeAnimation.reset(nodes);
+              NodeAnimation.initFromConfig(AnimationPresets.subtle);
+              currentPreset = 'subtle';
+              debugEl.innerHTML += '\nActive: Subtle animations';
+              break;
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

@@ -12,6 +12,10 @@
 - **Improved code organization by moving JavaScript to external file (main.js)**
 - Added glow effects for hovered and selected nodes with connected links
 - Removed redundant tooltip for a cleaner UI
+- Implemented category-specific hover colors to maintain visual identity when interacting with nodes
+- Developed modular node animation system in a separate file (node-animation.js)
+- Created animation presets library with different visual modes (subtle, showcase, interactive)
+- Added animation controls in debug panel to switch between animation modes
 
 ### Previously Completed
 1. ✅ Restructured the node layout:
