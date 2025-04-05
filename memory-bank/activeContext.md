@@ -19,6 +19,9 @@ The project is currently focusing on enhancing both the functionality and visual
    - Preserving proper display for all supported languages
    - Supporting right-to-left language display
 
+4. Improving code organization by separating CSS and JavaScript from HTML
+5. Adding glow effect for selected nodes
+
 ## Recent Changes
 - Implemented a vertical language selector with flags for all 11 supported languages
 - Added accessibility features to the language selector including:
@@ -32,6 +35,9 @@ The project is currently focusing on enhancing both the functionality and visual
 - Added Matrix-style animated title with character scrambling effects and green glow
 - Modified the tooltip system to display translated node labels
 - Updated the calculateNodeRadius function to account for varying text widths in different languages
+- Moved CSS styles from inline to external stylesheet (styles.css)
+- Moved JavaScript code from inline to external file (main.js)
+- Added toggle functionality for language menu on mobile
 
 ## Active Decisions
 - Using vanilla JavaScript without external libraries for visualization

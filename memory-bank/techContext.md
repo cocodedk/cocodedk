@@ -94,3 +94,32 @@
 - Accessible markup with ARIA attributes
 - Mobile-first responsive design
 - Performance optimization for animations
+
+## Technology Stack
+
+The project uses a minimalist technology stack:
+
+- **HTML5**: Core structure and content
+- **CSS3**: Styling and animations
+  - Responsive design principles
+  - Animation transitions
+  - Flexbox layout
+  - CSS variables for theming
+- **JavaScript (ES6+)**: Interactive functionality
+  - Canvas API for drawing the network graph
+  - DOM manipulation
+  - Event handling
+  - Internationalization handling
+- **No frameworks**: Pure vanilla implementation
+- **No build tools**: Direct development for simplicity
+
+## Code Organization
+
+- **Modular structure**:
+  - HTML in index.html
+  - CSS in external stylesheet (css/styles.css)
+  - JavaScript in external file (js/main.js)
+- **Clear separation of concerns**:
+  - Structure (HTML)
+  - Presentation (CSS)
+  - Behavior (JavaScript)

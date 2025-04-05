@@ -2,6 +2,16 @@
 
 ## Completed Tasks
 
+### Recently Completed
+- Enhanced auto-trimming system for infoBox content that removes older entries when the box reaches the bottom of the viewport
+- Added scroll event listener to manage infoBox height when scrolling
+- Implemented vertical language selector with flag icons for all 11 supported languages
+- Added accessibility features including keyboard navigation and ARIA attributes for language selection
+- Added mobile-responsive design for the language selector with toggle functionality
+- **Improved code organization by moving CSS to external stylesheet (styles.css)**
+- **Improved code organization by moving JavaScript to external file (main.js)**
+
+### Previously Completed
 1. ✅ Restructured the node layout:
    - Placed "cocode.dk" as the central node
    - Created distinct branches for Software, Cybersecurity, Clients, and Contact

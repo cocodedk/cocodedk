@@ -19,6 +19,17 @@ index.html
     └── InfoBox management
 ```
 
+Cocode.dk is built as a single-page application with the following components:
+
+- **HTML Structure**: Core markup defining the DOM structure
+- **CSS Styling**: Visual appearance and animations
+  - External CSS file for better maintainability
+- **JavaScript Logic**: Interactive behavior and data manipulation
+  - External JavaScript file for better maintainability
+- **Canvas Rendering**: Graph visualization
+- **Language System**: Multi-language support
+- **InfoBox Management**: Dynamic content display system
+
 ## Core Design Patterns
 
 ### Graph Visualization Pattern
@@ -113,3 +124,17 @@ index.html
 - Responsive UI elements with breakpoints
 - Collapsible menus on mobile devices
 - Touch-friendly interaction targets
+
+## Code Organization Patterns
+
+### File Structure
+- **index.html**: Main HTML document with minimal inline code
+- **css/styles.css**: External stylesheet containing all CSS rules
+- **js/main.js**: External JavaScript file containing all application logic
+- **No build process**: Vanilla approach for simplicity and quick iteration
+
+### Code Separation Principles
+- **Separation of concerns**: HTML for structure, CSS for presentation, JS for behavior
+- **Progressive enhancement**: Core content in HTML, enhanced with CSS and JavaScript
+- **Maintainability focus**: External files make code easier to maintain and extend
+- **Reduced duplication**: Common styles and functions consolidated in their respective files

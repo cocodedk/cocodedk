@@ -7,6 +7,10 @@ const ctx = canvas.getContext('2d');
 const tooltip = document.getElementById('tooltip');
 const infoBox = document.getElementById('infoBox');
 
+// Track hovered and selected nodes
+let hoveredNode = null;
+let lastClickedNode = null;
+
 // Node colors and styles
 const colors = {
     default: {
@@ -527,9 +531,6 @@ const links = [
 
 console.log('Links defined:', links.length);
 
-// Track hover state
-let hoveredNode = null;
-
 // Add at the top of the script
 let animationState = {
     active: false,
@@ -653,24 +654,36 @@ function centerGraph() {
 
 // Function to draw a node
 function drawNode(node) {
-    // Determine if this is the hovered node
-    const isHovered = (node === hoveredNode);
+    // Determine if this node is hovered or selected
+    const isHovered = (hoveredNode === node);
+    const isSelected = (lastClickedNode && node.id === lastClickedNode.id);
+    const shouldGlow = isHovered || isSelected;
 
-    // Get appropriate colors
+    // Determine colors based on node state and category
     let fillColor, strokeColor, textColor;
-
     if (isHovered) {
-    fillColor = colors.hover.fill;
-    strokeColor = colors.hover.stroke;
-    textColor = colors.hover.text;
+        fillColor = colors.hover.fill;
+        strokeColor = colors.hover.stroke;
+        textColor = colors.hover.text;
     } else if (colors.categories[node.category]) {
-    fillColor = colors.categories[node.category].fill;
-    strokeColor = colors.categories[node.category].stroke;
-    textColor = colors.categories[node.category].text;
+        fillColor = colors.categories[node.category].fill;
+        strokeColor = colors.categories[node.category].stroke;
+        textColor = colors.categories[node.category].text;
     } else {
-    fillColor = colors.default.fill;
-    strokeColor = colors.default.stroke;
-    textColor = colors.default.text;
+        fillColor = colors.default.fill;
+        strokeColor = colors.default.stroke;
+        textColor = colors.default.text;
+    }
+
+    // Apply glow effect if node should glow
+    if (shouldGlow) {
+        ctx.shadowBlur = isSelected ? 15 : 10;
+        ctx.shadowColor = strokeColor;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+    } else {
+        // Reset shadow
+        ctx.shadowBlur = 0;
     }
 
     // Draw node circle
@@ -681,6 +694,9 @@ function drawNode(node) {
     ctx.strokeStyle = strokeColor;
     ctx.lineWidth = isHovered ? 2 : 1;
     ctx.stroke();
+
+    // Reset shadow for text drawing to prevent text glow
+    ctx.shadowBlur = 0;
 
     // Draw node text inside the circle in the selected language
     // If no label exists for the language, fall back to the node ID
@@ -701,12 +717,29 @@ function drawLink(from, to) {
     return;
     }
 
+    // Determine if this link should glow
+    const isConnectedToHovered = (hoveredNode && (from.id === hoveredNode.id || to.id === hoveredNode.id));
+    const isConnectedToSelected = (lastClickedNode && (from.id === lastClickedNode.id || to.id === lastClickedNode.id));
+    const shouldGlow = isConnectedToHovered || isConnectedToSelected;
+
+    // Apply glow effect if the link should glow
+    if (shouldGlow) {
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = isConnectedToHovered ? '#aaa' : '#888';
+        ctx.lineWidth = 2;
+    } else {
+        ctx.shadowBlur = 0;
+        ctx.lineWidth = 1;
+    }
+
     ctx.beginPath();
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
-    ctx.strokeStyle = '#555';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = shouldGlow ? '#777' : '#555';
     ctx.stroke();
+
+    // Reset shadow after drawing
+    ctx.shadowBlur = 0;
 }
 
 // Function to draw the entire graph
@@ -845,19 +878,27 @@ canvas.addEventListener('click', (e) => {
 
     const clicked = getMouseNode(mx, my);
     if (clicked) {
+    // Track selected node
+    lastClickedNode = clicked;
+
     infoBox.style.display = 'block';
     // Clear previous content before adding new text
     applyTextEffect(clicked.translations[currentLanguage], infoBox);
 
     // Get the node text in current language for debug output
     const nodeText = (clicked.labels && clicked.labels[currentLanguage])
-        ? clicked.labels[currentLanguage]
-        : clicked.id;
+      ? clicked.labels[currentLanguage]
+      : clicked.id;
 
     debug.textContent += `\nClicked: ${nodeText}`;
     } else {
+    // Clear selection when clicking empty space
+    lastClickedNode = null;
     infoBox.style.display = 'none';
     }
+
+    // Redraw to show selection glow
+    drawGraph();
 });
 
 // Window resize handler
