@@ -118,123 +118,179 @@ The codebase has been restructured to follow a more modular architecture:
 ## Technologies Used
 
 ### Frontend
-- **HTML5**: Structure and canvas element
-- **CSS3**: Styling for UI elements and effects
-  - Keyframe animations for visual effects
-  - CSS transitions for smooth interactions
-  - Custom gradients for backgrounds
-  - Media queries for responsive design
-- **JavaScript**: Core functionality and interactivity
-  - Canvas API for rendering
-  - DOM manipulation for UI elements
-  - Event handling for user interactions
-  - ResizeObserver API for tracking element dimensions
-  - ES6+ features for clean code organization
-  - Interval-based animations for complex effects
+- **HTML5**: Core markup language
+- **CSS3**: Styling with advanced features
+  - CSS Variables: For consistent theming
+  - Flexbox: For responsive layouts
+  - Grid: For structured layouts
+  - Media Queries: For responsive design
+  - Transitions/Animations: For smooth UI effects
+  - Backdrop Filter: For glass-morphism effects
+- **JavaScript (ES6+)**: Core programming language
+  - Canvas API: For graph visualization
+  - DOM Manipulation: For dynamic UI updates
+  - Local Storage: For saving user preferences
+- **JSON**: For structured data
 
-### Visual Assets
-- Emoji flag icons for language representation
-- Matrix-inspired text animations
-- CSS gradient backgrounds
-- Color-coded node categories
+### No External Dependencies
+The project intentionally uses no external libraries or frameworks, keeping it lightweight and focusing on vanilla web technologies.
 
-### Development Tools
-- Basic text editor / IDE
-- Git for version control
-- Simple local server for testing
-- Browser developer tools for debugging DOM interactions
+### SEO Optimization
+- **Meta Tags**: Comprehensive meta tag strategy with language attributes
+- **Open Graph**: Social media sharing optimization
+- **Structured Data**: JSON-LD for rich search results
+- **Multilingual Support**: Language-specific meta descriptions and hreflang tags
+- **Cache Control**: Meta tags for proper cache management
+- **Cache Busting**: Query parameters for resource versioning
+
+## Development Setup
+
+### Editor
+- Visual Studio Code with extensions:
+  - ESLint
+  - HTML/CSS/JS Prettifier
+  - Live Server
+
+### Version Control
+- Git for source control
+- GitHub for repository hosting
+
+### Testing
+- Manual testing across devices
+- Chrome DevTools for responsive design testing
+- Lighthouse for performance auditing
 
 ## Technical Constraints
 
-### Performance
-- Must handle rendering of 15+ nodes with connections
-- Smooth animations without framerate drops
-- Character scrambling animation performance
-- Multiple simultaneous CSS and JS animations
-- Responsive to window resizing without lag
-- Efficient DOM updates for infoBox management
-- Memory management for long-running animations
-
 ### Browser Compatibility
 - Support for modern browsers (Chrome, Firefox, Safari, Edge)
-- Fallback for canvas not supported (basic message)
-- Responsive design for desktop and mobile devices
-- Compatibility with ResizeObserver API
-- Support for CSS keyframe animations
-- Proper rendering of emoji flags across platforms
+- No IE11 support required
+- Progressive enhancement approach
 
-### Internationalization
-- Support for 11 languages including:
-  - Left-to-right: English, Danish, Spanish, French, German, etc.
-  - Right-to-left: Arabic, Persian, Urdu
-  - Character-based: Chinese, Japanese
-  - Complex script: Hindi
-- Dynamic language switching with persistent UI state
-- Translated node labels in the current language
-- Dynamic node resizing based on label text width
-- RTL text support in the infoBox prepend system
-- Accessible language selection with keyboard navigation
+### Performance
+- Target frame rate: 60fps for animations
+- Responsive design for all screen sizes
+- Load time optimization
+- Resource caching with version control
 
-## Development Environment
+### Security
+- No sensitive data storage in frontend
+- Contact information protection
+- CORS policies consideration
 
-### Local Setup
-- Standard web development environment
-- Python simple HTTP server for local testing
-- Chrome DevTools for debugging
-- Browser extension for additional testing (currently non-functional)
+## Architecture
 
-### Deployment
-- Static site hosting
-- No server-side requirements
-- Fast CDN delivery preferred
+### Single Page Application
+- Single HTML entry point
+- Modular JavaScript organization
+- External CSS and JavaScript files
 
-## Dependencies
-- No external JavaScript libraries required
-- No build process needed
-- No CSS frameworks used
-- Native browser APIs only:
-  - Canvas
-  - ResizeObserver
-  - DOM manipulation
-  - Interval timers
-  - CSS animations
-  - Web accessibility API
+### Code Organization
+```
+cocodedk/
+├── index.html           # Main entry point
+├── css/
+│   └── styles.css       # All styles
+├── js/
+│   ├── main.js          # Core application logic
+│   ├── node-animation.js # Animation system
+│   └── contact-modal.js # Contact form handling
+└── assets/              # (Future) Images, fonts, etc.
+```
 
-## Coding Standards
-- Vanilla JavaScript using ES6+ features
-- Functional approach to UI updates
-- Modular code organization with clear responsibilities
-- Proper error handling and edge case management
-- Console logging for debugging and tracking state changes
-- Accessible markup with ARIA attributes
-- Mobile-first responsive design
-- Performance optimization for animations
+### JavaScript Architecture
+- Modular design pattern
+- Function-based components
+- Event-driven interactions
+- Object literals for configuration
 
-## Technology Stack
+### Animation System
+- Canvas-based rendering
+- Request Animation Frame for smooth animations
+- Configurable animation properties
+- Multiple animation presets
 
-The project uses a minimalist technology stack:
+## Data Flow
 
-- **HTML5**: Core structure and content
-- **CSS3**: Styling and animations
-  - Responsive design principles
-  - Animation transitions
-  - Flexbox layout
-  - CSS variables for theming
-- **JavaScript (ES6+)**: Interactive functionality
-  - Canvas API for drawing the network graph
-  - DOM manipulation
-  - Event handling
-  - Internationalization handling
-- **No frameworks**: Pure vanilla implementation
-- **No build tools**: Direct development for simplicity
+### Language Switching
+1. User selects language from selector
+2. Language code stored in localStorage
+3. UI elements updated with translations
+4. Node labels and descriptions updated
+5. Canvas redrawn with new text
 
-## Code Organization
+### Node Interaction
+1. User hovers over node
+2. Node highlighted with glow effect
+3. User clicks node
+4. InfoBox populated with node information
+5. InfoBox displayed with animation
 
-- **Modular structure**:
-  - HTML in index.html
-  - CSS in external stylesheet (css/styles.css)
-  - JavaScript in external file (js/main.js)
-- **Clear separation of concerns**:
-  - Structure (HTML)
-  - Presentation (CSS)
-  - Behavior (JavaScript)
+### Contact Information
+1. User clicks contact button
+2. Modal appears with human verification challenge
+3. User completes challenge
+4. Contact information progressively revealed
+
+## Rendering Strategy
+
+### Canvas Rendering
+- Canvas element covers full page
+- Nodes rendered as circles with text
+- Animation frames calculated at 60fps
+- Hover effects with shadow and glow
+
+### DOM Rendering
+- InfoBox and UI controls rendered in DOM
+- CSS animations for transitions
+- Translate3D for hardware acceleration
+- Flexbox for responsive layouts
+
+## Optimization Strategies
+
+### Performance
+- Minimizing DOM operations
+- Using requestAnimationFrame for animations
+- Canvas optimization techniques
+- Setting proper viewport meta tags
+- Using CSS transitions instead of JS when possible
+
+### Maintainability
+- Modular code structure
+- Consistent naming conventions
+- Clear separation of concerns
+- Configuration-driven approach
+
+### Network
+- Image optimization (future)
+- Minification of CSS and JS (future)
+- Cache busting for version control
+- Cache control headers
+
+## Future Technical Considerations
+
+### Potential Additions
+- Web Workers for background processing
+- Service Worker for offline support
+- Module bundling with Webpack/Rollup
+- CSS pre-processors (SASS/LESS)
+- Automated testing with Jest
+- Server-side rendering for improved SEO
+
+### Integration Options
+- API connections to backend services
+- Social media integration
+- Analytics integration
+- Chat/support integration
+
+## Technical Documentation
+
+### Inline Documentation
+- JSDoc comments for functions
+- CSS section comments
+- HTML structure comments
+
+### External Documentation
+- README file with setup instructions (future)
+- Code style guide (future)
+- API documentation (future)
