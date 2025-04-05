@@ -94,8 +94,21 @@ canvas {
   font-family: 'Courier New', Courier, monospace;
   line-height: 1.5;
   white-space: normal;
-  transition: all 0.2s ease;
-  transition: z-index 0.3s ease;
+  transition: all 0.3s ease;
+  animation: infoFadeIn 0.3s ease-out;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+@keyframes infoFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .new-entry {
@@ -306,6 +319,12 @@ canvas {
   #site-title {
     font-size: 24px; /* Smaller title on mobile */
   }
+
+  /* Position infoBox below title-container */
+  #infoBox {
+    top: 80px; /* Position below the header container (70px height + margin) */
+    max-width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -325,6 +344,12 @@ canvas {
 
   .header-container {
     height: 60px;
+  }
+
+  /* Adjust infoBox for smaller screens */
+  #infoBox {
+    top: 70px; /* Adjust for smaller header */
+    max-width: 95%;
   }
 }
 

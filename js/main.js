@@ -977,7 +977,12 @@ canvas.addEventListener('click', (e) => {
         return;
       }
 
+      // Show info box
       infoBox.style.display = 'block';
+
+      // Ensure infoBox is positioned correctly based on responsive mode
+      adjustInfoBoxPosition();
+
       // Clear previous content before adding new text
       applyTextEffect(clicked.translations[currentLanguage], infoBox);
 
@@ -997,8 +1002,36 @@ canvas.addEventListener('click', (e) => {
     drawGraph();
 });
 
+// Function to adjust infoBox position based on screen size
+function adjustInfoBoxPosition() {
+  // Get the current window width
+  const windowWidth = window.innerWidth;
+
+  // No need to adjust position if styles already handle it via CSS
+  // This function is just to ensure any dynamic positioning needed
+  // For example, we could calculate exact positions based on title container height:
+
+  if (windowWidth <= 480) {
+    // Very small screens - position is managed by CSS but we could add special handling here
+    checkInfoBoxOverlap(); // Check for any overlap with nodes
+  } else if (windowWidth <= 768) {
+    // Medium mobile screens
+    checkInfoBoxOverlap();
+  } else {
+    // Desktop - standard position
+    checkInfoBoxOverlap();
+  }
+}
+
 // Window resize handler
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener('resize', function() {
+  resizeCanvas();
+
+  // If infoBox is visible, adjust its position
+  if (infoBox.style.display === 'block') {
+    adjustInfoBoxPosition();
+  }
+});
 
 // Initialize language menu toggle for mobile
 document.getElementById('langToggle').addEventListener('click', function() {
