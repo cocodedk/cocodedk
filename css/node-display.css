@@ -85,7 +85,7 @@
   height: 100%;
   background: linear-gradient(135deg, #1a3d7c 0%, #2a5298 50%, #1a3d7c 100%);
   color: #ffffff;
-  z-index: 1000;
+  z-index: 1010;
   display: none;
   overflow-y: auto;
   font-family: 'Arial', sans-serif;
@@ -109,7 +109,7 @@
   color: #ffffff;
   font-size: 24px;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1012;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,7 +157,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  z-index: 1009;
   display: none;
 }
 
