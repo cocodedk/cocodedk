@@ -129,10 +129,20 @@ function createLink(fromNode, toNode) {
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
 
-  const fromX = centerX + fromNode.x;
-  const fromY = centerY + fromNode.y;
-  const toX = centerX + toNode.x;
-  const toY = centerY + toNode.y;
+  // Determine scale factor based on screen size
+  let scaleFactor = 1;
+  if (window.innerWidth <= 768) {
+    scaleFactor = 0.8;
+  }
+  if (window.innerWidth <= 480) {
+    scaleFactor = 0.6;
+  }
+
+  // Apply scale factor to positions
+  const fromX = centerX + fromNode.x * scaleFactor;
+  const fromY = centerY + fromNode.y * scaleFactor;
+  const toX = centerX + toNode.x * scaleFactor;
+  const toY = centerY + toNode.y * scaleFactor;
 
   // Calculate distance and angle
   const dx = toX - fromX;
@@ -309,8 +319,23 @@ function adjustNodesForScreenSize() {
     }
   });
 
+  // Clear existing links
+  const existingLinks = document.querySelectorAll('.node-link');
+  existingLinks.forEach(link => link.remove());
+
   // Recreate links to match new positions
-  createNodeLinks();
+  links.forEach(link => {
+    const fromNodeId = link[0];
+    const toNodeId = link[1];
+
+    // Find node data
+    const fromNode = nodes.find(n => n.id === fromNodeId);
+    const toNode = nodes.find(n => n.id === toNodeId);
+
+    if (fromNode && toNode) {
+      createLink(fromNode, toNode);
+    }
+  });
 }
 
 // Initialize when DOM is ready
