@@ -91,17 +91,38 @@
   font-family: 'Arial', sans-serif;
 }
 
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
 .node-modal-close {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: none;
-  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
-  font-size: 32px;
+  font-size: 24px;
   cursor: pointer;
-  padding: 10px;
   z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  animation: pulse 2s infinite;
+}
+
+.node-modal-close:hover, .node-modal-close:focus {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .node-modal-content {
@@ -246,6 +267,8 @@
   .node-modal-close {
     top: 15px;
     right: 15px;
-    font-size: 28px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
   }
 }
