@@ -216,12 +216,6 @@ function showNodeInfo(nodeData) {
   title.textContent = nodeData.labels[currentLanguage];
   nodeModal.appendChild(title);
 
-  // Add subtitle
-  const subtitle = document.createElement('div');
-  subtitle.className = 'subtitle';
-  subtitle.textContent = "Expert Solutions • Professional Consulting • Custom Development";
-  nodeModal.appendChild(subtitle);
-
   // Add close button
   const closeButton = document.createElement('button');
   closeButton.className = 'node-modal-close';

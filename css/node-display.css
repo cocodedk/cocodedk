@@ -211,26 +211,6 @@
   100% { width: 80%; }
 }
 
-.node-modal .subtitle {
-  position: absolute;
-  top: calc(15% + 60px); /* Position below main title */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 16px;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  letter-spacing: 1px;
-  opacity: 0;
-  animation: fadeIn 1s ease-out 1s forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 .node-modal[dir="rtl"] .node-modal-close {
   right: auto;
   left: 20px;
@@ -309,11 +289,6 @@
     font-size: 32px;
     top: 10%;
   }
-
-  .node-modal .subtitle {
-    top: calc(10% + 50px);
-    font-size: 14px;
-  }
 }
 
 /* Further optimizations for very small screens */
@@ -349,11 +324,6 @@
   .node-modal h2 {
     font-size: 28px;
     top: 10%;
-  }
-
-  .node-modal .subtitle {
-    top: calc(10% + 40px);
-    font-size: 12px;
   }
 
   .node-modal-content {
