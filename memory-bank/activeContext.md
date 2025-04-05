@@ -1,65 +1,82 @@
 # Active Context
 
 ## Current Focus
-The project is currently focusing on enhancing both the functionality and visual design of the interactive visualization with emphasis on these key areas:
+The project is currently focused on enhancing the user experience and security aspects of the website. Key areas include:
 
-1. Improving language selection and multilingual experience:
-   - Implementing a vertical language menu with flag icons for each language
-   - Displaying node labels in the selected language instead of fixed English text
-   - Ensuring proper translation of tooltips and UI elements
-
-2. Enhancing visual appearance:
-   - Adding a dark purple gradient background for better aesthetics
-   - Implementing a Matrix-style animated title with green glow effects
-   - Adding new service nodes for better representation of offerings
-
-3. Maintaining multilingual functionality:
-   - Ensuring language switches update all UI components correctly
-   - Supporting translated node labels in the graph visualization
-   - Preserving proper display for all supported languages
-   - Supporting right-to-left language display
-
-4. Improving code organization by separating CSS and JavaScript from HTML
-5. Adding glow effect for selected nodes
+1. Improving responsive design to ensure optimal display across all device sizes
+2. Implementing security features to protect contact information
+3. Enhancing visual feedback and animations
+4. Optimizing code organization and maintainability
+5. Maintaining multilingual functionality across all features
 
 ## Recent Changes
+
+### User Interface Improvements
 - Implemented a vertical language selector with flags for 11 languages
-- Added accessibility features including keyboard navigation and ARIA attributes
-- Updated node labels to dynamically reflect the selected language
-- Changed background to purple gradient for better aesthetics
-- Added category-specific hover colors for improved visual feedback
-- Removed redundant tooltip system in favor of cleaner UI with glow effects
-- Moved CSS styles from inline to external stylesheet (styles.css)
-- Moved JavaScript code from inline to external file (main.js)
-- Added toggle functionality for language menu on mobile
-- Implemented modular node animation system with multiple animation patterns
-- Created animation presets for different visualization modes (subtle, showcase)
-- Added secure contact modal with human verification to protect contact details
-- Implemented obfuscation for sensitive contact information to prevent web scrapers
+- Added a toggle button for the language menu in mobile view
+- Enhanced keyboard navigation for accessibility
+- Added category-specific hover colors for nodes
+- Implemented glow effects for selected and hovered nodes
+- Changed background to a purple gradient for visual appeal
+- Repositioned the infoBox to appear below the title-container in responsive mode
+- Added language selection confirmation message
+- Implemented auto-hiding of language menu after selection on mobile
+
+### Code Organization
+- Moved CSS from inline to external stylesheet (styles.css)
+- Refactored JavaScript into multiple files:
+  - main.js: Core visualization logic
+  - node-animation.js: Modular animation system
+  - contact-modal.js: Secure contact information handling
+- Improved code structure with modular components
+
+### Security Enhancements
+- Implemented a secure contact modal with human verification
+- Added obfuscation for sensitive contact information
+- Created progressive information disclosure for contact details
+- Added protection against automated scraping
+
+### Animation System
+- Developed a modular node animation system
+- Created various animation presets (move, orbit, oscillate, jitter)
+- Implemented configurable easing functions
+- Added frame rate control and optimization
+
+### Responsive Design Improvements
+- Enhanced mobile layout with better element positioning
+- Fixed overlap issues between UI elements
+- Improved language toggle positioning
+- Ensured proper infoBox placement on small screens
+- Added responsive behavior for the contact modal
 
 ## Active Decisions
-- Using vanilla JavaScript without external libraries for visualization
-- Maintaining all code in a single HTML file for simplicity
-- Using canvas for rendering instead of SVG or DOM elements
-- Supporting 11 languages with embedded translation objects for node labels and descriptions
-- Adopting a prepend approach for the infoBox content to show newest entries at the top
-- Using emoji flags rather than SVG or image files for better cross-platform support
-- Implementing animations via both CSS and JavaScript for different effects
+
+### Architecture
+- Using vanilla JavaScript without frameworks
+- Maintaining a single HTML file as the entry point
+- Using external CSS and JavaScript files for better maintainability
+- Implementing modular code organization
+- Protecting sensitive information through interactive verification
+
+### User Experience
+- Supporting 11 languages with embedded translation objects
+- Using canvas for interactive graph visualization
+- Implementing progressive enhancement for accessibility
+- Using context-aware responsive layouts
+- Auto-hiding menus after selection to reduce UI clutter
 
 ## Current Challenges
-- Ensuring smooth performance with multiple animations and frequent DOM updates
-- Balancing information density with readability in the infoBox
-- Ensuring node labels fit within their bubbles across all languages
+
+- Ensuring optimal performance with complex animations
+- Balancing information density with clean UI
 - Maintaining consistent appearance across different browsers and devices
-- Managing the balance between decorative animations and performance
+- Protecting contact information while keeping it accessible to legitimate users
+- Supporting touch interactions across all UI elements
 
 ## Next Priorities
-1. Further animation and performance optimizations:
-   - Add better debouncing during active animations
-   - Consider reducing animation complexity on mobile devices
-   - Optimize Matrix animation for better performance
 
-2. Additional UI improvements:
-   - Consider adding category headers or grouping
-   - Explore adding subtle animations to the graph
-   - Investigate more interactive features
+1. Further optimization of animations for smoother performance
+2. Additional security hardening for the contact information
+3. Enhanced mobile touch interactions
+4. Improved keyboard navigation across all features
+5. Performance auditing and optimization

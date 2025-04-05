@@ -6,17 +6,20 @@ The website is built using a simple, dependency-free HTML/CSS/JavaScript archite
 ```
 index.html
 ├── Canvas-based rendering
-├── CSS styling (inline)
-└── JavaScript (inline)
+├── External CSS styling (styles.css)
+└── External JavaScript (js/main.js, js/node-animation.js, js/contact-modal.js)
     ├── Data structures (nodes, links)
     ├── Rendering functions
     ├── Event handlers
     ├── Animation systems
     │   ├── Text typing effects
     │   ├── Matrix title animation
+    │   ├── Node animation system
     │   └── CSS keyframe animations
     ├── Language management
-    └── InfoBox management
+    ├── InfoBox management
+    ├── Contact protection system
+    └── Responsive behavior handlers
 ```
 
 Cocode.dk is built as a single-page application with the following components:
@@ -25,10 +28,12 @@ Cocode.dk is built as a single-page application with the following components:
 - **CSS Styling**: Visual appearance and animations
   - External CSS file for better maintainability
 - **JavaScript Logic**: Interactive behavior and data manipulation
-  - External JavaScript file for better maintainability
+  - Multiple JavaScript files organized by functionality
 - **Canvas Rendering**: Graph visualization
 - **Language System**: Multi-language support
 - **InfoBox Management**: Dynamic content display system
+- **Contact Modal**: Secure display of sensitive information
+- **Animation System**: Modular animation capabilities
 
 ## Core Design Patterns
 
@@ -38,6 +43,7 @@ Cocode.dk is built as a single-page application with the following components:
 - Force-directed layout (simplified)
 - Node categorization by color/style
 - Language-aware text rendering inside nodes
+- Glow effects for hovered and selected nodes
 
 ### Data Structure Patterns
 - Node objects with comprehensive properties:
@@ -50,12 +56,14 @@ Cocode.dk is built as a single-page application with the following components:
 - Link arrays defining node relationships
 
 ### Interaction Patterns
-- Hover state management with translated tooltips
+- Hover state management with visual feedback
 - Click-based information display in infoBox
 - Vertical language selection with flag icons
 - Keyboard navigation for accessibility
 - Mobile-responsive UI with toggle controls
 - Responsive scaling and positioning
+- Context-aware UI elements that adapt to user behavior
+- Human verification for sensitive information access
 
 ### Visual Design Patterns
 - Dark mode aesthetic with purple gradient background
@@ -64,6 +72,15 @@ Cocode.dk is built as a single-page application with the following components:
 - Flag icons for language representation
 - Color-coded node categories
 - Consistent typography and spacing
+- Glass-morphism effects for UI containers
+- Category-specific hover colors for nodes
+
+### Security Patterns
+- Data obfuscation to prevent scraping of sensitive information
+- Human verification through interactive challenges
+- Progressive information disclosure
+- Contact information protection via modal interface
+- Separation of public and protected information
 
 ### Animation and Visual Feedback Patterns
 - Text typing effect for information display
@@ -72,6 +89,19 @@ Cocode.dk is built as a single-page application with the following components:
 - Animation queue for managing multiple animations
 - State tracking for busy conditions
 - Interval management for cleanup
+- Modular animation system for node movements
+- Animation presets for different visualization modes
+- Transition effects for UI state changes
+
+### Responsive Design Patterns
+- Media query breakpoints for different device sizes
+- Context-aware element positioning
+- Adaptive layouts that prevent element overlap
+- Dynamic positioning based on scroll and orientation
+- Collapse/expand patterns for mobile navigation
+- Touch-friendly targets for mobile interaction
+- Auto-hiding menus after user selection
+- Floating controls that adapt to user context
 
 ### InfoBox Management Patterns
 - Prepend-based content addition (newest at top)
@@ -79,6 +109,7 @@ Cocode.dk is built as a single-page application with the following components:
 - Oldest-entry removal when space constraints hit
 - Minimums preservation to maintain context
 - Layering based on canvas overlap detection
+- Responsive positioning below header in mobile views
 
 ### Language Selection Patterns
 - Vertical menu with flag icons
@@ -88,6 +119,8 @@ Cocode.dk is built as a single-page application with the following components:
 - RTL language handling
 - ARIA-compliant for accessibility
 - Responsive toggle for mobile devices
+- Auto-hiding after selection on mobile
+- Confirmation feedback for language changes
 
 ## Technical Decisions
 

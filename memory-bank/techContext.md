@@ -1,5 +1,120 @@
 # Technical Context
 
+## Core Technology Choices
+
+The project intentionally uses minimal technology dependencies:
+
+- **Vanilla JavaScript**: No frameworks or libraries
+- **Canvas API**: For rendering the graph visualization
+- **CSS3**: For styling and animations
+- **HTML5**: For structure and semantic markup
+
+## File Organization
+
+The codebase is organized as follows:
+
+```
+cocode.dk/
+├── index.html        # Main HTML document
+├── css/
+│   └── styles.css    # External CSS file
+├── js/
+│   ├── main.js           # Core visualization logic
+│   ├── node-animation.js # Animation system
+│   └── contact-modal.js  # Contact security module
+├── assets/
+│   └── flags/        # Language flag icons
+└── memory-bank/      # Documentation and context
+```
+
+## Technical Implementation Details
+
+### Modular Architecture
+The codebase has been restructured to follow a more modular architecture:
+- CSS moved from inline to external file for better maintainability
+- JavaScript split into multiple files by functionality:
+  - `main.js`: Core graph visualization and UI functionality
+  - `node-animation.js`: Modular animation system for nodes
+  - `contact-modal.js`: Secure contact information handling
+
+### Canvas Rendering
+- Custom rendering pipeline for nodes and connections
+- Optimization techniques for canvas performance
+- Double-buffering for smooth rendering
+- Categorical color schemes with hover states
+- Glow effects using multi-layer rendering
+- Text rendering with proper alignment and sizing
+
+### Animation System
+- Modular animation framework with multiple animation types:
+  - Move: Direct movement between positions
+  - Orbit: Circular motion around a center point
+  - Oscillate: Back-and-forth movement
+  - Jitter: Random movement within constraints
+- Configurable easing functions
+- Animation presets for different visualization modes
+- Frame rate control and optimization
+
+### Multilingual Support
+- Embedded translation objects for 11 languages
+- Language-aware node labels and information display
+- RTL language support
+- Vertical language selector with flag icons
+- Keyboard accessibility for language selection
+- Language persistence across sessions
+
+### Interaction Models
+- Mouse and touch event handling
+- Hover effects with color transformations
+- Click-based information display
+- Responsive design breakpoints
+- Mobile-optimized interaction patterns
+- Keyboard navigation support
+- Context-aware UI elements
+
+### Security Features
+- Obfuscated contact information
+- Human verification challenges
+- Progressive information disclosure
+- Contact modal with verification steps
+- Protection against automated scraping
+
+### Responsive Design
+- Media query breakpoints for different device sizes
+- Mobile-first approach to UI components
+- Touch-friendly interaction targets
+- Auto-hiding menus after selection
+- Context-aware element positioning
+- Adaptive layouts preventing element overlap
+
+### DOM Manipulation
+- Dynamic content generation
+- InfoBox management system
+- Language menu handling
+- Event delegation for efficient event handling
+- Accessibility attributes (ARIA) implementation
+
+### Performance Optimization
+- RAF (requestAnimationFrame) based animation
+- Event throttling and debouncing
+- Memory management with cleanup functions
+- Efficient canvas redrawing
+- Conditional rendering based on state changes
+
+## Technical Debt and Constraints
+
+- Single HTML file architecture limits some modularity options
+- Canvas-based approach requires custom implementation for all interactions
+- Translation object embedded in JavaScript increases initial payload size
+- Optimizations needed for complex animations with many nodes
+
+## Browser Compatibility
+
+- Designed for modern browsers (Chrome, Firefox, Safari, Edge)
+- Uses standard APIs available in all modern browsers
+- Progressive enhancement for newer CSS features
+- No IE11 support
+
 ## Technologies Used
 
 ### Frontend
