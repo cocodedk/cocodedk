@@ -139,10 +139,96 @@
 }
 
 .node-modal h2 {
-  font-size: 32px;
-  margin-bottom: 24px;
-  font-weight: 600;
-  color: #ffffff;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  /* Text gradient effect */
+  background: linear-gradient(135deg, #ffffff 10%, #a0cfff 50%, #ffffff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Text shadow for 3D depth effect */
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.4),
+    0 2px 5px rgba(0,0,0,0.3),
+    0 4px 10px rgba(0,0,0,0.2);
+
+  /* Glow effect */
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+
+  /* Animation */
+  animation: floatTitle 6s ease-in-out infinite, titleReveal 1.2s ease-out forwards;
+  transform-origin: center;
+
+  /* Ensure it's above other elements */
+  z-index: 1011;
+}
+
+/* Floating animation */
+@keyframes floatTitle {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Reveal animation */
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Add a decorative underline that animates in */
+.node-modal h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+  animation: expandLine 1.5s ease-out 0.7s forwards;
+}
+
+@keyframes expandLine {
+  0% { width: 0; }
+  100% { width: 80%; }
+}
+
+.node-modal .subtitle {
+  position: absolute;
+  top: calc(15% + 60px); /* Position below main title */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .node-modal[dir="rtl"] .node-modal-close {
@@ -220,8 +306,13 @@
   }
 
   .node-modal h2 {
-    font-size: 28px;
-    color: #ffffff !important;
+    font-size: 32px;
+    top: 10%;
+  }
+
+  .node-modal .subtitle {
+    top: calc(10% + 50px);
+    font-size: 14px;
   }
 }
 
@@ -256,7 +347,13 @@
   }
 
   .node-modal h2 {
-    font-size: 24px;
+    font-size: 28px;
+    top: 10%;
+  }
+
+  .node-modal .subtitle {
+    top: calc(10% + 40px);
+    font-size: 12px;
   }
 
   .node-modal-content {

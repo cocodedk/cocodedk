@@ -216,6 +216,12 @@ function showNodeInfo(nodeData) {
   title.textContent = nodeData.labels[currentLanguage];
   nodeModal.appendChild(title);
 
+  // Add subtitle
+  const subtitle = document.createElement('div');
+  subtitle.className = 'subtitle';
+  subtitle.textContent = "Expert Solutions • Professional Consulting • Custom Development";
+  nodeModal.appendChild(subtitle);
+
   // Add close button
   const closeButton = document.createElement('button');
   closeButton.className = 'node-modal-close';
@@ -239,6 +245,39 @@ function showNodeInfo(nodeData) {
   if (nodeElement) {
     nodeElement.classList.add('active');
   }
+
+  // Add parallax effect to title
+  addTitleParallax();
+}
+
+// Add parallax effect to modal title
+function addTitleParallax() {
+  const title = document.querySelector('.node-modal h2');
+  const modal = document.querySelector('.node-modal');
+
+  if (!title || !modal) return;
+
+  modal.addEventListener('mousemove', (e) => {
+    const rect = modal.getBoundingClientRect();
+    const x = e.clientX - rect.left; // X position within the modal
+    const y = e.clientY - rect.top;  // Y position within the modal
+
+    // Calculate movement (limited to small range)
+    const moveX = (x - rect.width / 2) / 50;
+    const moveY = (y - rect.height / 2) / 50;
+
+    // Apply the transform - subtle movement based on mouse position
+    title.style.transform = `translateX(calc(-50% + ${moveX}px)) translateY(${moveY}px)`;
+
+    // Also adjust the glow direction slightly
+    title.style.filter = `drop-shadow(${moveX/2}px ${moveY/2}px 15px rgba(255,255,255,0.2))`;
+  });
+
+  // Reset when mouse leaves
+  modal.addEventListener('mouseleave', () => {
+    title.style.transform = 'translateX(-50%) translateY(0)';
+    title.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.2))';
+  });
 }
 
 // Close the node info modal
