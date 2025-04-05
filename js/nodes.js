@@ -449,7 +449,7 @@ const nodes = [
     },
     {
         id: 'Website Builder',
-        x: -180, y: -120, r: 30,
+        x: -140, y: -130, r: 30,
         labels: {
             en: 'Website Builder',
             da: 'Websted Builder',

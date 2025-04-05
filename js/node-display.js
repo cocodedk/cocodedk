@@ -251,6 +251,14 @@ function addTitleParallax() {
 
   if (!title || !modal) return;
 
+  // Skip parallax effect for mobile devices
+  if (window.innerWidth <= 768) {
+    // Reset the title styling to ensure it displays properly on mobile
+    title.style.transform = 'translateX(-50%)';
+    title.style.filter = 'none';
+    return;
+  }
+
   modal.addEventListener('mousemove', (e) => {
     const rect = modal.getBoundingClientRect();
     const x = e.clientX - rect.left; // X position within the modal
