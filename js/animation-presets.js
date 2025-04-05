@@ -12,8 +12,10 @@ const AnimationPresets = {
   subtle: [
     {
       nodeId: 'cocode.dk',
-      type: 'jitter',
-      amplitude: 2,
+      type: 'oscillate',
+      axis: 'x',
+      amplitude: 0.5,
+      frequency: 0.2,
       repeat: 'infinite',
       duration: 5000
     },

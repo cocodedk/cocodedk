@@ -190,9 +190,9 @@
           switch(currentPreset) {
             case 'subtle':
               NodeAnimation.reset(nodes);
-              NodeAnimation.initFromConfig(AnimationPresets.showcase);
-              currentPreset = 'showcase';
-              debugEl.innerHTML += '\nActive: Showcase animations';
+              NodeAnimation.initFromConfig(AnimationPresets.subtle);
+              currentPreset = 'subtle';
+              debugEl.innerHTML += '\nActive: Subtle animations';
               break;
             case 'showcase':
               NodeAnimation.reset(nodes);

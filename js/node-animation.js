@@ -12,6 +12,7 @@ const NodeAnimation = (function() {
   let animationFrameId = null;
   let isRunning = false;
   let lastTimestamp = 0;
+  let startTime = performance.now();
 
   // Configuration options with defaults
   const config = {
@@ -38,12 +39,27 @@ const NodeAnimation = (function() {
     }
   };
 
+  // Helper function to log messages based on log level and time limit
+  function logMessage(level, message, data) {
+    if(!LOGGER_MODE) return;
+    const logLevels = { error: 0, info: 1, debug: 2 };
+    const currentLogLevel = logLevels['info']; // Set desired log level here
+    const timeLimit = 5000; // Log for the first 5 seconds
+
+    // Check if the current time is within the logging time limit
+    const currentTime = performance.now();
+    if (currentTime - startTime <= timeLimit && logLevels[level] <= currentLogLevel) {
+      console.log(`[${level.toUpperCase()}] ${message}`, data);
+    }
+  }
+
   // Animation types/patterns
   const animationTypes = {
     // Simple movement from current position to target position
     move: function(node, params, progress, easing) {
       if (!initialPositions.has(node.id)) {
         initialPositions.set(node.id, { x: node.x, y: node.y });
+        logMessage('info', `Initial position set for node ${node.id}:`, initialPositions.get(node.id));
       }
 
       const initial = initialPositions.get(node.id);
@@ -55,6 +71,11 @@ const NodeAnimation = (function() {
 
       if (params.y !== undefined) {
         node.y = initial.y + (params.y - initial.y) * easedProgress;
+      }
+
+      // Log only if position changes significantly
+      if (Math.abs(node.x - initial.x) > 1 || Math.abs(node.y - initial.y) > 1) {
+        logMessage('debug', `Node ${node.id} position during move: x=${node.x}, y=${node.y}, progress=${progress}`);
       }
     },
 
@@ -76,6 +97,10 @@ const NodeAnimation = (function() {
 
       node.x = params.centerX + Math.cos(angle) * params.radius;
       node.y = params.centerY + Math.sin(angle) * params.radius;
+
+      // Adjust node position based on window size to prevent fixed positioning
+      node.x += window.innerWidth / 2;
+      node.y += window.innerHeight / 2;
     },
 
     // Oscillation along an axis
@@ -85,6 +110,7 @@ const NodeAnimation = (function() {
       }
 
       const initial = initialPositions.get(node.id);
+      logMessage('info', `Node ${node.id} initial position: x=${initial.x}, y=${initial.y}`);
       // Use sine wave for smooth oscillation, adjusted by frequency
       const wave = Math.sin(progress * params.frequency * Math.PI * 2);
 
@@ -112,9 +138,6 @@ const NodeAnimation = (function() {
       const seed = params._seed + progress * 10;
       const randomX = Math.sin(seed) * amplitude;
       const randomY = Math.cos(seed * 1.3) * amplitude;
-
-      node.x = initial.x + randomX;
-      node.y = initial.y + randomY;
     }
   };
 
@@ -135,6 +158,7 @@ const NodeAnimation = (function() {
     };
 
     animations.set(nodeId, animation);
+    logMessage('info', `Animation registered for node ${nodeId}:`, animation);
 
     // Auto-start animation if configured
     if (config.autoPlay && !isRunning) {
@@ -150,7 +174,8 @@ const NodeAnimation = (function() {
   function start() {
     if (!isRunning && animations.size > 0) {
       isRunning = true;
-      lastTimestamp = performance.now();
+      startTime = performance.now(); // Reset start time when animation starts
+      lastTimestamp = startTime;
       animationFrameId = requestAnimationFrame(animationLoop);
     }
     return this;
@@ -225,6 +250,7 @@ const NodeAnimation = (function() {
           hasActiveAnimations = true;
         } else {
           animation.completed = true;
+          logMessage('info', `Animation completed for node ${nodeId}`);
         }
       } else {
         hasActiveAnimations = true;

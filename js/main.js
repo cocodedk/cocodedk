@@ -1,5 +1,6 @@
-// Debug element
-const DEBUG_MODE = false;
+
+const DEBUG_MODE = true;
+const LOGGER_MODE = true;
 
 const debug = document.getElementById('debug');
 
@@ -550,7 +551,9 @@ const nodes = [
     },
 ];
 
-console.log('Nodes defined:', nodes.length);
+if(DEBUG_MODE) {
+    console.log('Nodes defined:', nodes.length);
+}
 
 // Define links between nodes
 const links = [
@@ -559,6 +562,7 @@ const links = [
     ['cocode.dk', 'Cybersecurity'],
     ['cocode.dk', 'Clients'],
     ['cocode.dk', 'Contact'],
+    ['cocode.dk', 'Podcast'],
 
     // Software connections
     ['Software', 'Python'],
@@ -573,12 +577,11 @@ const links = [
     ['Cybersecurity', 'Compliance'],
     ['Cybersecurity', 'Audit'],
 
-    // Other connections
-    ['Contact', 'Podcast'],
-    ['Clients', 'Website Builder']
 ];
 
-console.log('Links defined:', links.length);
+if(DEBUG_MODE) {
+    console.log('Links defined:', links.length);
+}
 
 // Add at the top of the script
 let animationState = {
@@ -696,7 +699,9 @@ function handleLanguageKeydown(event, lang) {
 
 // Helper function to resize canvas and maintain centering
 function resizeCanvas() {
-    console.log('Resizing canvas to window size:', window.innerWidth, 'x', window.innerHeight);
+    if(DEBUG_MODE) {
+        console.log('Resizing canvas to window size:', window.innerWidth, 'x', window.innerHeight);
+    }
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     if (DEBUG_MODE) {
@@ -720,23 +725,31 @@ function calculateNodeRadius(node) {
 
 // Function to center the graph in the canvas
 function centerGraph() {
-    console.log('Centering graph');
+    if (nodeAnimationSystem && nodeAnimationSystem.isRunning) {
+        if(DEBUG_MODE) {
+            console.log('Skipping centering due to active animations');
+        }
+        return;
+    }
+    if(DEBUG_MODE) {
+        console.log('Centering graph');
+    }
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
     nodes.forEach(node => {
-    // Store original position as offsets from center
-    if (!node.hasOwnProperty('offsetX')) {
+      // Store original position as offsets from center
+      if (!node.hasOwnProperty('offsetX')) {
         node.offsetX = node.x;
         node.offsetY = node.y;
-    }
+      }
 
-    // Update position based on canvas center
-    node.x = centerX + node.offsetX;
-    node.y = centerY + node.offsetY;
+      // Update position based on canvas center
+      node.x = centerX + node.offsetX;
+      node.y = centerY + node.offsetY;
 
-    // Ensure radius is appropriate for text
-    node.r = calculateNodeRadius(node);
+      // Ensure radius is appropriate for text
+      node.r = calculateNodeRadius(node);
     });
 
     // Log the position of the central node
@@ -848,8 +861,10 @@ function drawLink(from, to) {
 
 // Function to draw the entire graph
 function drawGraph() {
-  console.log('Drawing graph');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if(DEBUG_MODE) {
+        console.log('Drawing graph');
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Apply any active animations to node positions
   if (nodeAnimationSystem && typeof nodeAnimationSystem.updateNodePositions === 'function') {
@@ -872,7 +887,9 @@ function drawGraph() {
   // Draw nodes on top
   nodes.forEach(drawNode);
 
-  console.log('Graph drawn');
+    if(DEBUG_MODE) {
+        console.log('Graph drawn');
+    }
 }
 
 // Function to find a node under the mouse cursor
@@ -1106,7 +1123,9 @@ function closeMenuOnEscape(e) {
 }
 
 // Initial rendering
-console.log('Starting initial rendering');
+if(DEBUG_MODE) {
+    console.log('Starting initial rendering');
+}
 resizeCanvas();
 
 // Force a redraw after a short delay to ensure canvas is properly sized
@@ -1211,7 +1230,9 @@ function checkInfoBoxHeight() {
     }
 
     if (entriesRemoved > 0) {
-    console.log(`Removed ${entriesRemoved} old entries from infoBox`);
+        if(DEBUG_MODE) {
+            console.log(`Removed ${entriesRemoved} old entries from infoBox`);
+        }
     }
 }
 
