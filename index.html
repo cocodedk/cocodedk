@@ -662,7 +662,7 @@
 
     // Modified applyTextEffect
     function applyTextEffect(newText, element) {
-      // Queue system
+      // Queue system unchanged
       if (animationState.active) {
         animationState.queue.push(newText);
         element.style.cursor = 'progress';
@@ -670,10 +670,13 @@
       }
 
       animationState.active = true;
+
+      // Create containers for new content (prepend instead of replace)
       const entryContainer = document.createElement('div');
       const header = document.createElement('div');
       header.className = 'new-entry';
 
+      // Prepend to element (instead of clearing first)
       element.prepend(entryContainer);
       entryContainer.appendChild(header);
 
@@ -754,7 +757,6 @@
       if (clicked) {
         infoBox.style.display = 'block';
         // Clear previous content before adding new text
-        infoBox.innerHTML = '';
         applyTextEffect(clicked.translations[currentLanguage], infoBox);
         debug.textContent += `\nClicked: ${clicked.id}`;
       } else {
