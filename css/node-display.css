@@ -83,7 +83,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: #1a1a1a;
-  color: #0f0;
+  color: #00ff00;
   border: 1px solid #444;
   border-radius: 10px;
   padding: 20px;
@@ -110,6 +110,7 @@
 
 .node-modal-content {
   margin-top: 10px;
+  line-height: 1.6;
 }
 
 .node-modal[dir="rtl"] .node-modal-close {
@@ -170,15 +171,35 @@
 
   .node-label {
     font-size: 12px !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8) !important;
+    font-weight: bold !important;
+  }
+
+  .node-Clients .node-label,
+  .node-Contact .node-label {
+    color: #000000 !important;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5) !important;
   }
 
   .node-modal {
     width: 85%;
     padding: 15px;
+    color: #00ff00 !important;
+  }
+
+  .node-modal h2 {
+    color: #ffffff !important;
   }
 
   .node-link {
     height: 1px;
+  }
+
+  .node-modal-content {
+    line-height: 1.8 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px !important;
   }
 }
 
