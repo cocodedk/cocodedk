@@ -165,6 +165,7 @@
   </div>
 
   <!-- External JavaScript -->
+  <script src="js/nodes.js?v=1.0.1"></script>
   <script src="js/node-animation.js?v=1.0.1"></script>
   <script src="js/animation-presets.js?v=1.0.1"></script>
   <script src="js/contact-modal.js?v=1.0.1"></script>
@@ -174,40 +175,46 @@
   <script>
     // Initialize animations when the main script is loaded
     document.addEventListener('DOMContentLoaded', function() {
+      return;
       if (typeof NodeAnimation !== 'undefined' && typeof AnimationPresets !== 'undefined') {
-        // Use the subtle preset by default
-        NodeAnimation.initFromConfig(AnimationPresets.subtle);
+        // Check if nodes are defined from nodes.js
+        if (typeof nodes !== 'undefined' && Array.isArray(nodes)) {
+          // Use the subtle preset by default
+          NodeAnimation.initFromConfig(AnimationPresets.subtle);
 
-        // Add animation controls to debug menu
-        const debugEl = document.getElementById('debug');
-        debugEl.innerHTML += '\n\nAnimation Controls:';
-        debugEl.innerHTML += '\n- Click to toggle animations';
+          // Add animation controls to debug menu
+          const debugEl = document.getElementById('debug');
+          debugEl.innerHTML += '\n\nAnimation Controls:';
+          debugEl.innerHTML += '\n- Click to toggle animations';
 
-        // Add click handler to toggle between animation presets
-        let currentPreset = 'subtle';
-        debugEl.addEventListener('click', function() {
-          // Cycle through presets
-          switch(currentPreset) {
-            case 'subtle':
-              NodeAnimation.reset(nodes);
-              NodeAnimation.initFromConfig(AnimationPresets.subtle);
-              currentPreset = 'subtle';
-              debugEl.innerHTML += '\nActive: Subtle animations';
-              break;
-            case 'showcase':
-              NodeAnimation.reset(nodes);
-              // No animations
-              currentPreset = 'none';
-              debugEl.innerHTML += '\nActive: No animations';
-              break;
-            case 'none':
-              NodeAnimation.reset(nodes);
-              NodeAnimation.initFromConfig(AnimationPresets.subtle);
-              currentPreset = 'subtle';
-              debugEl.innerHTML += '\nActive: Subtle animations';
-              break;
-          }
-        });
+          // Add click handler to toggle between animation presets
+          let currentPreset = 'subtle';
+          debugEl.addEventListener('click', function() {
+            // Cycle through presets
+            switch(currentPreset) {
+              case 'subtle':
+                NodeAnimation.reset(nodes);
+                NodeAnimation.initFromConfig(AnimationPresets.subtle);
+                currentPreset = 'subtle';
+                debugEl.innerHTML += '\nActive: Subtle animations';
+                break;
+              case 'showcase':
+                NodeAnimation.reset(nodes);
+                // No animations
+                currentPreset = 'none';
+                debugEl.innerHTML += '\nActive: No animations';
+                break;
+              case 'none':
+                NodeAnimation.reset(nodes);
+                NodeAnimation.initFromConfig(AnimationPresets.subtle);
+                currentPreset = 'subtle';
+                debugEl.innerHTML += '\nActive: Subtle animations';
+                break;
+            }
+          });
+        } else {
+          console.error('Nodes not defined. Animation initialization skipped.');
+        }
       }
     });
   </script>
