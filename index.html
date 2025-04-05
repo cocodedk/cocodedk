@@ -518,7 +518,12 @@
     // Add this function to handle language changes
     function setLanguage(lang) {
       currentLanguage = lang;
-      drawGraph(); // Changed from redraw() to drawGraph()
+      // If infoBox is visible, update its content with new language
+      if (infoBox.style.display === 'block' && hoveredNode) {
+        infoBox.innerHTML = '';
+        applyTextEffect(hoveredNode.translations[currentLanguage], infoBox);
+      }
+      drawGraph(); // Redraw the graph
     }
 
     // Helper function to resize canvas and maintain centering
@@ -536,7 +541,7 @@
       ctx.font = '12px sans-serif';
       const textWidth = ctx.measureText(node.id).width;
       // Ensure radius is at least wide enough to contain text plus padding
-      return Math.max(node.r, (textWidth / 2) + 10);
+      return Math.max(node.r, (textWidth / 2) + 15);
     }
 
     // Function to center the graph in the canvas
@@ -583,7 +588,7 @@
       } else if (colors.categories[node.category]) {
         fillColor = colors.categories[node.category].fill;
         strokeColor = colors.categories[node.category].stroke;
-        textColor = colors.default.text;
+        textColor = colors.categories[node.category].text;
       } else {
         fillColor = colors.default.fill;
         strokeColor = colors.default.stroke;
@@ -599,12 +604,12 @@
       ctx.lineWidth = isHovered ? 2 : 1;
       ctx.stroke();
 
-      // Draw node text (revert to white)
-      ctx.fillStyle = '#ffffff'; // Force white text
+      // Draw node text inside the circle (node ID, not full translation)
+      ctx.fillStyle = textColor;
       ctx.font = '12px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(node.translations[currentLanguage], node.x, node.y + node.r + 20);
+      ctx.fillText(node.id, node.x, node.y);
     }
 
     // Function to draw a link between nodes
@@ -748,6 +753,8 @@
       const clicked = getMouseNode(mx, my);
       if (clicked) {
         infoBox.style.display = 'block';
+        // Clear previous content before adding new text
+        infoBox.innerHTML = '';
         applyTextEffect(clicked.translations[currentLanguage], infoBox);
         debug.textContent += `\nClicked: ${clicked.id}`;
       } else {
