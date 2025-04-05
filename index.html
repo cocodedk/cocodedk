@@ -705,6 +705,9 @@
           Array.from(element.querySelectorAll('.new-entry')).forEach(el => {
             if (el !== header) el.classList.add('old-entry');
           });
+
+          // Check if we need to remove old entries after adding new content
+          checkInfoBoxHeight();
         }
       }, 10);
     }
@@ -804,13 +807,30 @@
     function checkInfoBoxHeight() {
       const infoBoxRect = infoBox.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      let entriesRemoved = 0;
 
-      // Check if bottom edge is within 50px of screen bottom
-      if (infoBoxRect.bottom > viewportHeight - 50) {
-        // Remove oldest entry (last child element)
-        if (infoBox.children.length > 1) {
+      // Continue removing oldest entries until box is at safe distance from bottom
+      // or until we have only a minimum number of entries left
+      while (infoBoxRect.bottom > viewportHeight - 50 &&
+             infoBox.children.length > 2 && // Keep at least 1 entry and its separator
+             entriesRemoved < 5) { // Safety limit to prevent infinite loop
+
+        // Remove oldest entry (last child element) - usually a separator
+        infoBox.removeChild(infoBox.lastElementChild);
+
+        // If there's still content, also remove the entry itself
+        if (infoBox.lastElementChild) {
           infoBox.removeChild(infoBox.lastElementChild);
         }
+
+        entriesRemoved++;
+
+        // Get updated position
+        infoBoxRect = infoBox.getBoundingClientRect();
+      }
+
+      if (entriesRemoved > 0) {
+        console.log(`Removed ${entriesRemoved} old entries from infoBox`);
       }
     }
 
@@ -828,6 +848,13 @@
 
     // Add initial check
     setTimeout(() => checkInfoBoxOverlap(), 100);
+
+    // Add scroll event listener to check infoBox height
+    window.addEventListener('scroll', () => {
+      if (infoBox.style.display === 'block') {
+        checkInfoBoxHeight();
+      }
+    });
   </script>
 </body>
 </html>
