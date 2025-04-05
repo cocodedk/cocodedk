@@ -616,6 +616,50 @@ function setLanguage(lang) {
 
     // Redraw graph
     drawGraph();
+
+    // Auto-hide the language menu in responsive mode
+    if (window.innerWidth <= 768) {
+        const langMenu = document.getElementById('languageSelector');
+        const langToggle = document.getElementById('langToggle');
+
+        // Add a small delay to allow the user to see their selection first
+        setTimeout(() => {
+            // Hide menu with slide-out animation
+            langMenu.classList.remove('active');
+
+            // Update aria-expanded attribute
+            langToggle.setAttribute('aria-expanded', 'false');
+
+            // Remove keyboard listener for escape key
+            document.removeEventListener('keydown', closeMenuOnEscape);
+
+            // Add a brief confirmation message
+            const confirmation = document.createElement('div');
+            confirmation.className = 'lang-confirmation';
+
+            // Find the active language item to get the correct language code
+            const activeItem = document.querySelector('.lang-item.active');
+            const langCode = activeItem ? activeItem.querySelector('.lang-code').textContent : lang.toUpperCase();
+
+            confirmation.textContent = 'Language set to ' + langCode;
+            document.body.appendChild(confirmation);
+
+            // Fade in the confirmation
+            setTimeout(() => {
+                confirmation.style.opacity = '1';
+            }, 10);
+
+            // Remove after 2 seconds
+            setTimeout(() => {
+                confirmation.style.opacity = '0';
+                setTimeout(() => {
+                    if (confirmation.parentNode) {
+                        document.body.removeChild(confirmation);
+                    }
+                }, 300);
+            }, 2000);
+        }, 300);
+    }
 }
 
 // Handle keyboard navigation for language selector
