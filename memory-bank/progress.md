@@ -12,7 +12,7 @@
    - Added code to center the visualization regardless of window size
    - Implemented proper scaling to maintain visibility on different devices
 
-3. ✅ Improved node text containment (recently fixed):
+3. ✅ Improved node text containment:
    - Resized nodes to properly encompass their text content
    - Updated node drawing to place text inside the nodes
    - Modified text to display only node IDs inside circles
@@ -33,30 +33,39 @@
    - Responsive width constraints
    - Dynamic layering based on node overlap
 
-7. ✅ Auto-trimming infoBox:
-   - Removes oldest entry (bottom-most) when near screen bottom
-   - Checks position on resize/update
-   - Maintains at least 50px margin from screen edge
-   - Preserves newest entries at top
+7. ✅ Enhanced auto-trimming infoBox:
+   - Implemented improved algorithm to remove oldest entries when box reaches bottom of viewport
+   - Added a while loop to remove multiple entries until sufficient space is available
+   - Added safety limits to prevent infinite loops (max 5 removals per check)
+   - Maintained a minimum number of entries (at least 1 entry and separator)
+   - Added scroll event listener to check height during scrolling
+   - Added explicit calls after text animation completes
 
-8. ✅ Information display (recently fixed):
-   - Made descriptions appear only in infoBox when clicked
-   - Fixed issues with all text displaying on screen
-   - Improved language switching behavior
+8. ✅ Information display system:
+   - Fixed descriptions to appear only in infoBox when clicked
+   - Implemented text typing animation effect
+   - Enhanced to show newest content at the top
+   - Added visual separation between entries
+   - Fixed language switching behavior with multiple entries
+
+9. ✅ Animation queue system:
+   - Implemented queue for handling multiple animations
+   - Added state tracking to prevent simultaneous animations
+   - Added visual feedback during busy states
+   - Ensured proper cleanup of intervals
 
 ## In Progress
 
 1. 🔄 Animation stability improvements:
-   - Add animation queue system (partially implemented)
-   - Implement interval cleanup for previous animations
-   - Add click debouncing during active animations
-   - Create proper animation state management
+   - Improve debouncing during active animations
+   - Create more comprehensive animation state management
+   - Add visual feedback during animation transitions
 
 ## Pending Tasks
 
 1. ⏳ Testing multilingual support implementation:
    - Verify text rendering in all languages
-   - Check right-to-left layout support
+   - Check right-to-left layout support with the new prepend approach
    - Test font fallbacks for CJK languages
    - Validate HTML lang attribute changes
 
@@ -66,6 +75,6 @@
    - Screenshot and other browser tools not functioning
    - WebSocket connection not establishing
 
-2. ⚠️ Potential animation stability issues under heavy use
-   - Queuing system needs further improvement
-   - Potential memory leaks with setInterval
+2. ⚠️ Potential performance issues with many infoBox entries
+   - DOM manipulation overhead with frequent additions/removals
+   - Possible memory issues with long-running animations

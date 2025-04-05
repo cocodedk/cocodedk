@@ -11,7 +11,8 @@ index.html
     ├── Data structures (nodes, links)
     ├── Rendering functions
     ├── Event handlers
-    └── Animation system
+    ├── Animation system
+    └── InfoBox management
 ```
 
 ## Core Design Patterns
@@ -36,12 +37,21 @@ index.html
 - Click-based information display
 - Language selection with real-time updates
 - Responsive scaling and positioning
+- Scroll-aware UI adjustments
 
 ### Animation and Visual Feedback Patterns
 - Text typing effect for information display
 - Visual feedback on hover/click
-- Smooth transitions between states
-- Layer management for UI elements
+- Animation queue for managing multiple animations
+- State tracking for busy conditions
+- Interval management for cleanup
+
+### InfoBox Management Patterns
+- Prepend-based content addition (newest at top)
+- Dynamic height management with auto-trimming
+- Oldest-entry removal when space constraints hit
+- Minimums preservation to maintain context
+- Layering based on canvas overlap detection
 
 ## Technical Decisions
 
@@ -64,3 +74,10 @@ index.html
 - Dynamic canvas sizing based on viewport
 - Relative positioning based on screen dimensions
 - Centered visualization regardless of screen size
+- Scroll-aware UI adjustments for infoBox management
+
+### Animation Management
+- Queue-based system for pending animations
+- State tracking to prevent conflicts
+- Interval cleanup to prevent memory leaks
+- Visual feedback during busy states

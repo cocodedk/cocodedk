@@ -167,6 +167,93 @@
       direction: rtl;
       text-align: right;
     }
+    .vertical-lang-menu {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background-color: rgba(30, 30, 30, 0.7);
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s, transform 0.1s;
+      user-select: none;
+    }
+    .lang-item:hover {
+      background-color: rgba(80, 80, 80, 0.6);
+      transform: translateX(3px);
+    }
+    .lang-item.active {
+      background-color: rgba(0, 120, 200, 0.6);
+    }
+    .flag-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .lang-code {
+      font-size: 14px;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    /* Toggle button for mobile - initially hidden */
+    .lang-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(30, 30, 30, 0.8);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .vertical-lang-menu {
+        left: -200px; /* Start off-screen */
+        padding: 15px;
+        transition: left 0.3s ease;
+      }
+
+      .vertical-lang-menu.active {
+        left: 20px;
+      }
+
+      .lang-toggle {
+        display: block;
+      }
+
+      .lang-item {
+        padding: 10px 12px; /* Larger touch targets */
+      }
+
+      .flag-icon {
+        font-size: 22px; /* Larger flags */
+      }
+
+      .lang-code {
+        font-size: 16px; /* Larger text */
+      }
+    }
   </style>
 </head>
 <body>
@@ -174,18 +261,54 @@
   <div id="tooltip"></div>
   <div id="infoBox"></div>
   <div id="debug"></div>
-  <div id="languageSelector" style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
-    <button onclick="setLanguage('en')">EN</button>
-    <button onclick="setLanguage('da')">DA</button>
-    <button onclick="setLanguage('es')">ES</button>
-    <button onclick="setLanguage('zh')">ZH</button>
-    <button onclick="setLanguage('ja')">JA</button>
-    <button onclick="setLanguage('de')">DE</button>
-    <button onclick="setLanguage('ar')">AR</button>
-    <button onclick="setLanguage('fa')">FA</button>
-    <button onclick="setLanguage('hi')">HI</button>
-    <button onclick="setLanguage('ur')">UR</button>
-    <button onclick="setLanguage('fr')">FR</button>
+  <button id="langToggle" class="lang-toggle" aria-label="Toggle language menu">
+    <span class="flag-icon" aria-hidden="true">🌐</span>
+  </button>
+  <div id="languageSelector" class="vertical-lang-menu" role="tablist" aria-label="Language selection">
+    <div class="lang-item active" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="true" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
+      <div class="flag-icon" aria-hidden="true">🇬🇧</div>
+      <div class="lang-code">EN</div>
+    </div>
+    <div class="lang-item" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="false" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
+      <div class="flag-icon" aria-hidden="true">🇩🇰</div>
+      <div class="lang-code">DA</div>
+    </div>
+    <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">
+      <div class="flag-icon" aria-hidden="true">🇪🇸</div>
+      <div class="lang-code">ES</div>
+    </div>
+    <div class="lang-item" data-lang="zh" onclick="setLanguage('zh')" role="tab" aria-selected="false" tabindex="0" title="Chinese" onkeydown="handleLanguageKeydown(event, 'zh')">
+      <div class="flag-icon" aria-hidden="true">🇨🇳</div>
+      <div class="lang-code">ZH</div>
+    </div>
+    <div class="lang-item" data-lang="ja" onclick="setLanguage('ja')" role="tab" aria-selected="false" tabindex="0" title="Japanese" onkeydown="handleLanguageKeydown(event, 'ja')">
+      <div class="flag-icon" aria-hidden="true">🇯🇵</div>
+      <div class="lang-code">JA</div>
+    </div>
+    <div class="lang-item" data-lang="de" onclick="setLanguage('de')" role="tab" aria-selected="false" tabindex="0" title="German" onkeydown="handleLanguageKeydown(event, 'de')">
+      <div class="flag-icon" aria-hidden="true">🇩🇪</div>
+      <div class="lang-code">DE</div>
+    </div>
+    <div class="lang-item" data-lang="ar" onclick="setLanguage('ar')" role="tab" aria-selected="false" tabindex="0" title="Arabic" onkeydown="handleLanguageKeydown(event, 'ar')">
+      <div class="flag-icon" aria-hidden="true">🇸🇦</div>
+      <div class="lang-code">AR</div>
+    </div>
+    <div class="lang-item" data-lang="fa" onclick="setLanguage('fa')" role="tab" aria-selected="false" tabindex="0" title="Persian" onkeydown="handleLanguageKeydown(event, 'fa')">
+      <div class="flag-icon" aria-hidden="true">🇮🇷</div>
+      <div class="lang-code">FA</div>
+    </div>
+    <div class="lang-item" data-lang="hi" onclick="setLanguage('hi')" role="tab" aria-selected="false" tabindex="0" title="Hindi" onkeydown="handleLanguageKeydown(event, 'hi')">
+      <div class="flag-icon" aria-hidden="true">🇮🇳</div>
+      <div class="lang-code">HI</div>
+    </div>
+    <div class="lang-item" data-lang="ur" onclick="setLanguage('ur')" role="tab" aria-selected="false" tabindex="0" title="Urdu" onkeydown="handleLanguageKeydown(event, 'ur')">
+      <div class="flag-icon" aria-hidden="true">🇵🇰</div>
+      <div class="lang-code">UR</div>
+    </div>
+    <div class="lang-item" data-lang="fr" onclick="setLanguage('fr')" role="tab" aria-selected="false" tabindex="0" title="French" onkeydown="handleLanguageKeydown(event, 'fr')">
+      <div class="flag-icon" aria-hidden="true">🇫🇷</div>
+      <div class="lang-code">FR</div>
+    </div>
   </div>
   <script>
     // Debug element
@@ -515,15 +638,64 @@
     // Add this near the top of your script
     let currentLanguage = 'en';
 
-    // Add this function to handle language changes
+    // Updated language change function
     function setLanguage(lang) {
+      // Update currentLanguage
       currentLanguage = lang;
-      // If infoBox is visible, update its content with new language
+
+      // Update active class and ARIA attributes
+      const langItems = document.querySelectorAll('.lang-item');
+      langItems.forEach(item => {
+        item.classList.remove('active');
+        item.setAttribute('aria-selected', 'false');
+
+        if (item.dataset.lang === lang) {
+          item.classList.add('active');
+          item.setAttribute('aria-selected', 'true');
+        }
+      });
+
+      // Set RTL direction for Arabic, Persian, and Urdu
+      if (lang === 'ar' || lang === 'fa' || lang === 'ur') {
+        infoBox.setAttribute('dir', 'rtl');
+      } else {
+        infoBox.setAttribute('dir', 'ltr');
+      }
+
+      // Update infoBox if it's visible
       if (infoBox.style.display === 'block' && hoveredNode) {
         infoBox.innerHTML = '';
         applyTextEffect(hoveredNode.translations[currentLanguage], infoBox);
       }
-      drawGraph(); // Redraw the graph
+
+      // Redraw graph
+      drawGraph();
+    }
+
+    // Handle keyboard navigation for language selector
+    function handleLanguageKeydown(event, lang) {
+      // Enter or Space key
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setLanguage(lang);
+      }
+
+      // Arrow Up/Down for navigation
+      else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault();
+
+        const langItems = Array.from(document.querySelectorAll('.lang-item'));
+        const currentIndex = langItems.findIndex(item => item.dataset.lang === lang);
+        let nextIndex;
+
+        if (event.key === 'ArrowUp') {
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : langItems.length - 1;
+        } else {
+          nextIndex = currentIndex < langItems.length - 1 ? currentIndex + 1 : 0;
+        }
+
+        langItems[nextIndex].focus();
+      }
     }
 
     // Helper function to resize canvas and maintain centering
@@ -769,6 +941,33 @@
 
     // Window resize handler
     window.addEventListener('resize', resizeCanvas);
+
+    // Initialize language menu toggle for mobile
+    document.getElementById('langToggle').addEventListener('click', function() {
+      const menu = document.getElementById('languageSelector');
+      menu.classList.toggle('active');
+
+      // Toggle aria-expanded attribute
+      const expanded = menu.classList.contains('active');
+      this.setAttribute('aria-expanded', expanded);
+
+      // Add escape key listener when menu is open
+      if (expanded) {
+        document.addEventListener('keydown', closeMenuOnEscape);
+      } else {
+        document.removeEventListener('keydown', closeMenuOnEscape);
+      }
+    });
+
+    // Function to close menu on Escape key
+    function closeMenuOnEscape(e) {
+      if (e.key === 'Escape') {
+        const menu = document.getElementById('languageSelector');
+        menu.classList.remove('active');
+        document.getElementById('langToggle').setAttribute('aria-expanded', 'false');
+        document.removeEventListener('keydown', closeMenuOnEscape);
+      }
+    }
 
     // Initial rendering
     console.log('Starting initial rendering');
