@@ -89,6 +89,7 @@
   display: none;
   overflow-y: auto;
   font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
 }
 
 @keyframes pulse {
@@ -340,9 +341,23 @@
   }
 
   .node-modal {
-    width: 95% !important;
-    max-height: 80vh !important;
-    overflow-y: auto !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;       /* Use viewport width instead of percentage */
+    height: 100vh;      /* Use viewport height instead of percentage */
+    min-height: 100vh;  /* Ensure minimum height covers viewport */
+    margin: 0;          /* Remove any margins */
+    border-radius: 0;   /* Remove any border radius on mobile */
+    box-sizing: border-box; /* Include padding in size calculation */
+  }
+
+  .node-modal-content {
+    padding: 20px;      /* Add internal padding to content */
+    box-sizing: border-box;
+    width: 95%;         /* Slightly wider on small screens */
   }
 
   .node-modal h2 {
@@ -356,16 +371,20 @@
     text-shadow: 0 1px 3px rgba(0,0,0,0.4);
   }
 
-  .node-modal-content {
-    width: 90%;
-    font-size: 15px;
-  }
-
   .node-modal-close {
     top: 15px;
     right: 15px;
     width: 36px;
     height: 36px;
     font-size: 20px;
+  }
+}
+
+/* iOS Safari specific fix for viewport height */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific styles */
+  .node-modal {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
   }
 }

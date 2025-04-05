@@ -234,6 +234,15 @@ function showNodeInfo(nodeData) {
   nodeModal.style.display = 'block';
   nodeModalOverlay.style.display = 'block';
 
+  // Fix for mobile devices to ensure full screen coverage
+  if (window.innerWidth <= 480) {
+    // Force full viewport coverage on mobile
+    nodeModal.style.height = `${window.innerHeight}px`;
+
+    // Prevent body scrolling to avoid iOS safari issues
+    document.body.style.overflow = 'hidden';
+  }
+
   // Add active class to the node
   const nodeElement = document.getElementById(`node-${nodeData.id}`);
   if (nodeElement) {
@@ -242,6 +251,16 @@ function showNodeInfo(nodeData) {
 
   // Add parallax effect to title
   addTitleParallax();
+
+  // Handle resize events for mobile
+  const handleResize = () => {
+    if (window.innerWidth <= 480 && nodeModal.style.display === 'block') {
+      nodeModal.style.height = `${window.innerHeight}px`;
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('orientationchange', handleResize);
 }
 
 // Add parallax effect to modal title
@@ -286,6 +305,9 @@ function addTitleParallax() {
 function closeNodeModal() {
   nodeModal.style.display = 'none';
   nodeModalOverlay.style.display = 'none';
+
+  // Restore body scrolling
+  document.body.style.overflow = '';
 
   // Remove active class from all nodes
   document.querySelectorAll('.node').forEach(node => {
