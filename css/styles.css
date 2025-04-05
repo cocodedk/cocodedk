@@ -57,19 +57,6 @@ canvas {
   }
 }
 
-/* ===== TOOLTIP ===== */
-#tooltip {
-  position: absolute;
-  background: #222;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
 /* ===== INFOBOX ===== */
 #infoBox {
   position: absolute;

@@ -23,18 +23,11 @@ The project is currently focusing on enhancing both the functionality and visual
 5. Adding glow effect for selected nodes
 
 ## Recent Changes
-- Implemented a vertical language selector with flags for all 11 supported languages
-- Added accessibility features to the language selector including:
-  - ARIA attributes and roles
-  - Keyboard navigation support
-  - Tooltips for language names
-  - Mobile-responsive design with toggle button
-- Updated nodes to display labels in the currently selected language
-- Added a new "Website Builder" node with non-technical language for all translations
-- Changed background to a subtle purple radial gradient for improved aesthetics
-- Added Matrix-style animated title with character scrambling effects and green glow
-- Modified the tooltip system to display translated node labels
-- Updated the calculateNodeRadius function to account for varying text widths in different languages
+- Implemented a vertical language selector with flags for 11 languages
+- Added accessibility features including keyboard navigation and ARIA attributes
+- Updated node labels to dynamically reflect the selected language
+- Changed background to purple gradient for better aesthetics
+- Removed redundant tooltip system in favor of cleaner UI with glow effects
 - Moved CSS styles from inline to external stylesheet (styles.css)
 - Moved JavaScript code from inline to external file (main.js)
 - Added toggle functionality for language menu on mobile

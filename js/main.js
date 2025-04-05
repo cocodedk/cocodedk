@@ -4,7 +4,6 @@ const debug = document.getElementById('debug');
 // Initialize canvas and context
 const canvas = document.getElementById('graph');
 const ctx = canvas.getContext('2d');
-const tooltip = document.getElementById('tooltip');
 const infoBox = document.getElementById('infoBox');
 
 // Track hovered and selected nodes
@@ -829,39 +828,27 @@ function applyTextEffect(newText, element) {
 
 // Mouse move event handler
 canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
 
-    // Find node under cursor
-    const nodeUnderCursor = getMouseNode(mx, my);
+  // Find node under cursor
+  const nodeUnderCursor = getMouseNode(mx, my);
 
-    // Handle hover effects
-    if (nodeUnderCursor) {
-    // Get the node text in current language
-    const nodeText = (nodeUnderCursor.labels && nodeUnderCursor.labels[currentLanguage])
-        ? nodeUnderCursor.labels[currentLanguage]
-        : nodeUnderCursor.id;
-
-    // Update tooltip
-    tooltip.style.left = `${e.clientX + 10}px`;
-    tooltip.style.top = `${e.clientY + 10}px`;
-    tooltip.textContent = nodeText;
-    tooltip.style.opacity = 1;
-
+  // Handle hover effects
+  if (nodeUnderCursor) {
     // Set hover state
     if (hoveredNode !== nodeUnderCursor) {
-        hoveredNode = nodeUnderCursor;
-        drawGraph(); // Redraw with hover effect
+      hoveredNode = nodeUnderCursor;
+      drawGraph(); // Redraw with hover effect
     }
-    } else {
+  } else {
     // Reset hover state
-    tooltip.style.opacity = 0;
     if (hoveredNode !== null) {
-        hoveredNode = null;
-        drawGraph(); // Redraw without hover effect
+      hoveredNode = null;
+      drawGraph(); // Redraw without hover effect
     }
-    }
+  }
 });
 
 // Click event handler

@@ -10,6 +10,8 @@
 - Added mobile-responsive design for the language selector with toggle functionality
 - **Improved code organization by moving CSS to external stylesheet (styles.css)**
 - **Improved code organization by moving JavaScript to external file (main.js)**
+- Added glow effects for hovered and selected nodes with connected links
+- Removed redundant tooltip for a cleaner UI
 
 ### Previously Completed
 1. ✅ Restructured the node layout:
