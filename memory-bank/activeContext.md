@@ -1,55 +1,61 @@
 # Active Context
 
 ## Current Focus
-The project is currently focusing on fixing and enhancing the interactive visualization with emphasis on these key areas:
+The project is currently focusing on enhancing both the functionality and visual design of the interactive visualization with emphasis on these key areas:
 
-1. Improving information display management:
-   - Implementing a prepend approach where new text is added above existing text
-   - Enhancing the infoBox auto-trimming system to remove old entries when the box reaches the bottom of the browser
-   - Adding scroll event handling for more responsive cleanup
+1. Improving language selection and multilingual experience:
+   - Implementing a vertical language menu with flag icons for each language
+   - Displaying node labels in the selected language instead of fixed English text
+   - Ensuring proper translation of tooltips and UI elements
 
-2. Animation stability improvements:
-   - Refining the animation queue system for text effects
-   - Ensuring proper cleanup of animation intervals
-   - Managing state transitions between animations
+2. Enhancing visual appearance:
+   - Adding a dark purple gradient background for better aesthetics
+   - Implementing a Matrix-style animated title with green glow effects
+   - Adding new service nodes for better representation of offerings
 
 3. Maintaining multilingual functionality:
-   - Ensuring language switches update the UI correctly
+   - Ensuring language switches update all UI components correctly
+   - Supporting translated node labels in the graph visualization
    - Preserving proper display for all supported languages
-   - Testing right-to-left language display
+   - Supporting right-to-left language display
 
 ## Recent Changes
-- Implemented an enhanced `checkInfoBoxHeight()` function that:
-  - Uses a loop to remove multiple old entries until sufficient space is available
-  - Has safety limits to prevent infinite loops (max 5 removals per check)
-  - Maintains a minimum of entries (at least 1 entry and separator)
-  - Logs the number of entries removed for debugging
-- Added a scroll event listener to check infoBox height during scrolling
-- Added explicit calls to `checkInfoBoxHeight()` after text animation completes
-- Fixed node labels to display properly inside the node circles
-- Updated language switcher to properly handle language changes
+- Implemented a vertical language selector with flags for all 11 supported languages
+- Added accessibility features to the language selector including:
+  - ARIA attributes and roles
+  - Keyboard navigation support
+  - Tooltips for language names
+  - Mobile-responsive design with toggle button
+- Updated nodes to display labels in the currently selected language
+- Added a new "Website Builder" node with non-technical language for all translations
+- Changed background to a subtle purple radial gradient for improved aesthetics
+- Added Matrix-style animated title with character scrambling effects and green glow
+- Modified the tooltip system to display translated node labels
+- Updated the calculateNodeRadius function to account for varying text widths in different languages
 
 ## Active Decisions
 - Using vanilla JavaScript without external libraries for visualization
 - Maintaining all code in a single HTML file for simplicity
 - Using canvas for rendering instead of SVG or DOM elements
-- Supporting 11 languages with embedded translation objects
+- Supporting 11 languages with embedded translation objects for node labels and descriptions
 - Adopting a prepend approach for the infoBox content to show newest entries at the top
+- Using emoji flags rather than SVG or image files for better cross-platform support
+- Implementing animations via both CSS and JavaScript for different effects
 
 ## Current Challenges
 - Ensuring smooth performance with multiple animations and frequent DOM updates
 - Balancing information density with readability in the infoBox
-- Testing right-to-left languages thoroughly with the new text display approach
-- Maintaining consistent user experience across different browser sizes and resolutions
+- Ensuring node labels fit within their bubbles across all languages
+- Maintaining consistent appearance across different browsers and devices
+- Managing the balance between decorative animations and performance
 
 ## Next Priorities
-1. Further animation stability improvements:
+1. Further animation and performance optimizations:
    - Add better debouncing during active animations
-   - Create more comprehensive animation state management
-   - Improve visual feedback during animation transitions
+   - Consider reducing animation complexity on mobile devices
+   - Optimize Matrix animation for better performance
 
-2. Testing multilingual support implementation:
-   - Verify text rendering in all languages
-   - Check right-to-left layout support with the prepend approach
-   - Test font fallbacks for CJK languages
-   - Validate HTML lang attribute changes
+2. Additional UI improvements:
+   - Consider adding category headers or grouping
+   - Explore adding subtle animations to the graph
+   - Investigate more interactive features
