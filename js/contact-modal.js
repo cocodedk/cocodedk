@@ -214,12 +214,9 @@ const ContactModal = (function() {
   function initialize() {
     // Add click event listener for the Contact node
     document.addEventListener('click', function(e) {
-      const rect = canvas.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
-
-      const clicked = getMouseNode(mx, my);
-      if (clicked && clicked.id === 'Contact') {
+      // Check if the clicked element is the Contact node
+      const contactNode = document.getElementById('node-Contact');
+      if (contactNode && contactNode.contains(e.target)) {
         e.preventDefault();
         e.stopPropagation();
         showModal();

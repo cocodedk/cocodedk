@@ -72,7 +72,8 @@
   <link rel="alternate" hreflang="fr" href="https://cocode.dk/#fr">
 
   <!-- External CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+  <link rel="stylesheet" href="css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -111,9 +112,10 @@
     </div>
   </div>
 
-  <canvas id="graph"></canvas>
+  <!-- Removed canvas element -->
   <div id="infoBox"></div>
   <div id="debug"></div>
+
   <button id="langToggle" class="lang-toggle" aria-label="Toggle language menu">
     <span class="flag-icon" aria-hidden="true">🌐</span>
   </button>
@@ -165,59 +167,10 @@
   </div>
 
   <!-- External JavaScript -->
-  <script src="js/nodes.js?v=1.0.1"></script>
-  <!-- <script src="js/node-animation.js?v=1.0.1"></script> -->
-  <!-- <script src="js/animation-presets.js?v=1.0.1"></script> -->
-  <script src="js/contact-modal.js?v=1.0.1"></script>
-  <script src="js/main.js?v=1.0.1"></script>
-
-  <!-- Animation configuration -->
-  <script>
-    // Initialize animations when the main script is loaded
-    <!-- document.addEventListener('DOMContentLoaded', function() {
-      return;
-      if (typeof NodeAnimation !== 'undefined' && typeof AnimationPresets !== 'undefined') {
-        // Check if nodes are defined from nodes.js
-        if (typeof nodes !== 'undefined' && Array.isArray(nodes)) {
-          // Use the subtle preset by default
-          NodeAnimation.initFromConfig(AnimationPresets.subtle);
-
-          // Add animation controls to debug menu
-          const debugEl = document.getElementById('debug');
-          debugEl.innerHTML += '\n\nAnimation Controls:';
-          debugEl.innerHTML += '\n- Click to toggle animations';
-
-          // Add click handler to toggle between animation presets
-          let currentPreset = 'subtle';
-          debugEl.addEventListener('click', function() {
-            // Cycle through presets
-            switch(currentPreset) {
-              case 'subtle':
-                NodeAnimation.reset(nodes);
-                NodeAnimation.initFromConfig(AnimationPresets.subtle);
-                currentPreset = 'subtle';
-                debugEl.innerHTML += '\nActive: Subtle animations';
-                break;
-              case 'showcase':
-                NodeAnimation.reset(nodes);
-                // No animations
-                currentPreset = 'none';
-                debugEl.innerHTML += '\nActive: No animations';
-                break;
-              case 'none':
-                NodeAnimation.reset(nodes);
-                NodeAnimation.initFromConfig(AnimationPresets.subtle);
-                currentPreset = 'subtle';
-                debugEl.innerHTML += '\nActive: Subtle animations';
-                break;
-            }
-          });
-        } else {
-          console.error('Nodes not defined. Animation initialization skipped.');
-        }
-      }
-    }); -->
-  </script>
+  <script src="js/nodes.js?v=1.0.2"></script>
+  <script src="js/node-display.js?v=1.0.0"></script>
+  <script src="js/contact-modal.js?v=1.0.2"></script>
+  <script src="js/main.js?v=1.0.0"></script>
 
   <footer id="site-footer">
     <div class="footer-content">

@@ -2,29 +2,6 @@
  * Nodes.js - Definition of nodes, links and related data for the cocode.dk visualization
  */
 
-// Initialization function to validate and log load status
-(function() {
-    try {
-        // Validate that nodes and links are defined and have expected structure
-        if (typeof nodes === 'undefined' || !Array.isArray(nodes)) {
-            console.error('Nodes array is not properly defined in nodes.js');
-        }
-
-        if (typeof links === 'undefined' || !Array.isArray(links)) {
-            console.error('Links array is not properly defined in nodes.js');
-        }
-
-        if (typeof categoryHoverColors === 'undefined' || typeof categoryHoverColors !== 'object') {
-            console.error('categoryHoverColors is not properly defined in nodes.js');
-        }
-
-        // Log successful load if no errors
-        console.log('Nodes.js loaded successfully. Nodes:', nodes.length, 'Links:', links.length);
-    } catch (e) {
-        console.error('Error during nodes.js initialization:', e);
-    }
-})();
-
 // Category-specific hover colors
 const categoryHoverColors = {
   'cocode.dk': { fill: '#0077aa', stroke: '#33eeff', text: '#ffffff' },
@@ -279,7 +256,7 @@ const nodes = [
             ar: 'خبرة في قواعد بيانات الرسوم البيانية لرسم البنية التحتية والأصول والأنظمة والعلاقات. مستخدم في نمذجة CMDB وتتبع الضوابط.',
             fa: 'تخصص در پایگاه‌داده‌های گرافی برای نقشه‌برداری زیرساخت، دارایی‌ها، سیستم‌ها و روابط. استفاده شده برای مدل‌سازی CMDB و ردیابی کنترل‌ها.',
             hi: 'इन्फ्रास्ट्रक्चर, संपत्ति, सिस्टम और संबंधों के मानचित्रण के लिए ग्राफ डेटाबेस विशेषज्ञता। CMDB मॉडलिंग और नियंत्रण ट्रैकिंग के लिए उपयोग किया जाता है।',
-            ur: 'انفراسٹرکچر، اثاثوں، نظاموں اور تعلقات کی نقشہ کشی کے لیے گراف ڈیٹا بیس کی مہارت۔ CMDB ماڈلنگ اور کنٹرول ٹریکنگ کے لیے استعمال کیا جاتا ہے۔',
+            ur: 'انفراسٹرکچر، اثاثوں، نظاموں اور تعلقات کی نقشہ کشی کے لیے گراف ڈیٹا بیس کی مہارت۔ CMDB ماڈلنگ اور کنٹرول ٹریکنگ کے ذریعے CIS18، DORA، NIS2، ISO27000 کمپلائنس میں مہارت۔',
             fr: 'Expertise en bases de données graphes pour cartographier l\'infrastructure, les actifs, les systèmes et les relations. Utilisé pour la modélisation CMDB et le suivi des contrôles.'
         },
         category: 'Software'
@@ -503,7 +480,6 @@ const nodes = [
     },
 ];
 
-
 // Define links between nodes
 const links = [
     // Main branches from center
@@ -525,5 +501,27 @@ const links = [
     // Cybersecurity connections
     ['Cybersecurity', 'Compliance'],
     ['Cybersecurity', 'Audit'],
-
 ];
+
+// Initialization function to validate and log load status
+(function() {
+    try {
+        // Validate that nodes and links are defined and have expected structure
+        if (typeof nodes === 'undefined' || !Array.isArray(nodes)) {
+            console.error('Nodes array is not properly defined in nodes.js');
+        }
+
+        if (typeof links === 'undefined' || !Array.isArray(links)) {
+            console.error('Links array is not properly defined in nodes.js');
+        }
+
+        if (typeof categoryHoverColors === 'undefined' || typeof categoryHoverColors !== 'object') {
+            console.error('categoryHoverColors is not properly defined in nodes.js');
+        }
+
+        // Log successful load if no errors
+        console.log('Nodes.js loaded successfully. Nodes:', nodes.length, 'Links:', links.length);
+    } catch (e) {
+        console.error('Error during nodes.js initialization:', e);
+    }
+})();
