@@ -90,7 +90,7 @@ canvas {
   font-size: 14px;
   display: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  z-index: 90;
   font-family: 'Courier New', Courier, monospace;
   line-height: 1.5;
   white-space: normal;
@@ -144,7 +144,7 @@ canvas {
 }
 
 #infoBox:not(.canvas-overlap) {
-  z-index: 100;
+  z-index: 90;
 }
 
 #infoBox[dir="rtl"] {
@@ -459,5 +459,60 @@ canvas {
   to {
     opacity: 1;
     transform: translate(-50%, 0);
+  }
+}
+
+/* ===== FOOTER STYLES ===== */
+#site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.7), rgba(20, 20, 30, 0.7));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+  z-index: 150; /* Higher than infoBox */
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-credit, .footer-copyright {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #site-footer {
+    padding: 12px 0;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  #site-footer {
+    padding: 10px 0;
+  }
+
+  .footer-credit, .footer-copyright {
+    font-size: 12px;
   }
 }
