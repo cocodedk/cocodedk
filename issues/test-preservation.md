@@ -23,6 +23,17 @@
 3. Do not alter test assertions or behavior
 4. New tests should be created in separate files or clearly marked sections
 
+## Requirements for Test Files
+
+1. Test files should be created in the `/tests` directory
+2. Tests should be organized by feature and component
+3. Each test should have a clear description of what it's testing
+4. New tests should be created in separate files rather than modifying existing tests
+5. Test cases must be very specialized - each test should verify one specific behavior
+6. Focus on one test at a time - complete one test fully before moving to the next
+7. Fix one failing test at a time - resolve each failure before addressing others
+8. Split failing tests when needed - if the first fix attempt doesn't work, break the test into smaller, more specialized tests
+
 ## Process for Test Activation
 
 When specifically instructed to activate a test:

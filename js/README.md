@@ -48,11 +48,28 @@ When implementing functionality to make tests pass:
 
 ### Responsive Layout
 
-The CytoscapeManager now includes basic responsive layout functionality:
-- `isDesktopViewport()` - Detects if the current viewport is desktop or mobile
-- `applyResponsiveLayout()` - Adjusts layout based on viewport size
+The CytoscapeManager now includes enhanced responsive layout functionality:
 
-Mobile layouts use more condensed spacing to optimize for smaller screens.
+- **Viewport Detection**
+  - `isDesktopViewport()` - Detects if the current viewport is desktop (≥768px) or mobile
+  - Uses standard breakpoints (768px for tablet/desktop)
+
+- **Position Management**
+  - `saveOriginalPositions()` - Stores initial node positions for layout transitions
+  - `restoreOriginalPositions()` - Restores original positions when returning to desktop view
+  - Preserves layout consistency across viewport changes
+
+- **Adaptive Layouts**
+  - `applyResponsiveLayout()` - Automatically adjusts layout based on viewport size
+  - Desktop layouts use original positions with standard spacing
+  - Mobile layouts apply scaling (60% of original size) for more condensed layouts
+  - Automatically handles transitions between desktop and mobile views
+
+- **Configuration**
+  - `getMobileScalingFactor()` - Returns the scaling factor used for mobile layouts (0.6)
+  - Mobile layouts use smaller padding (20px vs 50px for desktop)
+
+This responsive implementation ensures optimal graph visualization across different device sizes without requiring separate layouts.
 
 ### Container Reference Handling
 

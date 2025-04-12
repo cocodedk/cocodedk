@@ -69,13 +69,14 @@ Based on the latest test run, we have:
 
 ## Core Testing Principles
 
-1. Use real methods and real data whenever possible
-2. Write test first, verify it fails (RED)
-3. Implement minimal code to make test pass (GREEN)
-4. Refactor code while ensuring tests still pass (REFACTOR)
-5. Move to next feature only when current tests pass
-6. Avoid excessive mocking - it creates technical debt
-7. Run full test suite before committing changes
+1. **Use real methods and real data** - Avoid excessive mocking whenever possible
+2. **Write tests before implementing features** - Follow strict TDD methodology
+3. **Keep tests focused and simple** - Each test should verify one specific behavior
+4. **Maintain test independence** - Tests should not depend on other tests
+5. **Test cases must be very specialized** - Each test should verify one specific behavior
+6. **Focus on one test at a time** - Complete one test fully before moving to the next
+7. **Fix one failing test at a time** - Resolve each failure before addressing others
+8. **Split failing tests when needed** - If the first fix attempt doesn't work, break the test into smaller, more specialized tests
 
 ## Detailed Test Cases
 

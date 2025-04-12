@@ -1,3 +1,21 @@
+# Cytoscape Next Tests
+
+This document outlines the test-driven development approach for the Cytoscape.js migration.
+
+## Testing Philosophy
+
+### Core Testing Principles
+- Test cases must be very specialized - each test should verify one specific behavior
+- Focus on one test at a time - complete one test fully before moving to the next
+- Fix one failing test at a time - resolve each failure before addressing others
+- Split failing tests when needed - if the first fix attempt doesn't work, break the test into smaller, more specialized tests
+- Tests should be written first, before implementing any functionality
+- Each test should have a clear purpose and description
+- Tests should use real methods and real data whenever possible
+- Mocking should be minimized to reduce maintenance burden
+
+### Current Focus
+
 # Immediate Next Tests for Cytoscape Migration
 
 ## CRITICAL: Testing Philosophy Update
@@ -1207,7 +1225,7 @@ This test is currently skipped (`.skip`) as the edge rendering functionality has
   - [x] Fix graph conversion tests (`tests/cytoscape-graph-conversion.test.js`)
   - [x] Fix interactive states tests (`tests/cytoscape-interactive-states.test.js`)
   - [ ] Fix migration tests (`tests/cytoscape-migration.test.js`)
-- [ ] Implement responsive layout features
+- [x] Implement responsive layout features
 - [ ] Add mobile touch interaction support
 - [ ] Enhance accessibility implementation with keyboard navigation
 - [ ] Implement focus management for modals
@@ -1218,7 +1236,7 @@ This test is currently skipped (`.skip`) as the edge rendering functionality has
 2. ✅ Fix graph conversion tests to return data in the expected array format
 3. ✅ Fix interactive states tests for hover and selection
 4. Complete migration tests for container reference handling
-5. Begin responsive layout implementation
+5. ✅ Begin responsive layout implementation
 6. Implement mobile touch interactions
 
 ## Priority Order for Test Fixes

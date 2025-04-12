@@ -52,6 +52,7 @@ The migration will follow these core principles:
 - [x] Implement minimal responsive layout function with two modes
 - [x] Write test for container reference handling during migration
 - [x] Implement container reference tracking and management
+- [x] Implement enhanced responsive layout with position management
 - [ ] Test on standard device sizes
 
 ### Validation Criteria
@@ -151,6 +152,12 @@ The migration will follow these core principles:
 - [ ] No major issues reported post-rollout
 
 ## Testing Strategy Throughout Migration
+
+### Testing Principles
+- Test cases must be very specialized - each test should verify one specific behavior
+- Focus on one test at a time - complete one test fully before moving to the next
+- Fix one failing test at a time - resolve each failure before addressing others
+- Split failing tests when needed - if the first fix attempt doesn't work, break the test into smaller, more specialized tests
 
 ### Unit Tests
 - Test each component and function in isolation

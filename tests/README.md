@@ -36,6 +36,10 @@ npx jest tests/filename.test.js
 3. Create new test files for new functionality
 4. Ensure all tests have clear descriptions and assertions
 5. Reference the comprehensive test plan in `/issues/cytoscape-test-plan.md`
+6. **Test cases must be very specialized** - each test should verify one specific behavior
+7. **Focus on one test at a time** - complete one test fully before moving to the next
+8. **Fix one failing test at a time** - resolve each failure before addressing others
+9. **Split failing tests when needed** - if the first fix attempt doesn't work, break the test into smaller, more specialized tests
 
 ## Test Implementation Process
 

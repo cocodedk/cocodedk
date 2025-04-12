@@ -13,6 +13,13 @@ This document provides a step-by-step guide for implementing the Cytoscape.js mi
 - Only mock what's absolutely necessary (browser APIs, network calls, etc.)
 - A minimal, passing test is better than a complex, brittle test
 
+**CRITICAL: Test Specialization and Focus**
+
+- Test cases must be very specialized - each test should verify one specific behavior
+- Focus on one test at a time - complete one test fully before moving to the next
+- Fix one failing test at a time - resolve each failure before addressing others
+- Split failing tests when needed - if the first fix attempt doesn't work, break the test into smaller, more specialized tests
+
 ## Test Organization
 
 All tests are kept in the `/tests` directory to maintain consistency and simplify test execution. Each test file follows the naming convention `cytoscape-[feature].test.js` and focuses on testing a specific aspect of the implementation.

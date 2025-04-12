@@ -16,6 +16,42 @@ const CytoscapeManager = (function() {
   let containerElement = null;
 
   /**
+   * Original node positions map to store and restore positions
+   * when switching between desktop and mobile layouts
+   */
+  let originalNodePositions = new Map();
+
+  /**
+   * Save original positions of all nodes for layout transitions
+   */
+  function saveOriginalPositions() {
+    const cy = getInstance();
+    if (!cy) return;
+
+    cy.nodes().forEach(node => {
+      originalNodePositions.set(node.id(), {
+        x: node.position('x'),
+        y: node.position('y')
+      });
+    });
+  }
+
+  /**
+   * Restore original node positions (used when returning to desktop view)
+   */
+  function restoreOriginalPositions() {
+    const cy = getInstance();
+    if (!cy) return;
+
+    cy.nodes().forEach(node => {
+      const originalPos = originalNodePositions.get(node.id());
+      if (originalPos) {
+        node.position(originalPos);
+      }
+    });
+  }
+
+  /**
    * Initialize Cytoscape with the given container ID
    *
    * @param {string} containerId - The ID of the container element
@@ -1111,15 +1147,45 @@ const CytoscapeManager = (function() {
 
   /**
    * Determines if the current viewport is desktop-sized
+   * Breakpoint for desktop is 768px (tablets and up)
    *
    * @return {boolean} - True if desktop viewport, false if mobile
    */
   function isDesktopViewport() {
+    // Ensure window exists (prevents issues in non-browser environments)
+    if (typeof window === 'undefined') {
+      return true; // Default to desktop in non-browser environments
+    }
+
+    // Handle edge case: if width is 0 or not a valid number, treat as mobile
+    if (!window.innerWidth || window.innerWidth <= 0) {
+      return false;
+    }
+
     return window.innerWidth >= 768; // Tablets and larger use desktop layout
   }
 
   /**
+   * Mobile scaling factor used for responsive layouts
+   * Returns the factor used to scale node positions in mobile view
+   *
+   * @return {number} - The scaling factor (e.g., 0.6 = 60% of original size)
+   */
+  function getMobileScalingFactor() {
+    return 0.6; // 60% of original size for mobile view
+  }
+
+  /**
+   * Reset responsive state (for testing)
+   * Clears stored original positions
+   */
+  function resetResponsiveState() {
+    originalNodePositions.clear();
+  }
+
+  /**
    * Apply responsive layout based on viewport size
+   * Adjusts layout and node positioning based on desktop or mobile view
    *
    * @return {object} - The resulting layout object or null if failed
    */
@@ -1127,38 +1193,58 @@ const CytoscapeManager = (function() {
     const cy = getInstance();
     if (!cy) return null;
 
+    // Save original positions if not already saved
+    if (originalNodePositions.size === 0) {
+      saveOriginalPositions();
+    }
+
     // Determine if we're on mobile or desktop
     const isDesktop = isDesktopViewport();
-
-    // Set spacing based on viewport
-    const nodeSpacing = isDesktop ? 100 : 50; // More condensed on mobile
 
     // Get all nodes
     const nodes = cy.nodes();
     if (nodes.length === 0) return null;
 
-    // Basic layout options
-    const layoutOptions = {
-      name: 'preset', // Use preset to maintain relative positions
-      fit: true,      // Fit to viewport
-      padding: isDesktop ? 50 : 20 // Less padding on mobile
-    };
-
-    // If using a more dynamic layout, adjust spacing parameters
-    if (nodes.length > 1) {
-      // For layouts that support spacing like grid or concentric
-      if (cy.layout && typeof cy.layout === 'function') {
-        // For more complex layouts, we could modify options here
-        // This is an example for a grid layout
-        if (!isDesktop) {
-          // More condensed on mobile - reduce overall scale
-          cy.zoom(cy.zoom() * 0.8);
-          cy.center();
-        }
-      }
+    // For desktop, restore original positions if available
+    if (isDesktop && originalNodePositions.size > 0) {
+      restoreOriginalPositions();
+      // Apply basic layout to ensure proper positioning
+      return applyLayout({
+        name: 'preset', // Use preset to maintain restored positions
+        fit: true,      // Fit to viewport
+        padding: 50,    // Standard padding for desktop
+        animate: false  // No animation for position restoration
+      });
     }
 
-    return applyLayout(layoutOptions);
+    // For mobile layout - apply scaling to condense the layout
+    if (!isDesktop) {
+      const scaleFactor = getMobileScalingFactor();
+
+      // Apply scaling to each node's position
+      nodes.forEach(node => {
+        // Get original position or current position if original not available
+        const originalPos = originalNodePositions.get(node.id()) || node.position();
+
+        // Apply scaling
+        node.position({
+          x: originalPos.x * scaleFactor,
+          y: originalPos.y * scaleFactor
+        });
+      });
+
+      // After scaling, fit to viewport
+      cy.fit(cy.elements(), 20); // Less padding for mobile
+
+      return cy.layout({ name: 'preset', animate: false }).run();
+    } else {
+      // For desktop (fallback if original positions weren't available)
+      return applyLayout({
+        name: 'preset',
+        fit: true,
+        padding: 50
+      });
+    }
   }
 
   // Public API
@@ -1202,6 +1288,10 @@ const CytoscapeManager = (function() {
     // Responsive handling
     isDesktopViewport,
     applyResponsiveLayout,
+    saveOriginalPositions,
+    restoreOriginalPositions,
+    getMobileScalingFactor,
+    resetResponsiveState,
 
     // Language functions
     setLanguage,
