@@ -1,6 +1,17 @@
 # Immediate Next Tests for Cytoscape Migration
 
-Based on our progress so far, we should focus on these specific tests next to continue our TDD approach.
+## CRITICAL: Testing Philosophy Update
+
+**IMPERATIVE: Use real methods and real data wherever possible**
+
+- Mocking is expensive and creates significant maintenance burden
+- Every change to implementation code requires updating mocks
+- Tests should focus on verifying behavior, not implementation details
+- Simpler tests that use real code paths are more maintainable
+- Only mock what's absolutely necessary (browser APIs, network calls, etc.)
+- A minimal, passing test is better than a complex, brittle test
+
+This philosophy should be applied to all existing and new tests. Whenever possible, use the real CytoscapeManager methods rather than mocking them. This will make tests more resilient to implementation changes.
 
 ## Current Focus: Graph Conversion Tests
 
@@ -16,19 +27,62 @@ The failing tests show that:
 
 These fixes are essential for the data pipeline to correctly transform graph data for Cytoscape.
 
-## Fixed: Graph Conversion Tests
+## New Test Approach
 
-The graph conversion tests were failing because the implementation returned data in a different format than what the tests expected:
+We've identified several issues with our testing approach and are implementing these improvements:
 
-1. **Format mismatch**: The implementation returned an object with separate arrays for nodes and edges `{ nodes: [...], edges: [...] }`, but the tests expected a flat array of elements.
-   - **Fix**: Updated `convertGraphToCytoscape` to return a flat array by using the spread operator: `return [...cytoscapeNodes, ...cytoscapeEdges]`.
+1. **Eliminate unnecessary mocking**: We're removing complex mocks in favor of using real implementation where possible
+2. **Simplify test assertions**: Focus on behavior verification rather than implementation details
+3. **Use real data structures**: Match the data structures used in production code
+4. **Decouple tests from implementation details**: Make tests resilient to refactoring
 
-2. **Empty graph handling**: For empty data, the function returned an object with empty arrays, but the tests expected a simple empty array.
-   - **Fix**: Updated the empty data handler to return `[]` instead of `{ nodes: [], edges: [] }`.
+Example of improved test approach (multilingual support):
 
-3. **Group identification**: Added `group: 'nodes'` and `group: 'edges'` properties to the converted elements to make it easier to filter them appropriately in the tests.
+```javascript
+// GOOD: Using real methods and minimal assertions
+test('should switch language in node display', () => {
+  // Add a real multilingual node to the Cytoscape instance
+  const testNode = {
+    id: 'test-node',
+    labels: {
+      en: 'English Label',
+      da: 'Danish Label',
+      es: 'Spanish Label'
+    },
+    category: 'Software'
+  };
 
-These changes ensure that the function returns data in the format expected by Cytoscape.js and maintains compatibility with the existing test suite.
+  // Add test node to Cytoscape
+  CytoscapeManager.renderNode(testNode);
+
+  // Change to Danish and verify language changed
+  CytoscapeManager.setLanguage('da');
+  expect(CytoscapeManager.getCurrentLanguage()).toBe('da');
+
+  // Change to Spanish and verify language changed
+  CytoscapeManager.setLanguage('es');
+  expect(CytoscapeManager.getCurrentLanguage()).toBe('es');
+});
+
+// BAD: Over-mocking and testing implementation details
+test('should switch language in node display (AVOID THIS APPROACH)', () => {
+  // Create mock node with complex mocking setup
+  const mockNode = {
+    data: jest.fn().mockReturnValue({
+      labels: { en: 'English', da: 'Danish' }
+    }),
+    style: jest.fn()
+  };
+  global.cy.nodes = jest.fn().mockReturnValue([mockNode]);
+
+  // Call the method
+  CytoscapeManager.setLanguage('da');
+
+  // Assert against implementation details (brittle)
+  expect(mockNode.data).toHaveBeenCalled();
+  expect(mockNode.style).toHaveBeenCalledWith('label', 'Danish');
+});
+```
 
 ## 1. Full Graph Conversion Test
 
@@ -66,7 +120,7 @@ describe('Full Graph Conversion', () => {
       ]
     };
 
-    // When we convert to Cytoscape format
+    // When we convert to Cytoscape format using the real implementation
     const cytoscapeElements = CytoscapeManager.convertGraphToCytoscape(graphData);
 
     // Then we should get an array with both nodes and edges
@@ -772,7 +826,7 @@ These tests and implementations will help us ensure the Cytoscape graph provides
 
 ## 9. Accessibility Implementation Tests
 
-Next, we need to focus on implementing and testing the accessibility features, particularly ARIA attributes and keyboard navigation with emphasis on the escape key requirement.
+Next, we need to focus on implementing and testing the accessibility features, particularly ARIA attributes and the escape key functionality for closing modals.
 
 ```javascript
 /**

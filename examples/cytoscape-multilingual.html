@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cytoscape.js Multilingual Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      padding: 1rem;
+      background-color: #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #cy-container {
+      flex: 1;
+      background-color: #111;
+    }
+
+    .language-selector {
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-item {
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #444;
+    }
+
+    .lang-item.active {
+      background-color: #0077cc;
+    }
+
+    #node-info-panel {
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      width: 300px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      display: none;
+    }
+
+    #node-info-panel h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 1.2rem;
+    }
+  </style>
+  <!-- Load Cytoscape.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+  <!-- Load our data and code -->
+  <script src="../js/nodes.js"></script>
+  <script src="../js/cytoscape-manager.js"></script>
+  <script src="../examples/cytoscape-multilingual.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Cytoscape.js Multilingual Example</h1>
+      <div class="language-selector">
+        <div class="lang-item active" data-lang="en">English</div>
+        <div class="lang-item" data-lang="da">Danish</div>
+        <div class="lang-item" data-lang="es">Spanish</div>
+        <div class="lang-item" data-lang="zh">Chinese</div>
+        <div class="lang-item" data-lang="ja">Japanese</div>
+        <div class="lang-item" data-lang="de">German</div>
+        <div class="lang-item" data-lang="ar">Arabic</div>
+        <div class="lang-item" data-lang="fa">Persian</div>
+        <div class="lang-item" data-lang="hi">Hindi</div>
+        <div class="lang-item" data-lang="ur">Urdu</div>
+        <div class="lang-item" data-lang="fr">French</div>
+      </div>
+    </header>
+
+    <div id="cy-container"></div>
+
+    <div id="node-info-panel">
+      <button class="close-button" onclick="closeNodeInfo()">×</button>
+      <h3>Node Information</h3>
+      <div id="node-info-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize the graph with the function from the example file
+    document.addEventListener('DOMContentLoaded', function() {
+      // One line initialization using the enhanced API:
+      const cy = CytoscapeManager.initialize('cy-container');
+      CytoscapeManager.loadNodesJsGraph(nodes, links, { language: 'en' });
+
+      // Register click handler for node details
+      cy.on('tap', 'node', function(event) {
+        const node = event.target;
+        showNodeDetails(node);
+      });
+    });
+
+    // Close the node info panel
+    function closeNodeInfo() {
+      document.getElementById('node-info-panel').style.display = 'none';
+    }
+
+    // Helper function to show node details
+    function showNodeDetails(node) {
+      const nodeData = node.data();
+      const lang = CytoscapeManager.getCurrentLanguage();
+
+      const infoPanel = document.getElementById('node-info-panel');
+      const infoContent = document.getElementById('node-info-content');
+
+      // Get the node label in current language
+      const nodeLabel = nodeData.labels && nodeData.labels[lang]
+        ? nodeData.labels[lang]
+        : nodeData.label || nodeData.id;
+
+      // Get the translation in current language
+      const translation = nodeData.translations && nodeData.translations[lang]
+        ? nodeData.translations[lang]
+        : 'No translation available';
+
+      // Update the panel heading
+      document.querySelector('#node-info-panel h3').textContent = nodeLabel;
+
+      // Update the content
+      infoContent.innerHTML = `
+        <p>${translation}</p>
+        <p><strong>Category:</strong> ${nodeData.category}</p>
+        <p><strong>ID:</strong> ${nodeData.id}</p>
+      `;
+
+      // Show the panel
+      infoPanel.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

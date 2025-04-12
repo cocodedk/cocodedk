@@ -90,7 +90,7 @@
           const nodeElement = document.createElement('div');
           nodeElement.id = `accessible-${node.id()}`;
           nodeElement.setAttribute('role', 'button');
-          // No tabindex - not keyboard focusable
+          // Elements are intentionally not keyboard focusable - keyboard navigation removed per requirements
           nodeElement.className = 'accessible-node';
 
           // Set appropriate ARIA attributes

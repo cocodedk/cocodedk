@@ -2,6 +2,17 @@
 
 This document provides a step-by-step guide for implementing the Cytoscape.js migration, ensuring we follow TDD principles throughout.
 
+## CRITICAL: Testing Philosophy
+
+**IMPERATIVE: Use real methods and real data wherever possible**
+
+- Mocking is expensive and creates significant maintenance burden
+- Every change to implementation code requires updating mocks
+- Tests should focus on verifying behavior, not implementation details
+- Simpler tests that use real code paths are more maintainable
+- Only mock what's absolutely necessary (browser APIs, network calls, etc.)
+- A minimal, passing test is better than a complex, brittle test
+
 ## Test Organization
 
 All tests are kept in the `/tests` directory to maintain consistency and simplify test execution. Each test file follows the naming convention `cytoscape-[feature].test.js` and focuses on testing a specific aspect of the implementation.
@@ -23,11 +34,19 @@ Our tests are organized into the following categories:
    - `cytoscape-interactive-states.test.js` - Tests for hover/select states
    - `cytoscape-rendering.test.js` - Tests for visual output
 
+### Test Guidelines
+
+1. **Prefer real methods over mocks**: Use actual implementation code whenever possible
+2. **Minimize mocking**: Only mock browser APIs, DOM, or network calls that can't be used in tests
+3. **Test behavior, not implementation**: Tests should verify what the code does, not how it does it
+4. **Keep tests simple**: Simple tests are more maintainable and less prone to breakage
+5. **Test the contract, not the details**: Focus on inputs and outputs, not internal workings
+
 ### Test-First Methodology
 
 For each implementation step, we follow this strict TDD sequence:
 
-1. Write a test that defines the expected behavior
+1. Write a test that defines the expected behavior using real methods where possible
 2. Run the test and verify it fails (RED)
 3. Implement the minimal code to make the test pass (GREEN)
 4. Refactor the code while ensuring tests still pass (REFACTOR)
@@ -58,13 +77,17 @@ We'll use a phased approach to migrate from the current HTML node-based implemen
 
 ## Implementation Phases
 
-### Phase 1: Core Infrastructure (Current)
+### Phase 1: Core Infrastructure ✅ (Completed)
 
 - [x] Set up testing environment with Jest
 - [x] Create CytoscapeManager module
 - [x] Implement basic initialization
 - [x] Add data conversion utilities
 - [x] Create stylesheet generation
+- [x] Analyze HTML node rendering system (see `issues/html-node-rendering-analysis.md`)
+- [x] Analyze CSS styles for conversion (see `issues/css-styles-analysis.md`)
+- [x] Document interaction behaviors (see `issues/interaction-behaviors-analysis.md`)
+- [x] Create detailed migration plan (see `issues/phased-migration-plan.md`)
 
 ### Phase 2: Visual Parity (Next)
 

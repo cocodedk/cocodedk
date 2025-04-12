@@ -23,9 +23,9 @@ The `cytoscape-accessibility.js` file enhances Cytoscape with accessibility feat
 
 ### Important Notes on Accessibility Implementation
 
-- Keyboard navigation for the Cytoscape container has been **intentionally removed**
+- All keyboard navigation functionality has been **completely removed**
 - The only keyboard interaction preserved is the **Escape key** to close modals and clear selection
-- Accessible nodes are still keyboard navigable via tab key as they have tabindex="0"
+- Graph elements are not keyboard focusable or navigable
 - Screen reader users will interact with the accessible DOM representation rather than the visual graph itself
 
 ## Testing
