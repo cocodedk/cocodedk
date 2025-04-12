@@ -257,58 +257,8 @@ test('enableMobileInteractions returns false when cy is null', () => {
 
 ## Acceptance Criteria for Each Feature
 
-### Core Infrastructure
-- ✅ Cytoscape initializes without errors
-- ✅ Basic rendering works in isolated environment
-- ❌ Node selection works with correct classes
-- ❌ Basic interaction handlers function properly
-
-### Data Conversion
-- ✅ Node data converts correctly to Cytoscape format
-- ✅ Edge data converts correctly to Cytoscape format
-- ❌ Full graph conversion with sample data works
-- ❌ Data integrity preserved after conversion
-
-### Visual Styling
-- ✅ Basic stylesheet generation works
-- ✅ Category-specific styles are defined
-- ❌ Hover/selection states are correctly styled
-- ❌ Interactive state changes apply correct classes
-
-### Interaction Handling
-- ❌ Node click handlers work correctly
-- ❌ Contact node shows modal when clicked
-- ❌ Hover interactions apply correct styling
-- ✅ Escape key closes modals
-- ❌ Node selection through programmatic API works
-
-### Layout Features
-- ❌ Custom layout options correctly applied
-- ❌ Layout with null Cytoscape instance handled gracefully
-- ❌ Layout with invalid options handled properly
-
-### Accessibility
-- ✅ Container has proper role for accessibility
-- ✅ Accessible DOM elements created for nodes
-- ✅ Accessible DOM updated when graph changes
-- ✅ Basic keyboard support for modal closing
+**Note:** Acceptance criteria and task tracking have been moved to the consolidated [Cytoscape Task Tracker](./cytoscape-task-tracker.md). Please refer to that document for the current status and acceptance criteria.
 
 ## Test-Driven Development Next Steps
 
-1. Fix immediate failing tests in priority order:
-   - Node selection implementation
-   - Layout functionality
-   - Interaction handling
-   - Interactive states
-
-2. Once core functionality passes tests:
-   - Implement advanced features
-   - Add edge cases to existing tests
-   - Refactor tests to use real methods and data instead of mocks
-   - Simplify existing tests wherever possible
-
-3. Review test coverage:
-   - Ensure all functions have corresponding tests
-   - Add tests for error handling
-   - Test with realistic data volumes
-   - Remove unnecessary mocks in favor of real implementations
+**Note:** Next steps for test-driven development have been moved to the consolidated [Cytoscape Task Tracker](./cytoscape-task-tracker.md). Please refer to that document for the current prioritized task list and next steps.

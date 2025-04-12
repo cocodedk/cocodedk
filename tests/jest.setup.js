@@ -407,6 +407,112 @@ global.cytoscape = (options) => {
     }
   };
 
+  // Add this to the existing cy mock implementation
+  // Inside the cy implementation, add support for edge styling
+  // Add edge style getters and selectors
+  const edgeStylesBySelector = new Map();
+
+  // Set up edge styles
+  edgeStylesBySelector.set('edge', {
+    'width': '2px',
+    'line-color': 'rgba(255, 255, 255, 0.3)',
+    'curve-style': 'straight',
+    'target-arrow-shape': 'none'
+  });
+
+  edgeStylesBySelector.set('edge.Software', {
+    'line-color': 'rgba(51, 204, 255, 0.4)'
+  });
+
+  edgeStylesBySelector.set('edge.Cybersecurity', {
+    'line-color': 'rgba(255, 102, 136, 0.4)'
+  });
+
+  edgeStylesBySelector.set('edge[?bidirectional]', {
+    'curve-style': 'bezier'
+  });
+
+  // Helper function to get edge style for a selector
+  const getEdgeStyleForSelector = (selector) => {
+    // Check if we have a direct match
+    if (edgeStylesBySelector.has(selector)) {
+      return edgeStylesBySelector.get(selector);
+    }
+
+    // Handle more complex selectors
+    if (selector && selector.startsWith('edge.')) {
+      const category = selector.replace('edge.', '');
+      if (edgeStylesBySelector.has(`edge.${category}`)) {
+        return edgeStylesBySelector.get(`edge.${category}`);
+      }
+      return edgeStylesBySelector.get('edge');
+    }
+
+    return {};
+  };
+
+  // Enhance edgeObj creation in the existing implementation
+  // Add this inside the function that creates edge objects
+  // Add style method for edges
+  const addStyleMethod = (edge) => {
+    if (!edge.style) {
+      edge.customStyles = {};
+      edge.style = (prop, value) => {
+        if (typeof prop === 'string' && value !== undefined) {
+          // Setting a style
+          edge.customStyles[prop] = value;
+          return edge;
+        } else if (typeof prop === 'string') {
+          // Getting a style
+          const baseStyle = getEdgeStyleForSelector('edge');
+          const categoryStyle = edge.data('category') ?
+            getEdgeStyleForSelector(`edge.${edge.data('category')}`) : {};
+
+          // Custom styles take precedence
+          return edge.customStyles[prop] || categoryStyle[prop] || baseStyle[prop];
+        } else if (typeof prop === 'object') {
+          // Setting multiple styles
+          Object.assign(edge.customStyles, prop);
+          return edge;
+        }
+      };
+    }
+    return edge;
+  };
+
+  // Mock the edge style module (put this at the end of the file)
+  jest.mock('../js/cytoscape-edge-styles.js', () => ({
+    getEdgeSpecificStyles: jest.fn().mockReturnValue([
+      {
+        selector: 'edge',
+        style: {
+          'width': '2px',
+          'line-color': 'rgba(255, 255, 255, 0.3)',
+          'curve-style': 'straight',
+          'target-arrow-shape': 'none'
+        }
+      },
+      {
+        selector: 'edge.Software',
+        style: {
+          'line-color': 'rgba(51, 204, 255, 0.4)'
+        }
+      },
+      {
+        selector: 'edge.Cybersecurity',
+        style: {
+          'line-color': 'rgba(255, 102, 136, 0.4)'
+        }
+      }
+    ]),
+    getCustomEdgeStyles: jest.fn().mockReturnValue({
+      'highlighted': {
+        'width': '4px',
+        'line-color': '#ffffff'
+      }
+    })
+  }));
+
   return cy;
 };
 

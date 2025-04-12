@@ -6,6 +6,9 @@
 
 /* global cy */
 
+// Import edge styles using CommonJS require
+const { getEdgeSpecificStyles, getCustomEdgeStyles } = require('./cytoscape-edge-styles.js');
+
 const CytoscapeManager = (function() {
   // Private variables
   let cy = null;
@@ -387,10 +390,10 @@ const CytoscapeManager = (function() {
   }
 
   /**
-   * Render an edge in the graph
+   * Render a single edge
    *
    * @param {object} edgeData - Edge data to render
-   * @return {object|null} - The created edge or null if failed
+   * @return {object|null} - The edge element or null if failed
    */
   function renderEdge(edgeData) {
     if (!cy || !edgeData) return null;
@@ -417,7 +420,12 @@ const CytoscapeManager = (function() {
     const targetNode = cy.$id(cytoscapeEdge.data.target);
 
     if (sourceNode.length === 0 || targetNode.length === 0) {
-      console.warn(`Source or target node not found for edge: ${cytoscapeEdge.data.id}`);
+      console.warn(`Source or target node not found for edge: ${cytoscapeEdge.data.id || 'unknown'}`);
+    }
+
+    // Set default classes if not provided
+    if (!cytoscapeEdge.classes && cytoscapeEdge.data.category) {
+      cytoscapeEdge.classes = cytoscapeEdge.data.category;
     }
 
     // Add the edge to the graph
@@ -446,11 +454,30 @@ const CytoscapeManager = (function() {
     // Apply directed style if specified
     const isDirected = edge.data('directed');
     if (isDirected) {
-      edge.style('target-arrow-shape', 'triangle');
+      edge.style({
+        'target-arrow-shape': 'triangle',
+        'target-arrow-color': edge.style('line-color')
+      });
     }
 
-    // Handle bidirectional edges if needed
-    handleBidirectionalEdges();
+    // Apply bidirectional property if this edge is part of a bidirectional pair
+    const isBidirectional = edge.data('bidirectional');
+    if (isBidirectional) {
+      edge.style({
+        'curve-style': 'bezier',
+        'control-point-step-size': 40
+      });
+    }
+
+    // Apply any custom color
+    const lineColor = edge.data('lineColor');
+    if (lineColor) {
+      edge.style('line-color', lineColor);
+      // Also update arrow color if directed
+      if (isDirected) {
+        edge.style('target-arrow-color', lineColor);
+      }
+    }
 
     return edge;
   }
@@ -480,6 +507,11 @@ const CytoscapeManager = (function() {
 
       if (reverseEdge.length > 0) {
         // We have a bidirectional pair
+        // Set bidirectional data property for reference
+        edge1.data('bidirectional', true);
+        reverseEdge.data('bidirectional', true);
+
+        // Apply curved style to both edges
         edge1.style({
           'curve-style': 'bezier',
           'control-point-step-size': 40
@@ -1535,6 +1567,49 @@ const CytoscapeManager = (function() {
     onContextMenuCallback = callback;
   }
 
+  /**
+   * Render all edges in the graph
+   *
+   * @param {Array} edges - Array of edge data
+   * @param {Object} options - Options for rendering
+   * @return {Array} - Rendered edge elements
+   */
+  function renderEdges(edges, options = {}) {
+    if (!cy || !edges || !Array.isArray(edges)) return [];
+
+    // Clear existing edges if specified
+    if (options.clearExisting) {
+      cy.edges().remove();
+    }
+
+    // Process each edge
+    const renderedEdges = edges.map(edge => renderEdge(edge));
+
+    // Filter out null values
+    const validEdges = renderedEdges.filter(edge => edge !== null);
+
+    // Handle bidirectional edges
+    handleBidirectionalEdges();
+
+    return validEdges;
+  }
+
+  /**
+   * Get a complete stylesheet including edge styles
+   *
+   * @return {Array} - Complete stylesheet
+   */
+  function getCompleteStylesheet() {
+    // Get base stylesheet
+    const baseStyle = getStylesheet();
+
+    // Get edge-specific styles
+    const edgeStyles = getEdgeSpecificStyles();
+
+    // Combine them
+    return [...baseStyle, ...edgeStyles];
+  }
+
   // Public API
   return {
     initialize,
@@ -1591,8 +1666,13 @@ const CytoscapeManager = (function() {
     // Support flags for testing
     supportsCustomEdgeStyling,
     supportsBidirectionalEdges,
-    useRadiusForSize
+    useRadiusForSize,
+
+    // New functions
+    renderEdges,
+    getCompleteStylesheet
   };
 })();
 
+// Export using CommonJS style
 module.exports = CytoscapeManager;
