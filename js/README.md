@@ -28,6 +28,22 @@ The `cytoscape-accessibility.js` file enhances Cytoscape with accessibility feat
 - Graph elements are not keyboard focusable or navigable
 - Screen reader users will interact with the accessible DOM representation rather than the visual graph itself
 
+## Development Guidelines
+
+### Testing Process
+
+1. **DO NOT MODIFY EXISTING TESTS**: All tests marked with `.skip` must remain skipped until explicitly instructed otherwise
+2. Follow test plans in the `/issues` directory for the implementation sequence
+3. Reference `/issues/test-preservation.md` for the complete test preservation policy
+
+### Implementation Approach
+
+When implementing functionality to make tests pass:
+1. Create helper functions as needed
+2. Follow existing code style and conventions
+3. Document all new functions
+4. Ensure backward compatibility
+
 ## Testing
 
 To run tests for accessibility features:
