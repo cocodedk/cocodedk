@@ -8,6 +8,8 @@
 
 // Import edge styles using CommonJS require
 const { getEdgeSpecificStyles, getCustomEdgeStyles } = require('./cytoscape-edge-styles.js');
+// Import edge interactions
+const { setupEdgeHoverInteractions, selectEdge } = require('./cytoscape-edge-interactions.js');
 
 const CytoscapeManager = (function() {
   // Private variables
@@ -89,6 +91,9 @@ const CytoscapeManager = (function() {
       // No elements yet
       elements: []
     });
+
+    // Set up edge hover interactions
+    setupEdgeHoverInteractions(cy);
 
     return cy;
   }
@@ -1670,9 +1675,16 @@ const CytoscapeManager = (function() {
 
     // New functions
     renderEdges,
-    getCompleteStylesheet
+    getCompleteStylesheet,
+
+    // Add edge selection method
+    selectEdge: function(edgeId) {
+      return selectEdge(cy, edgeId);
+    }
   };
 })();
 
-// Export using CommonJS style
-module.exports = CytoscapeManager;
+// Export for use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = CytoscapeManager;
+}
