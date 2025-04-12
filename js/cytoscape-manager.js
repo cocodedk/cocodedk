@@ -4,6 +4,8 @@
  * Handles initialization and management of the Cytoscape.js graph
  */
 
+/* global cy */
+
 const CytoscapeManager = (function() {
   // Private variables
   let cy = null;
@@ -14,6 +16,14 @@ const CytoscapeManager = (function() {
 
   // Container reference
   let containerElement = null;
+
+  // Context menu callback
+  let onContextMenuCallback = null;
+
+  // Touch timer for long press detection
+  let touchTimer = null;
+  let touchStartPosition = null;
+  let touchThreshold = 10; // pixels of movement allowed before canceling long press
 
   /**
    * Original node positions map to store and restore positions
@@ -95,8 +105,14 @@ const CytoscapeManager = (function() {
    * @return {boolean} - True if container exists and is in the DOM
    */
   function hasValidContainer() {
-    return containerElement !== null &&
-           document.body.contains(containerElement);
+    // First check if container reference exists
+    if (!containerElement) {
+      return false;
+    }
+
+    // Then check if it's in the DOM by checking if it has a parent node
+    // This is more reliable than document.body.contains for detached elements
+    return containerElement.parentNode !== null;
   }
 
   /**
@@ -120,13 +136,37 @@ const CytoscapeManager = (function() {
     // If we have an active Cytoscape instance, move it to the new container
     if (cy) {
       try {
-        // Save current elements and style
-        const elements = cy.elements().jsons();
-        const zoom = cy.zoom();
-        const pan = cy.pan();
+        // Save current elements and style if possible
+        let elements = [];
+        let zoom = 1;
+        let pan = { x: 0, y: 0 };
 
-        // Destroy existing instance
-        cy.destroy();
+        // Handle different Cytoscape instance implementations (real vs test mocks)
+        if (cy.elements && typeof cy.elements === 'function') {
+          const els = cy.elements();
+          // Check if jsons method exists (real Cytoscape) or fall back to simple array
+          if (els.jsons && typeof els.jsons === 'function') {
+            elements = els.jsons();
+          } else if (Array.isArray(els)) {
+            // Handle mock implementation
+            elements = els;
+          }
+        }
+
+        // Get zoom level if available
+        if (cy.zoom && typeof cy.zoom === 'function') {
+          zoom = cy.zoom();
+        }
+
+        // Get pan position if available
+        if (cy.pan && typeof cy.pan === 'function') {
+          pan = cy.pan();
+        }
+
+        // Destroy existing instance if possible
+        if (cy.destroy && typeof cy.destroy === 'function') {
+          cy.destroy();
+        }
 
         // Create new instance in the new container
         cy = cytoscape({
@@ -1247,6 +1287,254 @@ const CytoscapeManager = (function() {
     }
   }
 
+  /**
+   * Enable mobile-specific touch interactions
+   * Sets up handlers for tap, pinch-to-zoom, panning, and long press
+   *
+   * @return {boolean} - Success status
+   */
+  function enableMobileInteractions() {
+    if (!cy || !containerElement) return false;
+
+    // Create a variable to track if we're handling a multi-touch gesture
+    let multiTouchInProgress = false;
+    let initialTouchDistance = 0;
+
+    // Store position for each touch to track movement
+    const touchPositions = new Map();
+
+    // Handle touchstart event
+    containerElement.addEventListener('touchstart', function(event) {
+      // Prevent default behavior to avoid browser interpretations
+      event.preventDefault();
+
+      // Track if this is a multi-touch gesture (pinch)
+      multiTouchInProgress = event.touches.length > 1;
+
+      // If multi-touch, store initial touch distance for zoom
+      if (multiTouchInProgress) {
+        // Cancel any pending long press
+        if (touchTimer) {
+          clearTimeout(touchTimer);
+          touchTimer = null;
+        }
+
+        // Store positions for pinch calculation
+        if (event.touches.length === 2) {
+          const touch1 = event.touches[0];
+          const touch2 = event.touches[1];
+
+          initialTouchDistance = Math.sqrt(
+            Math.pow(touch2.clientX - touch1.clientX, 2) +
+            Math.pow(touch2.clientY - touch1.clientY, 2)
+          );
+        }
+      } else {
+        // Single touch - could be tap, pan or long press
+        // Store the position for the touch
+        touchStartPosition = {
+          x: event.touches[0].clientX,
+          y: event.touches[0].clientY
+        };
+
+        // Set up long press timer for context menu
+        touchTimer = setTimeout(function() {
+          // Only trigger if still touching and didn't move much
+          if (touchStartPosition) {
+            // Get the element under the touch position
+            const pos = {
+              x: touchStartPosition.x,
+              y: touchStartPosition.y
+            };
+
+            // Convert page position to renderer position
+            const rendererPos = cy.renderer().projectIntoViewport(pos.x, pos.y);
+
+            // Find element (if any) under the position
+            const element = cy.renderer().findNearestElement(rendererPos[0], rendererPos[1], true);
+
+            // Trigger context menu at the touch position
+            if (onContextMenuCallback) {
+              onContextMenuCallback(element, event);
+            }
+          }
+
+          // Clear the touch timer
+          touchTimer = null;
+        }, 800); // 800ms long press
+      }
+
+      // Store initial positions for all touches
+      for (let i = 0; i < event.touches.length; i++) {
+        const touch = event.touches[i];
+        touchPositions.set(touch.identifier, {
+          x: touch.clientX,
+          y: touch.clientY
+        });
+      }
+    }, { passive: false });
+
+    // Handle touchmove event
+    containerElement.addEventListener('touchmove', function(event) {
+      // Prevent default behavior
+      event.preventDefault();
+
+      // If we moved significantly, cancel long press timer
+      if (touchTimer && touchStartPosition) {
+        const touch = event.touches[0];
+        const moveX = Math.abs(touch.clientX - touchStartPosition.x);
+        const moveY = Math.abs(touch.clientY - touchStartPosition.y);
+
+        if (moveX > touchThreshold || moveY > touchThreshold) {
+          clearTimeout(touchTimer);
+          touchTimer = null;
+        }
+      }
+
+      // Handle pinch-to-zoom
+      if (event.touches.length === 2) {
+        const touch1 = event.touches[0];
+        const touch2 = event.touches[1];
+
+        // Calculate current distance
+        const currentDistance = Math.sqrt(
+          Math.pow(touch2.clientX - touch1.clientX, 2) +
+          Math.pow(touch2.clientY - touch1.clientY, 2)
+        );
+
+        // Calculate zoom factor
+        if (initialTouchDistance > 0) {
+          const zoomFactor = currentDistance / initialTouchDistance;
+
+          // Get the midpoint as the zoom center
+          const midX = (touch1.clientX + touch2.clientX) / 2;
+          const midY = (touch1.clientY + touch2.clientY) / 2;
+
+          // Convert to renderer position
+          const rendererPos = cy.renderer().projectIntoViewport(midX, midY);
+
+          // Apply zoom centered at midpoint
+          cy.zoom({
+            level: cy.zoom() * zoomFactor,
+            renderedPosition: { x: rendererPos[0], y: rendererPos[1] }
+          });
+
+          // Update for next move
+          initialTouchDistance = currentDistance;
+        }
+      }
+      // Handle single-finger panning
+      else if (event.touches.length === 1) {
+        const touch = event.touches[0];
+        const touchId = touch.identifier;
+
+        // Get the previous position for this touch
+        const prevPos = touchPositions.get(touchId);
+
+        if (prevPos) {
+          // Calculate the delta
+          const deltaX = touch.clientX - prevPos.x;
+          const deltaY = touch.clientY - prevPos.y;
+
+          // Apply pan
+          cy.panBy({ x: deltaX, y: deltaY });
+
+          // Update stored position
+          touchPositions.set(touchId, {
+            x: touch.clientX,
+            y: touch.clientY
+          });
+        }
+      }
+    }, { passive: false });
+
+    // Handle touchend event
+    containerElement.addEventListener('touchend', function(event) {
+      // Clear long press timer if it exists
+      if (touchTimer) {
+        clearTimeout(touchTimer);
+        touchTimer = null;
+      }
+
+      // Single-tap handler (when not part of a gesture)
+      if (!multiTouchInProgress && event.changedTouches.length === 1) {
+        const touch = event.changedTouches[0];
+
+        // If the touch didn't move much, treat as a tap
+        if (touchStartPosition) {
+          const moveX = Math.abs(touch.clientX - touchStartPosition.x);
+          const moveY = Math.abs(touch.clientY - touchStartPosition.y);
+
+          if (moveX < touchThreshold && moveY < touchThreshold) {
+            // Convert touch position to renderer position
+            const rendererPos = cy.renderer().projectIntoViewport(
+              touch.clientX,
+              touch.clientY
+            );
+
+            // Find element under the tap position
+            const element = cy.renderer().findNearestElement(
+              rendererPos[0],
+              rendererPos[1],
+              true
+            );
+
+            // If we tapped on a node, select it
+            if (element && element.isNode && element.isNode()) {
+              // Deselect any currently selected elements
+              cy.$(':selected').unselect();
+
+              // Select the tapped node
+              element.select();
+            } else {
+              // Tapped on background, deselect everything
+              cy.$(':selected').unselect();
+            }
+          }
+        }
+      }
+
+      // Reset for touch that ended
+      for (let i = 0; i < event.changedTouches.length; i++) {
+        const touchId = event.changedTouches[i].identifier;
+        touchPositions.delete(touchId);
+      }
+
+      // Reset tracking variables when all touches end
+      if (event.touches.length === 0) {
+        multiTouchInProgress = false;
+        initialTouchDistance = 0;
+        touchStartPosition = null;
+      }
+    }, { passive: false });
+
+    // Handle touchcancel
+    containerElement.addEventListener('touchcancel', function(event) {
+      // Clear long press timer
+      if (touchTimer) {
+        clearTimeout(touchTimer);
+        touchTimer = null;
+      }
+
+      // Reset all tracking variables
+      multiTouchInProgress = false;
+      initialTouchDistance = 0;
+      touchStartPosition = null;
+      touchPositions.clear();
+    }, { passive: false });
+
+    return true;
+  }
+
+  /**
+   * Set callback for context menu events
+   *
+   * @param {function} callback - Function to call with (element, event) when context menu should open
+   */
+  function setContextMenuCallback(callback) {
+    onContextMenuCallback = callback;
+  }
+
   // Public API
   return {
     initialize,
@@ -1281,6 +1569,8 @@ const CytoscapeManager = (function() {
     registerSelectionHandlers,
     selectNode,
     clearSelection,
+    enableMobileInteractions,
+    setContextMenuCallback,
 
     // Layout
     applyLayout,

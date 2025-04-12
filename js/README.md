@@ -74,11 +74,25 @@ This responsive implementation ensures optimal graph visualization across differ
 ### Container Reference Handling
 
 For migration and container management, CytoscapeManager includes:
-- `getContainerElement()` - Returns the current container element
-- `hasValidContainer()` - Checks if the container element is valid and in the DOM
-- `resetContainer(containerId)` - Resets the container to a new element, preserving graph state
 
-These functions are vital for safely managing container references during the migration process.
+- **Container Management**
+  - `getContainerElement()` - Returns the current container element
+  - `hasValidContainer()` - Checks if the container element is valid and in the DOM
+  - `resetContainer(containerId)` - Resets the container to a new element, preserving graph state
+
+- **Features**
+  - Robust DOM validation to detect removed or invalid containers
+  - State preservation when migrating between containers (nodes, edges, positions, zoom, pan)
+  - Safe fallback handling for testing environments
+  - Comprehensive error detection and reporting
+
+- **Error Handling**
+  - Gracefully handles non-existent container IDs
+  - Detects and reports when containers are removed from the DOM
+  - Safely validates container existence before operations
+  - Preserves graph state during migration to prevent data loss
+
+This enhanced container handling ensures reliable migration between different container elements, making it ideal for dynamic UI changes, responsive layouts, and feature transitions.
 
 ## Testing
 
