@@ -879,10 +879,10 @@ describe('Responsive Layout', () => {
 - Ensure all graph elements have proper ARIA attributes
 - Provide alternative text representation of graph data
 - Maintain focus management for modals
-- Maintain keyboard accessibility:
-  - UPDATED: Full keyboard navigation has been removed
+- Keyboard accessibility:
+  - NO keyboard navigation for graph elements
   - Only Escape key support for closing modals is maintained
-  - Enter/Space still activates selected elements in the accessible DOM
+  - NO support for arrow keys, Enter, or Space for graph navigation
 - Announce state changes to screen readers
 - Maintain high contrast visuals
 
@@ -969,16 +969,9 @@ function createAccessibleDOM() {
     const nodeElement = document.createElement('div');
     nodeElement.id = `accessible-${node.id()}`;
     nodeElement.setAttribute('role', 'button');
-    nodeElement.setAttribute('tabindex', '0');
-    nodeElement.setAttribute('aria-label', `${node.data('label')} node. Type: ${node.data('category')}. Press Enter to activate.`);
+    nodeElement.setAttribute('aria-label', `${node.data('label')} node. Type: ${node.data('category')}.`);
 
-    // Add event listeners
-    nodeElement.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        activateNode(node);
-        event.preventDefault();
-      }
-    });
+    // NO keyboard event listeners for Enter/Space
 
     navRegion.appendChild(nodeElement);
   });
@@ -990,16 +983,11 @@ function createAccessibleDOM() {
 ### 2. Basic Keyboard Support
 
 ```javascript
-// UPDATED: Basic keyboard support
-// Only escape key functionality is maintained, arrow navigation removed
+// Basic keyboard support - ONLY Escape key
+// No arrow navigation, no Enter/Space activation
 function setupKeyboardSupport() {
-  // Make container focusable
-  const container = document.getElementById('cy-container');
-  container.setAttribute('tabindex', '0');
-  container.setAttribute('role', 'application');
-
-  // Set up escape key handler
-  container.addEventListener('keydown', event => {
+  // Set up escape key handler for document
+  document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       // Close any open modal
       if (typeof ContactModal !== 'undefined') {
@@ -1007,15 +995,6 @@ function setupKeyboardSupport() {
       }
       // Clear selection
       CytoscapeManager.clearSelection();
-    }
-  });
-
-  // Document-level handler to ensure modal can be closed from anywhere
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      if (typeof ContactModal !== 'undefined') {
-        ContactModal.hideModal();
-      }
     }
   });
 }

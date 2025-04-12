@@ -2,6 +2,7 @@
  * Cytoscape Accessibility Extensions
  *
  * Enhances the CytoscapeManager with accessibility features
+ * No keyboard navigation - only Escape key for closing modals
  */
 
 (function() {
@@ -75,7 +76,7 @@
       // Update summary information
       const nodeCount = cy.nodes().length;
       const edgeCount = cy.edges().length;
-      const summaryText = `Graph containing ${nodeCount} nodes and ${edgeCount} connections. Use arrow keys to navigate between nodes.`;
+      const summaryText = `Graph containing ${nodeCount} nodes and ${edgeCount} connections.`;
 
       const newSummary = document.createElement('p');
       newSummary.id = 'cy-accessible-summary';
@@ -89,7 +90,7 @@
           const nodeElement = document.createElement('div');
           nodeElement.id = `accessible-${node.id()}`;
           nodeElement.setAttribute('role', 'button');
-          nodeElement.setAttribute('tabindex', '0');
+          // No tabindex - not keyboard focusable
           nodeElement.className = 'accessible-node';
 
           // Set appropriate ARIA attributes
@@ -114,17 +115,9 @@
           // Add to accessible container
           navRegion.appendChild(nodeElement);
 
-          // Add event listeners
+          // Only add focus handler for screen reader support
           nodeElement.addEventListener('focus', () => {
             CytoscapeManager.selectNode(node.id());
-          });
-
-          nodeElement.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              // Activate node (simulate click/tap)
-              activateNode(node);
-              event.preventDefault();
-            }
           });
         } catch (e) {
           console.error(`Error creating accessible element for node ${node.id()}:`, e);
@@ -164,6 +157,7 @@
 
   /**
    * Activate node (simulate click)
+   * Note: This is only triggered programmatically, not via keyboard
    */
   function activateNode(node) {
     if (!node) return;
