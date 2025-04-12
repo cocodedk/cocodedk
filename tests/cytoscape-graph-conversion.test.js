@@ -65,4 +65,56 @@ describe('Full Graph Conversion', () => {
     expect(Array.isArray(elements)).toBe(true);
     expect(elements.length).toBe(0);
   });
+
+  test('should convert minimal graph with a single node', () => {
+    // Given a simple graph with a single node
+    const minimalGraph = {
+      nodes: [
+        {
+          id: 'node1',
+          label: 'Test Node',
+          category: 'Software',
+          x: 100,
+          y: 200
+        }
+      ],
+      edges: []
+    };
+
+    // When we convert to Cytoscape format
+    const cytoscapeElements = CytoscapeManager.convertGraphToCytoscape(minimalGraph);
+
+    // Then we should get an array with just the node
+    expect(Array.isArray(cytoscapeElements)).toBe(true);
+    expect(cytoscapeElements.length).toBe(1);
+
+    // Check that the node was converted correctly
+    expect(cytoscapeElements[0].data.id).toBe('node1');
+    expect(cytoscapeElements[0].data.label).toBe('Test Node');
+    expect(cytoscapeElements[0].data.category).toBe('Software');
+    expect(cytoscapeElements[0].position.x).toBe(100);
+    expect(cytoscapeElements[0].position.y).toBe(200);
+  });
+
+  test('should handle null or undefined graph data', () => {
+    // Given null graph data
+    const nullGraph = null;
+
+    // When we convert to Cytoscape format
+    const elements1 = CytoscapeManager.convertGraphToCytoscape(nullGraph);
+
+    // Then we should get an empty array
+    expect(Array.isArray(elements1)).toBe(true);
+    expect(elements1.length).toBe(0);
+
+    // Given undefined graph data
+    const undefinedGraph = undefined;
+
+    // When we convert to Cytoscape format
+    const elements2 = CytoscapeManager.convertGraphToCytoscape(undefinedGraph);
+
+    // Then we should get an empty array
+    expect(Array.isArray(elements2)).toBe(true);
+    expect(elements2.length).toBe(0);
+  });
 });

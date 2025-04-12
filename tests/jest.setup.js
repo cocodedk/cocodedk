@@ -32,12 +32,17 @@ global.cytoscape = (options) => {
         elements = [elements];
       }
 
+      const addedElements = [];
+
       elements.forEach(ele => {
         if (ele.data && ele.data.source && ele.data.target) {
           // This is an edge
-          edges.set(ele.data.id || `${ele.data.source}-${ele.data.target}`, {
+          // Get the ID from the element data, or generate one if not provided
+          const edgeId = ele.data.id || `${ele.data.source}-${ele.data.target}`;
+
+          const edgeObj = {
             data: (key) => key ? ele.data[key] : ele.data,
-            id: () => ele.data.id || `${ele.data.source}-${ele.data.target}`,
+            id: () => edgeId, // Use the provided ID or generated ID
             source: function() {
               // Return source node or a node-like object if not found
               const sourceNode = nodes.get(ele.data.source);
@@ -79,21 +84,39 @@ global.cytoscape = (options) => {
             style: function(prop) {
               // Default style properties for edges
               const styles = {
-                'width': '1.5px',
+                'width': ele.data.width ? `${ele.data.width}px` : '1.5px',
                 'line-color': 'rgba(0, 0, 0, 0.5)',
-                'curve-style': 'straight',
-                'target-arrow-shape': 'none',
-                'target-arrow-color': 'black'
+                'curve-style': ele.data.directed ? 'bezier' : 'straight',
+                'target-arrow-shape': ele.data.directed ? 'triangle' : 'none',
+                'target-arrow-color': 'black',
+                'line-style': ele.data.lineStyle || 'solid'
               };
+
+              // Apply category-specific styling
+              if (ele.data.category === 'Software') {
+                styles['line-color'] = 'rgba(51, 204, 255, 0.4)';
+              } else if (ele.data.category === 'Cybersecurity') {
+                styles['line-color'] = 'rgba(255, 102, 136, 0.4)';
+              }
+
               return styles[prop];
             },
             classes: ele.classes || '',
             emit: (event) => {
-              if (cy.listeners[event]) {
-                cy.listeners[event].forEach(fn => fn({ target: this }));
+              if (cy.listeners && cy.listeners[event]) {
+                cy.listeners[event].forEach(fn => fn({ target: edgeObj }));
               }
             }
-          });
+          };
+
+          // If category is specified, add it as a class
+          if (ele.data.category) {
+            edgeObj.addClass(ele.data.category);
+          }
+
+          // Store the edge with its ID
+          edges.set(edgeId, edgeObj);
+          addedElements.push(edgeObj);
         } else {
           // This is a node
           const node = {
@@ -161,10 +184,11 @@ global.cytoscape = (options) => {
             }
           };
           nodes.set(ele.data.id, node);
+          addedElements.push(node);
         }
       });
 
-      return elements;
+      return addedElements;
     },
 
     // Selection methods
@@ -195,11 +219,22 @@ global.cytoscape = (options) => {
       }
 
       if (selector.startsWith('#')) {
+        // Look for node or edge by ID
         const id = selector.substring(1);
         const node = nodes.get(id);
+        const edge = edges.get(id);
+
         if (node) {
           return {
             ...node,
+            length: 1,
+            hasEventListener: function(eventName) {
+              return eventListeners.has(`${selector}:${eventName}`);
+            }
+          };
+        } else if (edge) {
+          return {
+            ...edge,
             length: 1,
             hasEventListener: function(eventName) {
               return eventListeners.has(`${selector}:${eventName}`);
@@ -231,6 +266,45 @@ global.cytoscape = (options) => {
             return eventListeners.has(`node:${eventName}`);
           }
         };
+      }
+
+      if (selector === 'edge' || selector === 'edges') {
+        return {
+          length: cy.edges().length,
+          hasEventListener: function(eventName) {
+            return eventListeners.has(`edge:${eventName}`);
+          }
+        };
+      }
+
+      // Handle attribute selectors for edges
+      if (selector.startsWith('edge[')) {
+        // Extract attribute conditions
+        const attrMatch = selector.match(/edge\[([^\]]+)\]/);
+        if (attrMatch) {
+          const conditions = attrMatch[1].split('][');
+          const matchingEdges = cy.edges().filter(edge => {
+            return conditions.every(condition => {
+              // Parse condition (e.g., "source='node1'")
+              const [attr, value] = condition.split('=');
+              const attrName = attr.trim();
+              // Remove quotes from value
+              const expectedValue = value ? value.replace(/['"]/g, '').trim() : null;
+
+              // Check if edge has this attribute with this value
+              const actualValue = edge.data(attrName);
+              return actualValue === expectedValue;
+            });
+          });
+
+          return {
+            length: matchingEdges.length,
+            forEach: function(callback) {
+              matchingEdges.forEach(callback);
+              return this;
+            }
+          };
+        }
       }
 
       return { length: 0, hasEventListener: () => false };

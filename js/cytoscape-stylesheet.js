@@ -10,18 +10,21 @@ function getStylesheet() {
       selector: 'node',
       style: {
         'label': 'data(label)',
-        'background-color': '#f5f5f5',
-        'border-width': '1px',
-        'border-color': '#ddd',
+        'background-color': '#0077cc', // Default to Software color as base
+        'border-width': '2px',
+        'border-color': '#33ccff',
         'text-valign': 'center',
         'text-halign': 'center',
         'font-size': '12px',
-        'color': '#333',
+        'color': '#ffffff',
         'shape': 'ellipse',
-        'width': '45px',
-        'height': '45px',
+        'width': '60px',
+        'height': '60px',
         'text-wrap': 'wrap',
-        'text-max-width': '75px'
+        'text-max-width': '80px',
+        'text-outline-width': 1,
+        'text-outline-color': 'rgba(0,0,0,0.5)',
+        'text-outline-opacity': 0.5
       }
     },
 
@@ -29,13 +32,11 @@ function getStylesheet() {
     {
       selector: 'edge',
       style: {
-        'width': '1.5px',
-        'line-color': '#999',
-        'target-arrow-color': '#999',
-        'target-arrow-shape': 'triangle',
-        'curve-style': 'unbundled-bezier',
-        'control-point-distances': '0',
-        'control-point-weights': '0.5'
+        'width': '2px',
+        'line-color': 'rgba(255, 255, 255, 0.3)',
+        'curve-style': 'straight',
+        'target-arrow-shape': 'none',
+        'source-arrow-shape': 'none'
       }
     },
 
@@ -43,99 +44,93 @@ function getStylesheet() {
     {
       selector: ':selected',
       style: {
-        'border-width': '3px',
-        'border-color': '#3388FF',
-        'line-color': '#3388FF',
-        'target-arrow-color': '#3388FF'
+        'border-width': '4px',
+        'border-color': '#ffffff',
+        'z-index': 100
       }
     },
 
-    // Node category-specific styling: Person
+    // Hover state styling
     {
-      selector: 'node.person',
+      selector: '.hover',
       style: {
-        'background-color': '#E1F5FE',
-        'border-color': '#42A5F5',
-        'shape': 'ellipse'
+        'transform': 'scale(1.05)',
+        'z-index': 90
       }
     },
 
-    // Node category-specific styling: Organization
+    // Node category-specific styling: cocode.dk
     {
-      selector: 'node.organization',
+      selector: 'node.cocode\\.dk',
       style: {
-        'background-color': '#FFECB3',
-        'border-color': '#FFC107',
-        'shape': 'rectangle'
+        'background-color': '#005577',
+        'border-color': '#00ccff'
       }
     },
 
-    // Node category-specific styling: Location
+    // Node category-specific styling: Software
     {
-      selector: 'node.location',
+      selector: 'node.Software',
       style: {
-        'background-color': '#E8F5E9',
-        'border-color': '#66BB6A',
-        'shape': 'diamond'
+        'background-color': '#0077cc',
+        'border-color': '#33ccff'
       }
     },
 
-    // Node category-specific styling: Event
+    // Node category-specific styling: Cybersecurity
     {
-      selector: 'node.event',
+      selector: 'node.Cybersecurity',
       style: {
-        'background-color': '#F3E5F5',
-        'border-color': '#AB47BC',
-        'shape': 'pentagon'
+        'background-color': '#cc0044',
+        'border-color': '#ff6688'
       }
     },
 
-    // Node category-specific styling: Document
+    // Node category-specific styling: Clients
     {
-      selector: 'node.document',
+      selector: 'node.Clients',
       style: {
-        'background-color': '#FFF3E0',
-        'border-color': '#FF9800',
-        'shape': 'star'
+        'background-color': '#cc8800',
+        'border-color': '#ffcc33',
+        'color': '#000000',
+        'text-outline-width': 0 // Remove text outline for dark text
       }
     },
 
-    // Edge category-specific styling: Association
+    // Node category-specific styling: Contact
     {
-      selector: 'edge.association',
+      selector: 'node.Contact',
       style: {
-        'line-color': '#42A5F5',
-        'target-arrow-color': '#42A5F5'
+        'background-color': '#f1c40f',
+        'border-color': '#f39c12',
+        'color': '#000000',
+        'text-outline-width': 0 // Remove text outline for dark text
       }
     },
 
-    // Edge category-specific styling: Dependency
+    // Edge category-specific styling: Software
     {
-      selector: 'edge.dependency',
+      selector: 'edge.Software',
       style: {
-        'line-color': '#FF5722',
-        'target-arrow-color': '#FF5722',
-        'line-style': 'dashed'
+        'line-color': 'rgba(51, 204, 255, 0.4)'
       }
     },
 
-    // Edge category-specific styling: Ownership
+    // Edge category-specific styling: Cybersecurity
     {
-      selector: 'edge.ownership',
+      selector: 'edge.Cybersecurity',
       style: {
-        'line-color': '#66BB6A',
-        'target-arrow-color': '#66BB6A',
-        'width': '2px'
+        'line-color': 'rgba(255, 102, 136, 0.4)'
       }
     },
 
-    // Edge category-specific styling: Transformation
+    // Special styling for nodes with images
     {
-      selector: 'edge.transformation',
+      selector: 'node[?image]', // Nodes that have image property defined
       style: {
-        'line-color': '#AB47BC',
-        'target-arrow-color': '#AB47BC',
-        'line-style': 'dotted'
+        'background-image': 'data(image)',
+        'background-fit': 'cover',
+        'background-clip': 'node'
       }
     },
 
@@ -147,22 +142,23 @@ function getStylesheet() {
       }
     },
 
-    // Additional styling for nodes with active state
+    // Additional styling for nodes with highlight class
     {
-      selector: 'node.active',
+      selector: 'node.highlight',
       style: {
         'border-width': '3px',
-        'border-color': '#3388FF',
-        'border-style': 'solid'
+        'border-color': '#ffffff',
+        'border-style': 'solid',
+        'z-index': 80
       }
     },
 
-    // Highlighting for accessibility focus
+    // Accessibility focus styling
     {
       selector: 'node.focus',
       style: {
         'border-width': '4px',
-        'border-color': '#3388FF',
+        'border-color': '#ffffff',
         'border-style': 'double'
       }
     }

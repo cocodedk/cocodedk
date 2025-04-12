@@ -11,6 +11,8 @@ The `cytoscape-manager.js` file provides an interface for managing the Cytoscape
 - Node and edge management
 - Event handling
 - Selection management
+- Responsive layouts
+- Container management
 
 ## Cytoscape Accessibility
 
@@ -43,6 +45,23 @@ When implementing functionality to make tests pass:
 2. Follow existing code style and conventions
 3. Document all new functions
 4. Ensure backward compatibility
+
+### Responsive Layout
+
+The CytoscapeManager now includes basic responsive layout functionality:
+- `isDesktopViewport()` - Detects if the current viewport is desktop or mobile
+- `applyResponsiveLayout()` - Adjusts layout based on viewport size
+
+Mobile layouts use more condensed spacing to optimize for smaller screens.
+
+### Container Reference Handling
+
+For migration and container management, CytoscapeManager includes:
+- `getContainerElement()` - Returns the current container element
+- `hasValidContainer()` - Checks if the container element is valid and in the DOM
+- `resetContainer(containerId)` - Resets the container to a new element, preserving graph state
+
+These functions are vital for safely managing container references during the migration process.
 
 ## Testing
 

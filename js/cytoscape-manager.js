@@ -12,6 +12,9 @@ const CytoscapeManager = (function() {
     onNodeDeselected: null
   };
 
+  // Container reference
+  let containerElement = null;
+
   /**
    * Initialize Cytoscape with the given container ID
    *
@@ -20,11 +23,16 @@ const CytoscapeManager = (function() {
    */
   function initialize(containerId) {
     // Get the container element
-    const container = document.getElementById(containerId);
+    containerElement = document.getElementById(containerId);
+
+    if (!containerElement) {
+      console.error(`Container element with ID "${containerId}" not found.`);
+      return null;
+    }
 
     // Initialize Cytoscape
     cy = cytoscape({
-      container: container,
+      container: containerElement,
       style: getStylesheet(),
       layout: {
         name: 'preset' // Start with preset layout
@@ -34,6 +42,77 @@ const CytoscapeManager = (function() {
     });
 
     return cy;
+  }
+
+  /**
+   * Get the current container element
+   *
+   * @return {HTMLElement|null} - The container element or null if not initialized
+   */
+  function getContainerElement() {
+    return containerElement;
+  }
+
+  /**
+   * Check if the manager has a valid container element
+   *
+   * @return {boolean} - True if container exists and is in the DOM
+   */
+  function hasValidContainer() {
+    return containerElement !== null &&
+           document.body.contains(containerElement);
+  }
+
+  /**
+   * Reset the container with a new container element
+   *
+   * @param {string} containerId - The ID of the new container element
+   * @return {boolean} - True if successful, false otherwise
+   */
+  function resetContainer(containerId) {
+    if (!containerId) return false;
+
+    const newContainer = document.getElementById(containerId);
+    if (!newContainer) {
+      console.error(`New container element with ID "${containerId}" not found.`);
+      return false;
+    }
+
+    // Store reference to the new container
+    containerElement = newContainer;
+
+    // If we have an active Cytoscape instance, move it to the new container
+    if (cy) {
+      try {
+        // Save current elements and style
+        const elements = cy.elements().jsons();
+        const zoom = cy.zoom();
+        const pan = cy.pan();
+
+        // Destroy existing instance
+        cy.destroy();
+
+        // Create new instance in the new container
+        cy = cytoscape({
+          container: containerElement,
+          style: getStylesheet(),
+          layout: {
+            name: 'preset' // Maintain preset layout
+          },
+          elements: elements,
+          zoom: zoom,
+          pan: pan
+        });
+
+        return true;
+      } catch (e) {
+        console.error('Error resetting Cytoscape container:', e);
+        return false;
+      }
+    }
+
+    // No active instance, but container is set
+    return true;
   }
 
   /**
@@ -164,6 +243,15 @@ const CytoscapeManager = (function() {
         node.addClass(category);
       }
 
+      // Add additional classes if provided
+      if (cytoscapeNode.classes && typeof cytoscapeNode.classes === 'string') {
+        cytoscapeNode.classes.split(' ').forEach(className => {
+          if (className && className !== category) {
+            node.addClass(className);
+          }
+        });
+      }
+
       // Set label based on current language if multilingual
       if (typeof node.data === 'function') {
         const labels = node.data('labels');
@@ -173,11 +261,48 @@ const CytoscapeManager = (function() {
         }
       } else if (node.data?.labels && node.data.labels[currentLanguage]) {
         node.style('label', node.data.labels[currentLanguage]);
-        node.data = { ...node.data, label: node.data.labels[currentLanguage] };
+        node.data('label', node.data.labels[currentLanguage]);
       }
 
       // Apply size based on radius
       applyNodeSize(node);
+
+      // Handle image property if present
+      const image = typeof node.data === 'function' ? node.data('image') : node.data?.image;
+      if (image) {
+        node.style('background-image', image);
+        node.style('background-fit', 'cover');
+        node.style('background-clip', 'node');
+      }
+
+      // Handle tooltip property if present
+      const tooltip = typeof node.data === 'function' ? node.data('tooltip') : node.data?.tooltip;
+      if (tooltip) {
+        // Store tooltip text in node data for later use
+        node.data('tooltip', tooltip);
+      }
+
+      // Handle custom styling properties if present
+      if (nodeData.style) {
+        node.style(nodeData.style);
+      }
+
+      // Add accessibility attributes
+      if (node.popperRef && node.popperRef()) {
+        const domElement = node.popperRef();
+        if (domElement) {
+          const nodeLabel = node.data('label') || '';
+          const nodeCategory = node.data('category') || '';
+
+          domElement.setAttribute('aria-label', `${nodeLabel} (${nodeCategory})`);
+
+          // If it's a Contact node, add additional ARIA attributes
+          if (nodeCategory === 'Contact') {
+            domElement.setAttribute('aria-haspopup', 'dialog');
+            domElement.setAttribute('aria-controls', 'contact-modal');
+          }
+        }
+      }
     } catch (e) {
       console.error('Error styling node:', e);
     }
@@ -186,10 +311,10 @@ const CytoscapeManager = (function() {
   }
 
   /**
-   * Render an edge with proper styling based on its category and properties
+   * Render an edge in the graph
    *
-   * @param {object} edgeData - Edge data
-   * @return {object} - The created Cytoscape edge element
+   * @param {object} edgeData - Edge data to render
+   * @return {object|null} - The created edge or null if failed
    */
   function renderEdge(edgeData) {
     if (!cy || !edgeData) return null;
@@ -203,6 +328,20 @@ const CytoscapeManager = (function() {
     } else {
       // Already in Cytoscape format
       cytoscapeEdge = edgeData;
+    }
+
+    // Validate the edge data
+    if (!cytoscapeEdge || !cytoscapeEdge.data || !cytoscapeEdge.data.source || !cytoscapeEdge.data.target) {
+      console.error('Invalid edge data for rendering:', cytoscapeEdge);
+      return null;
+    }
+
+    // Check if source and target nodes exist
+    const sourceNode = cy.$id(cytoscapeEdge.data.source);
+    const targetNode = cy.$id(cytoscapeEdge.data.target);
+
+    if (sourceNode.length === 0 || targetNode.length === 0) {
+      console.warn(`Source or target node not found for edge: ${cytoscapeEdge.data.id}`);
     }
 
     // Add the edge to the graph
@@ -226,6 +365,12 @@ const CytoscapeManager = (function() {
     const lineStyle = edge.data('lineStyle');
     if (lineStyle) {
       edge.style('line-style', lineStyle);
+    }
+
+    // Apply directed style if specified
+    const isDirected = edge.data('directed');
+    if (isDirected) {
+      edge.style('target-arrow-shape', 'triangle');
     }
 
     // Handle bidirectional edges if needed
@@ -534,7 +679,46 @@ const CytoscapeManager = (function() {
           'line-color': 'rgba(255, 255, 255, 0.3)',
           'curve-style': 'straight',
           'target-arrow-shape': 'none',
-          'source-arrow-shape': 'none'
+          'source-arrow-shape': 'none',
+          'line-style': 'solid', // Default line style
+          'opacity': 0.8, // Default opacity for edges
+          'z-index': 0 // Edges below nodes by default
+        }
+      },
+
+      // Directed edge style
+      {
+        selector: 'edge[directed]',
+        style: {
+          'target-arrow-shape': 'triangle',
+          'target-arrow-color': 'rgba(255, 255, 255, 0.5)',
+          'arrow-scale': 0.8
+        }
+      },
+
+      // Dashed edge style
+      {
+        selector: 'edge[lineStyle="dashed"]',
+        style: {
+          'line-style': 'dashed',
+          'line-dash-pattern': [6, 3]
+        }
+      },
+
+      // Dotted edge style
+      {
+        selector: 'edge[lineStyle="dotted"]',
+        style: {
+          'line-style': 'dotted',
+          'line-dash-pattern': [1, 2]
+        }
+      },
+
+      // Custom width edge style
+      {
+        selector: 'edge[width]',
+        style: {
+          'width': 'data(width)'
         }
       },
 
@@ -659,58 +843,102 @@ const CytoscapeManager = (function() {
    * Convert a single node to Cytoscape format
    *
    * @param {object} nodeData - Node data in the current format
-   * @return {object} - Node data in Cytoscape format
+   * @return {object|null} - Node data in Cytoscape format or null if invalid
    */
   function convertNodeToCytoscape(nodeData) {
+    if (!nodeData || typeof nodeData !== 'object' || !nodeData.id) {
+      console.warn('Invalid node data:', nodeData);
+      return null;
+    }
+
+    // Create the data object with all supported properties
+    const cytoscapeData = {
+      id: nodeData.id,
+      // Handle both single label or multilingual labels
+      label: nodeData.label || (nodeData.labels ? nodeData.labels.en : nodeData.id),
+      // Store the full multilingual data for language switching
+      labels: nodeData.labels || null,
+      translations: nodeData.translations || null,
+      category: nodeData.category,
+      // Store radius for size calculations
+      r: nodeData.r || 30, // Default radius if not specified
+    };
+
+    // Add tooltip if present
+    if (nodeData.tooltip) {
+      cytoscapeData.tooltip = nodeData.tooltip;
+    }
+
+    // Add image if present
+    if (nodeData.image) {
+      cytoscapeData.image = nodeData.image;
+    }
+
+    // Copy any other custom properties
+    Object.keys(nodeData).forEach(key => {
+      if (!cytoscapeData[key] &&
+          key !== 'x' &&
+          key !== 'y' &&
+          key !== 'position' &&
+          key !== 'classes') {
+        cytoscapeData[key] = nodeData[key];
+      }
+    });
+
     return {
       group: 'nodes',
-      data: {
-        id: nodeData.id,
-        // Handle both single label or multilingual labels
-        label: nodeData.label || (nodeData.labels ? nodeData.labels.en : nodeData.id),
-        // Store the full multilingual data for language switching
-        labels: nodeData.labels || null,
-        translations: nodeData.translations || null,
-        category: nodeData.category,
-        // Store radius for size calculations
-        r: nodeData.r || 30 // Default radius if not specified
-      },
+      data: cytoscapeData,
       position: {
-        x: nodeData.x,
-        y: nodeData.y
+        x: nodeData.x || 0,
+        y: nodeData.y || 0
       },
-      classes: nodeData.category
+      classes: nodeData.category || ''
     };
   }
 
   /**
-   * Convert multiple nodes to Cytoscape format
+   * Convert an array of nodes to Cytoscape.js format
    *
-   * @param {Array} nodesData - Array of node data in the current format
-   * @return {Array} - Array of node data in Cytoscape format
+   * @param {array} nodesData - Array of node data objects
+   * @return {array} - Array of Cytoscape node elements
    */
   function convertNodesToCytoscape(nodesData) {
-    return nodesData.map(node => convertNodeToCytoscape(node));
+    if (!nodesData || !Array.isArray(nodesData)) return [];
+
+    return nodesData.map(nodeData => convertNodeToCytoscape(nodeData))
+                   .filter(node => node !== null);
   }
 
   /**
    * Convert a single edge to Cytoscape format
    *
    * @param {object} edgeData - Edge data in the current format
-   * @return {object} - Edge data in Cytoscape format
+   * @return {object|null} - Edge data in Cytoscape format or null if invalid
    */
   function convertEdgeToCytoscape(edgeData) {
+    if (!edgeData || typeof edgeData !== 'object' || !edgeData.source || !edgeData.target) {
+      console.warn('Invalid edge data:', edgeData);
+      return null;
+    }
+
+    // Create edge ID if not provided
+    const edgeId = edgeData.id || `${edgeData.source}-${edgeData.target}`;
+
     // Create the base data structure
     const cytoscapeEdge = {
       group: 'edges',
       data: {
-        id: `${edgeData.source}-${edgeData.target}`,
+        id: edgeId,
         source: edgeData.source,
         target: edgeData.target,
-        category: edgeData.category
-      },
-      classes: edgeData.category
+        category: edgeData.category || 'default'
+      }
     };
+
+    // Add class based on category
+    if (edgeData.category) {
+      cytoscapeEdge.classes = edgeData.category;
+    }
 
     // Copy additional styling properties if they exist
     if (edgeData.width !== undefined) {
@@ -721,17 +949,25 @@ const CytoscapeManager = (function() {
       cytoscapeEdge.data.lineStyle = edgeData.lineStyle;
     }
 
+    // Handle directed edges
+    if (edgeData.directed !== undefined) {
+      cytoscapeEdge.data.directed = edgeData.directed;
+    }
+
     return cytoscapeEdge;
   }
 
   /**
-   * Convert multiple edges to Cytoscape format
+   * Convert an array of edges to Cytoscape.js format
    *
-   * @param {Array} edgesData - Array of edge data in the current format
-   * @return {Array} - Array of edge data in Cytoscape format
+   * @param {array} edgesData - Array of edge data objects
+   * @return {array} - Array of Cytoscape edge elements
    */
   function convertEdgesToCytoscape(edgesData) {
-    return edgesData.map(edge => convertEdgeToCytoscape(edge));
+    if (!edgesData || !Array.isArray(edgesData)) return [];
+
+    return edgesData.map(edgeData => convertEdgeToCytoscape(edgeData))
+                   .filter(edge => edge !== null);
   }
 
   /**
@@ -776,24 +1012,22 @@ const CytoscapeManager = (function() {
   }
 
   /**
-   * Convert a graph to Cytoscape format
+   * Convert a complete graph (nodes and edges) to Cytoscape.js format
    *
    * @param {object} graphData - Graph data with nodes and edges
-   * @return {Array} - Flat array of nodes and edges in Cytoscape format
+   * @return {array} - Array of Cytoscape elements
    */
   function convertGraphToCytoscape(graphData) {
-    // Handle empty graph data
-    if (!graphData || (!graphData.nodes && !graphData.edges)) {
-      return [];
-    }
+    if (!graphData) return [];
 
-    // Convert nodes if they exist
-    const cytoscapeNodes = graphData.nodes ? convertNodesToCytoscape(graphData.nodes) : [];
+    const nodes = graphData.nodes || [];
+    const edges = graphData.edges || [];
 
-    // Convert edges if they exist
-    const cytoscapeEdges = graphData.edges ? convertEdgesToCytoscape(graphData.edges) : [];
+    // Convert nodes and edges to Cytoscape format
+    const cytoscapeNodes = convertNodesToCytoscape(nodes);
+    const cytoscapeEdges = convertEdgesToCytoscape(edges);
 
-    // Return flat array of elements
+    // Combine into a single array
     return [...cytoscapeNodes, ...cytoscapeEdges];
   }
 
@@ -875,37 +1109,110 @@ const CytoscapeManager = (function() {
     return cy;
   }
 
+  /**
+   * Determines if the current viewport is desktop-sized
+   *
+   * @return {boolean} - True if desktop viewport, false if mobile
+   */
+  function isDesktopViewport() {
+    return window.innerWidth >= 768; // Tablets and larger use desktop layout
+  }
+
+  /**
+   * Apply responsive layout based on viewport size
+   *
+   * @return {object} - The resulting layout object or null if failed
+   */
+  function applyResponsiveLayout() {
+    const cy = getInstance();
+    if (!cy) return null;
+
+    // Determine if we're on mobile or desktop
+    const isDesktop = isDesktopViewport();
+
+    // Set spacing based on viewport
+    const nodeSpacing = isDesktop ? 100 : 50; // More condensed on mobile
+
+    // Get all nodes
+    const nodes = cy.nodes();
+    if (nodes.length === 0) return null;
+
+    // Basic layout options
+    const layoutOptions = {
+      name: 'preset', // Use preset to maintain relative positions
+      fit: true,      // Fit to viewport
+      padding: isDesktop ? 50 : 20 // Less padding on mobile
+    };
+
+    // If using a more dynamic layout, adjust spacing parameters
+    if (nodes.length > 1) {
+      // For layouts that support spacing like grid or concentric
+      if (cy.layout && typeof cy.layout === 'function') {
+        // For more complex layouts, we could modify options here
+        // This is an example for a grid layout
+        if (!isDesktop) {
+          // More condensed on mobile - reduce overall scale
+          cy.zoom(cy.zoom() * 0.8);
+          cy.center();
+        }
+      }
+    }
+
+    return applyLayout(layoutOptions);
+  }
+
   // Public API
   return {
-    initialize: initialize,
-    getInstance: getInstance,
-    getStylesheet: getStylesheet,
-    registerInteractionHandlers: registerInteractionHandlers,
-    convertNodeToCytoscape: convertNodeToCytoscape,
-    convertNodesToCytoscape: convertNodesToCytoscape,
-    convertEdgeToCytoscape: convertEdgeToCytoscape,
-    convertEdgesToCytoscape: convertEdgesToCytoscape,
-    convertLinksToCytoscapeEdges: convertLinksToCytoscapeEdges,
-    convertGraphToCytoscape: convertGraphToCytoscape,
-    loadNodesJsGraph: loadNodesJsGraph,
-    applyLayout: applyLayout,
-    initializeContactModalIntegration: initializeContactModalIntegration,
-    registerSelectionHandlers: registerSelectionHandlers,
-    selectNode: selectNode,
-    clearSelection: clearSelection,
-    renderNode: renderNode,
-    renderEdge: renderEdge,
-    renderGraph: renderGraph,
-    setLanguage: setLanguage,
-    getCurrentLanguage: getCurrentLanguage,
-    updateEdge: updateEdge,
-    supportsCustomEdgeStyling: supportsCustomEdgeStyling,
-    supportsBidirectionalEdges: supportsBidirectionalEdges,
-    useRadiusForSize: useRadiusForSize
+    initialize,
+    getInstance,
+    getContainerElement,
+    hasValidContainer,
+    resetContainer,
+
+    // Rendering functions
+    renderNode,
+    renderEdge,
+    renderGraph,
+    updateEdge,
+
+    // Conversion functions
+    convertNodeToCytoscape,
+    convertNodesToCytoscape,
+    convertEdgeToCytoscape,
+    convertEdgesToCytoscape,
+    convertLinksToCytoscapeEdges,
+    convertGraphToCytoscape,
+
+    // Style management
+    getStylesheet,
+
+    // Edge handling
+    handleBidirectionalEdges,
+
+    // Interaction
+    registerInteractionHandlers,
+    initializeContactModalIntegration,
+    registerSelectionHandlers,
+    selectNode,
+    clearSelection,
+
+    // Layout
+    applyLayout,
+
+    // Responsive handling
+    isDesktopViewport,
+    applyResponsiveLayout,
+
+    // Language functions
+    setLanguage,
+    getCurrentLanguage,
+    loadNodesJsGraph,
+
+    // Support flags for testing
+    supportsCustomEdgeStyling,
+    supportsBidirectionalEdges,
+    useRadiusForSize
   };
 })();
 
-// Export for tests
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = CytoscapeManager;
-}
+module.exports = CytoscapeManager;

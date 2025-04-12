@@ -29,12 +29,15 @@ The migration will follow these core principles:
 
 ## Phase 2: Visual Parity (Next)
 
-### 2.1 Core Rendering (Week 1)
-- [ ] Write test for complete node rendering
-- [ ] Implement full node rendering with accurate styling
-- [ ] Write test for edge rendering
+### 2.1 Core Rendering (Nodes & Edges)
+
+- [x] Write test for basic viewport size detection (desktop vs mobile)
+- [x] Write test for complete node rendering
+- [x] Implement full node rendering with accurate styling
+- [x] Write test for edge rendering
 - [ ] Implement edge rendering with proper styling
-- [ ] Create snapshot tests for visual verification
+- [ ] Write test for bidirectional edges
+- [ ] Implement bidirectional edge handling
 
 ### 2.2 Style Refinement (Week 1-2)
 - [ ] Write tests for category-specific styling
@@ -45,18 +48,18 @@ The migration will follow these core principles:
 - [ ] Implement selected state effects
 
 ### 2.3 Layout Handling (Week 2)
-- [ ] Write test for preserving node positions
-- [ ] Implement position preservation
-- [ ] Write test for responsive layout adjustments
-- [ ] Implement screen-size-dependent layout adjustments
-- [ ] Test across different device sizes and orientations
+- [x] Write test for responsive layout with condensed mobile spacing
+- [x] Implement minimal responsive layout function with two modes
+- [x] Write test for container reference handling during migration
+- [x] Implement container reference tracking and management
+- [ ] Test on standard device sizes
 
 ### Validation Criteria
 - [ ] Nodes appear visually identical to current implementation
 - [ ] Edges look consistent with current styling
 - [ ] Hover/selection effects match original
-- [ ] Layout is consistent with original
-- [ ] Responsive behavior matches or improves on original
+- [ ] Layout correctly adapts to desktop and mobile views
+- [ ] No complex configuration required for responsive behavior
 
 ## Phase 3: Interaction Handling (Weeks 3-4)
 

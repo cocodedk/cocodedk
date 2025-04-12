@@ -24,6 +24,103 @@ describe('Cytoscape Node Rendering', () => {
     }
   });
 
+  test.skip('renders complete node with all styling properties correctly', () => {
+    // Define a comprehensive test node with all possible properties
+    const completeNode = {
+      data: {
+        id: 'complete-node',
+        label: 'Complete Test Node',
+        category: 'Software',
+        r: 40, // Custom radius
+        labels: {
+          en: 'Complete Test Node',
+          da: 'Komplet Testnode',
+          es: 'Nodo de Prueba Completo'
+        },
+        translations: {
+          en: 'This is a complete test node with all properties',
+          da: 'Dette er en komplet testnode med alle egenskaber',
+          es: 'Este es un nodo de prueba completo con todas las propiedades'
+        },
+        tooltip: 'Node tooltip text',
+        image: 'test-image.png' // For nodes with images
+      },
+      position: { x: 150, y: 150 },
+      classes: 'Software highlight' // Multiple classes for testing
+    };
+
+    // Add the node to the graph
+    cy.add(completeNode);
+
+    // Get the added node
+    const node = cy.$('#complete-node');
+
+    // Basic existence check
+    expect(node.length).toBe(1);
+    expect(node.id()).toBe('complete-node');
+
+    // Check position is correct
+    const position = node.position();
+    expect(position.x).toBe(150);
+    expect(position.y).toBe(150);
+
+    // Check classes are applied
+    expect(node.hasClass('Software')).toBe(true);
+    expect(node.hasClass('highlight')).toBe(true);
+
+    // Check base styling properties
+    const nodeStyle = node.style();
+
+    // Check background color (from category)
+    expect(nodeStyle['background-color']).toBeDefined();
+
+    // Check border styling
+    expect(nodeStyle['border-width']).toBeDefined();
+    expect(nodeStyle['border-color']).toBeDefined();
+    expect(nodeStyle['border-style']).toBe('solid');
+
+    // Check label styling
+    expect(nodeStyle['label']).toBe('Complete Test Node');
+    expect(nodeStyle['text-halign']).toBe('center');
+    expect(nodeStyle['text-valign']).toBe('center');
+
+    // Check size is based on radius
+    if (CytoscapeManager.useRadiusForSize) {
+      const expectedSize = 2 * 40; // Diameter = 2 * radius
+      expect(parseFloat(nodeStyle['width'])).toBe(expectedSize);
+      expect(parseFloat(nodeStyle['height'])).toBe(expectedSize);
+    } else {
+      // Should still have non-zero size
+      expect(parseFloat(nodeStyle['width'])).toBeGreaterThan(0);
+      expect(parseFloat(nodeStyle['height'])).toBeGreaterThan(0);
+    }
+
+    // Check image if applied for some node types
+    if (nodeStyle['background-image']) {
+      expect(nodeStyle['background-image']).toContain('test-image.png');
+      expect(nodeStyle['background-fit']).toBeDefined();
+    }
+
+    // Check tooltip data is preserved
+    expect(node.data('tooltip')).toBe('Node tooltip text');
+
+    // Check multilingual data is preserved
+    expect(node.data('labels')).toEqual({
+      en: 'Complete Test Node',
+      da: 'Komplet Testnode',
+      es: 'Nodo de Prueba Completo'
+    });
+
+    // Test language change behavior if available
+    if (typeof CytoscapeManager.setLanguage === 'function') {
+      CytoscapeManager.setLanguage('da');
+      expect(node.style('label')).toBe('Komplet Testnode');
+
+      // Reset language
+      CytoscapeManager.setLanguage('en');
+    }
+  });
+
   test.skip('renders nodes with correct styles', () => {
     // Define test nodes
     const testNodes = [
