@@ -22,8 +22,8 @@ const ContactModal = (function() {
     },
     // Protected information (not searchable)
     protected: {
-      email: "kd.edococ@bb", // Reversed
-      phone: "7703287452+" // Reversed
+      email: "kd.edococ@bb",
+      phone: "7703287245+"
     }
   };
 
