@@ -758,6 +758,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Add touch event handler for better mobile responsiveness
+  langToggle.addEventListener('touchstart', function(e) {
+    e.preventDefault(); // Prevent default to avoid click event interference
+    const isExpanded = langToggle.getAttribute('aria-expanded') === 'true';
+
+    if (!isExpanded) {
+      langMenu.classList.add('active');
+      langToggle.setAttribute('aria-expanded', 'true');
+      document.addEventListener('keydown', closeMenuOnEscape);
+    } else {
+      langMenu.classList.remove('active');
+      langToggle.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('keydown', closeMenuOnEscape);
+    }
+  });
+
   // Close language menu when clicking outside
   document.addEventListener('click', function(event) {
     if (!langToggle.contains(event.target) && !langMenu.contains(event.target)) {

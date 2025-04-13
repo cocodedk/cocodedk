@@ -255,7 +255,7 @@ canvas {
 
   /* Ensure canvas doesn't overflow on mobile */
   canvas {
-    width: 100%;
+    width: 60%; /* Adjust width to be responsive on mobile */
     height: calc(100% - 60px); /* Adjust for smaller header */
     top: 60px; /* Position below header */
   }
