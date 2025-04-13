@@ -3,7 +3,7 @@
   height: 98vh; /* Increased to maximize available space */
   position: relative;
   margin: 0 auto;
-  background-color: #f8f8f8; /* Light background to see container area */
+  background: linear-gradient(45deg, #4a148c, #6a1b9a, #8e24aa); /* Darker purple gradient background */
   border: 1px solid #ddd; /* Border to clearly see the container boundaries */
   overflow: hidden; /* Ensure elements don't overflow the container */
   z-index: 1; /* Ensure container is visible in stacking context */
