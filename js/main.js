@@ -2,9 +2,9 @@
  * Main.js - Simplified version for non-canvas approach
  */
 
-console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+//console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
-const DEBUG_MODE = true; // Enable debugging for testing
+const DEBUG_MODE = false; // Enable debugging for testing
 const debug = document.getElementById('debug');
 // Feature flag to toggle between implementations
 let useCytoscape = true; // Default to true
@@ -17,7 +17,7 @@ if (localStorage.getItem('useCytoscape') !== null) {
   localStorage.setItem('useCytoscape', 'true');
 }
 
-console.log('[TDD] Current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
+//console.log('[TDD] Current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
 
 // Set data attribute on body for CSS targeting
 document.body.setAttribute('data-vis', useCytoscape ? 'cytoscape' : 'legacy');
@@ -63,7 +63,7 @@ if (!DEBUG_MODE) {
 
     // Run tests automatically on load
     setTimeout(() => {
-      console.log('[TDD] Automatically running tests...');
+      //console.log('[TDD] Automatically running tests...');
       testCurrentVisualization();
     }, 1000);
   });
@@ -86,7 +86,7 @@ function testCurrentVisualization() {
   const debugOutput = document.getElementById('debugOutput');
   debugOutput.innerHTML = '<p>Running tests...</p>';
 
-  console.log('[TDD] Running tests on current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
+  //console.log('[TDD] Running tests on current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
 
   // Run appropriate tests based on implementation
   const results = useCytoscape ?
@@ -96,7 +96,7 @@ function testCurrentVisualization() {
   // If Cytoscape tests passed, also run end-to-end test
   let e2eResults = false;
   if (useCytoscape && results) {
-    console.log('[TDD] Component tests passed, running end-to-end test...');
+    //console.log('[TDD] Component tests passed, running end-to-end test...');
     e2eResults = runEndToEndTest();
   }
 
@@ -150,11 +150,11 @@ function testCytoscapeImplementation(outputElement) {
   let results = [];
   let allTestsPassed = true;
 
-  console.log('[TDD] Running Cytoscape component tests...');
+  //console.log('[TDD] Running Cytoscape component tests...');
 
   // Test 1: Check if Cytoscape library is loaded
   const test1 = typeof cytoscape === 'function';
-  console.log('[TDD] Test 1 - Cytoscape library loaded:', test1 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 1 - Cytoscape library loaded:', test1 ? 'PASS' : 'FAIL');
   results.push({
     name: 'Cytoscape library loaded',
     result: test1 ? '✅ PASS' : '❌ FAIL',
@@ -164,7 +164,7 @@ function testCytoscapeImplementation(outputElement) {
 
   // Test 2: Check if CytoscapeManager is available
   const test2 = typeof window.CytoscapeManager === 'object';
-  console.log('[TDD] Test 2 - CytoscapeManager available:', test2 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 2 - CytoscapeManager available:', test2 ? 'PASS' : 'FAIL');
   results.push({
     name: 'CytoscapeManager available',
     result: test2 ? '✅ PASS' : '❌ FAIL',
@@ -174,7 +174,7 @@ function testCytoscapeImplementation(outputElement) {
 
   // Test 3: Check if CytoscapeEdgeStyles namespace is available
   const test3 = typeof window.CytoscapeEdgeStyles === 'object';
-  console.log('[TDD] Test 3 - CytoscapeEdgeStyles available:', test3 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 3 - CytoscapeEdgeStyles available:', test3 ? 'PASS' : 'FAIL');
   results.push({
     name: 'CytoscapeEdgeStyles available',
     result: test3 ? '✅ PASS' : '❌ FAIL',
@@ -184,7 +184,7 @@ function testCytoscapeImplementation(outputElement) {
 
   // Test 4: Check if CytoscapeEdgeInteractions namespace is available
   const test4 = typeof window.CytoscapeEdgeInteractions === 'object';
-  console.log('[TDD] Test 4 - CytoscapeEdgeInteractions available:', test4 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 4 - CytoscapeEdgeInteractions available:', test4 ? 'PASS' : 'FAIL');
   results.push({
     name: 'CytoscapeEdgeInteractions available',
     result: test4 ? '✅ PASS' : '❌ FAIL',
@@ -194,7 +194,7 @@ function testCytoscapeImplementation(outputElement) {
 
   // Test 5: Check if CytoscapeStylesheet is available
   const test5 = typeof window.CytoscapeStylesheet === 'object';
-  console.log('[TDD] Test 5 - CytoscapeStylesheet available:', test5 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 5 - CytoscapeStylesheet available:', test5 ? 'PASS' : 'FAIL');
   results.push({
     name: 'CytoscapeStylesheet available',
     result: test5 ? '✅ PASS' : '❌ FAIL',
@@ -206,7 +206,7 @@ function testCytoscapeImplementation(outputElement) {
   let test6 = false;
   try {
     if (window.CytoscapeManager && typeof window.CytoscapeManager.initialize === 'function') {
-      console.log('[TDD] Testing Cytoscape initialization capability');
+      //console.log('[TDD] Testing Cytoscape initialization capability');
       const container = document.getElementById('cy-container');
       if (container) {
         test6 = true;
@@ -216,7 +216,7 @@ function testCytoscapeImplementation(outputElement) {
     console.error('[TDD] Initialization test error:', e);
   }
 
-  console.log('[TDD] Test 6 - Cytoscape initialization possible:', test6 ? 'PASS' : 'FAIL');
+  //console.log('[TDD] Test 6 - Cytoscape initialization possible:', test6 ? 'PASS' : 'FAIL');
   results.push({
     name: 'Cytoscape initialization possible',
     result: test6 ? '✅ PASS' : '❌ FAIL',
@@ -240,7 +240,7 @@ function testCytoscapeImplementation(outputElement) {
     </div>
   `;
 
-  console.log('[TDD] Cytoscape tests completed with result:', allTestsPassed ? 'ALL TESTS PASSED' : 'SOME TESTS FAILED');
+  //console.log('[TDD] Cytoscape tests completed with result:', allTestsPassed ? 'ALL TESTS PASSED' : 'SOME TESTS FAILED');
   return allTestsPassed;
 }
 
@@ -364,7 +364,7 @@ function closeMenuOnEscape(e) {
 // Initialize Cytoscape visualization
 function initializeCytoscape() {
   try {
-    console.log('[TDD] Starting Cytoscape initialization');
+    //console.log('[TDD] Starting Cytoscape initialization');
 
     // Check if Cytoscape library is loaded
     if (typeof cytoscape !== 'function') {
@@ -387,10 +387,10 @@ function initializeCytoscape() {
       fallbackToLegacy();
       return;
     }
-    console.log('[TDD] cy-container found, dimensions:', container.offsetWidth, 'x', container.offsetHeight);
+    //console.log('[TDD] cy-container found, dimensions:', container.offsetWidth, 'x', container.offsetHeight);
 
     // Initialize Cytoscape with container
-    console.log('[TDD] Calling CytoscapeManager.initialize()');
+    //console.log('[TDD] Calling CytoscapeManager.initialize()');
     const cy = window.CytoscapeManager.initialize('cy-container');
 
     if (!cy) {
@@ -399,7 +399,7 @@ function initializeCytoscape() {
       return;
     }
 
-    console.log('[TDD] Cytoscape instance created successfully');
+    //console.log('[TDD] Cytoscape instance created successfully');
 
     // Store the Cytoscape instance for later use
     const cytoscapeInstance = cy;
@@ -407,7 +407,7 @@ function initializeCytoscape() {
 
     // Check for null or invalid nodes
     if (window.nodes && Array.isArray(window.nodes)) {
-      console.log('[TDD] Validating nodes structure...');
+      //console.log('[TDD] Validating nodes structure...');
       for (let i = 0; i < window.nodes.length; i++) {
         const node = window.nodes[i];
         if (!node) {
@@ -435,7 +435,7 @@ function initializeCytoscape() {
 
     // Check for invalid links
     if (window.links && Array.isArray(window.links)) {
-      console.log('[TDD] Validating links structure...');
+      //console.log('[TDD] Validating links structure...');
       const nodeIds = window.nodes.map(node => node.id);
       for (let i = 0; i < window.links.length; i++) {
         const link = window.links[i];
@@ -461,7 +461,7 @@ function initializeCytoscape() {
     }
 
     // Load graph data
-    console.log('[TDD] Loading graph data');
+    //console.log('[TDD] Loading graph data');
 
     // Debug - Check node format before conversion
     if (window.nodes && window.nodes.length > 0) {
@@ -477,13 +477,13 @@ function initializeCytoscape() {
       language: mainCurrentLanguage,
       responsive: true
     });
-    console.log('[TDD] Graph data loaded with', window.nodes.length, 'nodes and', window.links.length, 'links');
+    //console.log('[TDD] Graph data loaded with', window.nodes.length, 'nodes and', window.links.length, 'links');
 
     // Debug - check if any nodes were actually added to Cytoscape
     const cyInstance = window.CytoscapeManager.getInstance();
     if (cyInstance) {
       const nodeCount = cyInstance.nodes().length;
-      console.log('[TDD] Actual nodes in Cytoscape:', nodeCount);
+      //console.log('[TDD] Actual nodes in Cytoscape:', nodeCount);
       if (nodeCount === 0) {
         console.error('[TDD] No nodes were added to Cytoscape instance - checking for errors');
         // Try to manually add a test node
@@ -493,7 +493,7 @@ function initializeCytoscape() {
             data: { id: 'test-node', label: 'Test Node' },
             position: { x: 100, y: 100 }
           });
-          console.log('[TDD] Test node added successfully:', cyInstance.nodes().length);
+          //console.log('[TDD] Test node added successfully:', cyInstance.nodes().length);
 
           // Force a relayout and redraw
           cyInstance.layout({ name: 'preset' }).run();
@@ -504,36 +504,36 @@ function initializeCytoscape() {
         }
       } else {
         // Ensure nodes are visible
-        console.log('[TDD] Running layout and centering nodes');
+        //console.log('[TDD] Running layout and centering nodes');
         cyInstance.layout({ name: 'preset' }).run();
         cyInstance.fit();
         cyInstance.center();
-        console.log('[TDD] Checking container visibility after layout:', container.style.display, container.style.visibility);
+        //console.log('[TDD] Checking container visibility after layout:', container.style.display, container.style.visibility);
       }
     }
 
     // Register contact modal handler
-    console.log('[TDD] Registering selection handlers');
-    console.log('Checking ContactModal availability before registering handlers:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+    //console.log('[TDD] Registering selection handlers');
+    //console.log('Checking ContactModal availability before registering handlers:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
     window.CytoscapeManager.registerSelectionHandlers({
       onNodeSelected: (nodeData) => {
         const currentTime = Date.now();
         if (currentTime - lastSelectionTime < debounceTimeout) {
-          console.log('[Debounce] Ignoring rapid successive click on node:', nodeData.id);
+          //console.log('[Debounce] Ignoring rapid successive click on node:', nodeData.id);
           return;
         }
         lastSelectionTime = currentTime;
-        console.log('[TDD] Node selected:', nodeData);
-        console.log('Checking ContactModal availability during node selection:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+        //console.log('[TDD] Node selected:', nodeData);
+        //console.log('Checking ContactModal availability during node selection:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
         showNodeDescriptionModal(nodeData);
       }
     });
 
     // Apply initial language
-    console.log('[TDD] Setting initial language to', mainCurrentLanguage);
+    //console.log('[TDD] Setting initial language to', mainCurrentLanguage);
     window.CytoscapeManager.setLanguage(mainCurrentLanguage);
 
-    console.log('[TDD] Cytoscape initialization complete');
+    //console.log('[TDD] Cytoscape initialization complete');
     return true;
   } catch (e) {
     console.error('[TDD] Error initializing Cytoscape:', e);
@@ -550,7 +550,7 @@ function fallbackToLegacy() {
   document.body.setAttribute('data-vis', 'legacy');
 
   if (window.NodeDisplay && typeof window.NodeDisplay.initNodeDisplay === 'function') {
-    console.log('[DEBUG] Initializing legacy NodeDisplay');
+    //console.log('[DEBUG] Initializing legacy NodeDisplay');
     window.NodeDisplay.initNodeDisplay();
   } else {
     console.error('[DEBUG] Legacy visualization not available as fallback');
@@ -559,7 +559,7 @@ function fallbackToLegacy() {
 
 // Bridge function to show contact modal (works with both implementations)
 function showContactModal(nodeData) {
-  console.log('[DEBUG] Showing contact modal for:', nodeData);
+  //console.log('[DEBUG] Showing contact modal for:', nodeData);
 
   // Check if we have direct access to the ContactModal from the contact-modal.js
   if (typeof window.ContactModal !== 'undefined' && typeof window.ContactModal.showModal === 'function') {
@@ -591,32 +591,32 @@ function showNodeDescriptionModal(nodeData) {
   // Aggressive cleanup of any existing modals before starting
   const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal, #node-description-modal-container');
   existingModals.forEach(modal => modal.remove());
-  console.log('Aggressive cleanup of existing modals before starting, removed:', existingModals.length, 'elements');
+  //console.log('Aggressive cleanup of existing modals before starting, removed:', existingModals.length, 'elements');
   currentModal = null;
 
-  console.log('[DEBUG] Showing description modal for:', nodeData);
-  console.log('Checking ContactModal availability at start of showNodeDescriptionModal:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+  //console.log('[DEBUG] Showing description modal for:', nodeData);
+  //console.log('Checking ContactModal availability at start of showNodeDescriptionModal:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
   // Set flag to indicate modal is opening
   isModalOpening = true;
-  console.log('Setting isModalOpening to true');
+  //console.log('Setting isModalOpening to true');
 
   // Special handling for Contact node
   if (nodeData.id === 'Contact' || nodeData.category === 'Contact') {
-    console.log('Checking ContactModal and ContactModal.showModal availability:', typeof ContactModal !== 'undefined' ? 'ContactModal Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');
+    //console.log('Checking ContactModal and ContactModal.showModal availability:', typeof ContactModal !== 'undefined' ? 'ContactModal Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');
     if (typeof ContactModal !== 'undefined' && ContactModal.showModal) {
-      console.log('ContactModal is available, showing modal');
+      //console.log('ContactModal is available, showing modal');
       // Close any existing modals to prevent overlap or visibility issues
       closeNodeDescriptionModal();
       // Attempt to ensure no other modal elements interfere
       const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
       existingModals.forEach(modal => modal.remove());
-      console.log('Before showing ContactModal, lingering elements count:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
-      console.log('Triggering description modal for node:', nodeData.id);
+      //console.log('Before showing ContactModal, lingering elements count:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
+      //console.log('Triggering description modal for node:', nodeData.id);
       ContactModal.showModal();
       return; // Exit early to prevent showing the description modal
     } else {
-      console.log('ContactModal not available, falling back to description modal');
+      //console.log('ContactModal not available, falling back to description modal');
     }
   }
 
@@ -647,23 +647,23 @@ function showNodeDescriptionModal(nodeData) {
   document.body.appendChild(modalContainer);
 
   // Add debug log to confirm modal is being triggered for non-Contact nodes
-  console.log('Triggering description modal for node:', nodeData.id);
+  //console.log('Triggering description modal for node:', nodeData.id);
   // Additional debug to confirm modal is in DOM
-  console.log('Modal container added to DOM, ID:', modalContainer.id);
-  console.log('Modal elements in DOM:', document.querySelectorAll('.node-description-modal').length);
-  console.log('Backdrop elements in DOM:', document.querySelectorAll('.modal-backdrop').length);
+  //console.log('Modal container added to DOM, ID:', modalContainer.id);
+  //console.log('Modal elements in DOM:', document.querySelectorAll('.node-description-modal').length);
+  //console.log('Backdrop elements in DOM:', document.querySelectorAll('.modal-backdrop').length);
   // Ensure modal and backdrop are visible
   const modalElement = document.querySelector('.node-description-modal');
   if (modalElement) {
     modalElement.style.display = 'block';
     modalElement.style.visibility = 'visible';
-    console.log('Modal style set to visible');
+    //console.log('Modal style set to visible');
   }
   const backdropElement = document.querySelector('.modal-backdrop');
   if (backdropElement) {
     backdropElement.style.display = 'block';
     backdropElement.style.visibility = 'visible';
-    console.log('Backdrop style set to visible');
+    //console.log('Backdrop style set to visible');
   }
 
   // Add a longer delay before allowing modal to be closed to prevent accidental closures
@@ -672,18 +672,18 @@ function showNodeDescriptionModal(nodeData) {
     if (backdropElement) {
       backdropElement.onclick = function(event) {
         if (event.target === backdropElement) {
-          console.log('Backdrop clicked directly, but not closing modal to prevent accidental closure - Event details:', event);
+          //console.log('Backdrop clicked directly, but not closing modal to prevent accidental closure - Event details:', event);
           // Do not close the modal
         } else {
-          console.log('Click on modal content, not closing - Event details:', event);
+          //console.log('Click on modal content, not closing - Event details:', event);
         }
       };
-      console.log('Backdrop click handler set after longer delay');
+      //console.log('Backdrop click handler set after longer delay');
     }
     // Reset the flag after a longer delay to cover full interaction
     setTimeout(() => {
       isModalOpening = false;
-      console.log('Setting isModalOpening to false after longer delay');
+      //console.log('Setting isModalOpening to false after longer delay');
     }, 2000); // Increased delay
   }, 500);
 
@@ -692,7 +692,7 @@ function showNodeDescriptionModal(nodeData) {
     const modalElement = document.querySelector('.node-description-modal');
     const backdropElement = document.querySelector('.modal-backdrop');
     if (modalElement && backdropElement && !modalElement.contains(event.target) && !backdropElement.contains(event.target)) {
-      console.log('Background clicked outside modal and backdrop - Event details:', event);
+      //console.log('Background clicked outside modal and backdrop - Event details:', event);
     }
   }, true);
 }
@@ -701,13 +701,13 @@ function showNodeDescriptionModal(nodeData) {
 function closeNodeDescriptionModal(event) {
   // Bypass isModalOpening check if the event target is the close button
   if (event && event.target && event.target.tagName === 'BUTTON' && event.target.textContent === 'Close') {
-    console.log('Close button clicked, bypassing isModalOpening check');
+    // console.log('Close button clicked, bypassing isModalOpening check');
   } else if (isModalOpening) {
-    console.log('Preventing modal closure as it is still opening');
+    // console.log('Preventing modal closure as it is still opening');
     return;
   }
-  console.log('closeNodeDescriptionModal called - Stack trace:');
-  console.trace('Closure Stack Trace');
+  // console.log('closeNodeDescriptionModal called - Stack trace:');
+  // console.trace('Closure Stack Trace');
   const modalContainer = document.getElementById('node-description-modal-container');
   if (modalContainer) {
     modalContainer.remove();
@@ -715,13 +715,13 @@ function closeNodeDescriptionModal(event) {
   // Additional cleanup to ensure no modal state persists
   const leftoverModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
   leftoverModals.forEach(modal => modal.remove());
-  console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
+  // console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
   // Reset node selection state to allow immediate reselection
   if (window.CytoscapeManager && typeof window.CytoscapeManager.clearSelection === 'function') {
     window.CytoscapeManager.clearSelection();
-    console.log('Node selection state reset after modal closure');
+    // console.log('Node selection state reset after modal closure');
   } else {
-    console.log('CytoscapeManager.clearSelection not available, selection state not reset');
+    // console.log('CytoscapeManager.clearSelection not available, selection state not reset');
   }
 }
 
@@ -815,7 +815,7 @@ function runEndToEndTest() {
       return false;
     }
 
-    console.log('[TDD] End-to-end test PASSED! Cytoscape implementation is working correctly');
+    //console.log('[TDD] End-to-end test PASSED! Cytoscape implementation is working correctly');
     return true;
   } catch (e) {
     console.error('[TDD] End-to-end test failed with error:', e);
@@ -826,7 +826,7 @@ function runEndToEndTest() {
 // Ensure Cytoscape initialization is called on page load
 document.addEventListener('DOMContentLoaded', function() {
   if (useCytoscape) {
-    console.log('[TDD] Page loaded, initializing Cytoscape');
+    //console.log('[TDD] Page loaded, initializing Cytoscape');
     initializeCytoscape();
   }
 });

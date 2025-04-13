@@ -173,4 +173,4 @@ window.CytoscapeStylesheet = window.CytoscapeStylesheet || {};
 window.CytoscapeStylesheet.getStylesheet = getStylesheet;
 
 // Log successful initialization
-console.log('[TDD] CytoscapeStylesheet module initialized');
+//console.log('[TDD] CytoscapeStylesheet module initialized');

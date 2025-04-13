@@ -518,4 +518,4 @@ window.links = [
 ];
 
 // Log successful load
-console.log('Nodes.js loaded successfully. Nodes:', window.nodes.length, 'Links:', window.links.length);
+//console.log('Nodes.js loaded successfully. Nodes:', window.nodes.length, 'Links:', window.links.length);

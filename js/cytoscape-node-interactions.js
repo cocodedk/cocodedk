@@ -41,7 +41,7 @@
       }
     });
 
-    console.log('[TDD] Node hover interactions setup complete');
+    //console.log('[TDD] Node hover interactions setup complete');
   }
 
   /**
@@ -71,7 +71,7 @@
       // Additional unselection logic if needed
     });
 
-    console.log('[TDD] Node selection interactions setup complete');
+    //console.log('[TDD] Node selection interactions setup complete');
   }
 
   /**
@@ -96,7 +96,7 @@
       clickCallback(node);
     });
 
-    console.log('[TDD] Node click interactions setup complete');
+    //console.log('[TDD] Node click interactions setup complete');
   }
 
   /**
@@ -135,7 +135,7 @@
       onDragEnd(node);
     });
 
-    console.log('[TDD] Node drag interactions setup complete');
+    //console.log('[TDD] Node drag interactions setup complete');
   }
 
   // Expose functions via window object
@@ -146,5 +146,5 @@
     setupNodeDragInteractions: setupNodeDragInteractions
   };
 
-  console.log('[TDD] CytoscapeNodeInteractions module loaded');
+  //console.log('[TDD] CytoscapeNodeInteractions module loaded');
 })();

@@ -6,7 +6,7 @@
  */
 
 (function() {
-  console.log('[TDD] Initializing accessibility module');
+  // console.log('[TDD] Initializing accessibility module');
 
   // Reference to the CytoscapeManager
   let CytoscapeManagerRef = null;
@@ -34,13 +34,13 @@
 
         // Set up a mutation observer to detect when CytoscapeManager becomes available
         if (typeof window !== 'undefined' && !hasEnhanced) {
-          console.log('[TDD] Setting up fallback detection for CytoscapeManager...');
+          // console.log('[TDD] Setting up fallback detection for CytoscapeManager...');
 
           // Check periodically at a slower interval (once per second)
           const fallbackCheck = function() {
             if (typeof window !== 'undefined' && window.CytoscapeManager && !hasEnhanced) {
               CytoscapeManagerRef = window.CytoscapeManager;
-              console.log('[TDD] CytoscapeManager found through fallback detection, enhancing with accessibility features');
+              // console.log('[TDD] CytoscapeManager found through fallback detection, enhancing with accessibility features');
               enhanceWithAccessibility();
             } else if (!hasEnhanced) {
               setTimeout(fallbackCheck, 1000);
@@ -54,14 +54,14 @@
       return;
     }
 
-    console.log('[TDD] CytoscapeManager found, enhancing with accessibility features');
+    // console.log('[TDD] CytoscapeManager found, enhancing with accessibility features');
     enhanceWithAccessibility();
   };
 
   // Main function to add accessibility features
   function enhanceWithAccessibility() {
     if (hasEnhanced) {
-      console.log('[TDD] CytoscapeManager already enhanced with accessibility features');
+      // console.log('[TDD] CytoscapeManager already enhanced with accessibility features');
       return;
     }
 
@@ -87,14 +87,14 @@
       }
 
       if (!cy) {
-        console.log('[TDD] No Cytoscape instance found');
+        // console.log('[TDD] No Cytoscape instance found');
         return null;
       }
 
       // Create container for accessible elements
       let accessibleContainer = document.getElementById('cy-accessible');
       if (!accessibleContainer) {
-        console.log('[TDD] Creating new accessible container');
+        // console.log('[TDD] Creating new accessible container');
         accessibleContainer = document.createElement('div');
         accessibleContainer.id = 'cy-accessible';
         accessibleContainer.className = 'visually-hidden';
@@ -111,14 +111,14 @@
         try {
           // Add to DOM near Cytoscape container
           if (cy.container() && cy.container().parentNode) {
-            console.log('[TDD] Adding to container parent node');
+            // console.log('[TDD] Adding to container parent node');
             cy.container().parentNode.appendChild(accessibleContainer);
           } else {
-            console.log('[TDD] Adding to document body');
+            // console.log('[TDD] Adding to document body');
             document.body.appendChild(accessibleContainer);
           }
         } catch (e) {
-          console.error('[TDD] Error appending accessible container:', e);
+          // console.error('[TDD] Error appending accessible container:', e);
           // Fallback to body
           document.body.appendChild(accessibleContainer);
         }
@@ -288,9 +288,9 @@
         createAccessibleDOM();
         setupModalAccessibility();
 
-        console.log('[TDD] Accessibility features added to Cytoscape');
+        // console.log('[TDD] Accessibility features added to Cytoscape');
       } else {
-        console.error('[TDD] Failed to add accessibility features - no Cytoscape instance');
+        // console.error('[TDD] Failed to add accessibility features - no Cytoscape instance');
       }
 
       // Return the Cytoscape instance
@@ -340,7 +340,7 @@
     `;
     document.head.appendChild(style);
 
-    console.log('[TDD] Accessibility module initialized successfully');
+    // console.log('[TDD] Accessibility module initialized successfully');
   }
 
   // Start checking for dependencies

@@ -124,5 +124,5 @@
     getCustomEdgeStyles: getCustomEdgeStyles
   };
 
-  console.log('[TDD] CytoscapeEdgeStyles module loaded');
+  //console.log('[TDD] CytoscapeEdgeStyles module loaded');
 })();

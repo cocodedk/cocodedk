@@ -30,7 +30,7 @@
       event.target.removeClass('hover');
     });
 
-    console.log('[TDD] Edge hover interactions setup complete');
+    //console.log('[TDD] Edge hover interactions setup complete');
   }
 
   /**
@@ -60,7 +60,7 @@
       // Additional unselection logic if needed
     });
 
-    console.log('[TDD] Edge selection interactions setup complete');
+    //console.log('[TDD] Edge selection interactions setup complete');
   }
 
   /**
@@ -85,7 +85,7 @@
       clickCallback(edge);
     });
 
-    console.log('[TDD] Edge click interactions setup complete');
+    //console.log('[TDD] Edge click interactions setup complete');
   }
 
   /**
@@ -195,5 +195,5 @@
     };
   }
 
-  console.log('[TDD] CytoscapeEdgeInteractions module loaded');
+  //console.log('[TDD] CytoscapeEdgeInteractions module loaded');
 })();
