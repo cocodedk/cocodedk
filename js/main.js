@@ -8,9 +8,14 @@ const debug = document.getElementById('debug');
 let useCytoscape = true; // Default to true
 
 // Check localStorage for saved preference
-if (localStorage.getItem('useCytoscape') === 'true') {
-  useCytoscape = true;
+if (localStorage.getItem('useCytoscape') !== null) {
+  useCytoscape = localStorage.getItem('useCytoscape') === 'true';
+} else {
+  // Save default
+  localStorage.setItem('useCytoscape', 'true');
 }
+
+console.log('[TDD] Current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
 
 // Set data attribute on body for CSS targeting
 document.body.setAttribute('data-vis', useCytoscape ? 'cytoscape' : 'legacy');
@@ -397,6 +402,55 @@ function initializeCytoscape() {
     console.log('[TDD] window.nodes is array:', window.nodes && Array.isArray(window.nodes));
     console.log('[TDD] window.links is array:', window.links && Array.isArray(window.links));
 
+    // Check for null or invalid nodes
+    if (window.nodes && Array.isArray(window.nodes)) {
+      console.log('[TDD] Validating nodes structure...');
+      for (let i = 0; i < window.nodes.length; i++) {
+        const node = window.nodes[i];
+        if (!node) {
+          console.error(`[TDD] Node at index ${i} is null or undefined`);
+          continue;
+        }
+
+        // Check for required fields
+        if (!node.id) {
+          console.error(`[TDD] Node at index ${i} is missing id property`);
+        }
+        if (typeof node.x !== 'number' || typeof node.y !== 'number') {
+          console.error(`[TDD] Node ${node.id} has invalid position: x=${node.x}, y=${node.y}`);
+        }
+        if (!node.category) {
+          console.error(`[TDD] Node ${node.id} is missing category property`);
+        }
+
+        // Check for required label in English at minimum
+        if (!node.labels || !node.labels.en) {
+          console.error(`[TDD] Node ${node.id} is missing English label`);
+        }
+      }
+    }
+
+    // Check for invalid links
+    if (window.links && Array.isArray(window.links)) {
+      console.log('[TDD] Validating links structure...');
+      const nodeIds = window.nodes.map(node => node.id);
+      for (let i = 0; i < window.links.length; i++) {
+        const link = window.links[i];
+        if (!Array.isArray(link) || link.length !== 2) {
+          console.error(`[TDD] Link at index ${i} has invalid format:`, link);
+          continue;
+        }
+
+        // Check if source and target nodes exist
+        if (!nodeIds.includes(link[0])) {
+          console.error(`[TDD] Link source '${link[0]}' at index ${i} does not exist in nodes`);
+        }
+        if (!nodeIds.includes(link[1])) {
+          console.error(`[TDD] Link target '${link[1]}' at index ${i} does not exist in nodes`);
+        }
+      }
+    }
+
     if (!window.nodes || !window.links || !Array.isArray(window.nodes) || !Array.isArray(window.links)) {
       console.error('[TDD] Nodes or links data not available');
       fallbackToLegacy();
@@ -450,9 +504,20 @@ function initializeCytoscape() {
             position: { x: 100, y: 100 }
           });
           console.log('[TDD] Test node added successfully:', cyInstance.nodes().length);
+
+          // Force a relayout and redraw
+          cyInstance.layout({ name: 'preset' }).run();
+          cyInstance.fit();
+          cyInstance.center();
         } catch (nodeError) {
           console.error('[TDD] Error adding test node:', nodeError);
         }
+      } else {
+        // Ensure nodes are visible
+        console.log('[TDD] Running layout and centering nodes');
+        cyInstance.layout({ name: 'preset' }).run();
+        cyInstance.fit();
+        cyInstance.center();
       }
     }
 

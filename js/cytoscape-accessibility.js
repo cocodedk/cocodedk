@@ -8,17 +8,50 @@
 (function() {
   console.log('[TDD] Initializing accessibility module');
 
-  // Determine the environment (browser vs. Node.js/Jest)
-  const isBrowser = typeof window !== 'undefined';
-  const CytoscapeManagerRef = isBrowser ? window.CytoscapeManager :
-                                        (typeof global !== 'undefined' && global.CytoscapeManager ?
-                                         global.CytoscapeManager : null);
+  // Reference to the CytoscapeManager
+  let CytoscapeManagerRef = null;
 
-  // Wait for CytoscapeManager to be defined
+  // Maximum number of retries for regular checks
+  const MAX_RETRIES = 10;
+  let retryCount = 0;
+
+  // Flag to track if we've already enhanced with accessibility
+  let hasEnhanced = false;
+
   const checkForDependencies = function() {
+    // Try to get a reference to the CytoscapeManager
+    if (typeof window !== 'undefined' && window.CytoscapeManager) {
+      CytoscapeManagerRef = window.CytoscapeManager;
+    }
+
     if (!CytoscapeManagerRef) {
-      console.log('[TDD] Waiting for CytoscapeManager to be defined...');
-      setTimeout(checkForDependencies, 100);
+      retryCount++;
+
+      if (retryCount <= MAX_RETRIES) {
+        console.log(`[TDD] Waiting for CytoscapeManager to be defined... (attempt ${retryCount}/${MAX_RETRIES})`);
+        setTimeout(checkForDependencies, 100);
+      } else {
+        console.error('[TDD] CytoscapeManager not found after maximum retries. Accessibility features will not be available.');
+
+        // Set up a mutation observer to detect when CytoscapeManager becomes available
+        if (typeof window !== 'undefined' && !hasEnhanced) {
+          console.log('[TDD] Setting up fallback detection for CytoscapeManager...');
+
+          // Check periodically at a slower interval (once per second)
+          const fallbackCheck = function() {
+            if (typeof window !== 'undefined' && window.CytoscapeManager && !hasEnhanced) {
+              CytoscapeManagerRef = window.CytoscapeManager;
+              console.log('[TDD] CytoscapeManager found through fallback detection, enhancing with accessibility features');
+              enhanceWithAccessibility();
+            } else if (!hasEnhanced) {
+              setTimeout(fallbackCheck, 1000);
+            }
+          };
+
+          // Start the fallback check
+          setTimeout(fallbackCheck, 1000);
+        }
+      }
       return;
     }
 
@@ -28,6 +61,13 @@
 
   // Main function to add accessibility features
   function enhanceWithAccessibility() {
+    if (hasEnhanced) {
+      console.log('[TDD] CytoscapeManager already enhanced with accessibility features');
+      return;
+    }
+
+    hasEnhanced = true;
+
     // Store the original initialization function
     const originalInitialize = CytoscapeManagerRef.initialize;
 
@@ -173,9 +213,8 @@
         // Only handle Escape key
         if (event.key === 'Escape') {
           // Close any open modal
-          const ContactModal = isBrowser ? window.ContactModal :
-                               (typeof global !== 'undefined' && global.ContactModal ?
-                                global.ContactModal : null);
+          const ContactModal = typeof window !== 'undefined' && window.ContactModal ?
+                               window.ContactModal : null;
 
           if (ContactModal && ContactModal.hideModal) {
             ContactModal.hideModal();
@@ -198,9 +237,8 @@
 
       // Handle Contact node specially
       if (node.data('category') === 'Contact' || node.id() === 'node-Contact') {
-        const ContactModal = isBrowser ? window.ContactModal :
-                             (typeof global !== 'undefined' && global.ContactModal ?
-                              global.ContactModal : null);
+        const ContactModal = typeof window !== 'undefined' && window.ContactModal ?
+                             window.ContactModal : null;
 
         if (ContactModal && ContactModal.showModal) {
           ContactModal.showModal();

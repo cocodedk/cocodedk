@@ -401,7 +401,7 @@ window.nodes = [
         },
         {
         id: 'Podcast',
-        x: -100, y: -50, r: 30,
+        x: 50, y: 200, r: 30,
         labels: {
             en: 'Podcast',
             da: 'Podcast',
@@ -412,23 +412,23 @@ window.nodes = [
             ar: 'بودكاست',
             fa: 'پادکست',
             hi: 'पॉडकास्ट',
-            ur: 'پاڈکاسٹ',
+            ur: 'پوڈکاسٹ',
             fr: 'Podcast'
         },
         translations: {
-            en: 'Psychology podcast in Persian language focused on Jungian concepts such as archetypes, individuation, and culture through a depth psychology lens.',
-            da: 'Psykologipodcast på persisk der fokuserer på jungianske koncepter som arketyper, individuation og kultur gennem et dybdepsykologisk perspektiv.',
-            es: 'Podcast de psicología en persa centrado en conceptos junguianos como arquetipos, individuación y cultura a través de una lente de psicología profunda.',
-            zh: '波斯语心理学播客，专注于荣格理论中的原型、个体化及文化概念，通过深度心理学视角探讨。',
-            ja: 'ペルシャ語の心理学ポッドキャスト。ユング心理学のアーキタイプ、個体化、文化といった概念を深層心理学的な視点から探求します。',
-            de: 'Psychologie-Podcast auf Persisch mit Fokus auf jungschen Konzepten wie Archetypen, Individuation und Kultur durch eine tiefenpsychologische Linse.',
-            ar: 'بودكاست نفسي باللغة الفارسية يركز على مفاهيم يونغية مثل النماذج الأصلية، الفردانية والثقافة من خلال عدسة علم النفس العميق.',
-            fa: 'پادکست روانشناسی به زبان فارسی با تمرکز بر مفاهیم یونگی مانند کهن‌الگوها، فردیت‌یابی و فرهنگ از طریق لنز روانشناسی عمقی.',
-            hi: 'फारसी भाषा में मनोविज्ञान पॉडकास्ट जो गहन मनोविज्ञान के दृष्टिकोण से आदर्श, व्यक्तित्व-विकास और संस्कृति जैसे युंगियन अवधारणाओं पर केंद्रित है।',
-            ur: 'فارسی زبان میں نفسیات پوڈکاسٹ جو گہری نفسیات کے عدسے کے ذریعے یونگین تصورات جیسے آرکیٹائپس، انفرادیات اور ثقافت پر مرکوز ہے۔',
-            fr: 'Podcast de psychologie en persan axé sur les concepts jungiens tels que les archétypes, l\'individuation et la culture à travers une perspective de psychologie profonde.'
+            en: 'Tech and security podcast discussions covering a range of IT topics like modern development, security best practices, and digital business.',
+            da: 'Tech- og sikkerhedspodcast-diskussioner, der dækker en række IT-emner som moderne udvikling, sikkerhedsbedste praksis og digital forretning.',
+            es: 'Discusiones de podcast sobre tecnología y seguridad que cubren una variedad de temas de TI como desarrollo moderno, mejores prácticas de seguridad y negocios digitales.',
+            zh: '技术和安全播客讨论，涵盖现代开发、安全最佳实践和数字商业等IT主题。',
+            ja: '最新の開発、セキュリティのベストプラクティス、デジタルビジネスなど、幅広いITトピックをカバーするテクノロジーとセキュリティのポッドキャスト討論。',
+            de: 'Tech- und Sicherheits-Podcast-Diskussionen, die eine Reihe von IT-Themen wie moderne Entwicklung, Sicherheits-Best-Practices und digitales Geschäft abdecken.',
+            ar: 'مناقشات بودكاست تقنية وأمنية تغطي مجموعة من موضوعات تكنولوجيا المعلومات مثل التطوير الحديث وأفضل ممارسات الأمان والأعمال الرقمية.',
+            fa: 'بحث‌های پادکستی فناوری و امنیت که طیف وسیعی از موضوعات فناوری اطلاعات مانند توسعه مدرن، بهترین شیوه‌های امنیتی و کسب‌وکار دیجیتال را پوشش می‌دهد.',
+            hi: 'तकनीकी और सुरक्षा पॉडकास्ट चर्चाएँ जो आधुनिक विकास, सुरक्षा सर्वोत्तम प्रथाओं और डिजिटल व्यवसाय जैसे विभिन्न आईटी विषयों को कवर करती हैं।',
+            ur: 'ٹیک اور سیکیورٹی پوڈکاسٹ مباحثے جو جدید ترقی، سیکیورٹی کے بہترین طریقوں، اور ڈیجیٹل کاروبار جیسے آئی ٹی موضوعات کا احاطہ کرتے ہیں۔',
+            fr: 'Discussions de podcast sur la technologie et la sécurité couvrant une gamme de sujets informatiques comme le développement moderne, les meilleures pratiques de sécurité et les affaires numériques.'
         },
-        category: 'Contact'
+        category: 'cocode.dk'
         },
         {
         id: 'Vibe Coding',
