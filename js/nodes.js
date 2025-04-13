@@ -207,7 +207,7 @@ window.nodes = [
             de: 'Backend-Automatisierung, API-Entwicklung, Skripterstellung und Datenverarbeitung mit Python — der Kernsprache für robuste digitale Infrastruktur.',
             ar: 'أتمتة الواجهات الخلفية، تطوير واجهات برمجة التطبيقات، البرمجة النصية ومعالجة البيانات باستخدام بايثون — اللغة الأساسية للبنية التحتية الرقمية القوية.',
             fa: 'اتوماسیون بک‌اند، توسعه API، اسکریپت‌نویسی و پردازش داده با استفاده از پایتون — زبان هسته‌ای برای زیرساخت دیجیتال مستحکم.',
-            hi: 'पायथन का उपयोग करके बैकेंड स्वचालन, एपीआई विकास, स्क्रिپ्टिंग और डेटा प्रसंस्करण — मजबूत डिजिटल बुनियादी ढांचे के लिए मुख्य भाषा।',
+            hi: 'पायथन का उपयोग करके बैकेंड स्वचालन, एपीआई विकास, स्क्रिप्टिंग और डेटा प्रसंस्करण — मजबूत डिजिटल बुनियादी ढांचे के लिए मुख्य भाषा।',
             ur: 'پائتھن کا استعمال کرتے ہوئے بیک اینڈ آٹومیشن، API ڈویلپمنٹ، سکرپٹنگ اور ڈیٹا پروسیسنگ — مضبوط ڈیجیٹل انفراسٹرکچر کے لیے مرکزی زبان۔',
             fr: 'Automatisation backend, développement d\'API, scriptage et traitement de données utilisant Python — le langage central pour une infrastructure numérique robuste.'
         },
@@ -401,7 +401,7 @@ window.nodes = [
         },
         {
         id: 'Podcast',
-        x: 50, y: 200, r: 30,
+        x: -50, y: 100, r: 30,
         labels: {
             en: 'Podcast',
             da: 'Podcast',
