@@ -2,8 +2,22 @@
  * Nodes.js - Definition of nodes, links and related data for the cocode.dk visualization
  */
 
+/**
+ * @typedef {Object} HoverColors
+ * @property {string} fill - Fill color
+ * @property {string} stroke - Stroke color
+ * @property {string} text - Text color
+ */
+
+/**
+ * Custom window properties for graph visualization
+ * @type {Object}
+ * @property {Array} window.nodes - Array of node objects
+ * @property {Object.<string, HoverColors>} window.categoryHoverColors - Colors for different node categories
+ */
+
 // Category-specific hover colors
-const categoryHoverColors = {
+window.categoryHoverColors = {
   'cocode.dk': { fill: '#0077aa', stroke: '#33eeff', text: '#ffffff' },
   'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
   'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
@@ -12,7 +26,7 @@ const categoryHoverColors = {
 };
 
 // Define nodes with updated structure
-const nodes = [
+window.nodes = [
     {
         id: 'cocode.dk',
         x: 0, y: 0, r: 50,
@@ -481,7 +495,7 @@ const nodes = [
 ];
 
 // Define links between nodes
-const links = [
+window.links = [
     // Main branches from center
     ['cocode.dk', 'Software'],
     ['cocode.dk', 'Cybersecurity'],
@@ -503,30 +517,5 @@ const links = [
     ['Cybersecurity', 'Audit'],
 ];
 
-// Initialization function to validate and log load status
-(function() {
-    try {
-        // Validate that nodes and links are defined and have expected structure
-        if (typeof nodes === 'undefined' || !Array.isArray(nodes)) {
-            console.error('Nodes array is not properly defined in nodes.js');
-        }
-
-        if (typeof links === 'undefined' || !Array.isArray(links)) {
-            console.error('Links array is not properly defined in nodes.js');
-        }
-
-        if (typeof categoryHoverColors === 'undefined' || typeof categoryHoverColors !== 'object') {
-            console.error('categoryHoverColors is not properly defined in nodes.js');
-        }
-
-        // Explicitly expose data to window object
-        window.nodes = nodes;
-        window.links = links;
-        window.categoryHoverColors = categoryHoverColors;
-
-        // Log successful load if no errors
-        console.log('Nodes.js loaded successfully. Nodes:', nodes.length, 'Links:', links.length);
-    } catch (e) {
-        console.error('Error during nodes.js initialization:', e);
-    }
-})();
+// Log successful load
+console.log('Nodes.js loaded successfully. Nodes:', window.nodes.length, 'Links:', window.links.length);

@@ -3,6 +3,10 @@
   height: 80vh;
   position: relative;
   margin: 0 auto;
+  background-color: #f8f8f8; /* Light background to see container area */
+  border: 1px solid #ddd; /* Border to clearly see the container boundaries */
+  overflow: hidden; /* Ensure elements don't overflow the container */
+  z-index: 1; /* Ensure container is visible in stacking context */
 }
 
 /* Responsive adjustments */
@@ -16,4 +20,23 @@
   .cy-container {
     height: 60vh;
   }
+}
+
+/* Fix for nodes not appearing */
+.cy-container canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+/* Node and edge hover styles */
+.cy-node-hover {
+  border-width: 4px !important;
+  border-color: #ff0000 !important;
+}
+
+.cy-edge-hover {
+  width: 4px !important;
+  line-color: #ff0000 !important;
 }

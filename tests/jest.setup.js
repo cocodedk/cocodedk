@@ -404,7 +404,104 @@ global.cytoscape = (options) => {
           }))
         }
       };
-    }
+    },
+
+    add: jest.fn().mockImplementation((element) => {
+      // Create a mock for the added element
+      const mockElement = {
+        id: () => element.data.id,
+        data: (key) => key ? element.data[key] : element.data,
+        style: jest.fn(),
+        classes: element.classes || '',
+        position: () => element.position || { x: 0, y: 0 },
+        addClass: function(cls) {
+          if (!this.classes.includes(cls)) {
+            this.classes += ' ' + cls;
+            this.classes = this.classes.trim();
+          }
+          return this;
+        },
+        removeClass: function(cls) {
+          this.classes = this.classes.replace(cls, '').trim();
+          return this;
+        },
+        hasClass: function(cls) {
+          return this.classes.split(' ').includes(cls);
+        },
+        length: 1
+      };
+
+      // Add the mock element to a storage that the $ method can access
+      if (!global.cy._elements) {
+        global.cy._elements = {};
+      }
+      // Check if element.data exists before accessing element.data.id
+      const elementId = element.data ? element.data.id : (element.id ? element.id() : 'unknown-id');
+      global.cy._elements[elementId] = mockElement;
+
+      return [mockElement];
+    }),
+
+    $: jest.fn().mockImplementation((selector) => {
+      if (selector === ':selected') {
+        const selectedNodes = global.cy.nodes().filter(node => node.selected);
+        return {
+          length: selectedNodes.length,
+          unselect: function() {
+            selectedNodes.forEach(node => node.unselect());
+            return this;
+          }
+        };
+      }
+
+      if (selector.startsWith('#')) {
+        const id = selector.substring(1);
+
+        // Check in the added elements storage first
+        if (global.cy._elements && global.cy._elements[id]) {
+          return global.cy._elements[id];
+        }
+
+        // Fallback to nodes
+        const node = global.cy.nodes().find(node => node.id() === id);
+        if (node) {
+          return {
+            ...node,
+            length: 1,
+            hasEventListener: function(eventName) {
+              return eventListeners.has(`${selector}:${eventName}`);
+            }
+          };
+        }
+        return { length: 0, hasEventListener: () => false };
+      }
+
+      if (selector.startsWith('.')) {
+        const className = selector.substring(1);
+        const matchingNodes = global.cy.nodes().filter(node => node.hasClass(className));
+        return {
+          length: matchingNodes.length,
+          forEach: function(callback) {
+            matchingNodes.forEach(callback);
+            return this;
+          },
+          hasEventListener: function(eventName) {
+            return eventListeners.has(`${selector}:${eventName}`);
+          }
+        };
+      }
+
+      if (selector === 'node') {
+        return {
+          length: global.cy.nodes().length,
+          hasEventListener: function(eventName) {
+            return eventListeners.has(`node:${eventName}`);
+          }
+        };
+      }
+
+      return { length: 0, hasEventListener: () => false };
+    })
   };
 
   // Add this to the existing cy mock implementation
@@ -778,59 +875,6 @@ global.cy = {
   style: jest.fn(),
   userZoomingEnabled: jest.fn(),
   userPanningEnabled: jest.fn(),
-  $: jest.fn().mockImplementation((selector) => {
-    if (selector === ':selected') {
-      const selectedNodes = global.cy.nodes().filter(node => node.selected);
-      return {
-        length: selectedNodes.length,
-        unselect: function() {
-          selectedNodes.forEach(node => node.unselect());
-          return this;
-        }
-      };
-    }
-
-    if (selector.startsWith('#')) {
-      const id = selector.substring(1);
-      const node = global.cy.nodes().find(node => node.id() === id);
-      if (node) {
-        return {
-          ...node,
-          length: 1,
-          hasEventListener: function(eventName) {
-            return eventListeners.has(`${selector}:${eventName}`);
-          }
-        };
-      }
-      return { length: 0, hasEventListener: () => false };
-    }
-
-    if (selector.startsWith('.')) {
-      const className = selector.substring(1);
-      const matchingNodes = global.cy.nodes().filter(node => node.hasClass(className));
-      return {
-        length: matchingNodes.length,
-        forEach: function(callback) {
-          matchingNodes.forEach(callback);
-          return this;
-        },
-        hasEventListener: function(eventName) {
-          return eventListeners.has(`${selector}:${eventName}`);
-        }
-      };
-    }
-
-    if (selector === 'node') {
-      return {
-        length: global.cy.nodes().length,
-        hasEventListener: function(eventName) {
-          return eventListeners.has(`node:${eventName}`);
-        }
-      };
-    }
-
-    return { length: 0, hasEventListener: () => false };
-  }),
   emit: function(event, data = {}) {
     // Special handling for tap on background - clear selections
     if (event === 'tap' && (!data.target || data.target === global.cy)) {
@@ -1068,27 +1112,96 @@ global.CytoscapeManager = {
         data: {
           id: nodeData.id,
           label: nodeData.label,
-          category: nodeData.category,
-          radius: nodeData.radius || 1
+          category: nodeData.category
         },
-        position: nodeData.position || { x: 0, y: 0 }
+        position: nodeData.position || { x: 0, y: 0 },
+        classes: nodeData.classes || ''
       };
     } else {
       cytoscapeNode = nodeData;
     }
 
-    // Add to mock cy instance
-    cy.add(cytoscapeNode);
+    // Create a node mock matching the one expected in tests
+    const nodeMock = {
+      id: () => cytoscapeNode.data.id,
+      data: (key) => key ? cytoscapeNode.data[key] : cytoscapeNode.data,
+      position: () => cytoscapeNode.position || { x: 0, y: 0 },
+      classes: cytoscapeNode.classes || '',
+      style: jest.fn().mockImplementation(function(prop) {
+        // Basic style mocking
+        if (typeof prop === 'string') {
+          // Return style values for specific properties
+          const styleDefaults = {
+            'width': cytoscapeNode.data.r ? cytoscapeNode.data.r * 2 : 60,
+            'height': cytoscapeNode.data.r ? cytoscapeNode.data.r * 2 : 60,
+            'background-color': '#0077cc',
+            'border-color': '#33ccff',
+            'border-width': '2px',
+            'border-style': 'solid',
+            'label': cytoscapeNode.data.label,
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'color': '#000000',
+          };
 
-    // Get the added node
-    const node = cy.$(`#${cytoscapeNode.data.id}`);
+          // Return the requested style property
+          return styleDefaults[prop] || '';
+        }
+        return this;
+      }),
+      addClass: function(cls) {
+        if (!this.classes.includes(cls)) {
+          this.classes += ' ' + cls;
+          this.classes = this.classes.trim();
+        }
+        return this;
+      },
+      removeClass: function(cls) {
+        this.classes = this.classes.replace(cls, '').trim();
+        return this;
+      },
+      hasClass: function(cls) {
+        return this.classes.split(' ').includes(cls);
+      },
+      length: 1
+    };
+
+    // Add the node to the mocked cy instance
+    // Store in a map for access via cy.$
+    if (!cy._nodes) {
+      cy._nodes = {};
+    }
+    cy._nodes[cytoscapeNode.data.id] = nodeMock;
+
+    // Override cy.$ to properly return the mock node
+    cy.$ = function(selector) {
+      if (selector === ':selected') {
+        return { length: 0, unselect: () => {} };
+      } else if (selector.startsWith('#')) {
+        const id = selector.substring(1);
+        if (cy._nodes && cy._nodes[id]) {
+          return cy._nodes[id];
+        }
+      }
+      return { length: 0 };
+    };
 
     // Apply category as class
     if (cytoscapeNode.data.category) {
-      node.addClass(cytoscapeNode.data.category);
+      nodeMock.addClass(cytoscapeNode.data.category);
     }
 
-    return node;
+    // Add other classes if specified
+    if (cytoscapeNode.classes && typeof cytoscapeNode.classes === 'string') {
+      const classNames = cytoscapeNode.classes.split(' ');
+      classNames.forEach(className => {
+        if (className && className.trim() !== '' && className.trim() !== cytoscapeNode.data.category) {
+          nodeMock.addClass(className.trim());
+        }
+      });
+    }
+
+    return nodeMock;
   },
 
   renderEdge: function(edgeData) {

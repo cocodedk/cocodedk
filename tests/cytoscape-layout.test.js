@@ -10,20 +10,115 @@ const CytoscapeManager = require('../js/cytoscape-manager');
 describe('Layout Functionality', () => {
   let container;
   let cy;
+  // Map to store mock nodes
+  let mockNodes = {};
 
   beforeEach(() => {
+    // Mock the CytoscapeNodeInteractions module if needed
+    global.CytoscapeNodeInteractions = {
+      setupNodeHoverInteractions: jest.fn(),
+      setupNodeSelectionInteractions: jest.fn(),
+      setupNodeClickInteractions: jest.fn(),
+      setupNodeDragInteractions: jest.fn()
+    };
+
     // Create container and initialize Cytoscape
     container = document.createElement('div');
     container.id = 'cy';
     document.body.appendChild(container);
     cy = CytoscapeManager.initialize('cy');
+
+    // Reset mockNodes for each test
+    mockNodes = {};
+
+    // Override cy.add method to properly create mock elements
+    cy.add = jest.fn().mockImplementation((elements) => {
+      const mockElements = [];
+
+      if (!Array.isArray(elements)) {
+        elements = [elements];
+      }
+
+      elements.forEach(element => {
+        // Ensure data property has proper structure
+        if (element && element.data && element.data.id) {
+          const id = element.data.id;
+          const isEdge = element.data.source && element.data.target;
+
+          const initialPosition = element.position || { x: 0, y: 0 };
+
+          const mockElement = {
+            id: () => id,
+            isNode: () => !isEdge,
+            isEdge: () => isEdge,
+            data: (key) => {
+              if (!key) return element.data;
+              return element.data[key];
+            },
+            position: jest.fn(() => initialPosition),
+            renderedPosition: jest.fn(() => initialPosition),
+            classes: element.classes || '',
+            hasClass: function(cls) {
+              return this.classes.includes(cls);
+            },
+            addClass: jest.fn().mockImplementation(function(cls) {
+              if (!this.classes.includes(cls)) {
+                this.classes += ' ' + cls;
+              }
+              return this;
+            }),
+            removeClass: jest.fn().mockImplementation(function(cls) {
+              this.classes = this.classes.replace(cls, '').trim();
+              return this;
+            }),
+            style: jest.fn(() => ({})),
+            length: 1
+          };
+
+          // Store mock elements for later access
+          mockNodes[id] = mockElement;
+
+          // Store in cy._elements for $ method to find
+          if (!cy._elements) {
+            cy._elements = {};
+          }
+          cy._elements[id] = mockElement;
+
+          mockElements.push(mockElement);
+        }
+      });
+
+      return mockElements;
+    });
+
+    // Override cy.$ to return our mock nodes
+    cy.$ = jest.fn().mockImplementation((selector) => {
+      if (selector.startsWith('#')) {
+        const id = selector.substring(1);
+        if (mockNodes[id]) {
+          return mockNodes[id];
+        }
+      }
+      return { length: 0 };
+    });
+
+    // Mock cy.layout to return a layout object with run method
+    cy.layout = jest.fn().mockReturnValue({
+      run: jest.fn()
+    });
   });
 
   afterEach(() => {
     if (container && container.parentNode) {
       document.body.removeChild(container);
     }
+
+    // Clean up global mocks
+    delete global.CytoscapeNodeInteractions;
+
     cy = null;
+    mockNodes = {};
+    jest.clearAllMocks();
   });
 
   test('should maintain preset node positions when using preset layout', () => {

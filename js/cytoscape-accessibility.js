@@ -8,9 +8,15 @@
 (function() {
   console.log('[TDD] Initializing accessibility module');
 
+  // Determine the environment (browser vs. Node.js/Jest)
+  const isBrowser = typeof window !== 'undefined';
+  const CytoscapeManagerRef = isBrowser ? window.CytoscapeManager :
+                                        (typeof global !== 'undefined' && global.CytoscapeManager ?
+                                         global.CytoscapeManager : null);
+
   // Wait for CytoscapeManager to be defined
   const checkForDependencies = function() {
-    if (typeof window.CytoscapeManager === 'undefined') {
+    if (!CytoscapeManagerRef) {
       console.log('[TDD] Waiting for CytoscapeManager to be defined...');
       setTimeout(checkForDependencies, 100);
       return;
@@ -23,7 +29,7 @@
   // Main function to add accessibility features
   function enhanceWithAccessibility() {
     // Store the original initialization function
-    const originalInitialize = window.CytoscapeManager.initialize;
+    const originalInitialize = CytoscapeManagerRef.initialize;
 
     /**
      * Create accessible DOM representation of the graph
@@ -32,10 +38,10 @@
       let cy;
 
       // Try different approaches to get the Cytoscape instance
-      if (window.CytoscapeManager.getCytoscapeInstance && typeof window.CytoscapeManager.getCytoscapeInstance === 'function') {
-        cy = window.CytoscapeManager.getCytoscapeInstance();
-      } else if (window.CytoscapeManager.getInstance && typeof window.CytoscapeManager.getInstance === 'function') {
-        cy = window.CytoscapeManager.getInstance();
+      if (CytoscapeManagerRef.getCytoscapeInstance && typeof CytoscapeManagerRef.getCytoscapeInstance === 'function') {
+        cy = CytoscapeManagerRef.getCytoscapeInstance();
+      } else if (CytoscapeManagerRef.getInstance && typeof CytoscapeManagerRef.getInstance === 'function') {
+        cy = CytoscapeManagerRef.getInstance();
       } else {
         console.error('[TDD] No method to get Cytoscape instance found');
         return null;
@@ -138,7 +144,7 @@
 
             // Only add focus handler for screen reader support
             nodeElement.addEventListener('focus', () => {
-              window.CytoscapeManager.selectNode(node.id());
+              CytoscapeManagerRef.selectNode(node.id());
             });
           } catch (e) {
             console.error(`[TDD] Error creating accessible element for node ${node.id()}:`, e);
@@ -167,11 +173,18 @@
         // Only handle Escape key
         if (event.key === 'Escape') {
           // Close any open modal
-          if (typeof window.ContactModal !== 'undefined' && window.ContactModal.hideModal) {
-            window.ContactModal.hideModal();
+          const ContactModal = isBrowser ? window.ContactModal :
+                               (typeof global !== 'undefined' && global.ContactModal ?
+                                global.ContactModal : null);
+
+          if (ContactModal && ContactModal.hideModal) {
+            ContactModal.hideModal();
           }
-          // Clear selection
-          window.CytoscapeManager.clearSelection();
+
+          // Clear selection in Cytoscape
+          if (CytoscapeManagerRef.clearSelection) {
+            CytoscapeManagerRef.clearSelection();
+          }
         }
       });
     }
@@ -185,8 +198,12 @@
 
       // Handle Contact node specially
       if (node.data('category') === 'Contact' || node.id() === 'node-Contact') {
-        if (typeof window.ContactModal !== 'undefined' && window.ContactModal.showModal) {
-          window.ContactModal.showModal();
+        const ContactModal = isBrowser ? window.ContactModal :
+                             (typeof global !== 'undefined' && global.ContactModal ?
+                              global.ContactModal : null);
+
+        if (ContactModal && ContactModal.showModal) {
+          ContactModal.showModal();
         }
       }
 
@@ -225,7 +242,7 @@
     }
 
     // Override the initialize function to add accessibility features
-    window.CytoscapeManager.initialize = function(containerId) {
+    CytoscapeManagerRef.initialize = function(containerId) {
       // Call the original initialize function first
       const cy = originalInitialize(containerId);
 
@@ -244,8 +261,8 @@
     };
 
     // Add new accessibility methods to CytoscapeManager
-    window.CytoscapeManager.createAccessibleDOM = createAccessibleDOM;
-    window.CytoscapeManager.updateAccessibility = updateAccessibility;
+    CytoscapeManagerRef.createAccessibleDOM = createAccessibleDOM;
+    CytoscapeManagerRef.updateAccessibility = updateAccessibility;
 
     // Add CSS for accessibility features
     const style = document.createElement('style');
@@ -291,4 +308,19 @@
 
   // Start checking for dependencies
   checkForDependencies();
+
+  // For Node.js/Jest environment support
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+      // Export functions for testing
+      createAccessibleDOM: function() {
+        return CytoscapeManagerRef && CytoscapeManagerRef.createAccessibleDOM ?
+               CytoscapeManagerRef.createAccessibleDOM() : null;
+      },
+      updateAccessibility: function() {
+        return CytoscapeManagerRef && CytoscapeManagerRef.updateAccessibility ?
+               CytoscapeManagerRef.updateAccessibility() : null;
+      }
+    };
+  }
 })();

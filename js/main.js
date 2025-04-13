@@ -5,7 +5,7 @@
 const DEBUG_MODE = true; // Enable debugging for testing
 const debug = document.getElementById('debug');
 // Feature flag to toggle between implementations
-let useCytoscape = false; // Default to false
+let useCytoscape = true; // Default to true
 
 // Check localStorage for saved preference
 if (localStorage.getItem('useCytoscape') === 'true') {
@@ -387,7 +387,16 @@ function initializeCytoscape() {
 
     console.log('[TDD] Cytoscape instance created successfully');
 
+    // Store the Cytoscape instance for later use
+    const cytoscapeInstance = cy;
+
     // Check if nodes and links are available
+    console.log('[TDD] Checking for window.nodes and window.links...');
+    console.log('[TDD] window.nodes exists:', !!window.nodes);
+    console.log('[TDD] window.links exists:', !!window.links);
+    console.log('[TDD] window.nodes is array:', window.nodes && Array.isArray(window.nodes));
+    console.log('[TDD] window.links is array:', window.links && Array.isArray(window.links));
+
     if (!window.nodes || !window.links || !Array.isArray(window.nodes) || !Array.isArray(window.links)) {
       console.error('[TDD] Nodes or links data not available');
       fallbackToLegacy();
@@ -396,11 +405,56 @@ function initializeCytoscape() {
 
     // Load graph data
     console.log('[TDD] Loading graph data');
+
+    // Debug - Check node format before conversion
+    if (window.nodes && window.nodes.length > 0) {
+      console.log('[TDD] First original node:', JSON.stringify(window.nodes[0]));
+
+      // Try to manually convert nodes to debug any issues
+      try {
+        const convertedNodes = window.CytoscapeManager.convertNodesToCytoscape(window.nodes);
+        console.log('[TDD] Conversion test - converted', convertedNodes.length, 'nodes');
+        if (convertedNodes.length > 0) {
+          console.log('[TDD] First converted node sample:', JSON.stringify(convertedNodes[0]));
+        } else {
+          console.error('[TDD] Node conversion produced no results');
+        }
+      } catch (conversionError) {
+        console.error('[TDD] Error during node conversion test:', conversionError);
+      }
+    }
+
     window.CytoscapeManager.loadNodesJsGraph(window.nodes, window.links, {
       language: mainCurrentLanguage,
       responsive: true
     });
     console.log('[TDD] Graph data loaded with', window.nodes.length, 'nodes and', window.links.length, 'links');
+
+    // Debug - log first node details
+    if (window.nodes && window.nodes.length > 0) {
+      console.log('[TDD] First node sample:', JSON.stringify(window.nodes[0]));
+    }
+
+    // Debug - check if any nodes were actually added to Cytoscape
+    const cyInstance = window.CytoscapeManager.getInstance();
+    if (cyInstance) {
+      const nodeCount = cyInstance.nodes().length;
+      console.log('[TDD] Actual nodes in Cytoscape:', nodeCount);
+      if (nodeCount === 0) {
+        console.error('[TDD] No nodes were added to Cytoscape instance - checking for errors');
+        // Try to manually add a test node
+        try {
+          cyInstance.add({
+            group: 'nodes',
+            data: { id: 'test-node', label: 'Test Node' },
+            position: { x: 100, y: 100 }
+          });
+          console.log('[TDD] Test node added successfully:', cyInstance.nodes().length);
+        } catch (nodeError) {
+          console.error('[TDD] Error adding test node:', nodeError);
+        }
+      }
+    }
 
     // Register contact modal handler
     console.log('[TDD] Registering selection handlers');
