@@ -54,7 +54,8 @@ function getStylesheet() {
     {
       selector: '.hover',
       style: {
-        'transform': 'scale(1.05)',
+        'overlay-opacity': 0.3,
+        'overlay-color': '#ffffff',
         'z-index': 90
       }
     },
@@ -164,3 +165,12 @@ function getStylesheet() {
     }
   ];
 }
+
+// Create namespace for Cytoscape stylesheet
+window.CytoscapeStylesheet = window.CytoscapeStylesheet || {};
+
+// Expose the function globally
+window.CytoscapeStylesheet.getStylesheet = getStylesheet;
+
+// Log successful initialization
+console.log('[TDD] CytoscapeStylesheet module initialized');

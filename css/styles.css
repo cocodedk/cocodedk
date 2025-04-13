@@ -472,3 +472,297 @@ canvas {
     font-size: 12px;
   }
 }
+
+/* Cytoscape container styling */
+.cy-container {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Hide Cytoscape container when using legacy implementation */
+body[data-vis="legacy"] .cy-container {
+  display: none;
+}
+
+/* Hide node container when using Cytoscape implementation */
+body[data-vis="cytoscape"] .node-container {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .cy-container {
+    height: 70vh;
+  }
+}
+
+/* Debug panel styles */
+.debug-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #444;
+  border-radius: 5px;
+  color: white;
+  z-index: 9999;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.debug-panel h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+.debug-panel button {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.debug-panel button:hover {
+  background: #3498db;
+}
+
+#debugOutput {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+#debugOutput p {
+  margin: 5px 0;
+}
+
+/* Add visual indicators for active implementation */
+body[data-vis="cytoscape"] .cy-container {
+  box-shadow: 0 0 0 2px #27ae60;
+}
+
+body[data-vis="legacy"] .node-container {
+  box-shadow: 0 0 0 2px #3498db;
+}
+
+.implementation-status {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.implementation-status strong {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.implementation-status strong:contains('CYTOSCAPE') {
+  color: #27ae60;
+}
+
+/* Test results styling */
+.test-results {
+  margin-top: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.test-item {
+  display: flex;
+  margin-bottom: 6px;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.test-item.pass {
+  background: rgba(46, 204, 113, 0.2);
+}
+
+.test-item.fail {
+  background: rgba(231, 76, 60, 0.2);
+}
+
+.test-result {
+  flex: 0 0 80px;
+  font-weight: bold;
+}
+
+.test-name {
+  flex: 1;
+}
+
+.test-summary {
+  margin-top: 10px;
+  padding: 6px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.test-summary.pass {
+  background: rgba(46, 204, 113, 0.4);
+}
+
+.test-summary.fail {
+  background: rgba(231, 76, 60, 0.4);
+}
+
+.test-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.test-actions button {
+  flex: 1;
+  margin: 0 4px;
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.test-actions button:hover {
+  background: #2980b9;
+}
+
+.test-actions button:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Test output styling */
+.test-section {
+  margin: 1em 0;
+  padding: 0.5em;
+  border-left: 3px solid #ddd;
+}
+
+.test-section h5 {
+  margin-top: 0;
+  color: #333;
+}
+
+.test-item {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.test-item.pass {
+  background-color: rgba(0, 128, 0, 0.1);
+}
+
+.test-item.fail {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.test-result {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.test-name {
+  flex: 1;
+}
+
+.test-summary {
+  margin: 1em 0;
+  padding: 0.8em;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.test-summary.pass {
+  background-color: rgba(0, 128, 0, 0.2);
+  color: #006400;
+}
+
+.test-summary.fail {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #8b0000;
+}
+
+.test-actions {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+}
+
+.test-actions button {
+  padding: 0.5em 1em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.test-actions button:hover {
+  background-color: #45a049;
+}
+
+.test-actions button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Debug panel enhancements */
+#debugPanel {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: auto;
+}
+
+#debugPanel h3 {
+  background-color: #e9ecef;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#debugOutput {
+  padding: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  max-height: 400px;
+  overflow: auto;
+}
+
+#debugOutput p {
+  margin: 5px 0;
+}
+
+/* Error message styling */
+.error-message {
+  color: #d9534f;
+  font-weight: bold;
+}

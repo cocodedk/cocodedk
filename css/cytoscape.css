@@ -1,0 +1,19 @@
+.cy-container {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .cy-container {
+    height: 70vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cy-container {
+    height: 60vh;
+  }
+}

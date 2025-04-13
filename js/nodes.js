@@ -519,6 +519,11 @@ const links = [
             console.error('categoryHoverColors is not properly defined in nodes.js');
         }
 
+        // Explicitly expose data to window object
+        window.nodes = nodes;
+        window.links = links;
+        window.categoryHoverColors = categoryHoverColors;
+
         // Log successful load if no errors
         console.log('Nodes.js loaded successfully. Nodes:', nodes.length, 'Links:', links.length);
     } catch (e) {

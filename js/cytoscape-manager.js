@@ -6,10 +6,9 @@
 
 /* global cy */
 
-// Import edge styles using CommonJS require
-const { getEdgeSpecificStyles, getCustomEdgeStyles } = require('./cytoscape-edge-styles.js');
-// Import edge interactions
-const { setupEdgeHoverInteractions, selectEdge } = require('./cytoscape-edge-interactions.js');
+// Browser-compatible access to dependencies
+// Note: These will be accessed from window.CytoscapeStyles and window.CytoscapeInteractions
+// which should be defined in their respective files
 
 const CytoscapeManager = (function() {
   // Private variables
@@ -77,25 +76,36 @@ const CytoscapeManager = (function() {
     containerElement = document.getElementById(containerId);
 
     if (!containerElement) {
-      console.error(`Container element with ID "${containerId}" not found.`);
+      debugLog(`Container element with ID "${containerId}" not found.`, 'error');
       return null;
     }
 
     // Initialize Cytoscape
-    cy = cytoscape({
-      container: containerElement,
-      style: getStylesheet(),
-      layout: {
-        name: 'preset' // Start with preset layout
-      },
-      // No elements yet
-      elements: []
-    });
+    try {
+      cy = cytoscape({
+        container: containerElement,
+        style: window.CytoscapeStylesheet ? window.CytoscapeStylesheet.getStylesheet() : getStylesheet(),
+        layout: {
+          name: 'preset' // Start with preset layout
+        },
+        // No elements yet
+        elements: []
+      });
 
-    // Set up edge hover interactions
-    setupEdgeHoverInteractions(cy);
+      // Set up edge hover interactions
+      if (window.CytoscapeEdgeInteractions &&
+          typeof window.CytoscapeEdgeInteractions.setupEdgeHoverInteractions === 'function') {
+        window.CytoscapeEdgeInteractions.setupEdgeHoverInteractions(cy);
+        debugLog('Edge hover interactions setup successfully');
+      } else {
+        debugLog("Edge hover interactions not available", 'warn');
+      }
 
-    return cy;
+      return cy;
+    } catch (e) {
+      debugLog(`Error initializing Cytoscape: ${e}`, 'error');
+      return null;
+    }
   }
 
   /**
@@ -124,6 +134,21 @@ const CytoscapeManager = (function() {
   }
 
   /**
+   * Debug logger function that can be controlled based on environment
+   *
+   * @param {string} message - Message to log
+   * @param {string} level - Log level (log, warn, error)
+   */
+  function debugLog(message, level = 'log') {
+    // Check if we're in test mode - don't log in test environment
+    const isTestMode = typeof jest !== 'undefined';
+
+    if (!isTestMode && console && typeof console[level] === 'function') {
+      console[level](`[TDD] ${message}`);
+    }
+  }
+
+  /**
    * Reset the container with a new container element
    *
    * @param {string} containerId - The ID of the new container element
@@ -134,7 +159,7 @@ const CytoscapeManager = (function() {
 
     const newContainer = document.getElementById(containerId);
     if (!newContainer) {
-      console.error(`New container element with ID "${containerId}" not found.`);
+      debugLog(`New container element with ID "${containerId}" not found.`, 'error');
       return false;
     }
 
@@ -179,7 +204,7 @@ const CytoscapeManager = (function() {
         // Create new instance in the new container
         cy = cytoscape({
           container: containerElement,
-          style: getStylesheet(),
+          style: window.CytoscapeStylesheet ? window.CytoscapeStylesheet.getStylesheet() : getStylesheet(),
           layout: {
             name: 'preset' // Maintain preset layout
           },
@@ -254,7 +279,11 @@ const CytoscapeManager = (function() {
     // Update any interface elements that display node information
     if (typeof window.NodeDisplay !== 'undefined' && window.NodeDisplay.setLanguage) {
       // If there's a separate NodeDisplay module, sync the language
-      window.NodeDisplay.setLanguage(lang);
+      try {
+        window.NodeDisplay.setLanguage(lang);
+      } catch (e) {
+        console.error('[TDD] Error syncing language with NodeDisplay:', e);
+      }
     }
 
     // Force a layout update to ensure everything is properly sized after label change
@@ -945,7 +974,8 @@ const CytoscapeManager = (function() {
       {
         selector: 'node.hover',
         style: {
-          'transform': 'scale(1.05)',
+          'overlay-opacity': 0.3,
+          'overlay-color': '#ffffff',
           'z-index': 90
         }
       }
@@ -1216,7 +1246,11 @@ const CytoscapeManager = (function() {
 
     // Set initial language if specified
     if (options.language) {
-      setLanguage(options.language);
+      try {
+        setLanguage(options.language);
+      } catch (e) {
+        console.error('[TDD] Error setting initial language:', e);
+      }
     }
 
     return cy;
@@ -1608,83 +1642,115 @@ const CytoscapeManager = (function() {
     // Get base stylesheet
     const baseStyle = getStylesheet();
 
-    // Get edge-specific styles
-    const edgeStyles = getEdgeSpecificStyles();
+    // Get edge-specific styles from the CytoscapeEdgeStyles module
+    let edgeStyles = [];
+    if (window.CytoscapeEdgeStyles && typeof window.CytoscapeEdgeStyles.getEdgeSpecificStyles === 'function') {
+      edgeStyles = window.CytoscapeEdgeStyles.getEdgeSpecificStyles();
+    } else {
+      console.warn('[TDD] CytoscapeEdgeStyles.getEdgeSpecificStyles not available, using empty array');
+    }
 
     // Combine them
     return [...baseStyle, ...edgeStyles];
   }
 
+  /**
+   * Gets the current Cytoscape instance
+   *
+   * @return {object|null} - The Cytoscape instance or null if not initialized
+   */
+  function getCytoscapeInstance() {
+    return cy;
+  }
+
+  /**
+   * Get all nodes in the graph
+   *
+   * @returns {Array} Array of node data objects or empty array if no Cytoscape instance
+   */
+  function getNodes() {
+    if (!cy) {
+      console.warn('[TDD] No Cytoscape instance available for getNodes');
+      return [];
+    }
+
+    // Extract data from all nodes
+    return cy.nodes().map(node => node.data());
+  }
+
   // Public API
   return {
-    initialize,
-    getInstance,
-    getContainerElement,
-    hasValidContainer,
-    resetContainer,
-
-    // Rendering functions
-    renderNode,
-    renderEdge,
-    renderGraph,
-    updateEdge,
-
-    // Conversion functions
-    convertNodeToCytoscape,
-    convertNodesToCytoscape,
-    convertEdgeToCytoscape,
-    convertEdgesToCytoscape,
-    convertLinksToCytoscapeEdges,
-    convertGraphToCytoscape,
-
-    // Style management
-    getStylesheet,
-
-    // Edge handling
-    handleBidirectionalEdges,
-
-    // Interaction
-    registerInteractionHandlers,
-    initializeContactModalIntegration,
-    registerSelectionHandlers,
-    selectNode,
-    clearSelection,
-    enableMobileInteractions,
-    setContextMenuCallback,
-
-    // Layout
-    applyLayout,
-
-    // Responsive handling
-    isDesktopViewport,
-    applyResponsiveLayout,
-    saveOriginalPositions,
-    restoreOriginalPositions,
-    getMobileScalingFactor,
-    resetResponsiveState,
-
-    // Language functions
-    setLanguage,
-    getCurrentLanguage,
-    loadNodesJsGraph,
-
-    // Support flags for testing
-    supportsCustomEdgeStyling,
-    supportsBidirectionalEdges,
-    useRadiusForSize,
-
-    // New functions
-    renderEdges,
-    getCompleteStylesheet,
-
-    // Add edge selection method
+    initialize: initialize,
+    saveOriginalPositions: saveOriginalPositions,
+    restoreOriginalPositions: restoreOriginalPositions,
+    setLanguage: setLanguage,
+    loadNodesJsGraph: loadNodesJsGraph,
+    registerSelectionHandlers: registerSelectionHandlers,
+    registerInteractionHandlers: registerInteractionHandlers,
+    getNodes: getNodes,
+    getCytoscapeInstance: getCytoscapeInstance,
+    hasValidContainer: hasValidContainer,
+    resetContainer: resetContainer,
+    getContainerElement: getContainerElement,
+    renderNode: renderNode,
+    renderEdge: renderEdge,
+    selectNode: function(nodeId) {
+      return selectNode(cy, nodeId);
+    },
     selectEdge: function(edgeId) {
-      return selectEdge(cy, edgeId);
-    }
+      if (window.CytoscapeEdgeInteractions &&
+          typeof window.CytoscapeEdgeInteractions.selectEdge === 'function') {
+        return window.CytoscapeEdgeInteractions.selectEdge(cy, edgeId);
+      }
+      console.warn('[TDD] CytoscapeEdgeInteractions.selectEdge not available');
+      return false;
+    },
+    clearSelection: function() {
+      if (cy) cy.elements().unselect();
+      return true;
+    },
+    getStylesheet: getStylesheet,
+    getCompleteStylesheet: getCompleteStylesheet,
+    // Add language functions
+    getCurrentLanguage: getCurrentLanguage,
+    // Add data conversion methods for testing
+    convertNodeToCytoscape: convertNodeToCytoscape,
+    convertNodesToCytoscape: convertNodesToCytoscape,
+    convertEdgeToCytoscape: convertEdgeToCytoscape,
+    convertEdgesToCytoscape: convertEdgesToCytoscape,
+    convertLinksToCytoscapeEdges: convertLinksToCytoscapeEdges,
+    convertGraphToCytoscape: convertGraphToCytoscape,
+    // Add responsive layout functions
+    isDesktopViewport: isDesktopViewport,
+    applyResponsiveLayout: applyResponsiveLayout,
+    getMobileScalingFactor: getMobileScalingFactor,
+    resetResponsiveState: resetResponsiveState,
+    // Add mobile interaction functions
+    enableMobileInteractions: enableMobileInteractions,
+    setContextMenuCallback: setContextMenuCallback,
+    getInstance: getInstance,
+    // Add layout functions
+    applyLayout: applyLayout
   };
 })();
 
-// Export for use in other modules
+// Create Cytoscape Manager namespace
+window.CytoscapeManager = window.CytoscapeManager || {};
+
+// Expose the CytoscapeManager API to the window object
+Object.assign(window.CytoscapeManager, CytoscapeManager);
+
+// Ensure backward compatibility by adding getInstance as an alias for getCytoscapeInstance if missing
+if (window.CytoscapeManager.getCytoscapeInstance && !window.CytoscapeManager.getInstance) {
+  window.CytoscapeManager.getInstance = window.CytoscapeManager.getCytoscapeInstance;
+} else if (window.CytoscapeManager.getInstance && !window.CytoscapeManager.getCytoscapeInstance) {
+  window.CytoscapeManager.getCytoscapeInstance = window.CytoscapeManager.getInstance;
+}
+
+// For Node.js environment (testing)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = CytoscapeManager;
 }
+
+// Log successful initialization
+console.log('[TDD] CytoscapeManager module initialized');

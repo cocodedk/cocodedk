@@ -457,15 +457,16 @@ const ContactModal = (function() {
     document.head.appendChild(styleElement);
   }
 
-  // Return public API
+  // Public API
   return {
     initialize: initialize,
-    show: showModal,
-    hide: hideModal
+    showModal: showModal,
+    hideModal: hideModal
   };
 })();
 
-// Initialize on DOM content loaded
-document.addEventListener('DOMContentLoaded', function() {
-  ContactModal.initialize();
-});
+// Expose ContactModal to the global scope for both implementations
+window.ContactModal = ContactModal;
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', ContactModal.initialize);

@@ -3,8 +3,11 @@
  * For rendering and interacting with nodes as HTML elements
  */
 
+// Create NodeDisplay namespace
+window.NodeDisplay = {};
+
 // Current language selection
-let currentLanguage = 'en';
+let displayCurrentLanguage = 'en';
 
 // References to DOM elements
 let nodeContainer;
@@ -40,6 +43,9 @@ function initNodeDisplay() {
   adjustNodesForScreenSize();
 }
 
+// Expose the initialization function
+window.NodeDisplay.initNodeDisplay = initNodeDisplay;
+
 // Create nodes from the nodes data
 function createNodes() {
   // Clear existing nodes
@@ -61,7 +67,7 @@ function createNodes() {
     nodeElement.id = `node-${nodeData.id}`;
     nodeElement.setAttribute('role', 'button');
     nodeElement.setAttribute('tabindex', '0');
-    nodeElement.setAttribute('aria-label', nodeData.labels[currentLanguage]);
+    nodeElement.setAttribute('aria-label', nodeData.labels[displayCurrentLanguage]);
 
     // Set size based on radius in data
     const size = nodeData.r * 2;
@@ -77,7 +83,7 @@ function createNodes() {
     // Add label
     const labelElement = document.createElement('div');
     labelElement.className = 'node-label';
-    labelElement.textContent = nodeData.labels[currentLanguage];
+    labelElement.textContent = nodeData.labels[displayCurrentLanguage];
     nodeElement.appendChild(labelElement);
 
     // Add event listeners
@@ -204,7 +210,7 @@ function showNodeInfo(nodeData) {
   selectedNode = nodeData;
 
   // Set RTL for appropriate languages
-  if (currentLanguage === 'ar' || currentLanguage === 'fa' || currentLanguage === 'ur') {
+  if (displayCurrentLanguage === 'ar' || displayCurrentLanguage === 'fa' || displayCurrentLanguage === 'ur') {
     nodeModal.setAttribute('dir', 'rtl');
   } else {
     nodeModal.setAttribute('dir', 'ltr');
@@ -213,7 +219,7 @@ function showNodeInfo(nodeData) {
   // Set title
   nodeModal.innerHTML = '';
   const title = document.createElement('h2');
-  title.textContent = nodeData.labels[currentLanguage];
+  title.textContent = nodeData.labels[displayCurrentLanguage];
   nodeModal.appendChild(title);
 
   // Add close button
@@ -227,7 +233,7 @@ function showNodeInfo(nodeData) {
   // Set content
   nodeModalContent = document.createElement('div');
   nodeModalContent.className = 'node-modal-content';
-  nodeModalContent.textContent = nodeData.translations[currentLanguage];
+  nodeModalContent.textContent = nodeData.translations[displayCurrentLanguage];
   nodeModal.appendChild(nodeModalContent);
 
   // Show modal and overlay
@@ -319,30 +325,44 @@ function closeNodeModal() {
 
 // Set language and update all nodes
 function setLanguage(lang) {
-  currentLanguage = lang;
+  displayCurrentLanguage = lang;
 
-  // Update node labels
-  nodes.forEach(nodeData => {
-    const nodeElement = document.getElementById(`node-${nodeData.id}`);
-    if (nodeElement) {
-      const labelElement = nodeElement.querySelector('.node-label');
-      if (labelElement) {
-        labelElement.textContent = nodeData.labels[lang];
+  // Update nodes with new language
+  updateNodeLabels(lang);
+}
+
+// Expose the setLanguage function
+window.NodeDisplay.setLanguage = setLanguage;
+
+// Update node labels to reflect the current language
+function updateNodeLabels(lang) {
+  try {
+    nodes.forEach(nodeData => {
+      const nodeElement = document.getElementById(`node-${nodeData.id}`);
+      if (nodeElement) {
+        const labelElement = nodeElement.querySelector('.node-label');
+        if (labelElement) {
+          labelElement.textContent = nodeData.labels[lang];
+        }
+        nodeElement.setAttribute('aria-label', nodeData.labels[lang]);
       }
-      nodeElement.setAttribute('aria-label', nodeData.labels[lang]);
+    });
+
+    // Update modal content if open
+    if (selectedNode && nodeModal && nodeModal.style.display === 'block') {
+      showNodeInfo(selectedNode);
     }
-  });
 
-  // Update modal content if open
-  if (selectedNode && nodeModal.style.display === 'block') {
-    showNodeInfo(selectedNode);
-  }
-
-  // Handle RTL languages
-  if (lang === 'ar' || lang === 'fa' || lang === 'ur') {
-    nodeModal.setAttribute('dir', 'rtl');
-  } else {
-    nodeModal.setAttribute('dir', 'ltr');
+    // Handle RTL languages
+    if (nodeModal) {
+      if (lang === 'ar' || lang === 'fa' || lang === 'ur') {
+        nodeModal.setAttribute('dir', 'rtl');
+      } else {
+        nodeModal.setAttribute('dir', 'ltr');
+      }
+    }
+  } catch (e) {
+    console.error('[TDD] Error updating node labels:', e);
   }
 }
 
@@ -421,12 +441,8 @@ function adjustNodesForScreenSize() {
   });
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', initNodeDisplay);
+// Expose the adjustNodesForScreenSize function for external use
+window.NodeDisplay.adjustNodesForScreenSize = adjustNodesForScreenSize;
 
-// Export functions for external use
-window.NodeDisplay = {
-  setLanguage,
-  initNodeDisplay,
-  adjustNodesForScreenSize
-};
+// Do NOT initialize automatically - this is now controlled by main.js
+// document.addEventListener('DOMContentLoaded', initNodeDisplay);
