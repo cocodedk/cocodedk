@@ -255,8 +255,8 @@ canvas {
 
   /* Ensure canvas doesn't overflow on mobile */
   canvas {
-    width: 60%; /* Adjust width to be responsive on mobile */
-    height: calc(100% - 60px); /* Adjust for smaller header */
+    width: 100%; /* Adjust width to be responsive on mobile */
+    height: 100%; /* Adjust height to account for top offset and stabilize size */
     top: 60px; /* Position below header */
   }
 
@@ -476,32 +476,12 @@ canvas {
   }
 }
 
-/* Cytoscape container styling */
-.cy-container {
-  width: 100%;
-  height: 80vh;
-  position: relative;
-  margin: 0 auto;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  overflow: hidden;
-}
 
-/* Hide Cytoscape container when using legacy implementation */
-body[data-vis="legacy"] .cy-container {
-  display: none;
-}
+
 
 /* Hide node container when using Cytoscape implementation */
 body[data-vis="cytoscape"] .node-container {
   display: none;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .cy-container {
-    height: 70vh;
-  }
 }
 
 /* Debug panel styles */
@@ -553,11 +533,6 @@ body[data-vis="cytoscape"] .node-container {
 
 #debugOutput p {
   margin: 5px 0;
-}
-
-/* Add visual indicators for active implementation */
-body[data-vis="cytoscape"] .cy-container {
-  box-shadow: 0 0 0 2px #27ae60;
 }
 
 body[data-vis="legacy"] .node-container {
