@@ -2,6 +2,8 @@
  * Main.js - Simplified version for non-canvas approach
  */
 
+console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+
 const DEBUG_MODE = true; // Enable debugging for testing
 const debug = document.getElementById('debug');
 // Feature flag to toggle between implementations
@@ -22,6 +24,12 @@ document.body.setAttribute('data-vis', useCytoscape ? 'cytoscape' : 'legacy');
 
 // Current language selection
 let mainCurrentLanguage = 'en';
+
+// Define currentModal at the top to avoid ReferenceError
+let currentModal = null;
+let isModalOpening = false; // Flag to prevent immediate closure
+let lastSelectionTime = 0; // For debouncing node selection
+let debounceTimeout = 300; // Debounce time in milliseconds
 
 if (DEBUG_MODE) {
   debug.style.display = 'block';
@@ -396,12 +404,6 @@ function initializeCytoscape() {
     // Store the Cytoscape instance for later use
     const cytoscapeInstance = cy;
 
-    // Check if nodes and links are available
-    console.log('[TDD] Checking for window.nodes and window.links...');
-    console.log('[TDD] window.nodes exists:', !!window.nodes);
-    console.log('[TDD] window.links exists:', !!window.links);
-    console.log('[TDD] window.nodes is array:', window.nodes && Array.isArray(window.nodes));
-    console.log('[TDD] window.links is array:', window.links && Array.isArray(window.links));
 
     // Check for null or invalid nodes
     if (window.nodes && Array.isArray(window.nodes)) {
@@ -463,17 +465,9 @@ function initializeCytoscape() {
 
     // Debug - Check node format before conversion
     if (window.nodes && window.nodes.length > 0) {
-      console.log('[TDD] First original node:', JSON.stringify(window.nodes[0]));
-
       // Try to manually convert nodes to debug any issues
       try {
         const convertedNodes = window.CytoscapeManager.convertNodesToCytoscape(window.nodes);
-        console.log('[TDD] Conversion test - converted', convertedNodes.length, 'nodes');
-        if (convertedNodes.length > 0) {
-          console.log('[TDD] First converted node sample:', JSON.stringify(convertedNodes[0]));
-        } else {
-          console.error('[TDD] Node conversion produced no results');
-        }
       } catch (conversionError) {
         console.error('[TDD] Error during node conversion test:', conversionError);
       }
@@ -484,11 +478,6 @@ function initializeCytoscape() {
       responsive: true
     });
     console.log('[TDD] Graph data loaded with', window.nodes.length, 'nodes and', window.links.length, 'links');
-
-    // Debug - log first node details
-    if (window.nodes && window.nodes.length > 0) {
-      console.log('[TDD] First node sample:', JSON.stringify(window.nodes[0]));
-    }
 
     // Debug - check if any nodes were actually added to Cytoscape
     const cyInstance = window.CytoscapeManager.getInstance();
@@ -525,9 +514,17 @@ function initializeCytoscape() {
 
     // Register contact modal handler
     console.log('[TDD] Registering selection handlers');
+    console.log('Checking ContactModal availability before registering handlers:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
     window.CytoscapeManager.registerSelectionHandlers({
       onNodeSelected: (nodeData) => {
+        const currentTime = Date.now();
+        if (currentTime - lastSelectionTime < debounceTimeout) {
+          console.log('[Debounce] Ignoring rapid successive click on node:', nodeData.id);
+          return;
+        }
+        lastSelectionTime = currentTime;
         console.log('[TDD] Node selected:', nodeData);
+        console.log('Checking ContactModal availability during node selection:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
         showNodeDescriptionModal(nodeData);
       }
     });
@@ -590,7 +587,38 @@ function showContactModal(nodeData) {
 
 // Function to show a modal with node description
 function showNodeDescriptionModal(nodeData) {
+
+  // Aggressive cleanup of any existing modals before starting
+  const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal, #node-description-modal-container');
+  existingModals.forEach(modal => modal.remove());
+  console.log('Aggressive cleanup of existing modals before starting, removed:', existingModals.length, 'elements');
+  currentModal = null;
+
   console.log('[DEBUG] Showing description modal for:', nodeData);
+  console.log('Checking ContactModal availability at start of showNodeDescriptionModal:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
+
+  // Set flag to indicate modal is opening
+  isModalOpening = true;
+  console.log('Setting isModalOpening to true');
+
+  // Special handling for Contact node
+  if (nodeData.id === 'Contact' || nodeData.category === 'Contact') {
+    console.log('Checking ContactModal and ContactModal.showModal availability:', typeof ContactModal !== 'undefined' ? 'ContactModal Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');
+    if (typeof ContactModal !== 'undefined' && ContactModal.showModal) {
+      console.log('ContactModal is available, showing modal');
+      // Close any existing modals to prevent overlap or visibility issues
+      closeNodeDescriptionModal();
+      // Attempt to ensure no other modal elements interfere
+      const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
+      existingModals.forEach(modal => modal.remove());
+      console.log('Before showing ContactModal, lingering elements count:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
+      console.log('Triggering description modal for node:', nodeData.id);
+      ContactModal.showModal();
+      return; // Exit early to prevent showing the description modal
+    } else {
+      console.log('ContactModal not available, falling back to description modal');
+    }
+  }
 
   // Get the current language
   const lang = mainCurrentLanguage || 'en';
@@ -601,12 +629,12 @@ function showNodeDescriptionModal(nodeData) {
 
   // Create modal HTML
   const modalHTML = `
-    <div class="node-description-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1000; max-width: 500px; width: 90%;">
+    <div class="node-description-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 10000; max-width: 500px; width: 90%;">
       <h2>${label}</h2>
       <p>${description}</p>
-      <button onclick="closeNodeDescriptionModal()" style="margin-top: 10px; padding: 5px 10px; background: #0077aa; color: white; border: none; cursor: pointer;">Close</button>
+      <button onclick="closeNodeDescriptionModal(event)" style="margin-top: 10px; padding: 5px 10px; background: #0077aa; color: white; border: none; cursor: pointer;">Close</button>
     </div>
-    <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;" onclick="closeNodeDescriptionModal()"></div>
+    <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;"></div>
   `;
 
   // Remove any existing modal
@@ -617,13 +645,83 @@ function showNodeDescriptionModal(nodeData) {
   modalContainer.id = 'node-description-modal-container';
   modalContainer.innerHTML = modalHTML;
   document.body.appendChild(modalContainer);
+
+  // Add debug log to confirm modal is being triggered for non-Contact nodes
+  console.log('Triggering description modal for node:', nodeData.id);
+  // Additional debug to confirm modal is in DOM
+  console.log('Modal container added to DOM, ID:', modalContainer.id);
+  console.log('Modal elements in DOM:', document.querySelectorAll('.node-description-modal').length);
+  console.log('Backdrop elements in DOM:', document.querySelectorAll('.modal-backdrop').length);
+  // Ensure modal and backdrop are visible
+  const modalElement = document.querySelector('.node-description-modal');
+  if (modalElement) {
+    modalElement.style.display = 'block';
+    modalElement.style.visibility = 'visible';
+    console.log('Modal style set to visible');
+  }
+  const backdropElement = document.querySelector('.modal-backdrop');
+  if (backdropElement) {
+    backdropElement.style.display = 'block';
+    backdropElement.style.visibility = 'visible';
+    console.log('Backdrop style set to visible');
+  }
+
+  // Add a longer delay before allowing modal to be closed to prevent accidental closures
+  setTimeout(() => {
+    const backdropElement = document.querySelector('.modal-backdrop');
+    if (backdropElement) {
+      backdropElement.onclick = function(event) {
+        if (event.target === backdropElement) {
+          console.log('Backdrop clicked directly, but not closing modal to prevent accidental closure - Event details:', event);
+          // Do not close the modal
+        } else {
+          console.log('Click on modal content, not closing - Event details:', event);
+        }
+      };
+      console.log('Backdrop click handler set after longer delay');
+    }
+    // Reset the flag after a longer delay to cover full interaction
+    setTimeout(() => {
+      isModalOpening = false;
+      console.log('Setting isModalOpening to false after longer delay');
+    }, 2000); // Increased delay
+  }, 500);
+
+  // Add global click event listener to log background clicks outside modal and backdrop
+  document.addEventListener('click', function(event) {
+    const modalElement = document.querySelector('.node-description-modal');
+    const backdropElement = document.querySelector('.modal-backdrop');
+    if (modalElement && backdropElement && !modalElement.contains(event.target) && !backdropElement.contains(event.target)) {
+      console.log('Background clicked outside modal and backdrop - Event details:', event);
+    }
+  }, true);
 }
 
 // Function to close the node description modal
-function closeNodeDescriptionModal() {
+function closeNodeDescriptionModal(event) {
+  // Bypass isModalOpening check if the event target is the close button
+  if (event && event.target && event.target.tagName === 'BUTTON' && event.target.textContent === 'Close') {
+    console.log('Close button clicked, bypassing isModalOpening check');
+  } else if (isModalOpening) {
+    console.log('Preventing modal closure as it is still opening');
+    return;
+  }
+  console.log('closeNodeDescriptionModal called - Stack trace:');
+  console.trace('Closure Stack Trace');
   const modalContainer = document.getElementById('node-description-modal-container');
   if (modalContainer) {
     modalContainer.remove();
+  }
+  // Additional cleanup to ensure no modal state persists
+  const leftoverModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
+  leftoverModals.forEach(modal => modal.remove());
+  console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
+  // Reset node selection state to allow immediate reselection
+  if (window.CytoscapeManager && typeof window.CytoscapeManager.clearSelection === 'function') {
+    window.CytoscapeManager.clearSelection();
+    console.log('Node selection state reset after modal closure');
+  } else {
+    console.log('CytoscapeManager.clearSelection not available, selection state not reset');
   }
 }
 

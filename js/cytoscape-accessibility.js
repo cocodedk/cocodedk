@@ -28,7 +28,6 @@
       retryCount++;
 
       if (retryCount <= MAX_RETRIES) {
-        console.log(`[TDD] Waiting for CytoscapeManager to be defined... (attempt ${retryCount}/${MAX_RETRIES})`);
         setTimeout(checkForDependencies, 100);
       } else {
         console.error('[TDD] CytoscapeManager not found after maximum retries. Accessibility features will not be available.');

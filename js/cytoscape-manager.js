@@ -128,9 +128,11 @@ const CytoscapeManager = (function() {
             onNodeClick: function(node) {
               // Special handling for Contact node
               if (node.id() === 'node-Contact' || node.data('category') === 'Contact') {
-                // Handle Contact node click - show the Contact modal
-                if (typeof ContactModal !== 'undefined' && ContactModal.show) {
-                  ContactModal.show();
+                // Check if ContactModal is available for contact node
+                console.log('ContactModal availability check in CytoscapeManager:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');
+                if (typeof ContactModal !== 'undefined' && ContactModal.showModal) {
+                  console.log('ContactModal is available, showing modal');
+                  ContactModal.showModal();
                 } else {
                   console.log('ContactModal not available');
                 }
@@ -801,6 +803,7 @@ const CytoscapeManager = (function() {
             if (node.id() === 'node-Contact' || node.data('category') === 'Contact') {
               // Handle Contact node click - show the Contact modal
               if (typeof ContactModal !== 'undefined' && ContactModal.show) {
+                console.log('ContactModal is available, showing modal');
                 ContactModal.show();
               } else {
                 console.log('ContactModal not available');
@@ -825,6 +828,7 @@ const CytoscapeManager = (function() {
       if (node.id() === 'node-Contact' || node.data('category') === 'Contact') {
         // Handle Contact node click - show the Contact modal
         if (typeof ContactModal !== 'undefined' && ContactModal.show) {
+          console.log('ContactModal is available, showing modal');
           ContactModal.show();
         } else {
           console.log('ContactModal not available');
@@ -1899,4 +1903,6 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 // Log successful initialization
+console.log('CytoscapeManager script loaded - Version Check 2.0');
+console.log('Checking ContactModal availability at script start:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 console.log('[TDD] CytoscapeManager module initialized');
