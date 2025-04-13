@@ -379,6 +379,7 @@ function initializeCytoscape() {
       fallbackToLegacy();
       return;
     }
+    console.log('[TDD] cy-container found, dimensions:', container.offsetWidth, 'x', container.offsetHeight);
 
     // Initialize Cytoscape with container
     console.log('[TDD] Calling CytoscapeManager.initialize()');
@@ -518,6 +519,7 @@ function initializeCytoscape() {
         cyInstance.layout({ name: 'preset' }).run();
         cyInstance.fit();
         cyInstance.center();
+        console.log('[TDD] Checking container visibility after layout:', container.style.display, container.style.visibility);
       }
     }
 
@@ -685,3 +687,11 @@ function runEndToEndTest() {
     return false;
   }
 }
+
+// Ensure Cytoscape initialization is called on page load
+document.addEventListener('DOMContentLoaded', function() {
+  if (useCytoscape) {
+    console.log('[TDD] Page loaded, initializing Cytoscape');
+    initializeCytoscape();
+  }
+});

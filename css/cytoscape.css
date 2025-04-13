@@ -7,6 +7,8 @@
   border: 1px solid #ddd; /* Border to clearly see the container boundaries */
   overflow: hidden; /* Ensure elements don't overflow the container */
   z-index: 1; /* Ensure container is visible in stacking context */
+  display: block !important; /* Force visibility */
+  visibility: visible !important; /* Force visibility */
 }
 
 /* Responsive adjustments */
@@ -28,6 +30,8 @@
   top: 0;
   left: 0;
   z-index: 2;
+  display: block !important; /* Force canvas visibility */
+  visibility: visible !important; /* Force canvas visibility */
 }
 
 /* Node and edge hover styles */
