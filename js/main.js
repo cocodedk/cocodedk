@@ -526,11 +526,9 @@ function initializeCytoscape() {
     // Register contact modal handler
     console.log('[TDD] Registering selection handlers');
     window.CytoscapeManager.registerSelectionHandlers({
-      onNodeSelected: (nodeId, nodeData) => {
-        console.log('[TDD] Node selected:', nodeId);
-        if (nodeData.category === 'Contact') {
-          showContactModal(nodeData);
-        }
+      onNodeSelected: (nodeData) => {
+        console.log('[TDD] Node selected:', nodeData);
+        showNodeDescriptionModal(nodeData);
       }
     });
 
@@ -587,6 +585,45 @@ function showContactModal(nodeData) {
     } catch (e) {
       console.error('[DEBUG] Error showing contact modal:', e);
     }
+  }
+}
+
+// Function to show a modal with node description
+function showNodeDescriptionModal(nodeData) {
+  console.log('[DEBUG] Showing description modal for:', nodeData);
+
+  // Get the current language
+  const lang = mainCurrentLanguage || 'en';
+
+  // Get node label and description
+  const label = nodeData.labels && nodeData.labels[lang] ? nodeData.labels[lang] : nodeData.label || nodeData.id;
+  const description = nodeData.translations && nodeData.translations[lang] ? nodeData.translations[lang] : 'No description available.';
+
+  // Create modal HTML
+  const modalHTML = `
+    <div class="node-description-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1000; max-width: 500px; width: 90%;">
+      <h2>${label}</h2>
+      <p>${description}</p>
+      <button onclick="closeNodeDescriptionModal()" style="margin-top: 10px; padding: 5px 10px; background: #0077aa; color: white; border: none; cursor: pointer;">Close</button>
+    </div>
+    <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;" onclick="closeNodeDescriptionModal()"></div>
+  `;
+
+  // Remove any existing modal
+  closeNodeDescriptionModal();
+
+  // Add modal to the body
+  const modalContainer = document.createElement('div');
+  modalContainer.id = 'node-description-modal-container';
+  modalContainer.innerHTML = modalHTML;
+  document.body.appendChild(modalContainer);
+}
+
+// Function to close the node description modal
+function closeNodeDescriptionModal() {
+  const modalContainer = document.getElementById('node-description-modal-container');
+  if (modalContainer) {
+    modalContainer.remove();
   }
 }
 
