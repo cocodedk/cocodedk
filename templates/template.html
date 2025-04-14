@@ -71,9 +71,13 @@
   <link rel="alternate" hreflang="ur" href="https://cocode.dk/#ur">
   <link rel="alternate" hreflang="fr" href="https://cocode.dk/#fr">
 
+  <!-- Cytoscape.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js" referrerpolicy="no-referrer"></script>
+
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
   <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
+  <link rel="stylesheet" href="css/cytoscape.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -111,6 +115,9 @@
       <h1 id="site-title">Cocode.dk</h1>
     </div>
   </div>
+
+  <!-- Add Cytoscape container after header section and before or alongside existing node container -->
+  <div id="cy-container" class="cy-container" aria-label="Interactive graph visualization of cocode.dk services"></div>
 
   <!-- Removed canvas element -->
   <div id="infoBox"></div>
@@ -165,12 +172,6 @@
       <div class="lang-code">FR</div>
     </div>
   </div>
-
-  <!-- External JavaScript -->
-  <script src="js/nodes.js?v=1.0.2"></script>
-  <script src="js/node-display.js?v=1.0.0"></script>
-  <script src="js/contact-modal.js?v=1.0.2"></script>
-  <script src="js/main.js?v=1.0.0"></script>
 
   <footer id="site-footer">
     <div class="footer-content">

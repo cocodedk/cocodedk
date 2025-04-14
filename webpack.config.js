@@ -1,12 +1,33 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './js/main.js',
+  entry: {
+    nodes: './js/nodes.js',
+    nodeDisplay: './js/node-display.js',
+    contactModal: './js/contact-modal.js',
+
+    cytoscapeStylesheet: './js/cytoscape-stylesheet.js',
+    cytoscapeEdgeStyles: './js/cytoscape-edge-styles.js',
+    cytoscapeAccessibility: './js/cytoscape-accessibility.js',
+    cytoscapeEdgeInteractions: './js/cytoscape-edge-interactions.js',
+
+    cytoscapeGraph: './js/cytoscape-graph.js',
+    cytoscapeManager: './js/cytoscape-manager.js',
+    cytoscapeNodeInteractions: './js/cytoscape-node-interactions.js',
+    cytoscapeNodeStyles: './js/cytoscape-node-styles.js',
+
+
+
+    animationPresets: './js/animation-presets.js',
+    nodeAnimation: './js/node-animation.js',
+    main: './js/main.js',
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    path: __dirname + '/dist',
     clean: true, // Cleans the output directory before emit
   },
   module: {
@@ -26,8 +47,18 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: 'index.html',
+      template: 'templates/template.html',
+      inject: 'body',
+      scriptLoading: 'defer',
+      minify: {
+        removeComments: false,
+        collapseWhitespace: false
+      },
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'css', to: 'css' }
+      ]
+    })
   ],
 };
