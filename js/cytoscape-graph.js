@@ -53,5 +53,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('Cytoscape graph initialized');
+    // console.log('Cytoscape graph initialized');
 });

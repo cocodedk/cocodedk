@@ -92,6 +92,14 @@ const CytoscapeManager = (function() {
         elements: []
       });
 
+      // Add window resize event listener to redraw the graph
+      window.addEventListener('resize', function() {
+        if (cy) {
+          cy.layout({ name: 'preset' }).run();
+          debugLog('Graph redrawn on window resize');
+        }
+      });
+
       // Set up edge hover interactions
       if (window.CytoscapeEdgeInteractions &&
           typeof window.CytoscapeEdgeInteractions.setupEdgeHoverInteractions === 'function') {
@@ -195,8 +203,10 @@ const CytoscapeManager = (function() {
    * @param {string} level - Log level (log, warn, error)
    */
   function debugLog(message, level = 'log') {
+    // Check if DEBUG_MODE is defined, otherwise set to false
+    const isDebugMode = typeof window.DEBUG_MODE !== 'undefined' ? window.DEBUG_MODE : false;
     // Check if we're in test mode - don't log in test environment
-    if(!DEBUG_MODE){
+    if(!isDebugMode){
       return;
     }
     const isTestMode = typeof jest !== 'undefined';

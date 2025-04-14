@@ -245,4 +245,23 @@ describe('Layout Functionality', () => {
     CytoscapeManager.getInstance = originalGetInstance;
     global.cy.layout = originalLayout;
   });
+
+  test('should redraw graph on window resize', () => {
+    // Given a graph with nodes
+    cy.add([
+      { data: { id: 'a' } },
+      { data: { id: 'b' } },
+      { data: { id: 'c' } }
+    ]);
+
+    // Spy on layout run method to check if it's called
+    const layoutRunSpy = jest.spyOn(cy.layout(), 'run');
+
+    // When window resize event is triggered
+    const resizeEvent = new Event('resize');
+    window.dispatchEvent(resizeEvent);
+
+    // Then layout run should be called to redraw the graph
+    expect(layoutRunSpy).toHaveBeenCalled();
+  });
 });
