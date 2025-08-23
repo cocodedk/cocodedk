@@ -38,11 +38,11 @@ Based on analysis of main.js, the following functions need to be extracted:
 - [x] Migrate function 6: `handleLanguageKeydown`
 - [x] Migrate function 7: `closeMenuOnEscape`
 - [x] Migrate function 8: `initializeCytoscape`
-- [ ] Migrate function 9: `fallbackToLegacy`
-- [ ] Migrate function 10: `showContactModal`
-- [ ] Migrate function 11: `showNodeDescriptionModal`
-- [ ] Migrate function 12: `closeNodeDescriptionModal`
-- [ ] Migrate function 13: `addTitleParallaxEffect`
+- [x] Migrate function 9: `fallbackToLegacy`
+- [x] Migrate function 10: `showContactModal`
+- [x] Migrate function 11: `showNodeDescriptionModal`
+- [x] Migrate function 12: `closeNodeDescriptionModal`
+- [x] Migrate function 13: `addTitleParallaxEffect`
 - [ ] Migrate function 14: `runEndToEndTest`
 
 ## Current Status

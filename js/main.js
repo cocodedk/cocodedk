@@ -11,6 +11,11 @@ import { setLanguage as setLanguageModule } from './main/setLanguage.js';
 import { handleLanguageKeydown as handleLanguageKeydownModule } from './main/handleLanguageKeydown.js';
 import { closeMenuOnEscape } from './main/closeMenuOnEscape.js';
 import { initializeCytoscape as initializeCytoscapeModule } from './main/initializeCytoscape.js';
+import { fallbackToLegacy as fallbackToLegacyModule } from './main/fallbackToLegacy.js';
+import { showContactModal } from './main/showContactModal.js';
+import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './main/showNodeDescriptionModal.js';
+import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
+import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -115,264 +120,60 @@ function initializeCytoscape() {
   return result;
 }
 
-// Fallback to legacy visualization if Cytoscape fails
+// Fallback to legacy visualization if Cytoscape fails - function moved to ./main/fallbackToLegacy.js
 function fallbackToLegacy() {
-  console.warn('[DEBUG] Falling back to legacy visualization');
-  // Set the implementation flag back to legacy
-  useCytoscape = false;
-  document.body.setAttribute('data-vis', 'legacy');
-
-  if (window.NodeDisplay && typeof window.NodeDisplay.initNodeDisplay === 'function') {
-    //console.log('[DEBUG] Initializing legacy NodeDisplay');
-    window.NodeDisplay.initNodeDisplay();
-  } else {
-    console.error('[DEBUG] Legacy visualization not available as fallback');
-  }
+  // Create a reference object for useCytoscape to allow modification by reference
+  const useCytoscapeRef = { value: useCytoscape };
+  fallbackToLegacyModule(useCytoscapeRef);
+  // Update the global variable with any changes
+  useCytoscape = useCytoscapeRef.value;
 }
 
-// Bridge function to show contact modal (works with both implementations)
-function showContactModal(nodeData) {
-  //console.log('[DEBUG] Showing contact modal for:', nodeData);
+// Bridge function to show contact modal (works with both implementations) - function moved to ./main/showContactModal.js
 
-  // Check if we have direct access to the ContactModal from the contact-modal.js
-  if (typeof window.ContactModal !== 'undefined' && typeof window.ContactModal.showModal === 'function') {
-    window.ContactModal.showModal();
-  } else {
-    // Fallback - try to find and click the Contact node
-    try {
-      const contactNode = document.getElementById('node-Contact');
-      if (contactNode) {
-        // Create and dispatch a synthetic click event
-        const clickEvent = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-          view: window
-        });
-        contactNode.dispatchEvent(clickEvent);
-      } else {
-        console.error('[DEBUG] Could not find Contact node element');
-      }
-    } catch (e) {
-      console.error('[DEBUG] Error showing contact modal:', e);
-    }
-  }
-}
-
-// Function to show a modal with node description
+// Function to show a modal with node description - function moved to ./main/showNodeDescriptionModal.js
 function showNodeDescriptionModal(nodeData) {
+  // Create reference objects for state variables
+  const currentModalRef = { value: currentModal };
+  const isModalOpeningRef = { value: isModalOpening };
+  const currentEscapeKeyHandlerRef = { value: currentEscapeKeyHandler };
 
-  // Aggressive cleanup of any existing modals before starting
-  const existingModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal, #node-description-modal-container');
-  existingModals.forEach(modal => modal.remove());
-  //console.log('Aggressive cleanup of existing modals before starting, removed:', existingModals.length, 'elements');
-  currentModal = null;
+  showNodeDescriptionModalModule(
+    nodeData,
+    mainCurrentLanguage,
+    currentModalRef,
+    isModalOpeningRef,
+    currentEscapeKeyHandlerRef,
+    closeNodeDescriptionModal,
+    addTitleParallaxEffect
+  );
 
-  //console.log('[DEBUG] Showing description modal for:', nodeData);
-  //console.log('Checking ContactModal availability at start of showNodeDescriptionModal:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
-
-  // Set flag to indicate modal is opening
-  isModalOpening = true;
-  //console.log('Setting isModalOpening to true');
-
-  // Special handling for Contact node
-  if (nodeData.id === 'Contact' || nodeData.category === 'Contact') {
-    //console.log('Checking ContactModal and ContactModal.showModal availability:', typeof ContactModal !== 'undefined' ? 'ContactModal Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');
-    if (typeof ContactModal !== 'undefined' && ContactModal.showModal) {
-      //console.log('ContactModal is available, showing modal');
-      // Close any existing modals to prevent overlap or visibility issues
-      closeNodeDescriptionModal();
-      // Attempt to ensure no other modal elements interfere
-      const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
-      existingModals.forEach(modal => modal.remove());
-      //console.log('Before showing ContactModal, lingering elements count:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
-      //console.log('Triggering description modal for node:', nodeData.id);
-      ContactModal.showModal();
-      return; // Exit early to prevent showing the description modal
-    } else {
-      //console.log('ContactModal not available, falling back to description modal');
-    }
-  }
-
-  // Get the current language
-  const lang = mainCurrentLanguage || 'en';
-
-  // Get node label and description
-  const label = nodeData.labels && nodeData.labels[lang] ? nodeData.labels[lang] : nodeData.label || nodeData.id;
-  const description = nodeData.translations && nodeData.translations[lang] ? nodeData.translations[lang] : 'No description available.';
-
-  // Create modal HTML with legacy styling
-  const modalHTML = `
-    <div class="node-modal-overlay" onclick="closeNodeDescriptionModal(event)"></div>
-    <div class="node-modal" ${(mainCurrentLanguage === 'ar' || mainCurrentLanguage === 'fa' || mainCurrentLanguage === 'ur') ? 'dir="rtl"' : 'dir="ltr"'}>
-      <button class="node-modal-close" onclick="closeNodeDescriptionModal(event)" aria-label="Close">&times;</button>
-      <h2>${label}</h2>
-      <div class="node-modal-content">${description}</div>
-    </div>
-  `;
-
-  // Remove any existing modal
-  closeNodeDescriptionModal();
-
-  // Add modal to the body
-  const modalContainer = document.createElement('div');
-  modalContainer.id = 'node-description-modal-container';
-  modalContainer.innerHTML = modalHTML;
-  document.body.appendChild(modalContainer);
-
-  // Add escape key event listener
-  currentEscapeKeyHandler = (e) => {
-    if (e.key === 'Escape') {
-      // Create a synthetic event that mimics the close button to bypass isModalOpening check
-      const syntheticEvent = {
-        preventDefault: () => {},
-        stopPropagation: () => {},
-        target: { classList: { contains: () => true } } // Mimics node-modal-close class
-      };
-      closeNodeDescriptionModal(syntheticEvent);
-    }
-  };
-  document.addEventListener('keydown', currentEscapeKeyHandler);
-
-  // Add debug log to confirm modal is being triggered for non-Contact nodes
-  //console.log('Triggering description modal for node:', nodeData.id);
-  // Additional debug to confirm modal is in DOM
-  //console.log('Modal container added to DOM, ID:', modalContainer.id);
-  //console.log('Modal elements in DOM:', document.querySelectorAll('.node-description-modal').length);
-  //console.log('Backdrop elements in DOM:', document.querySelectorAll('.modal-backdrop').length);
-  // Ensure modal and backdrop are visible
-  const modalElement = document.querySelector('.node-modal');
-  if (modalElement) {
-    modalElement.style.display = 'block';
-    modalElement.style.visibility = 'visible';
-    //console.log('Modal style set to visible');
-
-    // Add parallax effect to title (desktop only)
-    addTitleParallaxEffect(modalElement);
-  }
-  const backdropElement = document.querySelector('.modal-backdrop');
-  if (backdropElement) {
-    backdropElement.style.display = 'block';
-    backdropElement.style.visibility = 'visible';
-    //console.log('Backdrop style set to visible');
-  }
-
-  // Add a longer delay before allowing modal to be closed to prevent accidental closures
-  setTimeout(() => {
-    const backdropElement = document.querySelector('.modal-backdrop');
-    if (backdropElement) {
-      backdropElement.onclick = function(event) {
-        if (event.target === backdropElement) {
-          //console.log('Backdrop clicked directly, but not closing modal to prevent accidental closure - Event details:', event);
-          // Do not close the modal
-        } else {
-          //console.log('Click on modal content, not closing - Event details:', event);
-        }
-      };
-      //console.log('Backdrop click handler set after longer delay');
-    }
-    // Reset the flag after a shorter delay - 2 seconds was too long
-    setTimeout(() => {
-      isModalOpening = false;
-      //console.log('Setting isModalOpening to false after delay');
-    }, 500); // Reduced from 2000ms to 500ms
-  }, 500);
-
-  // Add global click event listener to log background clicks outside modal and backdrop
-  document.addEventListener('click', function(event) {
-    const modalElement = document.querySelector('.node-description-modal');
-    const backdropElement = document.querySelector('.modal-backdrop');
-    if (modalElement && backdropElement && !modalElement.contains(event.target) && !backdropElement.contains(event.target)) {
-      //console.log('Background clicked outside modal and backdrop - Event details:', event);
-    }
-  }, true);
+  // Update global variables with any changes
+  currentModal = currentModalRef.value;
+  isModalOpening = isModalOpeningRef.value;
+  currentEscapeKeyHandler = currentEscapeKeyHandlerRef.value;
 }
 
 // Store the current escape key handler for cleanup
 let currentEscapeKeyHandler = null;
 
-// Function to close the node description modal
+// Function to close the node description modal - function moved to ./main/closeNodeDescriptionModal.js
 function closeNodeDescriptionModal(event) {
-  // Prevent event bubbling and default behavior
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
+  // Create reference objects for state variables
+  const isModalOpeningRef = { value: isModalOpening };
+  const currentEscapeKeyHandlerRef = { value: currentEscapeKeyHandler };
 
-    // Bypass isModalOpening check if the event target is the close button
-  if (event && event.target && (
-    (event.target.tagName === 'BUTTON' && (event.target.textContent === 'Close' || event.target.textContent === '×' || event.target.innerHTML === '&times;')) ||
-    event.target.classList.contains('node-modal-close')
-  )) {
-    // console.log('Close button detected, bypassing isModalOpening check');
-  } else if (isModalOpening) {
-    // console.log('Preventing modal closure as it is still opening');
-    return;
-  }
-  // console.log('closeNodeDescriptionModal called - Stack trace:');
-  // console.trace('Closure Stack Trace');
-  const modalContainer = document.getElementById('node-description-modal-container');
-  if (modalContainer) {
-    modalContainer.remove();
-  }
+  closeNodeDescriptionModalModule(event, isModalOpeningRef, currentEscapeKeyHandlerRef);
 
-  // Clean up escape key event listener
-  if (currentEscapeKeyHandler) {
-    document.removeEventListener('keydown', currentEscapeKeyHandler);
-    currentEscapeKeyHandler = null;
-  }
-
-  // Additional cleanup to ensure no modal state persists
-  const leftoverModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal');
-  leftoverModals.forEach(modal => modal.remove());
-  // console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
-  // Reset node selection state to allow immediate reselection
-  if (window.CytoscapeManager && typeof window.CytoscapeManager.clearSelection === 'function') {
-    window.CytoscapeManager.clearSelection();
-    // console.log('Node selection state reset after modal closure');
-  } else {
-    // console.log('CytoscapeManager.clearSelection not available, selection state not reset');
-  }
+  // Update global variables with any changes
+  isModalOpening = isModalOpeningRef.value;
+  currentEscapeKeyHandler = currentEscapeKeyHandlerRef.value;
 }
 
 // Expose the function globally so it can be called from HTML onclick handlers
 window.closeNodeDescriptionModal = closeNodeDescriptionModal;
 
-// Add parallax effect to modal title
-function addTitleParallaxEffect(modal) {
-  const title = modal.querySelector('h2');
-
-  if (!title || !modal) return;
-
-  // Skip parallax effect for mobile devices
-  if (window.innerWidth <= 768) {
-    // Reset the title styling to ensure it displays properly on mobile
-    title.style.transform = 'translateX(-50%)';
-    title.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.2))';
-    return;
-  }
-
-  modal.addEventListener('mousemove', (e) => {
-    const rect = modal.getBoundingClientRect();
-    const x = e.clientX - rect.left; // X position within the modal
-    const y = e.clientY - rect.top;  // Y position within the modal
-
-    // Calculate movement (limited to small range)
-    const moveX = (x - rect.width / 2) / 50;
-    const moveY = (y - rect.height / 2) / 50;
-
-    // Apply the transform - subtle movement based on mouse position
-    title.style.transform = `translateX(calc(-50% + ${moveX}px)) translateY(${moveY}px)`;
-
-    // Also adjust the glow direction slightly
-    title.style.filter = `drop-shadow(${moveX/2}px ${moveY/2}px 15px rgba(255,255,255,0.2))`;
-  });
-
-  // Reset when mouse leaves
-  modal.addEventListener('mouseleave', () => {
-    title.style.transform = 'translateX(-50%) translateY(0)';
-    title.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.2))';
-  });
-}
+// Add parallax effect to modal title - function moved to ./main/addTitleParallaxEffect.js
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
