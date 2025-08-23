@@ -9,6 +9,7 @@ import { testCytoscapeImplementation } from './main/testCytoscapeImplementation.
 import { testLegacyImplementation } from './main/testLegacyImplementation.js';
 import { setLanguage as setLanguageModule } from './main/setLanguage.js';
 import { handleLanguageKeydown as handleLanguageKeydownModule } from './main/handleLanguageKeydown.js';
+import { closeMenuOnEscape } from './main/closeMenuOnEscape.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -95,17 +96,7 @@ function handleLanguageKeydown(event, lang) {
   handleLanguageKeydownModule(event, lang, setLanguage);
 }
 
-// Close menu on escape key
-function closeMenuOnEscape(e) {
-  if (e.key === 'Escape') {
-    const langMenu = document.getElementById('languageSelector');
-    const langToggle = document.getElementById('langToggle');
-
-    langMenu.classList.remove('active');
-    langToggle.setAttribute('aria-expanded', 'false');
-    document.removeEventListener('keydown', closeMenuOnEscape);
-  }
-}
+// Close menu on escape key - function moved to ./main/closeMenuOnEscape.js
 
 // Initialize Cytoscape visualization
 function initializeCytoscape() {
