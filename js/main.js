@@ -682,6 +682,20 @@ function showNodeDescriptionModal(nodeData) {
   modalContainer.innerHTML = modalHTML;
   document.body.appendChild(modalContainer);
 
+  // Add escape key event listener
+  currentEscapeKeyHandler = (e) => {
+    if (e.key === 'Escape') {
+      // Create a synthetic event that mimics the close button to bypass isModalOpening check
+      const syntheticEvent = {
+        preventDefault: () => {},
+        stopPropagation: () => {},
+        target: { classList: { contains: () => true } } // Mimics node-modal-close class
+      };
+      closeNodeDescriptionModal(syntheticEvent);
+    }
+  };
+  document.addEventListener('keydown', currentEscapeKeyHandler);
+
   // Add debug log to confirm modal is being triggered for non-Contact nodes
   //console.log('Triggering description modal for node:', nodeData.id);
   // Additional debug to confirm modal is in DOM
@@ -736,6 +750,9 @@ function showNodeDescriptionModal(nodeData) {
   }, true);
 }
 
+// Store the current escape key handler for cleanup
+let currentEscapeKeyHandler = null;
+
 // Function to close the node description modal
 function closeNodeDescriptionModal(event) {
   // Prevent event bubbling and default behavior
@@ -760,6 +777,13 @@ function closeNodeDescriptionModal(event) {
   if (modalContainer) {
     modalContainer.remove();
   }
+
+  // Clean up escape key event listener
+  if (currentEscapeKeyHandler) {
+    document.removeEventListener('keydown', currentEscapeKeyHandler);
+    currentEscapeKeyHandler = null;
+  }
+
   // Additional cleanup to ensure no modal state persists
   const leftoverModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal');
   leftoverModals.forEach(modal => modal.remove());
