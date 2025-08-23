@@ -22,7 +22,8 @@ window.categoryHoverColors = {
   'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
   'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
   'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
-  'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' }
+  'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' },
+  'GitHub': { fill: '#24292e', stroke: '#586069', text: '#ffffff' }
 };
 
 // Define nodes with updated structure
@@ -492,6 +493,37 @@ window.nodes = [
         },
         category: 'Software'
     },
+    {
+        id: 'GitHub',
+        x: 0, y: 75, r: 40,
+        labels: {
+            en: 'GitHub',
+            da: 'GitHub',
+            es: 'GitHub',
+            zh: 'GitHub',
+            ja: 'GitHub',
+            de: 'GitHub',
+            ar: 'GitHub',
+            fa: 'GitHub',
+            hi: 'GitHub',
+            ur: 'GitHub',
+            fr: 'GitHub'
+        },
+        translations: {
+            en: 'Open source projects and code repositories including YouTube audio extractor, WhisperFrame AI toolkit, code scanner MCP server, and various development tools. Visit @cocodedk on GitHub.',
+            da: 'Open source-projekter og kodelagre inklusive YouTube-lydudtrækker, WhisperFrame AI-værktøjssæt, kodescanner MCP-server og forskellige udviklingsværktøjer. Besøg @cocodedk på GitHub.',
+            es: 'Proyectos de código abierto y repositorios de código incluyendo extractor de audio de YouTube, kit de herramientas AI WhisperFrame, servidor MCP de escáner de código y varias herramientas de desarrollo. Visita @cocodedk en GitHub.',
+            zh: '开源项目和代码仓库，包括YouTube音频提取器、WhisperFrame AI工具包、代码扫描器MCP服务器以及各种开发工具。访问GitHub上的@cocodedk。',
+            ja: 'YouTube音声抽出器、WhisperFrame AIツールキット、コードスキャナーMCPサーバー、その他の開発ツールを含むオープンソースプロジェクトとコードリポジトリ。GitHubの@cocodedkをご覧ください。',
+            de: 'Open-Source-Projekte und Code-Repositories einschließlich YouTube-Audio-Extraktor, WhisperFrame AI-Toolkit, Code-Scanner MCP-Server und verschiedene Entwicklungstools. Besuchen Sie @cocodedk auf GitHub.',
+            ar: 'مشاريع مفتوحة المصدر ومستودعات الكود بما في ذلك مستخرج الصوت من YouTube، مجموعة أدوات WhisperFrame AI، خادم MCP لماسح الكود، وأدوات تطوير متنوعة. قم بزيارة @cocodedk على GitHub.',
+            fa: 'پروژه‌های متن‌باز و مخازن کد شامل استخراج‌کننده صوتی یوتیوب، جعبه‌ابزار هوش مصنوعی WhisperFrame، سرور MCP اسکنر کد و ابزارهای توسعه مختلف. از @cocodedk در GitHub بازدید کنید.',
+            hi: 'ओपन सोर्स प्रोजेक्ट्स और कोड रिपॉजिटरी जिसमें YouTube ऑडियो एक्सट्रैक्टर, WhisperFrame AI टूलकिट, कोड स्कैनर MCP सर्वर और विभिन्न डेवलपमेंट टूल्स शामिल हैं। GitHub पर @cocodedk पर जाएं।',
+            ur: 'اوپن سورس پراجیکٹس اور کوڈ ریپازٹریز بشمول YouTube آڈیو ایکسٹریکٹر، WhisperFrame AI ٹول کٹ، کوڈ سکینر MCP سرور اور مختلف ڈیولپمنٹ ٹولز۔ GitHub پر @cocodedk ملاحظہ کریں۔',
+            fr: 'Projets open source et dépôts de code incluant l\'extracteur audio YouTube, la boîte à outils AI WhisperFrame, le serveur MCP de scanner de code et divers outils de développement. Visitez @cocodedk sur GitHub.'
+        },
+        category: 'GitHub'
+    },
 ];
 
 // Define links between nodes
@@ -502,6 +534,7 @@ window.links = [
     ['cocode.dk', 'Clients'],
     ['cocode.dk', 'Contact'],
     ['cocode.dk', 'Podcast'],
+    ['cocode.dk', 'GitHub'],
 
     // Software connections
     ['Software', 'Python'],
