@@ -18,15 +18,15 @@
 
 // Category-specific hover colors
 window.categoryHoverColors = {
-  'cocode.dk': { fill: '#0077aa', stroke: '#33eeff', text: '#ffffff' },
-  'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
-  'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
-  'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
-  'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' },
-  'GitHub': { fill: '#161b22', stroke: '#f0f6fc', text: '#000000' },
-  'Flask': { fill: '#000000', stroke: '#ffffff', text: '#ffffff' },
-  'TypeScript': { fill: '#3178c6', stroke: '#5ba0f2', text: '#ffffff' },
-  'LinkedIn': { fill: '#0a66c2', stroke: '#378fe9', text: '#ffffff' }
+//   'cocode.dk': { fill: '#0077aa', stroke: '#33eeff', text: '#ffffff' },
+//   'Software': { fill: '#1188ee', stroke: '#66ffff', text: '#ffffff' },
+//   'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
+//   'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
+//   'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' },
+//   'GitHub': { fill: '#161b22', stroke: '#f0f6fc', text: '#ffffff' },
+//   'Flask': { fill: '#000000', stroke: '#ffffff', text: '#ffffff' },
+//   'TypeScript': { fill: '#3178c6', stroke: '#5ba0f2', text: '#ffffff' },
+//   'LinkedIn': { fill: '#0a66c2', stroke: '#378fe9', text: '#ffffff' }
 };
 
 // Define nodes with updated structure

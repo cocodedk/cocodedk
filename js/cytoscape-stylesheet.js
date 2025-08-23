@@ -4,6 +4,7 @@
  * @return {array} Array of style objects
  */
 function getStylesheet() {
+  // Base styles array
   return [
     // Base node styling
     {
@@ -106,6 +107,46 @@ function getStylesheet() {
         'border-color': '#f39c12',
         'color': '#000000',
         'text-outline-width': 0 // Remove text outline for dark text
+      }
+    },
+
+    // Node category-specific styling: GitHub
+    {
+      selector: 'node.GitHub',
+      style: {
+        'background-color': '#161b22',
+        'border-color': '#f0f6fc',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Flask
+    {
+      selector: 'node.Flask',
+      style: {
+        'background-color': '#000000',
+        'border-color': '#ffffff',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: TypeScript
+    {
+      selector: 'node.TypeScript',
+      style: {
+        'background-color': '#3178c6',
+        'border-color': '#5ba0f2',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: LinkedIn
+    {
+      selector: 'node.LinkedIn',
+      style: {
+        'background-color': '#0a66c2',
+        'border-color': '#378fe9',
+        'color': '#ffffff'
       }
     },
 
