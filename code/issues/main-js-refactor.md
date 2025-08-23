@@ -31,7 +31,7 @@ Based on analysis of main.js, the following functions need to be extracted:
 ## Progress Checklist
 - [x] Create subfolder structure
 - [x] Migrate function 1: `toggleImplementation`
-- [ ] Migrate function 2: `testCurrentVisualization`
+- [x] Migrate function 2: `testCurrentVisualization`
 - [ ] Migrate function 3: `testCytoscapeImplementation`
 - [ ] Migrate function 4: `testLegacyImplementation`
 - [ ] Migrate function 5: `setLanguage`
