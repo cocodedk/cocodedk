@@ -625,7 +625,7 @@ function showContactModal(nodeData) {
 function showNodeDescriptionModal(nodeData) {
 
   // Aggressive cleanup of any existing modals before starting
-  const existingModals = document.querySelectorAll('.modal-backdrop, .node-description-modal, #node-description-modal-container');
+  const existingModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal, #node-description-modal-container');
   existingModals.forEach(modal => modal.remove());
   //console.log('Aggressive cleanup of existing modals before starting, removed:', existingModals.length, 'elements');
   currentModal = null;
@@ -663,14 +663,14 @@ function showNodeDescriptionModal(nodeData) {
   const label = nodeData.labels && nodeData.labels[lang] ? nodeData.labels[lang] : nodeData.label || nodeData.id;
   const description = nodeData.translations && nodeData.translations[lang] ? nodeData.translations[lang] : 'No description available.';
 
-  // Create modal HTML
+  // Create modal HTML with legacy styling
   const modalHTML = `
-    <div class="node-description-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 10000; max-width: 500px; width: 90%;">
+    <div class="node-modal-overlay" onclick="closeNodeDescriptionModal(event)"></div>
+    <div class="node-modal" ${(mainCurrentLanguage === 'ar' || mainCurrentLanguage === 'fa' || mainCurrentLanguage === 'ur') ? 'dir="rtl"' : 'dir="ltr"'}>
+      <button class="node-modal-close" onclick="closeNodeDescriptionModal(event)" aria-label="Close">&times;</button>
       <h2>${label}</h2>
-      <p>${description}</p>
-      <button onclick="closeNodeDescriptionModal(event)" style="margin-top: 10px; padding: 5px 10px; background: #0077aa; color: white; border: none; cursor: pointer;">Close</button>
+      <div class="node-modal-content">${description}</div>
     </div>
-    <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;"></div>
   `;
 
   // Remove any existing modal
@@ -689,11 +689,14 @@ function showNodeDescriptionModal(nodeData) {
   //console.log('Modal elements in DOM:', document.querySelectorAll('.node-description-modal').length);
   //console.log('Backdrop elements in DOM:', document.querySelectorAll('.modal-backdrop').length);
   // Ensure modal and backdrop are visible
-  const modalElement = document.querySelector('.node-description-modal');
+  const modalElement = document.querySelector('.node-modal');
   if (modalElement) {
     modalElement.style.display = 'block';
     modalElement.style.visibility = 'visible';
     //console.log('Modal style set to visible');
+
+    // Add parallax effect to title (desktop only)
+    addTitleParallaxEffect(modalElement);
   }
   const backdropElement = document.querySelector('.modal-backdrop');
   if (backdropElement) {
@@ -716,11 +719,11 @@ function showNodeDescriptionModal(nodeData) {
       };
       //console.log('Backdrop click handler set after longer delay');
     }
-    // Reset the flag after a longer delay to cover full interaction
+    // Reset the flag after a shorter delay - 2 seconds was too long
     setTimeout(() => {
       isModalOpening = false;
-      //console.log('Setting isModalOpening to false after longer delay');
-    }, 2000); // Increased delay
+      //console.log('Setting isModalOpening to false after delay');
+    }, 500); // Reduced from 2000ms to 500ms
   }, 500);
 
   // Add global click event listener to log background clicks outside modal and backdrop
@@ -735,9 +738,18 @@ function showNodeDescriptionModal(nodeData) {
 
 // Function to close the node description modal
 function closeNodeDescriptionModal(event) {
-  // Bypass isModalOpening check if the event target is the close button
-  if (event && event.target && event.target.tagName === 'BUTTON' && event.target.textContent === 'Close') {
-    // console.log('Close button clicked, bypassing isModalOpening check');
+  // Prevent event bubbling and default behavior
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+    // Bypass isModalOpening check if the event target is the close button
+  if (event && event.target && (
+    (event.target.tagName === 'BUTTON' && (event.target.textContent === 'Close' || event.target.textContent === '×' || event.target.innerHTML === '&times;')) ||
+    event.target.classList.contains('node-modal-close')
+  )) {
+    // console.log('Close button detected, bypassing isModalOpening check');
   } else if (isModalOpening) {
     // console.log('Preventing modal closure as it is still opening');
     return;
@@ -749,7 +761,7 @@ function closeNodeDescriptionModal(event) {
     modalContainer.remove();
   }
   // Additional cleanup to ensure no modal state persists
-  const leftoverModals = document.querySelectorAll('.modal-backdrop, .node-description-modal');
+  const leftoverModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal');
   leftoverModals.forEach(modal => modal.remove());
   // console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
   // Reset node selection state to allow immediate reselection
@@ -763,6 +775,43 @@ function closeNodeDescriptionModal(event) {
 
 // Expose the function globally so it can be called from HTML onclick handlers
 window.closeNodeDescriptionModal = closeNodeDescriptionModal;
+
+// Add parallax effect to modal title
+function addTitleParallaxEffect(modal) {
+  const title = modal.querySelector('h2');
+
+  if (!title || !modal) return;
+
+  // Skip parallax effect for mobile devices
+  if (window.innerWidth <= 768) {
+    // Reset the title styling to ensure it displays properly on mobile
+    title.style.transform = 'translateX(-50%)';
+    title.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.2))';
+    return;
+  }
+
+  modal.addEventListener('mousemove', (e) => {
+    const rect = modal.getBoundingClientRect();
+    const x = e.clientX - rect.left; // X position within the modal
+    const y = e.clientY - rect.top;  // Y position within the modal
+
+    // Calculate movement (limited to small range)
+    const moveX = (x - rect.width / 2) / 50;
+    const moveY = (y - rect.height / 2) / 50;
+
+    // Apply the transform - subtle movement based on mouse position
+    title.style.transform = `translateX(calc(-50% + ${moveX}px)) translateY(${moveY}px)`;
+
+    // Also adjust the glow direction slightly
+    title.style.filter = `drop-shadow(${moveX/2}px ${moveY/2}px 15px rgba(255,255,255,0.2))`;
+  });
+
+  // Reset when mouse leaves
+  modal.addEventListener('mouseleave', () => {
+    title.style.transform = 'translateX(-50%) translateY(0)';
+    title.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.2))';
+  });
+}
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {

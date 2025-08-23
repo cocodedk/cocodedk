@@ -96,6 +96,224 @@ canvas {
   }
 }
 
+/* Legacy Modal Styles - Beautiful animated modal */
+.node-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a3d7c 0%, #2a5298 50%, #1a3d7c 100%);
+  color: #ffffff;
+  z-index: 1010;
+  display: block;
+  overflow-y: auto;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.node-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1012;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  animation: pulse 2s infinite;
+}
+
+.node-modal-close:hover, .node-modal-close:focus {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.node-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+.node-modal h2 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  /* Text gradient effect */
+  background: linear-gradient(135deg, #ffffff 10%, #a0cfff 50%, #ffffff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Text shadow for 3D depth effect */
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.4),
+    0 2px 5px rgba(0,0,0,0.3),
+    0 4px 10px rgba(0,0,0,0.2);
+
+  /* Glow effect */
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+
+  /* Animation */
+  animation: floatTitle 6s ease-in-out infinite, titleReveal 1.2s ease-out forwards;
+  transform-origin: center;
+
+  /* Ensure it's above other elements */
+  z-index: 1011;
+}
+
+/* Floating animation */
+@keyframes floatTitle {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Reveal animation */
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Add a decorative underline that animates in */
+.node-modal h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #a0cfff, transparent);
+  animation: expandLine 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes expandLine {
+  0% { width: 0; }
+  100% { width: 80%; }
+}
+
+.node-modal[dir="rtl"] .node-modal-close {
+  right: auto;
+  left: 20px;
+}
+
+.node-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1009;
+  backdrop-filter: blur(3px);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .node-modal-content {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .node-modal h2 {
+    font-size: 32px;
+    top: 10%;
+    /* Simplify effects for mobile */
+    background: linear-gradient(135deg, #ffffff 10%, #a0cfff 50%, #ffffff 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .node-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  .node-modal-content {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 95%;
+  }
+
+  .node-modal h2 {
+    font-size: 28px;
+    top: 10%;
+    /* Further simplify for smaller screens */
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+
+  .node-modal-close {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+}
+
+/* iOS Safari specific fix for viewport height */
+@supports (-webkit-touch-callout: none) {
+  .node-modal {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
+}
+
 /* ===== INFOBOX ===== */
 #infoBox {
   display: none; /* Hidden as we're using modal instead */

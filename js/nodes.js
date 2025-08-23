@@ -23,7 +23,10 @@ window.categoryHoverColors = {
   'Cybersecurity': { fill: '#ee0055', stroke: '#ff99aa', text: '#ffffff' },
   'Clients': { fill: '#ffaa00', stroke: '#ffdd55', text: '#000000' },
   'Contact': { fill: '#f7dc6f', stroke: '#f5b041', text: '#000000' },
-  'GitHub': { fill: '#24292e', stroke: '#586069', text: '#ffffff' }
+  'GitHub': { fill: '#24292e', stroke: '#586069', text: '#ffffff' },
+  'Flask': { fill: '#000000', stroke: '#ffffff', text: '#ffffff' },
+  'TypeScript': { fill: '#3178c6', stroke: '#5ba0f2', text: '#ffffff' },
+  'LinkedIn': { fill: '#0a66c2', stroke: '#378fe9', text: '#ffffff' }
 };
 
 // Define nodes with updated structure
@@ -401,37 +404,6 @@ window.nodes = [
         category: 'Cybersecurity'
         },
         {
-        id: 'Podcast',
-        x: -50, y: 100, r: 30,
-        labels: {
-            en: 'Podcast',
-            da: 'Podcast',
-            es: 'Podcast',
-            zh: '播客',
-            ja: 'ポッドキャスト',
-            de: 'Podcast',
-            ar: 'بودكاست',
-            fa: 'پادکست',
-            hi: 'पॉडकास्ट',
-            ur: 'پوڈکاسٹ',
-            fr: 'Podcast'
-        },
-        translations: {
-            en: 'Tech and security podcast discussions covering a range of IT topics like modern development, security best practices, and digital business.',
-            da: 'Tech- og sikkerhedspodcast-diskussioner, der dækker en række IT-emner som moderne udvikling, sikkerhedsbedste praksis og digital forretning.',
-            es: 'Discusiones de podcast sobre tecnología y seguridad que cubren una variedad de temas de TI como desarrollo moderno, mejores prácticas de seguridad y negocios digitales.',
-            zh: '技术和安全播客讨论，涵盖现代开发、安全最佳实践和数字商业等IT主题。',
-            ja: '最新の開発、セキュリティのベストプラクティス、デジタルビジネスなど、幅広いITトピックをカバーするテクノロジーとセキュリティのポッドキャスト討論。',
-            de: 'Tech- und Sicherheits-Podcast-Diskussionen, die eine Reihe von IT-Themen wie moderne Entwicklung, Sicherheits-Best-Practices und digitales Geschäft abdecken.',
-            ar: 'مناقشات بودكاست تقنية وأمنية تغطي مجموعة من موضوعات تكنولوجيا المعلومات مثل التطوير الحديث وأفضل ممارسات الأمان والأعمال الرقمية.',
-            fa: 'بحث‌های پادکستی فناوری و امنیت که طیف وسیعی از موضوعات فناوری اطلاعات مانند توسعه مدرن، بهترین شیوه‌های امنیتی و کسب‌وکار دیجیتال را پوشش می‌دهد.',
-            hi: 'तकनीकी और सुरक्षा पॉडकास्ट चर्चाएँ जो आधुनिक विकास, सुरक्षा सर्वोत्तम प्रथाओं और डिजिटल व्यवसाय जैसे विभिन्न आईटी विषयों को कवर करती हैं।',
-            ur: 'ٹیک اور سیکیورٹی پوڈکاسٹ مباحثے جو جدید ترقی، سیکیورٹی کے بہترین طریقوں، اور ڈیجیٹل کاروبار جیسے آئی ٹی موضوعات کا احاطہ کرتے ہیں۔',
-            fr: 'Discussions de podcast sur la technologie et la sécurité couvrant une gamme de sujets informatiques comme le développement moderne, les meilleures pratiques de sécurité et les affaires numériques.'
-        },
-        category: 'cocode.dk'
-        },
-        {
         id: 'Vibe Coding',
         x: 150, y: -120, r: 30,
         labels: {
@@ -524,6 +496,99 @@ window.nodes = [
         },
         category: 'GitHub'
     },
+    {
+        id: 'Flask',
+        x: -75, y: -50, r: 35,
+        labels: {
+            en: 'Flask',
+            da: 'Flask',
+            es: 'Flask',
+            zh: 'Flask',
+            ja: 'Flask',
+            de: 'Flask',
+            ar: 'Flask',
+            fa: 'Flask',
+            hi: 'Flask',
+            ur: 'Flask',
+            fr: 'Flask'
+        },
+        translations: {
+            en: 'Flask is a lightweight WSGI web application framework in Python. Used for building scalable web applications, REST APIs, and microservices with minimal boilerplate code.',
+            da: 'Flask er et letvægts WSGI webapplikationsframework i Python. Bruges til at bygge skalerbare webapplikationer, REST API\'er og mikroservices med minimal boilerplate-kode.',
+            es: 'Flask es un framework de aplicaciones web WSGI ligero en Python. Utilizado para construir aplicaciones web escalables, APIs REST y microservicios con código repetitivo mínimo.',
+            zh: 'Flask是Python中的轻量级WSGI Web应用程序框架。用于构建可扩展的Web应用程序、REST API和微服务，具有最少的样板代码。',
+            ja: 'FlaskはPythonの軽量WSGIウェブアプリケーションフレームワークです。最小限のボイラープレートコードでスケーラブルなウェブアプリケーション、REST API、マイクロサービスの構築に使用されます。',
+            de: 'Flask ist ein leichtgewichtiges WSGI-Webanwendungsframework in Python. Wird zum Erstellen skalierbarer Webanwendungen, REST-APIs und Microservices mit minimalem Boilerplate-Code verwendet.',
+            ar: 'Flask هو إطار عمل تطبيقات ويب WSGI خفيف الوزن في Python. يُستخدم لبناء تطبيقات ويب قابلة للتوسع وواجهات برمجة تطبيقات REST والخدمات المصغرة بأقل قدر من الكود النموذجي.',
+            fa: 'Flask یک چارچوب برنامه‌های وب WSGI سبک در Python است. برای ساخت برنامه‌های وب مقیاس‌پذیر، API های REST و میکروسرویس‌ها با حداقل کد تکراری استفاده می‌شود.',
+            hi: 'Flask Python में एक हल्का WSGI वेब एप्लिकेशन फ्रेमवर्क है। न्यूनतम बॉयलरप्लेट कोड के साथ स्केलेबल वेब एप्लिकेशन, REST API और माइक्रोसर्विसेज बनाने के लिए उपयोग किया जाता है।',
+            ur: 'Flask Python میں ایک ہلکا WSGI ویب ایپلیکیشن فریم ورک ہے۔ کم سے کم بوائلرپلیٹ کوڈ کے ساتھ اسکیلیبل ویب ایپلیکیشنز، REST APIs اور مائیکرو سروسز بنانے کے لیے استعمال ہوتا ہے۔',
+            fr: 'Flask est un framework d\'applications web WSGI léger en Python. Utilisé pour construire des applications web évolutives, des API REST et des microservices avec un code répétitif minimal.'
+        },
+        category: 'Flask'
+    },
+    {
+        id: 'TypeScript',
+        x: 75, y: -50, r: 35,
+        labels: {
+            en: 'TypeScript',
+            da: 'TypeScript',
+            es: 'TypeScript',
+            zh: 'TypeScript',
+            ja: 'TypeScript',
+            de: 'TypeScript',
+            ar: 'TypeScript',
+            fa: 'TypeScript',
+            hi: 'TypeScript',
+            ur: 'TypeScript',
+            fr: 'TypeScript'
+        },
+        translations: {
+            en: 'TypeScript is a strongly typed programming language that builds on JavaScript. Provides static type definitions, enhanced IDE support, and better code maintainability for large-scale applications.',
+            da: 'TypeScript er et stærkt typet programmeringssprog, der bygger på JavaScript. Giver statiske typedefinitioner, forbedret IDE-understøttelse og bedre kodemaintainability for store applikationer.',
+            es: 'TypeScript es un lenguaje de programación fuertemente tipado que se basa en JavaScript. Proporciona definiciones de tipos estáticos, soporte IDE mejorado y mejor mantenibilidad del código para aplicaciones a gran escala.',
+            zh: 'TypeScript是一种基于JavaScript构建的强类型编程语言。为大规模应用程序提供静态类型定义、增强的IDE支持和更好的代码可维护性。',
+            ja: 'TypeScriptはJavaScriptをベースにした強く型付けされたプログラミング言語です。静的型定義、強化されたIDE支援、大規模アプリケーションのためのより良いコード保守性を提供します。',
+            de: 'TypeScript ist eine stark typisierte Programmiersprache, die auf JavaScript aufbaut. Bietet statische Typdefinitionen, verbesserte IDE-Unterstützung und bessere Code-Wartbarkeit für große Anwendungen.',
+            ar: 'TypeScript هي لغة برمجة مكتوبة بقوة تبني على JavaScript. توفر تعريفات الأنواع الثابتة ودعم IDE محسن وقابلية صيانة أفضل للكود للتطبيقات واسعة النطاق.',
+            fa: 'TypeScript یک زبان برنامه‌نویسی با تایپ قوی است که بر روی JavaScript ساخته شده است. تعاریف نوع استاتیک، پشتیبانی بهبود یافته IDE و قابلیت نگهداری بهتر کد برای برنامه‌های مقیاس بزرگ ارائه می‌دهد.',
+            hi: 'TypeScript एक मजबूत रूप से टाइप की गई प्रोग्रामिंग भाषा है जो JavaScript पर आधारित है। बड़े पैमाने के एप्लिकेशन के लिए स्टेटिक टाइप परिभाषाएं, बेहतर IDE समर्थन और बेहतर कोड रखरखाव प्रदान करती है।',
+            ur: 'TypeScript ایک مضبوط طریقے سے ٹائپ شدہ پروگرامنگ زبان ہے جو JavaScript پر بنی ہے۔ بڑے پیمانے کی ایپلیکیشنز کے لیے جامد قسم کی تعریفات، بہتر IDE سپورٹ اور بہتر کوڈ برقراری فراہم کرتی ہے۔',
+            fr: 'TypeScript est un langage de programmation fortement typé qui s\'appuie sur JavaScript. Fournit des définitions de types statiques, un support IDE amélioré et une meilleure maintenabilité du code pour les applications à grande échelle.'
+        },
+        category: 'TypeScript'
+    },
+    {
+        id: 'LinkedIn',
+        x: -50, y: 100, r: 35,
+        labels: {
+            en: 'LinkedIn',
+            da: 'LinkedIn',
+            es: 'LinkedIn',
+            zh: 'LinkedIn',
+            ja: 'LinkedIn',
+            de: 'LinkedIn',
+            ar: 'LinkedIn',
+            fa: 'LinkedIn',
+            hi: 'LinkedIn',
+            ur: 'LinkedIn',
+            fr: 'LinkedIn'
+        },
+        translations: {
+            en: 'Professional networking and career development. Connect with Babak Bandpey on LinkedIn to explore collaboration opportunities, view professional experience, and stay updated on latest projects and insights. Visit: https://www.linkedin.com/in/babakbandpey/',
+            da: 'Professionelt netværk og karriereudvikling. Forbind med Babak Bandpey på LinkedIn for at udforske samarbejdsmuligheder, se professionel erfaring og holde dig opdateret om seneste projekter og indsigter. Besøg: https://www.linkedin.com/in/babakbandpey/',
+            es: 'Redes profesionales y desarrollo profesional. Conéctate con Babak Bandpey en LinkedIn para explorar oportunidades de colaboración, ver experiencia profesional y mantenerte actualizado sobre los últimos proyectos e ideas. Visita: https://www.linkedin.com/in/babakbandpey/',
+            zh: '专业网络和职业发展。在LinkedIn上与Babak Bandpey联系，探索合作机会，查看专业经验，并了解最新项目和见解。访问：https://www.linkedin.com/in/babakbandpey/',
+            ja: 'プロフェッショナルネットワーキングとキャリア開発。LinkedInでBabak Bandpeyとつながり、コラボレーションの機会を探り、プロフェッショナルな経験を見て、最新のプロジェクトと洞察について最新情報を入手してください。訪問：https://www.linkedin.com/in/babakbandpey/',
+            de: 'Professionelles Netzwerken und Karriereentwicklung. Verbinden Sie sich mit Babak Bandpey auf LinkedIn, um Kooperationsmöglichkeiten zu erkunden, berufliche Erfahrungen zu sehen und über neueste Projekte und Erkenntnisse auf dem Laufenden zu bleiben. Besuchen: https://www.linkedin.com/in/babakbandpey/',
+            ar: 'الشبكات المهنية وتطوير المهنة. تواصل مع بابك بندپی على LinkedIn لاستكشاف فرص التعاون وعرض الخبرة المهنية والبقاء محدثًا حول أحدث المشاريع والرؤى. زيارة: https://www.linkedin.com/in/babakbandpey/',
+            fa: 'شبکه‌سازی حرفه‌ای و توسعه شغلی. با بابک بندپی در LinkedIn ارتباط برقرار کنید تا فرصت‌های همکاری را کشف کنید، تجربه حرفه‌ای را مشاهده کنید و از آخرین پروژه‌ها و بینش‌ها مطلع شوید. بازدید: https://www.linkedin.com/in/babakbandpey/',
+            hi: 'पेशेवर नेटवर्किंग और करियर विकास। सहयोग के अवसरों का पता लगाने, पेशेवर अनुभव देखने और नवीनतम परियोजनाओं और अंतर्दृष्टि पर अपडेट रहने के लिए LinkedIn पर Babak Bandpey से जुड़ें। यात्रा: https://www.linkedin.com/in/babakbandpey/',
+            ur: 'پیشہ ورانہ نیٹ ورکنگ اور کیریئر ڈیولپمنٹ۔ تعاون کے مواقع تلاش کرنے، پیشہ ورانہ تجربہ دیکھنے اور تازہ ترین پروجیکٹس اور بصیرت پر اپ ڈیٹ رہنے کے لیے LinkedIn پر Babak Bandpey سے جڑیں۔ ملاحظہ کریں: https://www.linkedin.com/in/babakbandpey/',
+            fr: 'Réseautage professionnel et développement de carrière. Connectez-vous avec Babak Bandpey sur LinkedIn pour explorer les opportunités de collaboration, voir l\'expérience professionnelle et rester informé des derniers projets et insights. Visitez: https://www.linkedin.com/in/babakbandpey/'
+        },
+        category: 'LinkedIn'
+    },
 ];
 
 // Define links between nodes
@@ -533,8 +598,10 @@ window.links = [
     ['cocode.dk', 'Cybersecurity'],
     ['cocode.dk', 'Clients'],
     ['cocode.dk', 'Contact'],
-    ['cocode.dk', 'Podcast'],
     ['cocode.dk', 'GitHub'],
+    ['cocode.dk', 'Flask'],
+    ['cocode.dk', 'TypeScript'],
+    ['cocode.dk', 'LinkedIn'],
 
     // Software connections
     ['Software', 'Python'],
