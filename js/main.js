@@ -725,6 +725,9 @@ function closeNodeDescriptionModal(event) {
   }
 }
 
+// Expose the function globally so it can be called from HTML onclick handlers
+window.closeNodeDescriptionModal = closeNodeDescriptionModal;
+
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize visualization based on feature flag
