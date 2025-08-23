@@ -8,6 +8,7 @@ import { testCurrentVisualization } from './main/testCurrentVisualization.js';
 import { testCytoscapeImplementation } from './main/testCytoscapeImplementation.js';
 import { testLegacyImplementation } from './main/testLegacyImplementation.js';
 import { setLanguage as setLanguageModule } from './main/setLanguage.js';
+import { handleLanguageKeydown as handleLanguageKeydownModule } from './main/handleLanguageKeydown.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -89,30 +90,9 @@ function setLanguage(lang) {
   mainCurrentLanguage = setLanguageModule(lang, useCytoscape, closeMenuOnEscape);
 }
 
-// Function to handle keyboard navigation in language selector
+// Function to handle keyboard navigation in language selector - function moved to ./main/handleLanguageKeydown.js
 function handleLanguageKeydown(event, lang) {
-  // Enter or Space key
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    setLanguage(lang);
-  }
-
-  // Arrow Up/Down for navigation
-  else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-    event.preventDefault();
-
-    const langItems = Array.from(document.querySelectorAll('.lang-item'));
-    const currentIndex = langItems.findIndex(item => item.dataset.lang === lang);
-    let nextIndex;
-
-    if (event.key === 'ArrowUp') {
-      nextIndex = currentIndex > 0 ? currentIndex - 1 : langItems.length - 1;
-    } else {
-      nextIndex = currentIndex < langItems.length - 1 ? currentIndex + 1 : 0;
-    }
-
-    langItems[nextIndex].focus();
-  }
+  handleLanguageKeydownModule(event, lang, setLanguage);
 }
 
 // Close menu on escape key
