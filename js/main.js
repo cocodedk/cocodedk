@@ -2,6 +2,9 @@
  * Main.js - Simplified version for non-canvas approach
  */
 
+// Import modular functions
+import { toggleImplementation } from './main/toggleImplementation.js';
+
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
 const DEBUG_MODE = false; // Enable debugging for testing
@@ -58,7 +61,7 @@ if (!DEBUG_MODE) {
   // Add event listeners once DOM is loaded
   document.addEventListener('DOMContentLoaded', function() {
     // Setup toggle button
-    document.getElementById('toggleImplementation').addEventListener('click', toggleImplementation);
+    document.getElementById('toggleImplementation').addEventListener('click', () => toggleImplementation(useCytoscape));
     document.getElementById('testVisualization').addEventListener('click', testCurrentVisualization);
 
     // Run tests automatically on load
@@ -69,17 +72,7 @@ if (!DEBUG_MODE) {
   });
 }
 
-// Toggle between implementations
-function toggleImplementation() {
-  const debugOutput = document.getElementById('debugOutput');
-  debugOutput.innerHTML = `<p>Switching from ${useCytoscape ? 'Cytoscape' : 'Legacy'} to ${useCytoscape ? 'Legacy' : 'Cytoscape'}...</p>`;
-
-  // Set the global flag - we use localStorage to persist across page reloads
-  localStorage.setItem('useCytoscape', useCytoscape ? 'false' : 'true');
-
-  // Reload page to apply the change
-  setTimeout(() => window.location.reload(), 500);
-}
+// Toggle between implementations - function moved to ./main/toggleImplementation.js
 
 // Test current visualization implementation
 function testCurrentVisualization() {
