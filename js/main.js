@@ -16,6 +16,8 @@ import { showContactModal } from './main/showContactModal.js';
 import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './main/showNodeDescriptionModal.js';
 import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
+import { runEndToEndTest as runEndToEndTestModule } from './main/runEndToEndTest.js';
+import { setupDebugPanel } from './main/debugPanel.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -46,43 +48,17 @@ let isModalOpening = false; // Flag to prevent immediate closure
 let lastSelectionTime = 0; // For debouncing node selection
 let debounceTimeout = 300; // Debounce time in milliseconds
 
-if (DEBUG_MODE) {
-  debug.style.display = 'block';
-  debug.style.position = 'fixed';
-  debug.style.bottom = '20px';
-  debug.style.right = '20px';
-  debug.style.zIndex = '9999';
-}
-
-if (!DEBUG_MODE) {
-  debug.style.display = 'none';
-} else {
-  // Add implementation toggle button in debug mode
-  debug.innerHTML = `
-    <div class="debug-panel">
-      <h3>TDD Testing Panel</h3>
-      <div class="implementation-status">
-        <span>Current: <strong>${useCytoscape ? 'CYTOSCAPE' : 'LEGACY'}</strong></span>
-      </div>
-      <button id="toggleImplementation">Toggle Visualization</button>
-      <button id="testVisualization">Run Tests</button>
-      <div id="debugOutput"></div>
-    </div>
-  `;
-
-  // Add event listeners once DOM is loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    // Setup toggle button
-    document.getElementById('toggleImplementation').addEventListener('click', () => toggleImplementation(useCytoscape));
-    document.getElementById('testVisualization').addEventListener('click', () => testCurrentVisualization(useCytoscape, testCytoscapeImplementation, testLegacyImplementation, runEndToEndTest));
-
-    // Run tests automatically on load
-    setTimeout(() => {
-      //console.log('[TDD] Automatically running tests...');
-      testCurrentVisualization(useCytoscape, testCytoscapeImplementation, testLegacyImplementation, runEndToEndTest);
-    }, 1000);
-  });
-}
+// Setup debug panel - moved to ./main/debugPanel.js
+setupDebugPanel(
+  DEBUG_MODE,
+  debug,
+  useCytoscape,
+  toggleImplementation,
+  testCurrentVisualization,
+  testCytoscapeImplementation,
+  testLegacyImplementation,
+  runEndToEndTest
+);
 
 // Toggle between implementations - function moved to ./main/toggleImplementation.js
 
@@ -248,48 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
   setLanguage(initialLang);
 });
 
-// Add a new function for end-to-end testing
+// Add a new function for end-to-end testing - function moved to ./main/runEndToEndTest.js
 function runEndToEndTest() {
-  console.log('[TDD] Starting end-to-end test for Cytoscape implementation');
-
-  // Step 1: Check if all components are available
-  const componentsTest = testCytoscapeImplementation(document.createElement('div'));
-  if (!componentsTest) {
-    console.error('[TDD] End-to-end test failed: Component tests did not pass');
-    return false;
-  }
-
-  // Step 2: Test actual initialization
-  try {
-    const result = initializeCytoscape();
-    if (!result) {
-      console.error('[TDD] End-to-end test failed: Initialization returned false');
-      return false;
-    }
-
-    // Step 3: Verify Cytoscape instance exists
-    const cy = window.CytoscapeManager.getCytoscapeInstance();
-    if (!cy) {
-      console.error('[TDD] End-to-end test failed: No Cytoscape instance after initialization');
-      return false;
-    }
-
-    // Step 4: Verify graph has nodes and edges
-    const nodeCount = cy.nodes().length;
-    const edgeCount = cy.edges().length;
-    console.log(`[TDD] Initialized graph has ${nodeCount} nodes and ${edgeCount} edges`);
-
-    if (nodeCount === 0 || edgeCount === 0) {
-      console.error('[TDD] End-to-end test failed: Graph has no nodes or edges');
-      return false;
-    }
-
-    //console.log('[TDD] End-to-end test PASSED! Cytoscape implementation is working correctly');
-    return true;
-  } catch (e) {
-    console.error('[TDD] End-to-end test failed with error:', e);
-    return false;
-  }
+  return runEndToEndTestModule(testCytoscapeImplementation, initializeCytoscape);
 }
 
 // Ensure Cytoscape initialization is called on page load
