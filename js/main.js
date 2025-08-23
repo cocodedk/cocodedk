@@ -873,6 +873,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Make handle language keydown available globally
   window.handleLanguageKeydown = handleLanguageKeydown;
 
+  // Expose setLanguage function globally for HTML onclick handlers
+  window.setLanguage = setLanguage;
+
   // Set initial language from URL hash or localStorage
   let initialLang = 'en';
   if (window.location.hash && window.location.hash.length > 1) {
