@@ -6,6 +6,7 @@
 import { toggleImplementation } from './main/toggleImplementation.js';
 import { testCurrentVisualization } from './main/testCurrentVisualization.js';
 import { testCytoscapeImplementation } from './main/testCytoscapeImplementation.js';
+import { testLegacyImplementation } from './main/testLegacyImplementation.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -80,33 +81,7 @@ if (!DEBUG_MODE) {
 
 // Test Cytoscape implementation - function moved to ./main/testCytoscapeImplementation.js
 
-// Test Legacy implementation
-function testLegacyImplementation(outputElement) {
-  let results = [];
-
-  // Check if NodeDisplay is available
-  if (!window.NodeDisplay) {
-    results.push('❌ NodeDisplay not available');
-  } else {
-    results.push('✅ NodeDisplay available');
-  }
-
-  // Check for node container
-  const container = document.querySelector('.node-container');
-  if (!container) {
-    results.push('❌ No node-container element found');
-  } else {
-    results.push('✅ Node container exists');
-    // Check nodes and links
-    const nodeElements = container.querySelectorAll('.node');
-    const linkElements = container.querySelectorAll('.node-link');
-    results.push(`ℹ️ Node elements count: ${nodeElements.length}`);
-    results.push(`ℹ️ Link elements count: ${linkElements.length}`);
-  }
-
-  // Output results
-  outputElement.innerHTML = results.map(r => `<p>${r}</p>`).join('');
-}
+// Test Legacy implementation - function moved to ./main/testLegacyImplementation.js
 
 // Handle language change by updating node display
 function setLanguage(lang) {

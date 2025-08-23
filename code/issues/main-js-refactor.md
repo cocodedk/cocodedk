@@ -33,7 +33,7 @@ Based on analysis of main.js, the following functions need to be extracted:
 - [x] Migrate function 1: `toggleImplementation`
 - [x] Migrate function 2: `testCurrentVisualization`
 - [x] Migrate function 3: `testCytoscapeImplementation`
-- [ ] Migrate function 4: `testLegacyImplementation`
+- [x] Migrate function 4: `testLegacyImplementation`
 - [ ] Migrate function 5: `setLanguage`
 - [ ] Migrate function 6: `handleLanguageKeydown`
 - [ ] Migrate function 7: `closeMenuOnEscape`
