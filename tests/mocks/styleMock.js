@@ -1,4 +1,1 @@
-/**
- * Mock file for CSS imports in Jest
- */
-module.exports = {};
+// Style mock for Jest module.exports = {};
