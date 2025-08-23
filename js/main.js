@@ -7,6 +7,7 @@ import { toggleImplementation } from './main/toggleImplementation.js';
 import { testCurrentVisualization } from './main/testCurrentVisualization.js';
 import { testCytoscapeImplementation } from './main/testCytoscapeImplementation.js';
 import { testLegacyImplementation } from './main/testLegacyImplementation.js';
+import { setLanguage as setLanguageModule } from './main/setLanguage.js';
 
 //console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
 
@@ -83,55 +84,9 @@ if (!DEBUG_MODE) {
 
 // Test Legacy implementation - function moved to ./main/testLegacyImplementation.js
 
-// Handle language change by updating node display
+// Handle language change by updating node display - function moved to ./main/setLanguage.js
 function setLanguage(lang) {
-  mainCurrentLanguage = lang;
-
-  // Update visualization based on active implementation
-  if (useCytoscape) {
-    if (window.CytoscapeManager) {
-      window.CytoscapeManager.setLanguage(lang);
-    }
-  } else {
-    // Legacy implementation
-    if (window.NodeDisplay) {
-      window.NodeDisplay.setLanguage(lang);
-    }
-  }
-
-  // Update active class and ARIA attributes in language menu
-  const langItems = document.querySelectorAll('.lang-item');
-  langItems.forEach(item => {
-    item.classList.remove('active');
-    item.setAttribute('aria-selected', 'false');
-
-    if (item.dataset.lang === lang) {
-      item.classList.add('active');
-      item.setAttribute('aria-selected', 'true');
-    }
-  });
-
-  // Set RTL direction for Arabic, Persian, and Urdu
-  if (lang === 'ar' || lang === 'fa' || lang === 'ur') {
-    document.body.setAttribute('dir', 'rtl');
-  } else {
-    document.body.setAttribute('dir', 'ltr');
-  }
-
-  // Auto-hide the language menu in responsive mode
-  if (window.innerWidth <= 768) {
-    const langMenu = document.getElementById('languageSelector');
-    const langToggle = document.getElementById('langToggle');
-
-    // Add a small delay to allow the user to see their selection first
-    setTimeout(() => {
-      langMenu.classList.remove('active');
-      langToggle.setAttribute('aria-expanded', 'false');
-
-      // Remove keyboard listener for escape key
-      document.removeEventListener('keydown', closeMenuOnEscape);
-    }, 300);
-  }
+  mainCurrentLanguage = setLanguageModule(lang, useCytoscape, closeMenuOnEscape);
 }
 
 // Function to handle keyboard navigation in language selector
