@@ -56,6 +56,16 @@ const AnimationPresets = {
       repeat: 'infinite',
       duration: 3000,
       easing: 'easeInOutElastic' // Special animation for Contact
+    },
+    {
+      nodeId: 'GitHub',
+      type: 'oscillate',
+      axis: 'y',
+      amplitude: 3,
+      frequency: 0.25,
+      repeat: 'infinite',
+      duration: 4200,
+      easing: 'easeInOutQuad' // Smooth GitHub animation
     }
   ],
 
@@ -209,4 +219,9 @@ const AnimationPresets = {
 // Export for ES modules if needed
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = AnimationPresets;
+}
+
+// Expose globally for browser usage
+if (typeof window !== 'undefined') {
+  window.AnimationPresets = AnimationPresets;
 }

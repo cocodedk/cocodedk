@@ -13,6 +13,7 @@ html, body {
   font-family: sans-serif;
   overflow: auto; /* Changed from hidden to auto to allow scrolling */
   position: relative; /* Ensure relative positioning for absolute elements */
+  animation: subtleBackgroundShift 20s ease-in-out infinite alternate;
 }
 
 /* Hide canvas element for non-canvas version */
@@ -75,6 +76,24 @@ canvas {
   0% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
   100% { transform: translateY(0); }
+}
+
+@keyframes subtleBackgroundShift {
+  0% {
+    background: radial-gradient(circle at center, #231941 0%, #13111a 70%);
+  }
+  25% {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 70%);
+  }
+  50% {
+    background: radial-gradient(circle at center, #0f3460 0%, #16213e 70%);
+  }
+  75% {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 70%);
+  }
+  100% {
+    background: radial-gradient(circle at center, #231941 0%, #13111a 70%);
+  }
 }
 
 /* ===== INFOBOX ===== */

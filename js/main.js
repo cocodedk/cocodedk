@@ -533,6 +533,42 @@ function initializeCytoscape() {
     //console.log('[TDD] Setting initial language to', mainCurrentLanguage);
     window.CytoscapeManager.setLanguage(mainCurrentLanguage);
 
+        // Initialize subtle animations
+    if (typeof NodeAnimation !== 'undefined' && typeof AnimationPresets !== 'undefined') {
+      console.log('[ANIMATION] Initializing subtle node animations');
+      console.log('[ANIMATION] NodeAnimation available:', typeof NodeAnimation);
+      console.log('[ANIMATION] AnimationPresets available:', typeof AnimationPresets);
+      console.log('[ANIMATION] Subtle preset:', AnimationPresets.subtle);
+      NodeAnimation.initFromConfig(AnimationPresets.subtle);
+
+      // Set up animation update loop integration with Cytoscape
+      let animationFrameCount = 0;
+      const updateAnimations = () => {
+        if (window.nodes && Array.isArray(window.nodes)) {
+          NodeAnimation.updateNodePositions(window.nodes);
+          // Update Cytoscape node positions
+          const currentCy = window.CytoscapeManager.getInstance();
+          if (currentCy) {
+            window.nodes.forEach(node => {
+              const cyNode = currentCy.getElementById(node.id);
+              if (cyNode && cyNode.length > 0) {
+                cyNode.position({ x: node.x, y: node.y });
+              }
+            });
+          }
+
+          // Debug log every 60 frames (roughly once per second)
+          animationFrameCount++;
+          if (animationFrameCount % 60 === 0) {
+            console.log('[ANIMATION] Frame', animationFrameCount, 'Node positions:', window.nodes.slice(0, 2).map(n => ({id: n.id, x: n.x, y: n.y})));
+          }
+        }
+        requestAnimationFrame(updateAnimations);
+      };
+      console.log('[ANIMATION] Starting animation loop');
+      requestAnimationFrame(updateAnimations);
+    }
+
     //console.log('[TDD] Cytoscape initialization complete');
     return true;
   } catch (e) {
