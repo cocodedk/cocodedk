@@ -32,7 +32,7 @@ Based on analysis of main.js, the following functions need to be extracted:
 - [x] Create subfolder structure
 - [x] Migrate function 1: `toggleImplementation`
 - [x] Migrate function 2: `testCurrentVisualization`
-- [ ] Migrate function 3: `testCytoscapeImplementation`
+- [x] Migrate function 3: `testCytoscapeImplementation`
 - [ ] Migrate function 4: `testLegacyImplementation`
 - [ ] Migrate function 5: `setLanguage`
 - [ ] Migrate function 6: `handleLanguageKeydown`
