@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.closeNodeDescriptionModal(syntheticEvent);
       }
       
-      // Close contact modal if open
+      // Close contact modal if open (pass true to skip hash removal since it's already removed)
       if (window.ContactModal && typeof window.ContactModal.hideModal === 'function') {
-        window.ContactModal.hideModal();
+        window.ContactModal.hideModal(true);
       }
     }
   });

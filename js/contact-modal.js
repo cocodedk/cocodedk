@@ -149,11 +149,11 @@ const ContactModal = (function() {
   }
 
   // Hide the modal
-  function hideModal() {
+  function hideModal(skipHashRemoval) {
     if (!overlayElement) return;
 
-    // Remove hash from URL if present
-    if (window.location.hash === '#contact') {
+    // Remove hash from URL if present (unless called from popstate)
+    if (!skipHashRemoval && window.location.hash === '#contact') {
       window.history.pushState('', document.title, window.location.pathname);
     }
 
@@ -163,7 +163,7 @@ const ContactModal = (function() {
 
     // Wait for animation to complete before removing from DOM
     setTimeout(() => {
-      if (overlayElement.parentNode) {
+      if (overlayElement && overlayElement.parentNode) {
         document.body.removeChild(overlayElement);
       }
       document.body.classList.remove('modal-open');
