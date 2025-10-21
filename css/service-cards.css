@@ -46,6 +46,15 @@
   font-size: 40px;
   margin-bottom: 12px;
   display: block;
+  color: #ff9a76;
+  filter: drop-shadow(0 2px 8px rgba(255, 154, 118, 0.3));
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .service-card__icon {
+    color: #ffb088;
+  }
 }
 
 .service-card__title {

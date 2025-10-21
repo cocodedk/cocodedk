@@ -128,7 +128,7 @@ const ContactModal = (function() {
   function showModal() {
     // Add hash to URL for navigation
     window.history.pushState({ modal: 'contact' }, '', '#contact');
-    
+
     if (!modalElement) {
       document.body.appendChild(createModal());
     } else {
