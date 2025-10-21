@@ -6,7 +6,7 @@
 /* ===== GENERAL LAYOUT ===== */
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 120px 0; /* Add bottom padding to prevent content from being hidden behind fixed footer */
   height: 100%;
   background-color: #0d0d0d;
   background: radial-gradient(circle at center, #231941 0%, #13111a 70%);
@@ -396,6 +396,9 @@ canvas {
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
+  body {
+    padding: 0 0 150px 0; /* Increase bottom padding for taller mobile footer */
+  }
 
   #logo-container {
     top: 20px;
@@ -423,6 +426,10 @@ canvas {
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 0 0 180px 0; /* Further increase for even taller footer on small screens */
+  }
+
   #logo-container {
     top: 15px;
     left: 50%;
