@@ -55,20 +55,8 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
     document.body.setAttribute('dir', 'ltr');
   }
 
-  // Auto-hide the language menu in responsive mode
-  if (window.innerWidth <= 768) {
-    const langMenu = document.getElementById('languageSelector');
-    const langToggle = document.getElementById('langToggle');
-
-    // Add a small delay to allow the user to see their selection first
-    setTimeout(() => {
-      langMenu.classList.remove('active');
-      langToggle.setAttribute('aria-expanded', 'false');
-
-      // Remove keyboard listener for escape key
-      document.removeEventListener('keydown', closeMenuOnEscape);
-    }, 300);
-  }
+  // Language selector is always visible in footer
+  // No need to auto-hide
 
   return lang;
 }

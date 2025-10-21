@@ -12,12 +12,6 @@
  *   ▸ npm test -- --testPathPattern=closeMenuOnEscape.test.js
  */
 export function closeMenuOnEscape(e) {
-  if (e.key === 'Escape') {
-    const langMenu = document.getElementById('languageSelector');
-    const langToggle = document.getElementById('langToggle');
-
-    langMenu.classList.remove('active');
-    langToggle.setAttribute('aria-expanded', 'false');
-    document.removeEventListener('keydown', closeMenuOnEscape);
-  }
+  // Language selector is now always visible in footer
+  // No toggle functionality needed
 }

@@ -90,6 +90,7 @@
   <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
   <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
   <link rel="stylesheet" href="css/modal-links.css?v=1.0.0">
+  <link rel="stylesheet" href="css/footer-lang.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -145,56 +146,6 @@
   <div id="infoBox"></div>
   <div id="debug"></div>
 
-  <button id="langToggle" class="lang-toggle" aria-label="Toggle language menu">
-    <span class="flag-icon" aria-hidden="true">🌐</span>
-  </button>
-  <div id="languageSelector" class="vertical-lang-menu" role="tablist" aria-label="Language selection">
-    <div class="lang-item active" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="true" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
-      <div class="flag-icon" aria-hidden="true">🇬🇧</div>
-      <div class="lang-code">EN</div>
-    </div>
-    <div class="lang-item" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="false" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
-      <div class="flag-icon" aria-hidden="true">🇩🇰</div>
-      <div class="lang-code">DA</div>
-    </div>
-    <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">
-      <div class="flag-icon" aria-hidden="true">🇪🇸</div>
-      <div class="lang-code">ES</div>
-    </div>
-    <div class="lang-item" data-lang="zh" onclick="setLanguage('zh')" role="tab" aria-selected="false" tabindex="0" title="Chinese" onkeydown="handleLanguageKeydown(event, 'zh')">
-      <div class="flag-icon" aria-hidden="true">🇨🇳</div>
-      <div class="lang-code">ZH</div>
-    </div>
-    <div class="lang-item" data-lang="ja" onclick="setLanguage('ja')" role="tab" aria-selected="false" tabindex="0" title="Japanese" onkeydown="handleLanguageKeydown(event, 'ja')">
-      <div class="flag-icon" aria-hidden="true">🇯🇵</div>
-      <div class="lang-code">JA</div>
-    </div>
-    <div class="lang-item" data-lang="de" onclick="setLanguage('de')" role="tab" aria-selected="false" tabindex="0" title="German" onkeydown="handleLanguageKeydown(event, 'de')">
-      <div class="flag-icon" aria-hidden="true">🇩🇪</div>
-      <div class="lang-code">DE</div>
-    </div>
-    <div class="lang-item" data-lang="ar" onclick="setLanguage('ar')" role="tab" aria-selected="false" tabindex="0" title="Arabic" onkeydown="handleLanguageKeydown(event, 'ar')">
-      <div class="flag-icon" aria-hidden="true">🇸🇦</div>
-      <div class="lang-code">AR</div>
-    </div>
-    <div class="lang-item" data-lang="fa" onclick="setLanguage('fa')" role="tab" aria-selected="false" tabindex="0" title="Persian" onkeydown="handleLanguageKeydown(event, 'fa')">
-      <div class="flag-icon" aria-hidden="true">🇮🇷</div>
-      <div class="lang-code">FA</div>
-    </div>
-    <div class="lang-item" data-lang="hi" onclick="setLanguage('hi')" role="tab" aria-selected="false" tabindex="0" title="Hindi" onkeydown="handleLanguageKeydown(event, 'hi')">
-      <div class="flag-icon" aria-hidden="true">🇮🇳</div>
-      <div class="lang-code">HI</div>
-    </div>
-    <div class="lang-item" data-lang="ur" onclick="setLanguage('ur')" role="tab" aria-selected="false" tabindex="0" title="Urdu" onkeydown="handleLanguageKeydown(event, 'ur')">
-      <div class="flag-icon" aria-hidden="true">🇵🇰</div>
-      <div class="lang-code">UR</div>
-    </div>
-    <div class="lang-item" data-lang="fr" onclick="setLanguage('fr')" role="tab" aria-selected="false" tabindex="0" title="French" onkeydown="handleLanguageKeydown(event, 'fr')">
-      <div class="flag-icon" aria-hidden="true">🇫🇷</div>
-      <div class="lang-code">FR</div>
-    </div>
-  </div>
-
   <!-- External JavaScript -->
   <!-- Legacy visualization implementation -->
   <script src="js/utils/linkify.js?v=1.0.0"></script>
@@ -221,6 +172,41 @@
   <footer id="site-footer">
     <div class="footer-content">
       <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
+      <div id="languageSelector" class="footer-lang-menu" role="tablist" aria-label="Language selection">
+        <div class="lang-item active" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="true" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
+          <div class="flag-icon" aria-hidden="true">🇬🇧</div>
+        </div>
+        <div class="lang-item" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="false" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
+          <div class="flag-icon" aria-hidden="true">🇩🇰</div>
+        </div>
+        <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">
+          <div class="flag-icon" aria-hidden="true">🇪🇸</div>
+        </div>
+        <div class="lang-item" data-lang="zh" onclick="setLanguage('zh')" role="tab" aria-selected="false" tabindex="0" title="Chinese" onkeydown="handleLanguageKeydown(event, 'zh')">
+          <div class="flag-icon" aria-hidden="true">🇨🇳</div>
+        </div>
+        <div class="lang-item" data-lang="ja" onclick="setLanguage('ja')" role="tab" aria-selected="false" tabindex="0" title="Japanese" onkeydown="handleLanguageKeydown(event, 'ja')">
+          <div class="flag-icon" aria-hidden="true">🇯🇵</div>
+        </div>
+        <div class="lang-item" data-lang="de" onclick="setLanguage('de')" role="tab" aria-selected="false" tabindex="0" title="German" onkeydown="handleLanguageKeydown(event, 'de')">
+          <div class="flag-icon" aria-hidden="true">🇩🇪</div>
+        </div>
+        <div class="lang-item" data-lang="ar" onclick="setLanguage('ar')" role="tab" aria-selected="false" tabindex="0" title="Arabic" onkeydown="handleLanguageKeydown(event, 'ar')">
+          <div class="flag-icon" aria-hidden="true">🇸🇦</div>
+        </div>
+        <div class="lang-item" data-lang="fa" onclick="setLanguage('fa')" role="tab" aria-selected="false" tabindex="0" title="Persian" onkeydown="handleLanguageKeydown(event, 'fa')">
+          <div class="flag-icon" aria-hidden="true">🇮🇷</div>
+        </div>
+        <div class="lang-item" data-lang="hi" onclick="setLanguage('hi')" role="tab" aria-selected="false" tabindex="0" title="Hindi" onkeydown="handleLanguageKeydown(event, 'hi')">
+          <div class="flag-icon" aria-hidden="true">🇮🇳</div>
+        </div>
+        <div class="lang-item" data-lang="ur" onclick="setLanguage('ur')" role="tab" aria-selected="false" tabindex="0" title="Urdu" onkeydown="handleLanguageKeydown(event, 'ur')">
+          <div class="flag-icon" aria-hidden="true">🇵🇰</div>
+        </div>
+        <div class="lang-item" data-lang="fr" onclick="setLanguage('fr')" role="tab" aria-selected="false" tabindex="0" title="French" onkeydown="handleLanguageKeydown(event, 'fr')">
+          <div class="flag-icon" aria-hidden="true">🇫🇷</div>
+        </div>
+      </div>
       <p class="footer-copyright">© 2025 Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
     </div>
   </footer>
