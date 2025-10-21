@@ -23,7 +23,7 @@ const ContactModal = (function() {
     // Protected information (not searchable)
     protected: {
       email: "kd.edococ@bb",
-      phone: "7703287254+"
+      phone: "4157373554+"
     }
   };
 
