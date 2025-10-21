@@ -14,6 +14,7 @@ module.exports = {
     serviceCard: './js/components/service-card.js',
     activityCard: './js/components/activity-card.js',
     cache: './js/utils/cache.js',
+    linkify: './js/utils/linkify.js',
     githubAPI: './js/api/github.js',
     youtubeAPI: './js/api/youtube.js',
     linkedinAPI: './js/api/linkedin.js',
