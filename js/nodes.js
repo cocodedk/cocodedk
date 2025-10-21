@@ -23,7 +23,7 @@ window.categoryHoverColors = {};
 window.nodes = [
     {
         id: 'cocode.dk',
-        x: 0, y: 0, r: 50,
+        x: 0, y: -120, r: 50,
         labels: {
             en: 'cocode.dk',
             da: 'cocode.dk',
@@ -54,7 +54,7 @@ window.nodes = [
     },
     {
         id: 'AI Integration',
-        x: 0, y: -150, r: 40,
+        x: -140, y: -120, r: 40,
         labels: {
             en: 'AI Integration',
             da: 'AI-integration',
@@ -85,7 +85,7 @@ window.nodes = [
     },
     {
         id: 'MCP Development',
-        x: 130, y: -90, r: 40,
+        x: 140, y: -120, r: 40,
         labels: {
             en: 'MCP Development',
             da: 'MCP-udvikling',
@@ -116,7 +116,7 @@ window.nodes = [
     },
     {
         id: 'OpenAI Integration',
-        x: 150, y: 0, r: 40,
+        x: -160, y: 0, r: 40,
         labels: {
             en: 'OpenAI Integration',
             da: 'OpenAI-integration',
@@ -147,7 +147,7 @@ window.nodes = [
     },
     {
         id: 'Fullstack Innovation',
-        x: 130, y: 90, r: 40,
+        x: -50, y: 0, r: 40,
         labels: {
             en: 'Fullstack Innovation',
             da: 'Fullstack-innovation',
@@ -178,7 +178,7 @@ window.nodes = [
     },
     {
         id: 'Spec-Driven Development',
-        x: 0, y: 150, r: 40,
+        x: 50, y: 0, r: 40,
         labels: {
             en: 'Spec-Driven Development',
             da: 'Spec-drevet udvikling',
@@ -209,7 +209,7 @@ window.nodes = [
     },
     {
         id: 'Cybersecurity Audit',
-        x: -130, y: 90, r: 40,
+        x: 160, y: 0, r: 40,
         labels: {
             en: 'Cybersecurity Audit',
             da: 'Cybersikkerhedsrevision',
@@ -240,7 +240,7 @@ window.nodes = [
     },
     {
         id: 'FITS.DK',
-        x: -150, y: 0, r: 40,
+        x: -160, y: 120, r: 40,
         labels: {
             en: 'FITS.DK',
             da: 'FITS.DK',
@@ -271,7 +271,7 @@ window.nodes = [
     },
     {
         id: 'Contact',
-        x: -130, y: -90, r: 40,
+        x: -50, y: 120, r: 40,
         labels: {
             en: 'Contact',
             da: 'Kontakt',
@@ -302,7 +302,7 @@ window.nodes = [
     },
     {
         id: 'GitHub',
-        x: 95, y: -115, r: 35,
+        x: 50, y: 120, r: 35,
         labels: {
             en: 'GitHub',
             da: 'GitHub',
@@ -334,7 +334,7 @@ window.nodes = [
     },
     {
         id: 'LinkedIn',
-        x: 95, y: 115, r: 35,
+        x: 160, y: 120, r: 35,
         labels: {
             en: 'LinkedIn',
             da: 'LinkedIn',
