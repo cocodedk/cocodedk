@@ -12,7 +12,7 @@ function createServiceCard(nodeData, language) {
   const description = nodeData.translations[language] || nodeData.translations.en;
 
   card.innerHTML = `
-    <span class="service-card__icon" aria-hidden="true">🔹</span>
+    <img src="images/hexagon-icon.svg" class="service-card__icon" aria-hidden="true" alt="" />
     <h3 class="service-card__title">${label}</h3>
     <p class="service-card__description">${description.substring(0, 100)}...</p>
     <div class="service-card__tags"></div>
