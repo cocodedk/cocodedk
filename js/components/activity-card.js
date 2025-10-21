@@ -38,9 +38,33 @@ async function renderActivityFeed() {
     ]);
 
     const allActivities = [
-      ...(githubRepos || []).map(r => ({ ...r, platform: 'GitHub' })),
-      ...(youtubeVideos || []).map(v => ({ ...v, platform: 'YouTube' })),
-      ...(linkedinActivity || []).map(l => ({ ...l, platform: 'LinkedIn' }))
+      ...(githubRepos || []).map(r => ({ 
+        title: r.name || r.title,
+        description: r.description,
+        date: r.updated || r.date,
+        url: r.url,
+        icon: r.icon,
+        meta: r.language ? `${r.language}` : (r.stars ? `⭐ ${r.stars}` : ''),
+        platform: 'GitHub'
+      })),
+      ...(youtubeVideos || []).map(v => ({ 
+        title: v.title,
+        description: v.description,
+        date: v.date,
+        url: v.url,
+        icon: v.icon,
+        meta: v.views ? `👁 ${v.views}` : '',
+        platform: 'YouTube'
+      })),
+      ...(linkedinActivity || []).map(l => ({ 
+        title: l.title,
+        description: l.description,
+        date: l.date,
+        url: l.url,
+        icon: l.icon,
+        meta: l.meta || '',
+        platform: 'LinkedIn'
+      }))
     ];
 
     container.innerHTML = '';
