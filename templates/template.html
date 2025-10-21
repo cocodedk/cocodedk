@@ -76,8 +76,13 @@
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="css/colors.css?v=1.0.0">
+  <link rel="stylesheet" href="css/backgrounds.css?v=1.0.0">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
+  <link rel="stylesheet" href="css/hero.css?v=1.0.0">
+  <link rel="stylesheet" href="css/service-cards.css?v=1.0.0">
+  <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
   <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
-  <link rel="stylesheet" href="css/cytoscape.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -116,10 +121,20 @@
     </div>
   </div>
 
-  <!-- Add Cytoscape container after header section and before or alongside existing node container -->
-  <div id="cy-container" class="cy-container" aria-label="Interactive graph visualization of cocode.dk services"></div>
+  <!-- Hero Section with Terminal Text -->
+  <section class="hero hero-fade-in">
+    <div class="hero-content">
+      <div class="terminal-text"></div>
+      <p class="hero-subtitle">Freelance IT Consultancy • Software Development • Cybersecurity • Europe</p>
+    </div>
+  </section>
 
-  <!-- Removed canvas element -->
+  <!-- Service Cards Section -->
+  <section class="service-cards-section">
+    <div class="cards-grid" id="service-cards-container"></div>
+  </section>
+
+  <!-- Removed canvas element and Cytoscape container -->
   <div id="infoBox"></div>
   <div id="debug"></div>
 
@@ -172,6 +187,28 @@
       <div class="lang-code">FR</div>
     </div>
   </div>
+
+  <!-- External JavaScript -->
+  <!-- Legacy visualization implementation -->
+  <script src="js/nodes.js?v=1.0.3"></script>
+  <script src="js/node-display.js?v=1.0.0"></script>
+  <script src="js/contact-modal.js?v=1.0.2"></script>
+
+  <!-- Terminal Effect -->
+  <script src="js/components/terminal.js?v=1.0.0"></script>
+
+  <!-- Service Cards -->
+  <script src="js/components/service-card.js?v=1.0.0"></script>
+
+  <!-- Activity Feed -->
+  <script src="js/utils/cache.js?v=1.0.0"></script>
+  <script src="js/api/github.js?v=1.0.0"></script>
+  <script src="js/api/youtube.js?v=1.0.0"></script>
+  <script src="js/api/linkedin.js?v=1.0.0"></script>
+  <script src="js/components/activity-card.js?v=1.0.0"></script>
+
+  <!-- Main application logic -->
+  <script src="js/main.js?v=1.0.1"></script>
 
   <footer id="site-footer">
     <div class="footer-content">
