@@ -6,14 +6,14 @@
       <stop offset="50%" style="stop-color:#FF6B47;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#E85A3F;stop-opacity:1" />
     </radialGradient>
-    
+
     <!-- Gradient for the rings -->
     <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#FFA07A;stop-opacity:0.4" />
       <stop offset="50%" style="stop-color:#FFB88C;stop-opacity:0.8" />
       <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:0.4" />
     </linearGradient>
-    
+
     <!-- Shadow filter -->
     <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
@@ -27,73 +27,70 @@
       </feMerge>
     </filter>
   </defs>
-  
-  <!-- Background circle for contrast -->
-  <circle cx="100" cy="100" r="95" fill="#1a1a2e" opacity="0.95"/>
-  
+
+
   <!-- Saturn rings (back) -->
-  <ellipse cx="100" cy="100" rx="85" ry="25" 
-           fill="none" 
-           stroke="url(#ringGradient)" 
-           stroke-width="8" 
+  <ellipse cx="100" cy="100" rx="85" ry="25"
+           fill="none"
+           stroke="url(#ringGradient)"
+           stroke-width="8"
            opacity="0.6"
            filter="url(#shadow)"/>
-  <ellipse cx="100" cy="100" rx="75" ry="20" 
-           fill="none" 
-           stroke="url(#ringGradient)" 
-           stroke-width="4" 
+  <ellipse cx="100" cy="100" rx="75" ry="20"
+           fill="none"
+           stroke="url(#ringGradient)"
+           stroke-width="4"
            opacity="0.4"/>
-  
+
   <!-- Planet Saturn -->
-  <circle cx="100" cy="100" r="45" 
-          fill="url(#planetGradient)" 
+  <circle cx="100" cy="100" r="45"
+          fill="url(#planetGradient)"
           filter="url(#shadow)"/>
-  
+
   <!-- Planet details (bands) -->
-  <ellipse cx="100" cy="95" rx="45" ry="8" 
-           fill="#FF7A52" 
+  <ellipse cx="100" cy="95" rx="45" ry="8"
+           fill="#FF7A52"
            opacity="0.3"/>
-  <ellipse cx="100" cy="105" rx="45" ry="6" 
-           fill="#D94A2F" 
+  <ellipse cx="100" cy="105" rx="45" ry="6"
+           fill="#D94A2F"
            opacity="0.3"/>
-  
+
   <!-- Highlight on planet -->
-  <ellipse cx="85" cy="85" rx="15" ry="12" 
-           fill="white" 
+  <ellipse cx="85" cy="85" rx="15" ry="12"
+           fill="white"
            opacity="0.3"/>
-  
+
   <!-- Saturn rings (front - partial) -->
-  <path d="M 30 100 Q 45 95, 55 93 A 45 45 0 0 1 145 93 Q 155 95, 170 100" 
-        fill="none" 
-        stroke="url(#ringGradient)" 
-        stroke-width="8" 
+  <path d="M 30 100 Q 45 95, 55 93 A 45 45 0 0 1 145 93 Q 155 95, 170 100"
+        fill="none"
+        stroke="url(#ringGradient)"
+        stroke-width="8"
         opacity="0.8"
         filter="url(#shadow)"/>
-  <path d="M 35 100 Q 48 96, 57 94 A 45 45 0 0 1 143 94 Q 152 96, 165 100" 
-        fill="none" 
-        stroke="url(#ringGradient)" 
-        stroke-width="4" 
+  <path d="M 35 100 Q 48 96, 57 94 A 45 45 0 0 1 143 94 Q 152 96, 165 100"
+        fill="none"
+        stroke="url(#ringGradient)"
+        stroke-width="4"
         opacity="0.5"/>
-  
+
   <!-- Text: cocode.dk -->
-  <text x="100" y="175" 
-        font-family="'Courier New', monospace" 
-        font-size="18" 
-        font-weight="bold" 
-        fill="#FF8A5B" 
+  <text x="100" y="175"
+        font-family="'Courier New', monospace"
+        font-size="18"
+        font-weight="bold"
+        fill="#FF8A5B"
         text-anchor="middle"
         letter-spacing="1">cocode.dk</text>
-  
+
   <!-- Small code brackets accent -->
-  <text x="40" y="175" 
-        font-family="'Courier New', monospace" 
-        font-size="20" 
-        fill="#FF6B47" 
+  <text x="40" y="175"
+        font-family="'Courier New', monospace"
+        font-size="20"
+        fill="#FF6B47"
         opacity="0.6">&lt;</text>
-  <text x="155" y="175" 
-        font-family="'Courier New', monospace" 
-        font-size="20" 
-        fill="#FF6B47" 
+  <text x="155" y="175"
+        font-family="'Courier New', monospace"
+        font-size="20"
+        fill="#FF6B47"
         opacity="0.6">/&gt;</text>
 </svg>
-
