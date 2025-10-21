@@ -30,33 +30,28 @@ canvas {
 /* ===== LOGO ELEMENTS ===== */
 #logo-container {
   position: absolute;
-  top: 20px;
-  left: 30px;
-  text-align: left;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   z-index: 80;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 138, 91, 0.2);
 }
 
 #site-logo {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   display: block;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 12px rgba(255, 138, 91, 0.3));
+  filter: drop-shadow(0 6px 20px rgba(255, 138, 91, 0.4));
 }
 
 #site-logo:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 6px 16px rgba(255, 138, 91, 0.5));
+  transform: scale(1.08);
+  filter: drop-shadow(0 8px 24px rgba(255, 138, 91, 0.6));
 }
 
 #subtitle {
@@ -481,15 +476,14 @@ canvas {
   }
 
   #logo-container {
-    top: 15px;
-    left: 20px;
-    padding: 6px;
-    z-index: 1001;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   #site-logo {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
   }
 
   /* Ensure canvas doesn't overflow on mobile */
@@ -501,21 +495,21 @@ canvas {
 
   /* Position infoBox below logo-container */
   #infoBox {
-    top: 110px;
+    top: 160px;
     max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
   #logo-container {
-    top: 12px;
-    left: 10px;
-    padding: 4px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   #site-logo {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
   }
 
   .lang-toggle {
