@@ -3,41 +3,12 @@
  */
 
 // Import modular functions
-// import { toggleImplementation } from './main/toggleImplementation.js';
-// import { testCurrentVisualization } from './main/testCurrentVisualization.js';
-// import { testCytoscapeImplementation } from './main/testCytoscapeImplementation.js';
-// import { testLegacyImplementation } from './main/testLegacyImplementation.js';
 import { setLanguage as setLanguageModule } from './main/setLanguage.js';
 import { handleLanguageKeydown as handleLanguageKeydownModule } from './main/handleLanguageKeydown.js';
 import { closeMenuOnEscape } from './main/closeMenuOnEscape.js';
-import { initializeCytoscape as initializeCytoscapeModule } from './main/initializeCytoscape.js';
-import { fallbackToLegacy as fallbackToLegacyModule } from './main/fallbackToLegacy.js';
-// import { showContactModal } from './main/showContactModal.js';
 import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './main/showNodeDescriptionModal.js';
 import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
-// import { runEndToEndTest as runEndToEndTestModule } from './main/runEndToEndTest.js';
-// import { setupDebugPanel } from './main/debugPanel.js';
-
-//console.log('Main.js script starting - Checking ContactModal availability:', typeof ContactModal !== 'undefined' ? 'Available' : 'Not available');
-
-// const DEBUG_MODE = false; // Enable debugging for testing
-// const debug = document.getElementById('debug');
-// Feature flag to toggle between implementations
-let useCytoscape = true; // Default to true
-
-// Check localStorage for saved preference
-if (localStorage.getItem('useCytoscape') !== null) {
-  useCytoscape = localStorage.getItem('useCytoscape') === 'true';
-} else {
-  // Save default
-  localStorage.setItem('useCytoscape', 'true');
-}
-
-//console.log('[TDD] Current implementation:', useCytoscape ? 'Cytoscape' : 'Legacy');
-
-// Set data attribute on body for CSS targeting
-document.body.setAttribute('data-vis', useCytoscape ? 'cytoscape' : 'legacy');
 
 // Current language selection
 let mainCurrentLanguage = 'en';
@@ -48,51 +19,14 @@ let isModalOpening = false; // Flag to prevent immediate closure
 let lastSelectionTime = 0; // For debouncing node selection
 let debounceTimeout = 300; // Debounce time in milliseconds
 
-// Setup debug panel
-// setupDebugPanel(
-//   DEBUG_MODE,
-//   debug,
-//   useCytoscape,
-//   toggleImplementation,
-//   testCurrentVisualization,
-//   testCytoscapeImplementation,
-//   testLegacyImplementation,
-//   runEndToEndTest
-// );
-
 // Handle language change by updating node display
 function setLanguage(lang) {
-  mainCurrentLanguage = setLanguageModule(lang, useCytoscape, closeMenuOnEscape);
+  mainCurrentLanguage = setLanguageModule(lang, false, closeMenuOnEscape);
 }
 
 // Function to handle keyboard navigation in language selector
 function handleLanguageKeydown(event, lang) {
   handleLanguageKeydownModule(event, lang, setLanguage);
-}
-
-// Initialize Cytoscape visualization
-function initializeCytoscape() {
-  // Create a reference object for lastSelectionTime to allow modification by reference
-  const lastSelectionTimeRef = { value: lastSelectionTime };
-  const result = initializeCytoscapeModule(
-    mainCurrentLanguage,
-    lastSelectionTimeRef,
-    debounceTimeout,
-    showNodeDescriptionModal,
-    fallbackToLegacy
-  );
-  // Update the global variable with any changes
-  lastSelectionTime = lastSelectionTimeRef.value;
-  return result;
-}
-
-// Fallback to legacy visualization if Cytoscape fails
-function fallbackToLegacy() {
-  // Create a reference object for useCytoscape to allow modification by reference
-  const useCytoscapeRef = { value: useCytoscape };
-  fallbackToLegacyModule(useCytoscapeRef);
-  // Update the global variable with any changes
-  useCytoscape = useCytoscapeRef.value;
 }
 
 // Function to show a modal with node description
@@ -144,14 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.terminal.init();
   }
 
-  // Initialize visualization based on feature flag
-  if (useCytoscape) {
-    initializeCytoscape();
-  } else {
-    // Legacy initialization
-    if (window.NodeDisplay && typeof window.NodeDisplay.initNodeDisplay === 'function') {
-      window.NodeDisplay.initNodeDisplay();
-    }
+  // Initialize legacy visualization
+  if (window.NodeDisplay && typeof window.NodeDisplay.initNodeDisplay === 'function') {
+    window.NodeDisplay.initNodeDisplay();
   }
 
   const langToggle = document.getElementById('langToggle');
@@ -213,17 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initialLang = localStorage.getItem('preferredLanguage');
   }
   setLanguage(initialLang);
-});
-
-// Add a new function for end-to-end testing
-// function runEndToEndTest() {
-//   return runEndToEndTestModule(testCytoscapeImplementation, initializeCytoscape);
-// }
-
-// Ensure Cytoscape initialization is called on page load
-document.addEventListener('DOMContentLoaded', function() {
-  if (useCytoscape) {
-    //console.log('[TDD] Page loaded, initializing Cytoscape');
-    initializeCytoscape();
-  }
 });
