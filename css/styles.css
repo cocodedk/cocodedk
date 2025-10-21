@@ -394,7 +394,7 @@ canvas {
   border-radius: 50%; /* Make it circular */
   width: 40px;
   height: 40px;
-  display: flex;
+  display: none; /* Hidden on desktop */
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -460,7 +460,7 @@ canvas {
     right: 15px;
     width: 44px;
     height: 44px;
-    display: flex;
+    display: flex; /* Show on mobile */
   }
 
   .lang-item {
