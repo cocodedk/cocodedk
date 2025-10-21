@@ -1,0 +1,43 @@
+/* Warm Color Palette - CSS Variables */
+
+:root {
+  /* Primary Backgrounds */
+  --primary-bg: #1a1a1a;
+  --secondary-bg: #3d1a2a;
+  --tertiary-bg: #5c2e1f;
+
+  /* Warm Accents */
+  --accent-coral: #e8735e;
+  --accent-amber: #d4a574;
+  --accent-warm-orange: #f39c12;
+  --accent-terracotta: #b8532d;
+
+  /* Glass Effects */
+  --glass-light: rgba(255, 255, 255, 0.1);
+  --glass-medium: rgba(255, 255, 255, 0.05);
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #a0a0a0;
+
+  /* Gradients */
+  --gradient-warm: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-amber) 100%);
+
+  /* Easing Functions */
+  --ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Fallback for older browsers */
+@supports not (--css: variables) {
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+}
