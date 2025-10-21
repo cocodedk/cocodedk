@@ -28,4 +28,3 @@ Integrate language selector into footer for better UX and consistent layout.
 - Cleaner UI
 - Standard web pattern
 - Better accessibility
-
