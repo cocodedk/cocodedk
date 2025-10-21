@@ -251,10 +251,11 @@ const ContactModal = (function() {
       }
 
       .contact-modal {
-        background: linear-gradient(145deg, #2c1c3e, #3c2c4e);
+        background: linear-gradient(145deg, #2d1b2e, #3d2534, #4a2c38);
         color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        box-shadow: 0 15px 50px rgba(255, 107, 107, 0.2), 0 5px 20px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 160, 122, 0.2);
         max-width: 500px;
         width: 90%;
         transform: translateY(20px);
@@ -272,15 +273,18 @@ const ContactModal = (function() {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.2);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 24px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 160, 122, 0.1));
+        border-bottom: 1px solid rgba(255, 160, 122, 0.2);
       }
 
       .modal-header h2 {
         margin: 0;
-        font-size: 1.5rem;
-        color: #f1c40f;
+        font-size: 1.6rem;
+        background: linear-gradient(135deg, #ff9a76, #ffb088);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .close-button {
@@ -312,17 +316,20 @@ const ContactModal = (function() {
       }
 
       .contact-section h3 {
-        color: #f1c40f;
+        background: linear-gradient(135deg, #ff9a76, #ffb088);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         margin: 0 0 15px 0;
       }
 
       .company-info {
         display: flex;
         align-items: center;
-        background: rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 107, 107, 0.08);
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 160, 122, 0.2);
       }
 
       .company-logo {
@@ -339,20 +346,22 @@ const ContactModal = (function() {
       }
 
       .company-details a {
-        color: #3498db;
+        color: #ff9a76;
         text-decoration: none;
+        transition: color 0.2s;
       }
 
       .company-details a:hover {
+        color: #ffb088;
         text-decoration: underline;
       }
 
       .verification-container {
-        background: rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        border-radius: 8px;
+        background: rgba(255, 107, 107, 0.08);
+        padding: 18px;
+        border-radius: 12px;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 160, 122, 0.2);
       }
 
       .verification-challenge {
@@ -392,7 +401,7 @@ const ContactModal = (function() {
         top: 0;
         left: 0;
         height: 100%;
-        background: rgba(241, 196, 15, 0.3);
+        background: linear-gradient(90deg, rgba(255, 107, 107, 0.4), rgba(255, 160, 122, 0.5));
         width: 0%;
         transition: width 0.2s;
         pointer-events: none;
@@ -404,22 +413,22 @@ const ContactModal = (function() {
         left: 0;
         width: 40px;
         height: 40px;
-        background: #f1c40f;
+        background: linear-gradient(135deg, #ff9a76, #ffb088);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
         pointer-events: none;
       }
 
       .protected-content {
-        background: rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        border-radius: 8px;
+        background: rgba(255, 107, 107, 0.08);
+        padding: 18px;
+        border-radius: 12px;
         animation: fadeIn 0.5s;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 160, 122, 0.2);
       }
 
       .contact-item {
