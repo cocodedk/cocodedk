@@ -38,7 +38,7 @@ async function renderActivityFeed() {
     ]);
 
     const allActivities = [
-      ...(githubRepos || []).map(r => ({ 
+      ...(githubRepos || []).map(r => ({
         title: r.name || r.title,
         description: r.description,
         date: r.updated || r.date,
@@ -47,7 +47,7 @@ async function renderActivityFeed() {
         meta: r.language ? `${r.language}` : (r.stars ? `⭐ ${r.stars}` : ''),
         platform: 'GitHub'
       })),
-      ...(youtubeVideos || []).map(v => ({ 
+      ...(youtubeVideos || []).map(v => ({
         title: v.title,
         description: v.description,
         date: v.date,
@@ -56,7 +56,7 @@ async function renderActivityFeed() {
         meta: v.views ? `👁 ${v.views}` : '',
         platform: 'YouTube'
       })),
-      ...(linkedinActivity || []).map(l => ({ 
+      ...(linkedinActivity || []).map(l => ({
         title: l.title,
         description: l.description,
         date: l.date,

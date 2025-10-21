@@ -60,7 +60,7 @@ Updated cocode.dk service cards to focus on hot trending technologies and servic
 - Projects: LLM integrations for risk assessment, compliance
 - Technologies: GPT-4, Claude, Mistral
 
-### MCP Development  
+### MCP Development
 - GitHub: github.com/cocodedk
 - Projects: Code scanner MCP, filesystem tools
 - Technologies: Model Context Protocol, TypeScript/Python
@@ -131,4 +131,3 @@ Updated cocode.dk service cards to focus on hot trending technologies and servic
 - GitHub/contact engagement increase expected
 - Modern, relevant positioning in market
 - Partnership visibility improved
-
