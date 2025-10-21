@@ -64,7 +64,7 @@
 @media (max-width: 768px) {
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 4px;
     text-align: center;
   }
 
@@ -75,23 +75,10 @@
   }
 
   .footer-lang-menu {
-    gap: 6px;
-    flex-wrap: wrap;
-    padding: 8px 0;
-  }
-
-  .footer-lang-menu .flag-icon {
-    font-size: 24px;
-  }
-
-  .footer-lang-menu .lang-item {
-    padding: 8px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-lang-menu {
     gap: 4px;
+    flex-wrap: wrap;
+    padding: 4px 0;
+    justify-content: center;
   }
 
   .footer-lang-menu .flag-icon {
@@ -100,5 +87,21 @@
 
   .footer-lang-menu .lang-item {
     padding: 6px 8px;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-lang-menu {
+    gap: 3px;
+    padding: 3px 0;
+  }
+
+  .footer-lang-menu .flag-icon {
+    font-size: 18px;
+  }
+
+  .footer-lang-menu .lang-item {
+    padding: 4px 6px;
   }
 }
