@@ -83,6 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.NodeDisplay.initNodeDisplay();
   }
 
+  // Initialize service cards
+  if (window.serviceCards && window.nodes) {
+    window.serviceCards.render(window.nodes, mainCurrentLanguage);
+  }
+
   const langToggle = document.getElementById('langToggle');
   const langMenu = document.getElementById('languageSelector');
 

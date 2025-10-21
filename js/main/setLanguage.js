@@ -19,6 +19,11 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
     window.terminal.start(lang);
   }
 
+  // Re-render service cards with new language
+  if (window.serviceCards && window.nodes) {
+    window.serviceCards.render(window.nodes, lang);
+  }
+
   // Update visualization based on active implementation
   if (useCytoscape) {
     if (window.CytoscapeManager) {
