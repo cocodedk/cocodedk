@@ -1,10 +1,12 @@
 # Deployment Fix - Bundled Scripts
 
 ## Issue
-Production server (one.com) was receiving 404 errors for individual JS files because HTML referenced unbundled source files instead of webpack bundles.
+Production server (one.com) was receiving 404 errors for individual JS files because HTML referenced unbundled source files instead of webpack bundles. Old index.html had legacy cytoscape references.
 
 ## Solution
-Removed manual script tags from template. Webpack now auto-injects bundled scripts.
+1. Removed manual script tags from template
+2. Webpack now auto-injects bundled scripts
+3. Copied dist/index.html to root index.html
 
 ## Deployment Steps
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>cocode.dk</title>
 
   <!-- Primary meta description (English) -->
@@ -71,9 +71,6 @@
   <link rel="alternate" hreflang="ur" href="https://cocode.dk/#ur">
   <link rel="alternate" hreflang="fr" href="https://cocode.dk/#fr">
 
-  <!-- Cytoscape.js library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js" referrerpolicy="no-referrer"></script>
-
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -88,7 +85,6 @@
   <link rel="stylesheet" href="css/hero.css?v=1.0.0">
   <link rel="stylesheet" href="css/service-cards.css?v=1.0.0">
   <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
-  <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
   <link rel="stylesheet" href="css/modal-links.css?v=1.0.0">
   <link rel="stylesheet" href="css/footer-lang.css?v=1.0.0">
 
@@ -125,7 +121,7 @@
 <body>
   <div class="header-container">
     <div id="logo-container">
-      <img src="images/cocode-logo.png" alt="cocode.dk" id="site-logo" />
+      <img src="images/cocode-logo.png" alt="cocode.dk" id="site-logo">
     </div>
   </div>
 
@@ -142,32 +138,13 @@
     <div class="cards-grid" id="service-cards-container"></div>
   </section>
 
-  <!-- Removed canvas element and Cytoscape container -->
-  <div id="infoBox"></div>
-  <div id="debug"></div>
+  <!-- Activity Feed Section -->
+  <section class="activity-feed-section">
+    <h2 class="activity-feed-title">Latest Activity</h2>
+    <div class="activity-feed-grid" id="activity-feed-container"></div>
+  </section>
 
-  <!-- External JavaScript -->
-  <!-- Legacy visualization implementation -->
-  <script src="js/utils/linkify.js?v=1.0.0"></script>
-  <script src="js/nodes.js?v=1.0.4"></script>
-  <script src="js/node-display.js?v=1.0.0"></script>
-  <script src="js/contact-modal.js?v=1.0.2"></script>
-
-  <!-- Terminal Effect -->
-  <script src="js/components/terminal.js?v=1.0.0"></script>
-
-  <!-- Service Cards -->
-  <script src="js/components/service-card.js?v=1.0.0"></script>
-
-  <!-- Activity Feed -->
-  <script src="js/utils/cache.js?v=1.0.0"></script>
-  <script src="js/api/github.js?v=1.0.0"></script>
-  <script src="js/api/youtube.js?v=1.0.0"></script>
-  <script src="js/api/linkedin.js?v=1.0.0"></script>
-  <script src="js/components/activity-card.js?v=1.0.0"></script>
-
-  <!-- Main application logic -->
-  <script src="js/main.js?v=1.0.1"></script>
+  <!-- Scripts are automatically injected by webpack -->
 
   <footer id="site-footer">
     <div class="footer-content">
@@ -210,5 +187,5 @@
       <p class="footer-copyright">© 2025 Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
     </div>
   </footer>
-</body>
+<script defer="defer" src="nodes.bundle.js"></script><script defer="defer" src="contactModal.bundle.js"></script><script defer="defer" src="terminal.bundle.js"></script><script defer="defer" src="serviceCard.bundle.js"></script><script defer="defer" src="activityCard.bundle.js"></script><script defer="defer" src="cache.bundle.js"></script><script defer="defer" src="linkify.bundle.js"></script><script defer="defer" src="githubAPI.bundle.js"></script><script defer="defer" src="youtubeAPI.bundle.js"></script><script defer="defer" src="linkedinAPI.bundle.js"></script><script defer="defer" src="main.bundle.js"></script></body>
 </html>
