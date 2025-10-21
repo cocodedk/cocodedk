@@ -8,7 +8,7 @@ module.exports = {
     // Data source for service cards
     nodes: './js/nodes.js',
     contactModal: './js/contact-modal.js',
-    
+
     // New redesign components
     terminal: './js/components/terminal.js',
     serviceCard: './js/components/service-card.js',
@@ -18,7 +18,7 @@ module.exports = {
     githubAPI: './js/api/github.js',
     youtubeAPI: './js/api/youtube.js',
     linkedinAPI: './js/api/linkedin.js',
-    
+
     main: './js/main.js',
   },
   output: {

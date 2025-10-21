@@ -36,6 +36,7 @@ window.categoryHoverColors = {};
 // Define nodes array - REORDER BY CHANGING IMPORT ORDER ABOVE
 window.nodes = [
     cocodedk,
+    contact,
     aiIntegration,
     mcpDevelopment,
     openaiIntegration,
@@ -43,7 +44,6 @@ window.nodes = [
     specDrivenDevelopment,
     cybersecurityAudit,
     fitsDK,
-    contact,
     github,
     linkedin,
     unityFoundation
