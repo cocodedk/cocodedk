@@ -1,31 +1,40 @@
 /* Convert URLs in text to clickable links */
 
 function linkifyText(text) {
-  // Pattern to match URLs and email addresses
-  const urlPattern = /(\b(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/[^\s]*)?)/gi;
-  const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
-  
+  if (!text) return text;
+
   let linkedText = text;
-  
-  // Convert emails to mailto links
+  const processedRanges = [];
+
+  // First, handle emails
+  const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
   linkedText = linkedText.replace(emailPattern, (email) => {
     return `<a href="mailto:${email}" class="modal-link">${email}</a>`;
   });
-  
-  // Convert URLs to clickable links
-  linkedText = linkedText.replace(urlPattern, (url) => {
-    // Don't linkify if already part of an anchor tag
-    if (linkedText.indexOf(`href="${url}"`) !== -1 || linkedText.indexOf(`href="mailto:${url}"`) !== -1) {
-      return url;
+
+  // Then handle URLs (more specific patterns first)
+  // Pattern for URLs with or without protocol
+  const urlPattern = /(?:^|[\s,;:—。])((https?:\/\/)?((?:www\.)?[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s,;:。]*)?)/gi;
+
+  linkedText = linkedText.replace(urlPattern, (match, url, protocol, domain) => {
+    // Skip if already part of an anchor tag
+    if (match.includes('<a ') || match.includes('href=')) {
+      return match;
     }
-    
+
+    // Preserve leading whitespace/punctuation
+    const leadingChar = match.charAt(0);
+    const isLeading = /[\s,;:—。]/.test(leadingChar);
+    const prefix = isLeading ? leadingChar : '';
+    const cleanUrl = isLeading ? url : match;
+
     // Add https:// if not present
-    const href = url.match(/^https?:\/\//) ? url : `https://${url}`;
-    return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="modal-link">${url}</a>`;
+    const href = protocol ? cleanUrl : `https://${cleanUrl}`;
+
+    return `${prefix}<a href="${href}" target="_blank" rel="noopener noreferrer" class="modal-link">${cleanUrl}</a>`;
   });
-  
+
   return linkedText;
 }
 
 window.linkifyText = linkifyText;
-
