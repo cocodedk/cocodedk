@@ -139,6 +139,11 @@ window.closeNodeDescriptionModal = closeNodeDescriptionModal;
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize terminal effect
+  if (window.terminal && typeof window.terminal.init === 'function') {
+    window.terminal.init();
+  }
+
   // Initialize visualization based on feature flag
   if (useCytoscape) {
     initializeCytoscape();

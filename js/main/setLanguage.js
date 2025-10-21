@@ -14,6 +14,11 @@
  *   ▸ npm test -- --testPathPattern=setLanguage.test.js
  */
 export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
+  // Restart terminal effect with new language
+  if (window.terminal && typeof window.terminal.start === 'function') {
+    window.terminal.start(lang);
+  }
+
   // Update visualization based on active implementation
   if (useCytoscape) {
     if (window.CytoscapeManager) {

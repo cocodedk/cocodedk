@@ -76,6 +76,10 @@
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="css/colors.css?v=1.0.0">
+  <link rel="stylesheet" href="css/backgrounds.css?v=1.0.0">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
+  <link rel="stylesheet" href="css/hero.css?v=1.0.0">
   <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
   <link rel="stylesheet" href="css/cytoscape.css?v=1.0.0">
 
@@ -116,7 +120,15 @@
     </div>
   </div>
 
-  <!-- Add Cytoscape container after header section and before or alongside existing node container -->
+  <!-- Hero Section with Terminal Text -->
+  <section class="hero hero-fade-in">
+    <div class="hero-content">
+      <div class="terminal-text"></div>
+      <p class="hero-subtitle">Freelance IT Consultancy • Software Development • Cybersecurity • Europe</p>
+    </div>
+  </section>
+
+  <!-- Cytoscape container (temporary, will be replaced) -->
   <div id="cy-container" class="cy-container" aria-label="Interactive graph visualization of cocode.dk services"></div>
 
   <!-- Removed canvas element -->
@@ -178,6 +190,9 @@
   <script src="js/nodes.js?v=1.0.3"></script>
   <script src="js/node-display.js?v=1.0.0"></script>
   <script src="js/contact-modal.js?v=1.0.2"></script>
+
+  <!-- Terminal Effect -->
+  <script src="js/components/terminal.js?v=1.0.0"></script>
 
   <!-- Cytoscape implementation files (not currently active, but ready for integration) -->
   <script src="js/cytoscape-stylesheet.js?v=1.0.0"></script>
