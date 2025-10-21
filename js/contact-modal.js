@@ -191,7 +191,7 @@ const ContactModal = (function() {
 
     const emailInterval = setInterval(() => {
       if (emailIndex <= unreversedEmail.length) {
-        emailElement.textContent = unreversedEmail.substring(0, emailIndex);
+        emailElement.innerHTML = `<a href="mailto:${unreversedEmail}" style="color: inherit; text-decoration: none;">${unreversedEmail.substring(0, emailIndex)}</a>`;
         emailIndex++;
       } else {
         clearInterval(emailInterval);
