@@ -201,7 +201,7 @@ const ContactModal = (function() {
     setTimeout(() => {
       const phoneInterval = setInterval(() => {
         if (phoneIndex <= unreversedPhone.length) {
-          phoneElement.textContent = unreversedPhone.substring(0, phoneIndex);
+          phoneElement.innerHTML = `<a href="tel:${unreversedPhone}" style="color: inherit; text-decoration: none;">${unreversedPhone.substring(0, phoneIndex)}</a>`;
           phoneIndex++;
         } else {
           clearInterval(phoneInterval);
@@ -448,6 +448,17 @@ const ContactModal = (function() {
         font-family: monospace;
         letter-spacing: 1px;
         font-size: 1.1rem;
+      }
+
+      .contact-value a {
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .contact-value a:hover {
+        color: #ff9a76;
+        text-decoration: underline;
       }
 
       @keyframes fadeIn {
