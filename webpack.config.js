@@ -10,7 +10,7 @@ module.exports = {
     contactModal: './js/contact-modal.js',
     animationPresets: './js/animation-presets.js',
     nodeAnimation: './js/node-animation.js',
-    
+
     // New redesign components
     terminal: './js/components/terminal.js',
     serviceCard: './js/components/service-card.js',
@@ -19,7 +19,7 @@ module.exports = {
     githubAPI: './js/api/github.js',
     youtubeAPI: './js/api/youtube.js',
     linkedinAPI: './js/api/linkedin.js',
-    
+
     main: './js/main.js',
   },
   output: {
