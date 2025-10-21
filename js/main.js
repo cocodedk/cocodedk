@@ -68,8 +68,9 @@ function closeNodeDescriptionModal(event) {
   currentEscapeKeyHandler = currentEscapeKeyHandlerRef.value;
 }
 
-// Expose the function globally so it can be called from HTML onclick handlers
+// Expose functions globally so they can be called from HTML onclick handlers and components
 window.closeNodeDescriptionModal = closeNodeDescriptionModal;
+window.showNodeDescriptionModal = showNodeDescriptionModal;
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
