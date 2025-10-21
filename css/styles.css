@@ -21,6 +21,12 @@ canvas {
   display: none; /* Changed from block to none */
 }
 
+/* Hide Cytoscape container */
+#cy-container,
+.cy-container {
+  display: none !important;
+}
+
 /* ===== TITLE ELEMENTS ===== */
 #title-container {
   position: absolute;
