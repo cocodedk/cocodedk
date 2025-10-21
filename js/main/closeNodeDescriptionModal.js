@@ -32,12 +32,12 @@ export function closeNodeDescriptionModal(event, isModalOpeningRef, currentEscap
   }
   // console.log('closeNodeDescriptionModal called - Stack trace:');
   // console.trace('Closure Stack Trace');
-  
+
   // Remove hash from URL if present
   if (window.location.hash) {
     window.history.pushState('', document.title, window.location.pathname);
   }
-  
+
   const modalContainer = document.getElementById('node-description-modal-container');
   if (modalContainer) {
     modalContainer.remove();

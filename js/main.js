@@ -117,12 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
   setLanguage(initialLang);
 
   // Handle browser back/forward button - close modals when hash is removed
-  window.addEventListener('popstate', function() {
+  window.addEventListener('popstate', function(event) {
     if (!window.location.hash) {
       // Close node description modal if open
       const modalContainer = document.getElementById('node-description-modal-container');
       if (modalContainer) {
-        closeNodeDescriptionModal();
+        // Create a synthetic event for the close function
+        const syntheticEvent = {
+          preventDefault: () => {},
+          stopPropagation: () => {},
+          target: { classList: { contains: () => true } }
+        };
+        window.closeNodeDescriptionModal(syntheticEvent);
       }
       
       // Close contact modal if open
