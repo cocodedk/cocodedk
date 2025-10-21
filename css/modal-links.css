@@ -1,0 +1,33 @@
+/* Modal Link Styles */
+
+.modal-link {
+  color: var(--accent-warm-orange, #FFB88C);
+  text-decoration: underline;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.modal-link:hover {
+  color: var(--accent-coral, #E8735E);
+  text-shadow: 0 0 8px rgba(255, 184, 140, 0.4);
+  transform: translateY(-1px);
+}
+
+.modal-link:active {
+  color: var(--accent-terracotta, #D4A574);
+}
+
+.modal-link:focus {
+  outline: 2px solid var(--accent-warm-orange, #FFB88C);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Ensure links work in modal content */
+.node-modal-content a {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+

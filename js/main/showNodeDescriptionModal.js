@@ -57,6 +57,9 @@ export function showNodeDescriptionModal(nodeData, mainCurrentLanguage, currentM
   // Get node label and description
   const label = nodeData.labels && nodeData.labels[lang] ? nodeData.labels[lang] : nodeData.label || nodeData.id;
   const description = nodeData.translations && nodeData.translations[lang] ? nodeData.translations[lang] : 'No description available.';
+  
+  // Convert URLs and emails to clickable links
+  const linkedDescription = window.linkifyText ? window.linkifyText(description) : description;
 
   // Create modal HTML with legacy styling
   const modalHTML = `
@@ -64,7 +67,7 @@ export function showNodeDescriptionModal(nodeData, mainCurrentLanguage, currentM
     <div class="node-modal" ${(mainCurrentLanguage === 'ar' || mainCurrentLanguage === 'fa' || mainCurrentLanguage === 'ur') ? 'dir="rtl"' : 'dir="ltr"'}>
       <button class="node-modal-close" onclick="closeNodeDescriptionModal(event)" aria-label="Close">&times;</button>
       <h2>${label}</h2>
-      <div class="node-modal-content">${description}</div>
+      <div class="node-modal-content">${linkedDescription}</div>
     </div>
   `;
 

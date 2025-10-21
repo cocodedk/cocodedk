@@ -233,7 +233,9 @@ function showNodeInfo(nodeData) {
   // Set content
   nodeModalContent = document.createElement('div');
   nodeModalContent.className = 'node-modal-content';
-  nodeModalContent.textContent = nodeData.translations[displayCurrentLanguage];
+  const contentText = nodeData.translations[displayCurrentLanguage];
+  // Convert URLs and emails to clickable links
+  nodeModalContent.innerHTML = window.linkifyText ? window.linkifyText(contentText) : contentText;
   nodeModal.appendChild(nodeModalContent);
 
   // Show modal and overlay
