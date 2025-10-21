@@ -86,6 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize service cards
   if (window.serviceCards && window.nodes) {
     window.serviceCards.render(window.nodes, mainCurrentLanguage);
+  // Initialize activity feed
+  if (window.activityFeed) {
+    window.activityFeed.render();
+  }
   }
 
   const langToggle = document.getElementById('langToggle');

@@ -12,3 +12,5 @@ alwaysApply: true
 7. get rid of dead code.
 8. commit after each task is completed.
 9. when needed create new branches.
+10. write short summaries. not more than 20 lines.
+11. all .md files must be in ./0-docs/.

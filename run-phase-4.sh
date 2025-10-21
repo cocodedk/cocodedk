@@ -27,7 +27,7 @@ echo "✓ index.html updated"
 echo "2. Updating main.js..."
 
 # Add activity feed initialization after service cards
-sed -i '/window.serviceCards.render/a\  // Initialize activity feed\n  if (window.activityFeed) {\n    window.activityFeed.render();\n  }' main.js
+sed -i '/window.serviceCards.render/a\  // Initialize activity feed\n  if (window.activityFeed) {\n    window.activityFeed.render();\n  }' /home/bba/0-projects/cocodedk/js/main.js
 
 echo "✓ main.js updated"
 

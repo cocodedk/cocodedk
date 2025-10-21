@@ -55,7 +55,7 @@ If you prefer to do it manually:
    <script src="js/api/youtube.js?v=1.0.0"></script>
    <script src="js/api/linkedin.js?v=1.0.0"></script>
    <script src="js/components/activity-card.js?v=1.0.0"></script>
-   
+
    <!-- Activity Feed Section -->
    <section class="activity-feed-section">
      <h2 class="activity-feed-title">Latest Activity</h2>
