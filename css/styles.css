@@ -42,8 +42,8 @@ canvas {
 }
 
 #site-logo {
-  width: 200px;
-  height: 200px;
+  max-width: 300px;
+  height: auto;
   display: block;
   transition: all 0.3s ease;
   filter: drop-shadow(0 6px 20px rgba(255, 138, 91, 0.4));
@@ -482,8 +482,8 @@ canvas {
   }
 
   #site-logo {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    height: auto;
   }
 
   /* Ensure canvas doesn't overflow on mobile */
@@ -508,8 +508,8 @@ canvas {
   }
 
   #site-logo {
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    height: auto;
   }
 
   .lang-toggle {
