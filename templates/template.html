@@ -79,7 +79,6 @@
   <link rel="stylesheet" href="css/hero.css?v=1.0.0">
   <link rel="stylesheet" href="css/service-cards.css?v=1.0.0">
   <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
-  <link rel="stylesheet" href="css/node-display.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -131,9 +130,11 @@
     <div class="cards-grid" id="service-cards-container"></div>
   </section>
 
-  <!-- Removed canvas element and Cytoscape container -->
-  <div id="infoBox"></div>
-  <div id="debug"></div>
+  <!-- Activity Feed Section -->
+  <section class="activity-feed-section">
+    <h2 class="activity-feed-title">Latest Activity</h2>
+    <div class="activity-feed-grid" id="activity-feed-container"></div>
+  </section>
 
   <button id="langToggle" class="lang-toggle" aria-label="Toggle language menu">
     <span class="flag-icon" aria-hidden="true">🌐</span>
@@ -186,9 +187,6 @@
   </div>
 
   <!-- External JavaScript -->
-  <!-- Legacy visualization implementation -->
-  <script src="js/nodes.js?v=1.0.3"></script>
-  <script src="js/node-display.js?v=1.0.0"></script>
   <script src="js/contact-modal.js?v=1.0.2"></script>
 
   <!-- Terminal Effect -->
