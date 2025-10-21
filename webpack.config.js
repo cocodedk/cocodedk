@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
+    // Data source for service cards
+    nodes: './js/nodes.js',
     contactModal: './js/contact-modal.js',
     
     // New redesign components

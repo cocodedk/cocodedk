@@ -78,18 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
     window.terminal.init();
   }
 
-  // Initialize legacy visualization
-  if (window.NodeDisplay && typeof window.NodeDisplay.initNodeDisplay === 'function') {
-    window.NodeDisplay.initNodeDisplay();
-  }
-
   // Initialize service cards
   if (window.serviceCards && window.nodes) {
     window.serviceCards.render(window.nodes, mainCurrentLanguage);
+  }
+  
   // Initialize activity feed
   if (window.activityFeed) {
     window.activityFeed.render();
-  }
   }
 
   const langToggle = document.getElementById('langToggle');
