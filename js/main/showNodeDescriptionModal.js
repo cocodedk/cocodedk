@@ -32,6 +32,10 @@ export function showNodeDescriptionModal(nodeData, mainCurrentLanguage, currentM
   isModalOpeningRef.value = true;
   //console.log('Setting isModalOpening to true');
 
+  // Add hash to URL for navigation
+  const nodeHash = nodeData.id.toLowerCase().replace(/\s+/g, '-');
+  window.history.pushState({ modal: nodeHash }, '', `#${nodeHash}`);
+
   // Special handling for Contact node
   if (nodeData.id === 'Contact' || nodeData.category === 'Contact') {
     //console.log('Checking ContactModal and ContactModal.showModal availability:', typeof ContactModal !== 'undefined' ? 'ContactModal Available' : 'Not available', typeof ContactModal !== 'undefined' && ContactModal.showModal ? 'showModal Available' : 'showModal Not available');

@@ -126,6 +126,9 @@ const ContactModal = (function() {
 
   // Show the modal
   function showModal() {
+    // Add hash to URL for navigation
+    window.history.pushState({ modal: 'contact' }, '', '#contact');
+    
     if (!modalElement) {
       document.body.appendChild(createModal());
     } else {
@@ -148,6 +151,11 @@ const ContactModal = (function() {
   // Hide the modal
   function hideModal() {
     if (!overlayElement) return;
+
+    // Remove hash from URL if present
+    if (window.location.hash === '#contact') {
+      window.history.pushState('', document.title, window.location.pathname);
+    }
 
     // Remove visible class to trigger animation
     overlayElement.classList.remove('visible');

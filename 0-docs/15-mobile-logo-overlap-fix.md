@@ -35,4 +35,3 @@ Logo overlaps with terminal text on mobile:
 **Option A**: Increase hero top padding to 100-120px on mobile (480px and below).
 
 This maintains logo visibility and brand presence while cleanly separating sections.
-

@@ -99,11 +99,36 @@ document.addEventListener('DOMContentLoaded', function() {
   window.setLanguage = setLanguage;
 
   // Set initial language from URL hash or localStorage
+  // Valid language codes
+  const validLanguages = ['en', 'da', 'es', 'zh', 'ja', 'de', 'ar', 'fa', 'hi', 'ur', 'fr'];
   let initialLang = 'en';
+  
   if (window.location.hash && window.location.hash.length > 1) {
-    initialLang = window.location.hash.substring(1);
+    const hashValue = window.location.hash.substring(1);
+    // Only use hash as language if it's a valid language code
+    if (validLanguages.includes(hashValue)) {
+      initialLang = hashValue;
+    } else if (localStorage.getItem('preferredLanguage')) {
+      initialLang = localStorage.getItem('preferredLanguage');
+    }
   } else if (localStorage.getItem('preferredLanguage')) {
     initialLang = localStorage.getItem('preferredLanguage');
   }
   setLanguage(initialLang);
+
+  // Handle browser back/forward button - close modals when hash is removed
+  window.addEventListener('popstate', function() {
+    if (!window.location.hash) {
+      // Close node description modal if open
+      const modalContainer = document.getElementById('node-description-modal-container');
+      if (modalContainer) {
+        closeNodeDescriptionModal();
+      }
+      
+      // Close contact modal if open
+      if (window.ContactModal && typeof window.ContactModal.hideModal === 'function') {
+        window.ContactModal.hideModal();
+      }
+    }
+  });
 });
