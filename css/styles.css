@@ -608,18 +608,14 @@ canvas {
   }
 
   #site-footer {
-    padding: 12px 0;
+    padding: 8px 0;
   }
 }
 
 /* For very small screens */
 @media (max-width: 480px) {
   #site-footer {
-    padding: 10px 0;
-  }
-
-  .footer-credit, .footer-copyright {
-    font-size: 12px;
+    padding: 6px 0;
   }
 }
 

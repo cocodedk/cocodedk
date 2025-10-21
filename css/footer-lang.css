@@ -64,13 +64,14 @@
 @media (max-width: 768px) {
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 8px;
     text-align: center;
   }
 
+  /* Hide credit and copyright on mobile */
   .footer-credit,
   .footer-copyright {
-    justify-self: center;
+    display: none;
   }
 
   .footer-lang-menu {
