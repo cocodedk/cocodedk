@@ -8,22 +8,18 @@ module.exports = {
     nodes: './js/nodes.js',
     nodeDisplay: './js/node-display.js',
     contactModal: './js/contact-modal.js',
-
-    cytoscapeStylesheet: './js/cytoscape-stylesheet.js',
-    cytoscapeEdgeStyles: './js/cytoscape-edge-styles.js',
-    cytoscapeAccessibility: './js/cytoscape-accessibility.js',
-    cytoscapeEdgeInteractions: './js/cytoscape-edge-interactions.js',
-
-    cytoscapeGraph: './src/ts/cytoscape/cytoscape-graph.ts',
-
-    cytoscapeManager: './js/cytoscape-manager.js',
-    cytoscapeNodeInteractions: './js/cytoscape-node-interactions.js',
-
-    // Use TypeScript version for node styles
-    cytoscapeNodeStyles: './src/ts/cytoscape/cytoscape-node-styles.ts',
-
     animationPresets: './js/animation-presets.js',
     nodeAnimation: './js/node-animation.js',
+    
+    // New redesign components
+    terminal: './js/components/terminal.js',
+    serviceCard: './js/components/service-card.js',
+    activityCard: './js/components/activity-card.js',
+    cache: './js/utils/cache.js',
+    githubAPI: './js/api/github.js',
+    youtubeAPI: './js/api/youtube.js',
+    linkedinAPI: './js/api/linkedin.js',
+    
     main: './js/main.js',
   },
   output: {
