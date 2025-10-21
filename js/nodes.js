@@ -246,7 +246,8 @@ window.nodes = [
             ur: 'Django کا استعمال کرتے ہوئے محفوظ، قابل توسیع ویب ایپلیکیشنز کی ترقی۔ انتظامی نظام، APIs، تصدیق اور انضمام شامل ہیں۔',
             fr: 'Développement d\'applications web sécurisées et évolutives utilisant Django. Comprend des systèmes d\'administration, des API, une authentification et des intégrations.'
         },
-        category: 'Software'
+        category: 'Software',
+        image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0yMCA4MEMyMCA4NS41MjI4IDI0LjQ3NzIgOTAgMzAgOTBINzBDNzUuNTIyOCA5MCA4MCA4NS41MjI4IDgwIDgwVjIwQzgwIDE0LjQ3NzIgNzUuNTIyOCAxMCA3MCAxMEgzMEMyNC40NzcyIDEwIDIwIDE0LjQ3NzIgMjAgMjBWODBaIiBmaWxsPSIjMDkyRTIwIi8+CjxwYXRoIGQ9Ik0zMCAyNUg3MFYzNUgzMFYyNVoiIGZpbGw9IiM0NEI3OEIiLz4KPHA+dGggZD0iTTMwIDQ1SDcwVjU1SDMwVjQ1WiIgZmlsbD0iIzQ0Qjc4QiIvPgo8cGF0aCBkPSJNMzAgNjVINzBWNzVIMzBWNjVaIiBmaWxsPSIjNDRCNzhCIi8+CjxwYXRoIGQ9Ik0zNSAzMEg0MFY3MEgzNVYzMFoiIGZpbGw9IiM0NEI3OEIiLz4KPHA+dGggZD0iTTQ1IDMwSDUwVjcwSDQ1VjMwWiIgZmlsbD0iIzQ0Qjc4QiIvPgo8cGF0aCBkPSJNNTUgMzBINjBWNzBINTVWMzBaIiBmaWxsPSIjNDRCNzhCIi8+CjxwYXRoIGQ9Ik02NSAzMEg3MFY3MEg2NVYzMFoiIGZpbGw9IiM0NEI3OEIiLz4KPC9zdmc+'
         },
         {
         id: 'Neo4j',
@@ -526,7 +527,8 @@ window.nodes = [
             ur: 'Flask Python میں ایک ہلکا WSGI ویب ایپلیکیشن فریم ورک ہے۔ کم سے کم بوائلرپلیٹ کوڈ کے ساتھ اسکیلیبل ویب ایپلیکیشنز، REST APIs اور مائیکرو سروسز بنانے کے لیے استعمال ہوتا ہے۔',
             fr: 'Flask est un framework d\'applications web WSGI léger en Python. Utilisé pour construire des applications web évolutives, des API REST et des microservices avec un code répétitif minimal.'
         },
-        category: 'Flask'
+        category: 'Flask',
+        image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik01MCA5NUMzMC4xMDg2IDk1IDEwIDc0Ljg5MTQgMTAgNTVWNDVDMTAgMjUuMTA4NiAzMC4xMDg2IDUgNTAgNUM2OS44OTE0IDUgOTAgMjUuMTA4NiA5MCA0NVY1NUM5MCA3NC44OTE0IDY5Ljg5MTQgOTUgNTAgOTVaIiBmaWxsPSIjMDAwMDAwIi8+CjxwYXRoIGQ9Ik01MCA4NUMzNS4xMDg2IDg1IDIwIDY5Ljg5MTQgMjAgNTVWNDVDMjAgMzAuMTA4NiAzNS4xMDg2IDE1IDUwIDE1QzY0Ljg5MTQgMTUgODAgMzAuMTA4NiA4MCA0NVY1NUM4MCA2OS44OTE0IDY0Ljg5MTQgODUgNTAgODVaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik01MCA3NUMzNS4xMDg2IDc1IDI1IDY0Ljg5MTQgMjUgNTBDMjUgMzUuMTA4NiAzNS4xMDg2IDI1IDUwIDI1QzY0Ljg5MTQgMjUgNzUgMzUuMTA4NiA3NSA1MEM3NSA2NC44OTE0IDY0Ljg5MTQgNzUgNTAgNzVaIiBmaWxsPSIjMDAwMDAwIi8+CjxwYXRoIGQ9Ik00NSAzNUg1NVY0MEg0NVYzNVoiIGZpbGw9IiNGRkZGRkYiLz4KPHA+dGggZD0iTTQ1IDQ1SDU1VjUwSDQ1VjQ1WiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNNDUgNTVINTVWNjBINDVWNTVaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik00NSA2NUg1NVY3MEg0NVY2NVoiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+'
     },
     {
         id: 'TypeScript',
@@ -588,7 +590,8 @@ window.nodes = [
             ur: 'پیشہ ورانہ نیٹ ورکنگ اور کیریئر ڈیولپمنٹ۔ تعاون کے مواقع تلاش کرنے، پیشہ ورانہ تجربہ دیکھنے اور تازہ ترین پروجیکٹس اور بصیرت پر اپ ڈیٹ رہنے کے لیے LinkedIn پر Babak Bandpey سے جڑیں۔ ملاحظہ کریں: https://www.linkedin.com/in/babakbandpey/',
             fr: 'Réseautage professionnel et développement de carrière. Connectez-vous avec Babak Bandpey sur LinkedIn pour explorer les opportunités de collaboration, voir l\'expérience professionnelle et rester informé des derniers projets et insights. Visitez: https://www.linkedin.com/in/babakbandpey/'
         },
-        category: 'LinkedIn'
+        category: 'LinkedIn',
+        image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwLjQ0NyAyMC40NDRIMS41NTNWMS41NTZIMjAuNDQ3VjIwLjQ0NFoiIGZpbGw9IiMwQTY2QzIiLz4KPHBhdGggZD0iTTUuMzM3IDcuNDMzSDguMTFWMTYuNzc4SDUuMzM3VjcuNDMzWk02LjcyNCAzLjU1NkM3LjYxIDMuNTU2IDguMzMzIDQuMjc4IDguMzMzIDUuMTY3QzguMzMzIDYuMDU2IDcuNjEgNi43NzggNi43MjQgNi43NzhDNS44MzggNi43NzggNS4xMTEgNi4wNTYgNS4xMTEgNS4xNjdDNS4xMTEgNC4yNzggNS44MzggMy41NTYgNi43MjQgMy41NTZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTAuNTU2IDcuNDMzSDEzLjIyMlY4LjY2N0gxMy4yNzhDMTMuNjY3IDcuOTQ0IDE0LjUgNy4yMjIgMTUuNzc4IDcuMjIyQzE4LjY2NyA3LjIyMiAxOS4yMjIgOS4xMTEgMTkuMjIyIDEyVjE2Ljc3OEgxNi40NDRWMTI42NjdDMTYuNDQ0IDExLjU1NiAxNi40NDQgMTAuNTU2IDE1LjMzMyAxMC41NTZDMTQuMjIyIDEwLjU1NiAxNC4wNTYgMTEuMzMzIDE0LjA1NiAxMi4zMzNWMTYuNzc4SDExLjI3OFY3LjQzM0gxMC41NTZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K'
     },
 ];
 
