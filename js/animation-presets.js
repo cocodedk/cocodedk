@@ -56,6 +56,46 @@ const AnimationPresets = {
       repeat: 'infinite',
       duration: 3000,
       easing: 'easeInOutElastic' // Special animation for Contact
+    },
+    {
+      nodeId: 'GitHub',
+      type: 'oscillate',
+      axis: 'y',
+      amplitude: 3,
+      frequency: 0.25,
+      repeat: 'infinite',
+      duration: 4200,
+      easing: 'easeInOutQuad' // Smooth GitHub animation
+    },
+    {
+      nodeId: 'Flask',
+      type: 'oscillate',
+      axis: 'x',
+      amplitude: 2,
+      frequency: 0.3,
+      repeat: 'infinite',
+      duration: 3800,
+      easing: 'easeInOutSine' // Gentle Flask animation
+    },
+    {
+      nodeId: 'TypeScript',
+      type: 'oscillate',
+      axis: 'y',
+      amplitude: 2.5,
+      frequency: 0.28,
+      repeat: 'infinite',
+      duration: 4000,
+      easing: 'easeInOutQuad' // TypeScript animation
+    },
+    {
+      nodeId: 'LinkedIn',
+      type: 'oscillate',
+      axis: 'x',
+      amplitude: 3,
+      frequency: 0.22,
+      repeat: 'infinite',
+      duration: 4500,
+      easing: 'easeInOutCubic' // Professional LinkedIn animation
     }
   ],
 
@@ -209,4 +249,9 @@ const AnimationPresets = {
 // Export for ES modules if needed
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = AnimationPresets;
+}
+
+// Expose globally for browser usage
+if (typeof window !== 'undefined') {
+  window.AnimationPresets = AnimationPresets;
 }

@@ -94,6 +94,80 @@ For migration and container management, CytoscapeManager includes:
 
 This enhanced container handling ensures reliable migration between different container elements, making it ideal for dynamic UI changes, responsive layouts, and feature transitions.
 
+## Styling System
+
+### Node and Edge Styling
+
+All visual styling for the Cytoscape graph is centralized in `cytoscape-stylesheet.js`. This file contains the complete stylesheet that defines how nodes and edges appear in the visualization.
+
+#### How to Change Node Colors
+
+To modify node appearance, edit the category-specific styling sections in `cytoscape-stylesheet.js`:
+
+```javascript
+// Node category-specific styling: [CategoryName]
+{
+  selector: 'node.[CategoryName]',
+  style: {
+    'background-color': '#hexcolor',  // Node fill color
+    'border-color': '#hexcolor',      // Node border color
+    'color': '#hexcolor'              // Text color
+  }
+}
+```
+
+#### Available Node Categories
+
+The following node categories have specific styling:
+
+- **cocode.dk** - Central hub node
+- **Software** - Software development nodes
+- **Cybersecurity** - Security-related nodes
+- **Clients** - Client-related nodes
+- **Contact** - Contact information nodes
+- **GitHub** - GitHub repository node
+- **Flask** - Flask framework node
+- **TypeScript** - TypeScript language node
+- **LinkedIn** - LinkedIn profile node
+
+#### Adding New Node Styles
+
+To add styling for a new node category:
+
+1. Add a new style object to the array in `getStylesheet()`:
+```javascript
+// Node category-specific styling: NewCategory
+{
+  selector: 'node.NewCategory',
+  style: {
+    'background-color': '#your-color',
+    'border-color': '#your-border-color',
+    'color': '#your-text-color'
+  }
+}
+```
+
+2. Ensure the node in `nodes.js` has the matching category:
+```javascript
+{
+  id: 'your-node-id',
+  category: 'NewCategory',
+  // ... other properties
+}
+```
+
+#### Text Contrast Guidelines
+
+- Use `'color': '#ffffff'` (white) for dark backgrounds
+- Use `'color': '#000000'` (black) for light backgrounds
+- Add `'text-outline-width': 0` to remove text outline when using dark text on light backgrounds
+
+#### Special Node Features
+
+- **Image Support**: Nodes with an `image` property will display the image as background
+- **Hover Effects**: Hover states are automatically handled by the base styling
+- **Selection States**: Selected nodes get enhanced borders automatically
+
 ## Testing
 
 To run tests for accessibility features:

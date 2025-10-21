@@ -40,6 +40,7 @@ const NodeAnimation = (function() {
   };
 
   // Helper function to log messages based on log level and time limit
+  const LOGGER_MODE = true; // Enable logging for debugging
   function logMessage(level, message, data) {
     if(!LOGGER_MODE) return;
     const logLevels = { error: 0, info: 1, debug: 2 };
@@ -345,4 +346,9 @@ const NodeAnimation = (function() {
 // Export for ES modules if needed
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = NodeAnimation;
+}
+
+// Expose globally for browser usage
+if (typeof window !== 'undefined') {
+  window.NodeAnimation = NodeAnimation;
 }

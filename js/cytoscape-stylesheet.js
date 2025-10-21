@@ -4,6 +4,7 @@
  * @return {array} Array of style objects
  */
 function getStylesheet() {
+  // Base styles array
   return [
     // Base node styling
     {
@@ -73,8 +74,8 @@ function getStylesheet() {
     {
       selector: 'node.Software',
       style: {
-        'background-color': '#0077cc',
-        'border-color': '#33ccff'
+        'background-color': '#ff6d00',
+        'border-color': '#ffab40'
       }
     },
 
@@ -109,6 +110,136 @@ function getStylesheet() {
       }
     },
 
+    // Node category-specific styling: GitHub
+    {
+      selector: 'node.GitHub',
+      style: {
+        'background-color': '#161b22',
+        'border-color': '#f0f6fc',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Flask
+    {
+      selector: 'node.Flask',
+      style: {
+        'background-color': '#000000',
+        'border-color': '#ffffff',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: TypeScript
+    {
+      selector: 'node.TypeScript',
+      style: {
+        'background-color': '#ff8f00',
+        'border-color': '#ffcc02',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: LinkedIn
+    {
+      selector: 'node.LinkedIn',
+      style: {
+        'background-color': '#0a66c2',
+        'border-color': '#378fe9',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Python
+    {
+      selector: 'node[id="Python"]',
+      style: {
+        'background-color': '#ff6b35',
+        'border-color': '#ffd43b',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Django
+    {
+      selector: 'node[id="Django"]',
+      style: {
+        'background-color': '#d84315',
+        'border-color': '#ff8a65',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Neo4j
+    {
+      selector: 'node[id="Neo4j"]',
+      style: {
+        'background-color': '#ff7043',
+        'border-color': '#ffab91',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: AI Integrations
+    {
+      selector: 'node[id="AI Integrations"]',
+      style: {
+        'background-color': '#ff5722',
+        'border-color': '#ffab00',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: AI Wrappers
+    {
+      selector: 'node[id="AI Wrappers"]',
+      style: {
+        'background-color': '#e91e63',
+        'border-color': '#f8bbd9',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Vibe Coding
+    {
+      selector: 'node[id="Vibe Coding"]',
+      style: {
+        'background-color': '#ff4081',
+        'border-color': '#ff80ab',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Website Builder
+    {
+      selector: 'node[id="Website Builder"]',
+      style: {
+        'background-color': '#ff9800',
+        'border-color': '#ffcc02',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Compliance
+    {
+      selector: 'node[id="Compliance"]',
+      style: {
+        'background-color': '#bf360c',
+        'border-color': '#ff8a65',
+        'color': '#ffffff'
+      }
+    },
+
+    // Node category-specific styling: Audit
+    {
+      selector: 'node[id="Audit"]',
+      style: {
+        'background-color': '#d32f2f',
+        'border-color': '#ffab91',
+        'color': '#ffffff'
+      }
+    },
+
     // Edge category-specific styling: Software
     {
       selector: 'edge.Software',
@@ -132,6 +263,54 @@ function getStylesheet() {
         'background-image': 'data(image)',
         'background-fit': 'cover',
         'background-clip': 'node'
+      }
+    },
+
+    // Specific image styling for GitHub node
+    {
+      selector: 'node[id="GitHub"]',
+      style: {
+        'background-image': 'data(image)',
+        'background-fit': 'contain',
+        'background-clip': 'node',
+        'background-width': '80%',
+        'background-height': '80%'
+      }
+    },
+
+    // Specific image styling for Django node
+    {
+      selector: 'node[id="Django"]',
+      style: {
+        'background-image': 'data(image)',
+        'background-fit': 'contain',
+        'background-clip': 'node',
+        'background-width': '80%',
+        'background-height': '80%'
+      }
+    },
+
+    // Specific image styling for Flask node
+    {
+      selector: 'node[id="Flask"]',
+      style: {
+        'background-image': 'data(image)',
+        'background-fit': 'contain',
+        'background-clip': 'node',
+        'background-width': '80%',
+        'background-height': '80%'
+      }
+    },
+
+    // Specific image styling for LinkedIn node
+    {
+      selector: 'node[id="LinkedIn"]',
+      style: {
+        'background-image': 'data(image)',
+        'background-fit': 'contain',
+        'background-clip': 'node',
+        'background-width': '80%',
+        'background-height': '80%'
       }
     },
 
