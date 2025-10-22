@@ -73,6 +73,13 @@ function closeNodeDescriptionModal(event) {
 window.closeNodeDescriptionModal = closeNodeDescriptionModal;
 window.showNodeDescriptionModal = showNodeDescriptionModal;
 
+// Expose contact modal function globally for CTA button
+window.showContactModal = function() {
+  if (window.ContactModal && typeof window.ContactModal.showModal === 'function') {
+    window.ContactModal.showModal();
+  }
+};
+
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize hero content
