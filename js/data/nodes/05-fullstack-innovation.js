@@ -15,7 +15,7 @@ export default {
             fr: 'Innovation Fullstack'
         },
         translations: {
-            en: 'Modern fullstack development with Django/Python + React/TypeScript. Creative interfaces, expressive design, and bulletproof backend logic. Graph databases (Neo4j) for complex relationships. Performance, aesthetics, and functionality in harmony.',
+            en: 'Modern fullstack development with Django/Python + React/TypeScript. What you get: ✓ Secure, scalable Django REST APIs with comprehensive testing ✓ Modern React/TypeScript frontends with responsive design ✓ Neo4j graph databases for complex data relationships (compliance mapping, asset tracking). Performance, aesthetics, and functionality in harmony—production-ready from day one.',
             da: 'Moderne fullstack-udvikling med Django/Python + React/TypeScript. Kreative grænseflader, udtryksfuldt design og skudsikkert backend-logik. Grafdatabaser (Neo4j) til komplekse relationer. Ydelse, æstetik og funktionalitet i harmoni.',
             es: 'Desarrollo fullstack moderno con Django/Python + React/TypeScript. Interfaces creativas, diseño expresivo y lógica backend a prueba de balas. Bases de datos de grafos (Neo4j) para relaciones complejas. Rendimiento, estética y funcionalidad en armonía.',
             zh: '使用Django/Python + React/TypeScript进行现代全栈开发。创意界面、表现性设计和防弹后端逻辑。用于复杂关系的图数据库（Neo4j）。性能、美学和功能的和谐统一。',

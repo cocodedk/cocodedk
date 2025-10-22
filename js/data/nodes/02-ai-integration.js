@@ -15,7 +15,7 @@ export default {
             fr: 'Intégration IA'
         },
         translations: {
-            en: 'Implementing LLMs (GPT-4, Claude, Mistral) into business workflows—from automated risk assessments to intelligent compliance audits and insight generation. Real AI solutions that deliver measurable ROI. 🔗 See projects: https://github.com/cocodedk',
+            en: 'Implementing LLMs (GPT-4, Claude, Mistral) into business workflows. We deliver: ✓ Automated risk assessments & compliance audits ✓ Intelligent document analysis & insight generation ✓ Custom AI agents for specific business processes. Real AI solutions that deliver measurable ROI, not just proof-of-concepts. Reduce manual review time by 60-80%. 🔗 Projects: https://github.com/cocodedk',
             da: 'Implementering af LLM\'er (GPT-4, Claude, Mistral) i forretningsprocesser—fra automatiserede risikovurderinger til intelligente compliance-audits og indsigts-generering. Ægte AI-løsninger der leverer målbart ROI. 🔗 Se projekter: https://github.com/cocodedk',
             es: 'Implementación de LLMs (GPT-4, Claude, Mistral) en flujos de trabajo empresariales—desde evaluaciones de riesgo automatizadas hasta auditorías de cumplimiento inteligentes y generación de insights. Soluciones de IA reales que entregan ROI medible. 🔗 Ver proyectos: https://github.com/cocodedk',
             zh: '将大型语言模型（GPT-4、Claude、Mistral）实施到业务工作流程中—从自动化风险评估到智能合规审计和洞察生成。提供可衡量ROI的真正AI解决方案。🔗 查看项目：https://github.com/cocodedk',

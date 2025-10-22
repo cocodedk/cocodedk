@@ -9,6 +9,7 @@ import { closeMenuOnEscape } from './main/closeMenuOnEscape.js';
 import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './main/showNodeDescriptionModal.js';
 import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
+import { updateHeroContent } from './main/updateHeroContent.js';
 
 // Current language selection
 let mainCurrentLanguage = 'en';
@@ -74,6 +75,9 @@ window.showNodeDescriptionModal = showNodeDescriptionModal;
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize hero content
+  updateHeroContent(mainCurrentLanguage);
+  
   // Initialize terminal effect
   if (window.terminal && typeof window.terminal.init === 'function') {
     window.terminal.init();
@@ -97,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Expose setLanguage function globally for HTML onclick handlers
   window.setLanguage = setLanguage;
+  
+  // Expose updateHeroContent function globally
+  window.updateHeroContent = updateHeroContent;
 
   // Set initial language from URL hash or localStorage
   // Valid language codes

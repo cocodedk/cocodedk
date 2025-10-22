@@ -14,6 +14,11 @@
  *   ▸ npm test -- --testPathPattern=setLanguage.test.js
  */
 export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
+  // Update hero content with new language
+  if (window.updateHeroContent && typeof window.updateHeroContent === 'function') {
+    window.updateHeroContent(lang);
+  }
+
   // Restart terminal effect with new language
   if (window.terminal && typeof window.terminal.start === 'function') {
     window.terminal.start(lang);

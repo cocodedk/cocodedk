@@ -15,6 +15,8 @@ import contact from './data/nodes/09-contact.js';
 import github from './data/nodes/10-github.js';
 import linkedin from './data/nodes/11-linkedin.js';
 import unityFoundation from './data/nodes/12-unity-foundation.js';
+import about from './data/nodes/13-about.js';
+import testimonials from './data/nodes/14-testimonials.js';
 
 /**
  * @typedef {Object} HoverColors
@@ -46,7 +48,9 @@ window.nodes = [
     fitsDK,
     github,
     linkedin,
-    unityFoundation
+    unityFoundation,
+    about,
+    testimonials
 ];
 
 // Define links between nodes - Flat structure
@@ -62,7 +66,9 @@ window.links = [
     ['cocode.dk', 'Contact'],
     ['cocode.dk', 'GitHub'],
     ['cocode.dk', 'LinkedIn'],
-    ['cocode.dk', 'Unity Foundation']
+    ['cocode.dk', 'Unity Foundation'],
+    ['cocode.dk', 'About'],
+    ['cocode.dk', 'Testimonials']
 ];
 
 // Log successful load
