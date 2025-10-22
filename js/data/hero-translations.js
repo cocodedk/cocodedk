@@ -2,17 +2,17 @@
 
 export const heroTranslations = {
   headline: {
-    en: 'Secure Python/Django Development & Cybersecurity Audits Across Europe',
-    da: 'Sikker Python/Django-udvikling & Cybersikkerhedsrevision i hele Europa',
-    es: 'Desarrollo Seguro Python/Django y Auditorías de Ciberseguridad en Europa',
-    zh: '欧洲Python/Django安全开发与网络安全审计',
-    ja: 'ヨーロッパ全域のセキュアなPython/Django開発とサイバーセキュリティ監査',
-    de: 'Sichere Python/Django-Entwicklung & Cybersicherheitsaudits in Europa',
-    ar: 'تطوير Python/Django الآمن وعمليات تدقيق الأمن السيبراني في أوروبا',
-    fa: 'توسعه ایمن Python/Django و حسابرسی امنیت سایبری در سراسر اروپا',
-    hi: 'यूरोप में सुरक्षित Python/Django विकास और साइबर सुरक्षा ऑडिट',
-    ur: 'یورپ میں محفوظ Python/Django ترقی اور سائبر سیکیورٹی آڈٹس',
-    fr: 'Développement Sécurisé Python/Django et Audits de Cybersécurité en Europe'
+    en: 'Secure Software Development & Cybersecurity Audits Across Europe',
+    da: 'Sikker Softwareudvikling & Cybersikkerhedsrevision i hele Europa',
+    es: 'Desarrollo Seguro de Software y Auditorías de Ciberseguridad en Europa',
+    zh: '欧洲安全软件开发与网络安全审计',
+    ja: 'ヨーロッパ全域のセキュアなソフトウェア開発とサイバーセキュリティ監査',
+    de: 'Sichere Softwareentwicklung & Cybersicherheitsaudits in Europa',
+    ar: 'تطوير البرمجيات الآمن وعمليات تدقيق الأمن السيبراني في أوروبا',
+    fa: 'توسعه نرم‌افزار ایمن و حسابرسی امنیت سایبری در سراسر اروپا',
+    hi: 'यूरोप में सुरक्षित सॉफ्टवेयर विकास और साइबर सुरक्षा ऑडिट',
+    ur: 'یورپ میں محفوظ سافٹ ویئر ترقی اور سائبر سیکیورٹی آڈٹس',
+    fr: 'Développement Logiciel Sécurisé et Audits de Cybersécurité en Europe'
   },
   valueProp: {
     en: 'Expert software engineer specializing in compliance-ready systems (CIS18, DORA, NIS2, ISO27001) for SMEs who need both robust development and security expertise.',
