@@ -158,4 +158,3 @@ Use tools to test rich previews:
 - Single-page layout with modal system
 - Existing terminal typing effect kept
 - No breaking changes to current functionality
-
