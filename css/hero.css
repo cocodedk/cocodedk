@@ -28,6 +28,13 @@
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+  background: var(--glass-light);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid var(--accent-terracotta);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(232, 115, 94, 0.2);
+  padding: 40px;
 }
 
 .terminal-text {
@@ -137,6 +144,10 @@
     padding: 120px 20px 60px;
   }
 
+  .hero-content {
+    padding: 30px;
+  }
+
   .terminal-text {
     font-size: 20px;
     letter-spacing: 1.5px;
@@ -171,6 +182,10 @@
     padding: 100px 15px 50px;
   }
 
+  .hero-content {
+    padding: 20px;
+  }
+
   .terminal-text {
     font-size: 16px;
     letter-spacing: 1px;
@@ -192,7 +207,7 @@
   .hero-value-prop {
     font-size: 13px;
     margin: 0 auto 20px;
-    padding: 0 10px;
+    padding: 0;
   }
 
   .cta-button {
