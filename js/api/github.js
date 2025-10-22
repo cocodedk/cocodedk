@@ -11,9 +11,9 @@ const GitHubAPI = {
     try {
       const url = `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=5`;
       const response = await fetch(url);
-      
+
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
+
       const repos = await response.json();
       const formatted = repos.map(repo => ({
         id: repo.id,
@@ -41,9 +41,9 @@ const GitHubAPI = {
     try {
       const url = `${this.baseUrl}/users/${this.username}/events/public?per_page=3`;
       const response = await fetch(url);
-      
+
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
+
       const events = await response.json();
       return events;
     } catch (error) {
