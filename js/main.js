@@ -84,7 +84,7 @@ window.showContactModal = function() {
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize hero content
   updateHeroContent(mainCurrentLanguage);
-  
+
   // Initialize terminal effect
   if (window.terminal && typeof window.terminal.init === 'function') {
     window.terminal.init();
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Expose setLanguage function globally for HTML onclick handlers
   window.setLanguage = setLanguage;
-  
+
   // Expose updateHeroContent function globally
   window.updateHeroContent = updateHeroContent;
 
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Valid language codes
   const validLanguages = ['en', 'da', 'es', 'zh', 'ja', 'de', 'ar', 'fa', 'hi', 'ur', 'fr'];
   let initialLang = 'en';
-  
+
   if (window.location.hash && window.location.hash.length > 1) {
     const hashValue = window.location.hash.substring(1);
     // Only use hash as language if it's a valid language code
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         window.closeNodeDescriptionModal(syntheticEvent);
       }
-      
+
       // Close contact modal if open (pass true to skip hash removal since it's already removed)
       if (window.ContactModal && typeof window.ContactModal.hideModal === 'function') {
         window.ContactModal.hideModal(true);

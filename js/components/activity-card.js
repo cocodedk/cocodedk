@@ -7,10 +7,12 @@ function createActivityCard(activityItem) {
 
   const meta = activityItem.meta ? `• ${activityItem.meta}` : '';
   const link = activityItem.url ? `<a href="${activityItem.url}" target="_blank" rel="noopener" class="activity-card__link">View →</a>` : '';
+  
+  const iconClass = activityItem.icon ? `activity-card__icon activity-card__icon--${activityItem.icon}` : 'activity-card__icon activity-card__icon--default';
 
   card.innerHTML = `
     <div class="activity-card__header">
-      <span class="activity-card__icon">${activityItem.icon || '📌'}</span>
+      <img src="images/hexagon-icon.svg" class="${iconClass}" aria-hidden="true" alt="">
       <span class="activity-card__platform">${activityItem.platform || 'Activity'}</span>
     </div>
     <h3 class="activity-card__title">${activityItem.title}</h3>
