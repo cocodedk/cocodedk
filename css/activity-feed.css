@@ -48,8 +48,47 @@
 }
 
 .activity-card__icon {
-  font-size: 24px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
+  display: block;
+  transition: all 0.3s var(--ease-out);
+}
+
+.activity-card__icon--github {
+  filter: hue-rotate(15deg) saturate(1.4) drop-shadow(0 0 8px rgba(255, 140, 60, 0.6));
+}
+
+.activity-card__icon--youtube {
+  filter: hue-rotate(340deg) saturate(1.6) drop-shadow(0 0 8px rgba(255, 80, 60, 0.6));
+}
+
+.activity-card__icon--linkedin {
+  filter: hue-rotate(35deg) saturate(1.3) drop-shadow(0 0 8px rgba(255, 180, 80, 0.6));
+}
+
+.activity-card__icon--default {
+  filter: saturate(1.2) drop-shadow(0 0 8px rgba(232, 115, 94, 0.6));
+}
+
+.activity-card:hover .activity-card__icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.activity-card:hover .activity-card__icon--github {
+  filter: hue-rotate(15deg) saturate(1.6) drop-shadow(0 0 12px rgba(255, 140, 60, 0.8));
+}
+
+.activity-card:hover .activity-card__icon--youtube {
+  filter: hue-rotate(340deg) saturate(1.8) drop-shadow(0 0 12px rgba(255, 80, 60, 0.8));
+}
+
+.activity-card:hover .activity-card__icon--linkedin {
+  filter: hue-rotate(35deg) saturate(1.5) drop-shadow(0 0 12px rgba(255, 180, 80, 0.8));
+}
+
+.activity-card:hover .activity-card__icon--default {
+  filter: saturate(1.4) drop-shadow(0 0 12px rgba(232, 115, 94, 0.8));
 }
 
 .activity-card__platform {

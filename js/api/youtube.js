@@ -31,7 +31,7 @@ const YouTubeAPI = {
         thumbnail: item.snippet.thumbnails.medium.url,
         published: new Date(item.snippet.publishedAt).toLocaleDateString(),
         url: `https://youtube.com/watch?v=${item.id.videoId}`,
-        icon: '🎥'
+        icon: 'youtube'
       }));
 
       window.cacheManager?.set('youtube_videos', videos);

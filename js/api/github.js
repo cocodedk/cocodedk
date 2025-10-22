@@ -23,7 +23,7 @@ const GitHubAPI = {
         stars: repo.stargazers_count,
         language: repo.language || 'N/A',
         updated: new Date(repo.updated_at).toLocaleDateString(),
-        icon: '💻'
+        icon: 'github'
       }));
 
       window.cacheManager?.set('github_repos', formatted);

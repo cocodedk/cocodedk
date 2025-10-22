@@ -25,7 +25,7 @@ const LinkedInHandler = {
         description: 'Specializing in custom software development and cybersecurity',
         date: new Date().toLocaleDateString(),
         url: this.profileUrl,
-        icon: '🔗'
+        icon: 'linkedin'
       },
       {
         id: 'linkedin-2',
@@ -33,7 +33,7 @@ const LinkedInHandler = {
         description: 'Django, React, Neo4j expertise',
         date: new Date().toLocaleDateString(),
         url: this.profileUrl,
-        icon: '🔗'
+        icon: 'linkedin'
       },
       {
         id: 'linkedin-3',
@@ -41,7 +41,7 @@ const LinkedInHandler = {
         description: 'CIS18, DORA, NIS2, ISO27000 frameworks',
         date: new Date().toLocaleDateString(),
         url: this.profileUrl,
-        icon: '🔗'
+        icon: 'linkedin'
       }
     ];
   },
@@ -54,7 +54,7 @@ const LinkedInHandler = {
         description: 'View profile on LinkedIn',
         date: new Date().toLocaleDateString(),
         url: this.profileUrl,
-        icon: '🔗'
+        icon: 'linkedin'
       }
     ];
   }
