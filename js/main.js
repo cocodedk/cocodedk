@@ -122,9 +122,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Expose updateSectionContent function globally for setLanguage()
   window.updateSectionContent = updateSectionContent;
 
-  // Auto-show campaign overlay once per user
-  if (window.CampaignOverlay && typeof window.CampaignOverlay.autoShow === 'function') {
-    window.CampaignOverlay.autoShow();
+  // Open campaign overlay on page load (forced)
+  if (window.CampaignOverlay && typeof window.CampaignOverlay.show === 'function') {
+    window.CampaignOverlay.show(true);
   }
   // Expose updateSectionContent globally (assigned below after import)
 
