@@ -1,0 +1,93 @@
+export const campaignTranslations = {
+  headline: {
+    da: 'Kampagne: Enkelt side fra 999 DKK + moms',
+    en: 'Campaign: One‑pager from 999 DKK + VAT',
+    es: 'Campaña: Página única desde 999 DKK + IVA',
+    zh: '活动：单页网站 999 丹麦克朗起（未含增值税）',
+    ja: 'キャンペーン：ワンページ 999 DKK（税別）〜',
+    de: 'Kampagne: One‑Pager ab 999 DKK zzgl. MwSt.',
+    ar: 'حملة: صفحة واحدة من 999 كرونة + ضريبة',
+    fa: 'کمپین: صفحهٔ تک از ۹۹۹ کرون + مالیات',
+    hi: 'अभियान: वन‑पेजर 999 DKK + VAT से',
+    ur: 'مہم: ایک صفحہ 999 DKK + ٹیکس سے',
+    fr: 'Campagne : One‑pager à partir de 999 DKK HT'
+  },
+  sub: {
+    da: 'Mobil‑først, hurtig levering og hjælp til deploy.',
+    en: 'Mobile‑first, fast delivery, deploy help included.',
+    es: 'Mobile‑first, entrega rápida y ayuda de despliegue.',
+    zh: '移动优先，快速交付，含部署协助。',
+    ja: 'モバイル優先、短納期。デプロイ支援込み。',
+    de: 'Mobile‑first, schnelle Lieferung, Deploy‑Hilfe inklusive.',
+    ar: 'أولوية للجوال، تسليم سريع، مع مساعدة في النشر.',
+    fa: 'موبایل‑محور، تحویل سریع، با کمک در استقرار.',
+    hi: 'मोबाइल‑फर्स्ट, तेज डिलीवरी, डिप्लॉय सहायता सहित।',
+    ur: 'موبائل‑فرسٹ، تیز ڈلیوری، ڈپلائ مدد سمیت۔',
+    fr: 'Mobile‑first, livraison rapide, aide au déploiement incluse.'
+  },
+  phone: {
+    da: 'Ring',
+    en: 'Call',
+    es: 'Llamar',
+    zh: '致电',
+    ja: '電話',
+    de: 'Anrufen',
+    ar: 'اتصال',
+    fa: 'تماس',
+    hi: 'कॉल',
+    ur: 'کال',
+    fr: 'Appeler'
+  },
+  email: {
+    da: 'E‑mail',
+    en: 'Email',
+    es: 'Correo',
+    zh: '邮件',
+    ja: 'メール',
+    de: 'E‑Mail',
+    ar: 'بريد',
+    fa: 'ایمیل',
+    hi: 'ईमेल',
+    ur: 'ای میل',
+    fr: 'E‑mail'
+  },
+  sms: {
+    da: 'SMS',
+    en: 'SMS',
+    es: 'SMS',
+    zh: '短信',
+    ja: 'SMS',
+    de: 'SMS',
+    ar: 'رسالة SMS',
+    fa: 'پیامک',
+    hi: 'SMS',
+    ur: 'SMS',
+    fr: 'SMS'
+  },
+  primary: {
+    da: 'Se priser',
+    en: 'View Pricing',
+    es: 'Ver precios',
+    zh: '查看价格',
+    ja: '料金を見る',
+    de: 'Preise ansehen',
+    ar: 'عرض الأسعار',
+    fa: 'مشاهده قیمت‌ها',
+    hi: 'कीमत देखें',
+    ur: 'قیمتیں دیکھیں',
+    fr: 'Voir les tarifs'
+  },
+  secondary: {
+    da: 'Kontakt',
+    en: 'Contact',
+    es: 'Contacto',
+    zh: '联系',
+    ja: 'お問い合わせ',
+    de: 'Kontakt',
+    ar: 'اتصال',
+    fa: 'تماس',
+    hi: 'संपर्क करें',
+    ur: 'رابطہ کریں',
+    fr: 'Contact'
+  }
+};

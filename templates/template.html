@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -26,7 +26,7 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- Multilingual SEO -->
-  <meta property="og:locale" content="en_DK">
+  <meta property="og:locale" content="da_DK">
   <meta property="og:type" content="website">
   <meta property="og:title" content="cocode.dk | Python/Django Development & Cybersecurity Audits">
   <meta property="og:description" content="Expert software engineering & compliance audits (CIS18, DORA, NIS2, ISO27001) for European SMEs. Secure Python/Django development + Neo4j expertise.">
@@ -93,6 +93,8 @@
   <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
   <link rel="stylesheet" href="css/hero.css?v=1.0.0">
   <link rel="stylesheet" href="css/service-cards.css?v=1.0.0">
+  <link rel="stylesheet" href="css/portfolio-cards.css?v=1.0.0">
+  <link rel="stylesheet" href="css/campaign.css?v=1.0.0">
   <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
   <link rel="stylesheet" href="css/modal-links.css?v=1.0.0">
   <link rel="stylesheet" href="css/footer-lang.css?v=1.0.0">
@@ -142,6 +144,7 @@
       <h1 class="hero-headline" id="hero-headline"></h1>
       <p class="hero-value-prop" id="hero-value-prop"></p>
       <button class="cta-button" id="cta-button" onclick="showContactModal()"></button>
+      <button class="cta-button" id="cta-pricing-button" onclick="(function(){ if(window.CampaignOverlay&&typeof window.CampaignOverlay.show==='function'){ window.CampaignOverlay.show(true); } else { const n=(window.nodes||[]).find(x=>x.id==='Pricing'); if(n && window.showNodeDescriptionModal){ window.showNodeDescriptionModal(n);} else { showContactModal(); } } })()">Se priser</button>
     </div>
   </section>
 
@@ -150,22 +153,29 @@
     <div class="cards-grid" id="service-cards-container"></div>
   </section>
 
+  <!-- Portfolio Section -->
+  <section class="portfolio-section">
+    <h2 class="portfolio-title" id="portfolio-title">Seneste arbejde</h2>
+    <div class="cards-grid" id="portfolio-cards-container"></div>
+  </section>
+
   <!-- Activity Feed Section -->
   <section class="activity-feed-section">
-    <h2 class="activity-feed-title">Latest Activity</h2>
+    <h2 class="activity-feed-title" id="activity-feed-title">Seneste aktivitet</h2>
     <div class="activity-feed-grid" id="activity-feed-container"></div>
   </section>
 
   <!-- Scripts are automatically injected by webpack -->
+  <div id="campaign-root" class="campaign-overlay" aria-hidden="true"></div>
 
   <footer id="site-footer">
     <div class="footer-content">
       <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
       <div id="languageSelector" class="footer-lang-menu" role="tablist" aria-label="Language selection">
-        <div class="lang-item active" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="true" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
+        <div class="lang-item" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="false" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
           <div class="flag-icon" aria-hidden="true">🇬🇧</div>
         </div>
-        <div class="lang-item" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="false" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
+        <div class="lang-item active" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="true" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
           <div class="flag-icon" aria-hidden="true">🇩🇰</div>
         </div>
         <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">

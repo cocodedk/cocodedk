@@ -19,6 +19,11 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
     window.updateHeroContent(lang);
   }
 
+  // Update section/static content with new language
+  if (window.updateSectionContent && typeof window.updateSectionContent === 'function') {
+    window.updateSectionContent(lang);
+  }
+
   // Restart terminal effect with new language
   if (window.terminal && typeof window.terminal.start === 'function') {
     window.terminal.start(lang);
@@ -27,6 +32,11 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
   // Re-render service cards with new language
   if (window.serviceCards && window.nodes) {
     window.serviceCards.render(window.nodes, lang);
+  }
+
+  // Re-render portfolio items with new language
+  if (window.renderPortfolio && window.portfolioItems) {
+    window.renderPortfolio(window.portfolioItems, lang);
   }
 
   // Update visualization based on active implementation

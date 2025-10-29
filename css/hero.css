@@ -110,6 +110,11 @@
   text-transform: uppercase;
 }
 
+/* Space multiple CTAs nicely */
+.hero-content .cta-button + .cta-button {
+  margin-left: 10px;
+}
+
 .cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(232, 115, 94, 0.5);
