@@ -20,9 +20,8 @@ function buildOverlay(lang) {
   const title = campaignTranslations.headline[lang] || campaignTranslations.headline.en;
   const sub = campaignTranslations.sub[lang] || campaignTranslations.sub.en;
   const ctaPrimary = campaignTranslations.primary[lang] || campaignTranslations.primary.en;
-  const ctaPhone = campaignTranslations.phone[lang] || campaignTranslations.phone.en;
-  const ctaEmail = campaignTranslations.email[lang] || campaignTranslations.email.en;
-  const ctaSMS = campaignTranslations.sms[lang] || campaignTranslations.sms.en;
+  const ctaSecondary = campaignTranslations.secondary[lang] || campaignTranslations.secondary.en;
+  const socialProof = campaignTranslations.socialProof[lang] || campaignTranslations.socialProof.en;
 
   root.innerHTML = `
     <div class="campaign-modal" role="dialog" aria-modal="true" aria-labelledby="campaign-title">
@@ -33,12 +32,11 @@ function buildOverlay(lang) {
       </div>
       <div class="campaign-body">
         <img class="campaign-badge" src="images/campaign-999.svg" alt="Prisbadge: 999 DKK + moms" />
+        <p class="campaign-social-proof">${socialProof}</p>
       </div>
       <div class="campaign-actions">
-        <button class="campaign-btn" id="campaign-pricing">${ctaPrimary}</button>
-        <a class="campaign-btn secondary" id="campaign-call" href="tel:+4553737514" aria-label="${ctaPhone}">${ctaPhone}</a>
-        <a class="campaign-btn secondary" id="campaign-email" href="mailto:bb@cocode.dk" aria-label="${ctaEmail}">${ctaEmail}</a>
-        <a class="campaign-btn secondary" id="campaign-sms" href="sms:+4553737514" aria-label="${ctaSMS}">${ctaSMS}</a>
+        <button class="campaign-btn" id="campaign-primary">${ctaPrimary}</button>
+        <button class="campaign-btn secondary" id="campaign-secondary">${ctaSecondary}</button>
       </div>
     </div>
   `;
@@ -57,30 +55,47 @@ function buildOverlay(lang) {
     }
   });
 
-  document.getElementById('campaign-pricing').onclick = () => {
+  // Primary CTA: Get Free Quote - opens contact modal
+  document.getElementById('campaign-primary').onclick = () => {
     hide();
-    const n = (window.nodes||[]).find(x=>x.id==='Pricing');
-    if (n && window.showNodeDescriptionModal) {
-      window.showNodeDescriptionModal(n);
-    } else if (window.showContactModal) {
+    if (window.showContactModal && typeof window.showContactModal === 'function') {
       window.showContactModal();
     }
   };
 
-  // Hide overlay when contact links are used
-  const callEl = document.getElementById('campaign-call');
-  const emailEl = document.getElementById('campaign-email');
-  const smsEl = document.getElementById('campaign-sms');
-  [callEl, emailEl, smsEl].forEach(el => {
-    if (el) el.addEventListener('click', () => hide());
-  });
+  // Secondary CTA: View Examples - scrolls to portfolio
+  document.getElementById('campaign-secondary').onclick = () => {
+    hide();
+    const portfolioEl = document.getElementById('portfolio-title') || document.querySelector('.portfolio-title');
+    if (portfolioEl) {
+      portfolioEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return root;
 }
 
+function shouldShow() {
+  // Check if forced (manual trigger)
+  // Otherwise check 7-day cooldown
+  const dismissedKey = 'campaignDismissedV2';
+  const dismissed = localStorage.getItem(dismissedKey);
+  if (dismissed) {
+    const dismissedTime = parseInt(dismissed, 10);
+    const now = Date.now();
+    const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+    if (now - dismissedTime < sevenDays) {
+      return false; // Still in cooldown period
+    }
+    // Cooldown expired, clear the flag
+    localStorage.removeItem(dismissedKey);
+  }
+  return true;
+}
+
 function show(force=false) {
   try {
-    if (!force && localStorage.getItem('campaignSeenV1') === '1') return;
+    if (!force && !shouldShow()) return;
     const root = buildOverlay(getLang());
     if (!root) return;
     root.style.display = 'flex';
@@ -111,7 +126,12 @@ function hide() {
   if (!root) return;
   root.style.display = 'none';
   root.setAttribute('aria-hidden', 'true');
-  try { localStorage.setItem('campaignSeenV1', '1'); } catch (_) {}
+  // Store dismissal timestamp for 7-day cooldown
+  try {
+    localStorage.setItem('campaignDismissedV2', Date.now().toString());
+    // Remove old key if exists
+    localStorage.removeItem('campaignSeenV1');
+  } catch (_) {}
   if (escHandler) {
     document.removeEventListener('keydown', escHandler);
     escHandler = null;
@@ -122,12 +142,46 @@ function hide() {
   }
 }
 
+let scrollTriggered = false;
+let timeTriggered = false;
+
+function checkScrollTrigger() {
+  if (scrollTriggered) return;
+  const denominator = document.documentElement.scrollHeight - window.innerHeight;
+  let scrollPercent;
+  if (denominator <= 0) {
+    // Page is not scrollable, treat as already scrolled
+    scrollPercent = 100;
+  } else {
+    scrollPercent = (window.scrollY / denominator) * 100;
+  }
+  if (scrollPercent >= 50) {
+    scrollTriggered = true;
+    show(false);
+  }
+}
+
+function checkTimeTrigger() {
+  if (timeTriggered) return;
+  timeTriggered = true;
+  setTimeout(() => {
+    if (!scrollTriggered) {
+      show(false);
+    }
+  }, 30000); // 30 seconds
+}
+
 function autoShow() {
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     // DOM is already ready
-    show(false);
+    // Set up scroll and time triggers instead of showing immediately
+    window.addEventListener('scroll', checkScrollTrigger, { once: true, passive: true });
+    checkTimeTrigger();
   } else {
-    document.addEventListener('DOMContentLoaded', () => show(false));
+    document.addEventListener('DOMContentLoaded', () => {
+      window.addEventListener('scroll', checkScrollTrigger, { once: true, passive: true });
+      checkTimeTrigger();
+    });
   }
 }
 
