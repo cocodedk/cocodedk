@@ -1,42 +1,72 @@
-/* Portfolio Card Component */
+/* Portfolio Card Component - Stitch Design System */
 
-function createPortfolioCard(item, language = 'da') {
-  const card = document.createElement('div');
-  card.className = 'service-card';
+// Map categories to display names
+const categoryMap = {
+  'ecommerce': 'E-commerce',
+  'security': 'Security',
+  'audit': 'Audit',
+  'cloud': 'Cloud',
+  'default': 'Project'
+};
+
+// Map to status badges
+function getStatusBadge(item) {
+  if (item.status) return item.status;
+  // Default status based on project type
+  if (item.categories && item.categories.includes('security')) {
+    return { type: 'info', icon: 'trending_down', text: 'Risk -40%' };
+  }
+  if (item.categories && item.categories.includes('cloud')) {
+    return { type: 'warning', icon: 'cloud_done', text: '0 Downtime' };
+  }
+  return { type: 'success', icon: 'verified_user', text: '100% Uptime' };
+}
+
+function createPortfolioCard(item, language = 'da', isFeatured = false) {
+  const card = document.createElement('article');
+  card.className = `portfolio-card ${isFeatured ? 'featured' : ''}`;
   card.dataset.id = item.id;
-  card.setAttribute('role', 'button');
-  card.setAttribute('tabindex', '0');
-  const label = (item.labels && item.labels[language]) || item.title || (item.labels && item.labels.en) || '';
-  card.setAttribute('aria-label', label);
+  card.dataset.categories = (item.categories || ['default']).join(',');
 
-  const iconHTML = '<img src="images/hexagon-icon.svg" class="service-card__icon" aria-hidden="true" alt="" />';
-  const title = label;
+  const label = (item.labels && item.labels[language]) || item.title || (item.labels && item.labels.en) || '';
   const summary = (item.translations && item.translations[language]) || item.summary || '';
-  const stack = Array.isArray(item.stack) ? item.stack : [];
+  const categories = item.categories || ['default'];
+  const statusBadge = getStatusBadge(item);
+
+  // Category display
+  const categoryText = categories.map(cat => categoryMap[cat] || cat).join(' • ');
 
   card.innerHTML = `
-    ${iconHTML}
-    <h3 class="service-card__title">${title}</h3>
-    <p class="service-card__description">${summary}</p>
-    <div class="service-card__tags"></div>
+    <div class="card-image-container">
+      <div class="card-image-overlay"></div>
+      ${item.image ? `<img src="${item.image}" alt="${label}" loading="lazy" />` : ''}
+      ${isFeatured ? '<span class="featured-badge">Featured</span>' : ''}
+      <div class="card-image-content">
+        <p class="card-category">${categoryText}</p>
+        <h3 class="card-project-title">${label}</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-excerpt">${summary}</p>
+      <div class="card-footer">
+        <div class="status-badge status-${statusBadge.type}">
+          <span class="material-symbols-outlined">${statusBadge.icon}</span>
+          ${statusBadge.text}
+        </div>
+        <button class="view-case-study" aria-label="View case study for ${label}">
+          View Case Study
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
   `;
 
-  // Render tags from stack
-  const tagsEl = card.querySelector('.service-card__tags');
-  stack.slice(0, 4).forEach(tag => {
-    const span = document.createElement('span');
-    span.className = 'service-card__tag';
-    span.textContent = tag;
-    tagsEl.appendChild(span);
-  });
-
-  // Click opens either live link or a simple modal
+  const viewButton = card.querySelector('.view-case-study');
   const openDetails = () => {
     if (item.link) {
       window.open(item.link, '_blank', 'noopener,noreferrer');
       return;
     }
-    // Fallback: simple in‑place modal using existing node modal infra if available
     if (window.showNodeDescriptionModal) {
       const nodeLike = {
         id: label,
@@ -46,6 +76,11 @@ function createPortfolioCard(item, language = 'da') {
       window.showNodeDescriptionModal(nodeLike);
     }
   };
+
+  viewButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openDetails();
+  });
 
   card.addEventListener('click', openDetails);
   card.addEventListener('keydown', (e) => {
@@ -58,11 +93,65 @@ function createPortfolioCard(item, language = 'da') {
   return card;
 }
 
+function initPortfolioFilters() {
+  const filterButtons = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.portfolio-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update active state
+      filterButtons.forEach(b => {
+        b.classList.remove('glass-chip-active');
+        b.classList.add('glass-chip');
+      });
+      btn.classList.remove('glass-chip');
+      btn.classList.add('glass-chip-active');
+
+      // Filter cards
+      cards.forEach(card => {
+        const categories = card.dataset.categories?.split(',') || [];
+        const shouldShow = filter === 'all' || categories.includes(filter);
+
+        card.style.display = shouldShow ? 'flex' : 'none';
+        if (shouldShow) {
+          card.style.animation = 'fadeIn 0.3s ease';
+        }
+      });
+    });
+  });
+}
+
 function renderPortfolio(items, language = 'da') {
   const container = document.getElementById('portfolio-cards-container');
   if (!container) return;
+
+  // Add filters if not exists
+  let filterContainer = container.previousElementSibling;
+  if (!filterContainer || !filterContainer.classList.contains('portfolio-filters')) {
+    filterContainer = document.createElement('div');
+    filterContainer.className = 'portfolio-filters';
+    filterContainer.innerHTML = `
+      <button class="filter-chip glass-chip-active" data-filter="all">All</button>
+      <button class="filter-chip glass-chip" data-filter="security">Security</button>
+      <button class="filter-chip glass-chip" data-filter="ecommerce">E-commerce</button>
+      <button class="filter-chip glass-chip" data-filter="audit">Audit</button>
+      <button class="filter-chip glass-chip" data-filter="cloud">Cloud</button>
+    `;
+    container.parentNode.insertBefore(filterContainer, container);
+    initPortfolioFilters();
+  }
+
   container.innerHTML = '';
-  items.forEach(item => container.appendChild(createPortfolioCard(item, language)));
+  items.forEach((item, index) => {
+    const isFeatured = index === 0; // First item is featured
+    const card = createPortfolioCard(item, language, isFeatured);
+    container.appendChild(card);
+  });
+
+  // Re-init filters after rendering
+  setTimeout(() => initPortfolioFilters(), 100);
 }
 
 // Expose globally so main can render without importing

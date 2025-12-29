@@ -19,7 +19,7 @@ let currentLanguage = 'en';
 
 function typeWriter(text, element, speed = 80) {
   if (!element) return;
-  
+
   element.textContent = '';
   let index = 0;
 
@@ -46,8 +46,9 @@ function showCursor(element) {
 function startTerminalEffect(lang = 'en') {
   currentLanguage = lang;
   clearTimeout(typewriterTimeout);
-  
-  const terminalElement = document.querySelector('.terminal-text');
+
+  // Find the terminal-text element inside terminal-output
+  const terminalElement = document.querySelector('.terminal-output .terminal-text');
   if (!terminalElement) return;
 
   const text = terminalText[lang] || terminalText['en'];

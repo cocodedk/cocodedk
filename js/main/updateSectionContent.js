@@ -12,7 +12,7 @@ export function updateSectionContent(lang) {
       activityTitle.textContent = sectionTranslations.activityTitle[lang] || sectionTranslations.activityTitle.en;
     }
 
-    const pricingCta = document.getElementById('cta-pricing-button');
+    const pricingCta = document.getElementById('cta-pricing-text');
     if (pricingCta) {
       pricingCta.textContent = sectionTranslations.pricingButton[lang] || sectionTranslations.pricingButton.en;
     }

@@ -10,5 +10,6 @@ export default {
   },
   stack: ['Static', 'Netlify'],
   link: 'http://nick-autoteknik.dk/',
-  details: 'Simpelt, hurtigt og tydeligt for lokale kunder.'
+  details: 'Simpelt, hurtigt og tydeligt for lokale kunder.',
+  categories: ['ecommerce']
 };

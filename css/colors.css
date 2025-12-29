@@ -1,43 +1,99 @@
-/* Warm Color Palette - CSS Variables */
+/* Stitch Design System - Color Palette */
 
 :root {
-  /* Primary Backgrounds */
-  --primary-bg: #1a1a1a;
-  --secondary-bg: #3d1a2a;
-  --tertiary-bg: #5c2e1f;
+  /* === Primary Colors === */
+  --primary: #ee5f2b;
+  --primary-light: #ff7a47;
+  --primary-dark: #c94112;
 
-  /* Warm Accents */
-  --accent-coral: #e8735e;
-  --accent-amber: #d4a574;
-  --accent-warm-orange: #f39c12;
-  --accent-terracotta: #b8532d;
+  /* === Backgrounds === */
+  --bg-dark: #221510;
+  --bg-darker: #181311;
+  --bg-light: #f8f6f6;
+  --bg-surface: #271f1c;
 
-  /* Glass Effects */
-  --glass-light: rgba(255, 255, 255, 0.1);
-  --glass-medium: rgba(255, 255, 255, 0.05);
-  --shadow-dark: rgba(0, 0, 0, 0.4);
-  --shadow-medium: rgba(0, 0, 0, 0.2);
+  /* === Glass Effects === */
+  --glass-surface: rgba(34, 21, 16, 0.6);
+  --glass-surface-light: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-light: rgba(255, 255, 255, 0.1);
 
-  /* Text Colors */
+  /* === Text Colors === */
   --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --text-tertiary: #a0a0a0;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.4);
+  --text-muted: #9ca3af;
 
-  /* Gradients */
-  --gradient-warm: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
-  --gradient-accent: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-amber) 100%);
+  /* === Status Colors === */
+  --success: #27c93f;
+  --warning: #ffbd2e;
+  --error: #ff5f56;
+  --info: #60a5fa;
 
-  /* Easing Functions */
+  /* === Shadows === */
+  --shadow-primary: rgba(238, 95, 43, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --shadow-glow: rgba(238, 95, 43, 0.3);
+
+  /* === Gradients === */
+  --gradient-warm: radial-gradient(circle at 50% 0%, rgba(238, 95, 43, 0.15) 0%, transparent 70%);
+  --gradient-cta: linear-gradient(to right, var(--primary), #c94112);
+
+  /* === Spacing === */
+  --container-max: 100%;
+  --container-content: 1200px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* === Border Radius === */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* === Transitions === */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* === Z-index Scale === */
+  --z-base: 0;
+  --z-above: 10;
+  --z-header: 50;
+  --z-modal: 100;
+  --z-toast: 150;
+
+  /* === Legacy Compatibility === */
+  --primary-bg: var(--bg-dark);
+  --secondary-bg: var(--bg-darker);
+  --tertiary-bg: var(--bg-surface);
+  --accent-coral: var(--primary);
+  --accent-amber: var(--primary-light);
+  --accent-warm-orange: var(--primary);
+  --accent-terracotta: var(--primary-dark);
+  --glass-light: var(--glass-surface);
+  --glass-medium: var(--glass-surface-light);
+  --shadow-medium: var(--shadow-dark);
   --ease-in: cubic-bezier(0.42, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.58, 1);
   --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Dark mode is default */
+html {
+  color-scheme: dark;
+}
+
 /* Fallback for older browsers */
 @supports not (--css: variables) {
   body {
-    background-color: #1a1a1a;
+    background-color: #221510;
     color: #ffffff;
   }
 }

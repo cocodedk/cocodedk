@@ -1,0 +1,144 @@
+/* Ambient Background Glows and Effects */
+
+/* Ambient Background Container */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Base Glow Orb */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  will-change: transform;
+}
+
+/* Orb Variations */
+.orb-1 {
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 40%;
+  background: rgba(238, 95, 43, 0.2);
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-2 {
+  bottom: 20%;
+  right: -5%;
+  width: 60%;
+  height: 40%;
+  background: rgba(217, 119, 6, 0.1);
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+.orb-3 {
+  top: 40%;
+  left: 20%;
+  width: 40%;
+  height: 30%;
+  background: rgba(124, 45, 18, 0.2);
+  filter: blur(80px);
+  animation: float 30s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(5%, 10%) scale(1.05);
+  }
+  50% {
+    transform: translate(-5%, 5%) scale(0.95);
+  }
+  75% {
+    transform: translate(10%, -5%) scale(1.02);
+  }
+}
+
+/* Warm Glow Background */
+.bg-warm-glow {
+  background: var(--gradient-warm);
+}
+
+/* Card Glow Effect */
+.card-glow {
+  position: relative;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(to right, var(--primary), #c94112);
+  border-radius: inherit;
+  filter: blur(4px);
+  opacity: 0.2;
+  z-index: -1;
+  transition: opacity var(--transition-base);
+}
+
+.card-glow:hover::before {
+  opacity: 0.4;
+}
+
+/* Shimmer Effect */
+.shimmer-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(238, 95, 43, 0.2) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-12deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  50%, 100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+/* Grid Lines Pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .glow-orb,
+  .shimmer-effect {
+    animation: none;
+  }
+
+  .glow-orb {
+    opacity: 0.3;
+  }
+
+  .shimmer-effect {
+    opacity: 0.3;
+    transform: none;
+  }
+}

@@ -10,5 +10,6 @@ export default {
   },
   stack: ['Static', 'Netlify'],
   link: 'https://klinikvenus.dk/',
-  details: 'Ren indholdsstruktur, gode Core Web Vitals.'
+  details: 'Ren indholdsstruktur, gode Core Web Vitals.',
+  categories: ['ecommerce']
 };

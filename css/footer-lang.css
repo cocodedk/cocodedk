@@ -44,10 +44,38 @@
   display: none;
 }
 
+/* Footer - Simplified for new design */
+.site-footer {
+  padding: 1rem;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0));
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: var(--text-tertiary, rgba(255, 255, 255, 0.4));
+}
+
+.footer-copyright a {
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+/* Hide footer language selector (moved to header) */
+.footer-lang-menu {
+  display: none;
+}
+
+.footer-center-group {
+  display: none;
+}
+
+.footer-credit {
+  display: none;
+}
+
 /* Desktop: 3-column layout */
 .footer-content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: block;
   align-items: center;
   gap: 20px;
 }

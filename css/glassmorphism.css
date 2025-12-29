@@ -1,64 +1,138 @@
-/* Glassmorphism Effects - Reusable Utilities */
+/* Glassmorphism Effects - Stitch Design System */
 
-.glass {
-  background: var(--glass-light);
+/* Glass Panel - Primary */
+.glass-panel {
+  background: var(--glass-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Glass Panel - Light */
+.glass-panel-light {
+  background: var(--glass-surface-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border-light);
+}
+
+/* Glass Panel - Dark (for nested elements) */
+.glass-panel-dark {
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
+}
+
+/* Glass Navigation */
+.glass-nav {
+  background: rgba(34, 21, 16, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Glass Input */
+.glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+  transition: all var(--transition-base);
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 95, 43, 0.15);
+}
+
+/* Glass Chip (Tags/Pills) */
+.glass-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--radius-full);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.glass-chip-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px var(--shadow-glow);
+}
+
+/* Legacy Compatibility */
+.glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
 }
 
 .glass-sm {
-  background: var(--glass-medium);
+  background: var(--glass-surface-light);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--radius-md);
 }
 
 .glass-lg {
-  background: var(--glass-light);
+  background: var(--glass-surface);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+}
+
+.glass-warm {
+  background: var(--glass-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 20px var(--shadow-primary);
+}
+
+.blur-bg {
+  background: rgba(34, 21, 16, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.transition-smooth {
+  transition: all var(--transition-base);
+}
+
+.transition-fast {
+  transition: all var(--transition-fast);
 }
 
 /* Warm Glow Effects */
 .glow-warm {
-  box-shadow: 0 0 20px rgba(232, 115, 94, 0.2);
+  box-shadow: 0 0 20px var(--shadow-primary);
 }
 
 .glow-warm-intense {
-  box-shadow: 0 0 30px rgba(232, 115, 94, 0.4);
+  box-shadow: 0 0 30px var(--shadow-glow);
 }
 
 .glow-amber {
-  box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
-}
-
-/* Glass with Warm Border */
-.glass-warm {
-  background: var(--glass-light);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 2px solid var(--accent-terracotta);
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(232, 115, 94, 0.2);
-}
-
-/* Backdrop Blur Only */
-.blur-bg {
-  background: rgba(26, 26, 26, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Smooth Transitions */
-.transition-smooth {
-  transition: all 0.3s var(--ease-out);
-}
-
-.transition-fast {
-  transition: all 0.2s var(--ease-out);
+  box-shadow: 0 0 20px rgba(255, 122, 71, 0.2);
 }

@@ -1,33 +1,24 @@
-/* Warm Background Gradients */
+/* Background Styles - Stitch Design System */
 
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  overflow: auto;
-  position: relative;
-  animation: subtleWarmShift 25s ease-in-out infinite alternate;
+  min-height: 100%;
+  background-color: var(--bg-dark, #221510);
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    rgba(238, 95, 43, 0.08) 0%,
+    transparent 50%
+  );
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: var(--text-primary, #ffffff);
 }
 
-/* Animated Warm Background Shift */
-@keyframes subtleWarmShift {
-  0% {
-    background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  }
-  25% {
-    background: radial-gradient(circle at center, #3d1a2a 0%, #1a1a1a 70%);
-  }
-  50% {
-    background: radial-gradient(circle at center, #5c2e1f 0%, #1a1a1a 70%);
-  }
-  75% {
-    background: radial-gradient(circle at center, #3d1a2a 0%, #1a1a1a 70%);
-  }
-  100% {
-    background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  }
+/* Remove old animation - cleaner look */
+body {
+  animation: none;
 }
 
 /* Warm Section Backgrounds */
@@ -36,7 +27,7 @@ html, body {
 }
 
 .section-overlay {
-  background: linear-gradient(135deg, rgba(232, 115, 94, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(238, 95, 43, 0.03) 0%, rgba(217, 119, 6, 0.03) 100%);
 }
 
 /* Dark overlay for content */

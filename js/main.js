@@ -11,6 +11,7 @@ import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
 import { updateHeroContent } from './main/updateHeroContent.js';
 import { updateSectionContent } from './main/updateSectionContent.js';
+import { initNavigation, initLanguageDropdown } from './main/navigation.js';
 
 // Current language selection (default to Danish)
 let mainCurrentLanguage = 'da';
@@ -116,6 +117,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Expose setLanguage function globally for HTML onclick handlers
   window.setLanguage = setLanguage;
+
+  // Initialize navigation
+  initNavigation();
+  initLanguageDropdown();
+
+  // Initialize contact form
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Use existing contact modal for now
+      if (window.showContactModal) {
+        window.showContactModal();
+      }
+    });
+  }
 
   // Expose updateHeroContent function globally
   window.updateHeroContent = updateHeroContent;

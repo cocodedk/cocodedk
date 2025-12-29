@@ -10,5 +10,7 @@ export default {
   },
   stack: ['Django', 'React', 'Postgres'],
   link: 'https://rahimi-tires.com/',
-  details: 'Produktkatalog, kurv, checkout og admin. Lighthouse 95+.'
+  details: 'Produktkatalog, kurv, checkout og admin. Lighthouse 95+.',
+  categories: ['ecommerce', 'security'],
+  status: { type: 'success', icon: 'verified_user', text: '100% Uptime' }
 };

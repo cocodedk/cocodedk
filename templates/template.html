@@ -86,6 +86,41 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ee5f2b",
+            "background-light": "#f8f6f6",
+            "background-dark": "#221510",
+            "glass-surface": "rgba(34, 21, 16, 0.6)",
+            "glass-border": "rgba(255, 255, 255, 0.1)",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"],
+            "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
   <link rel="stylesheet" href="css/colors.css?v=1.0.0">
@@ -98,6 +133,10 @@
   <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
   <link rel="stylesheet" href="css/modal-links.css?v=1.0.0">
   <link rel="stylesheet" href="css/footer-lang.css?v=1.0.0">
+  <link rel="stylesheet" href="css/effects.css?v=1.0.0">
+  <link rel="stylesheet" href="css/layout.css?v=1.0.0">
+  <link rel="stylesheet" href="css/navigation.css?v=1.0.0">
+  <link rel="stylesheet" href="css/contact-section.css?v=1.0.0">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -130,91 +169,360 @@
   }
   </script>
 </head>
-<body>
-  <div class="header-container">
-    <div id="logo-container">
-      <img src="images/cocode-logo.png" alt="cocode.dk" id="site-logo" />
-    </div>
+<body class="bg-background-dark font-display antialiased">
+  <!-- Ambient Background Glows -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
   </div>
 
-  <!-- Hero Section with Terminal Text -->
-  <section class="hero hero-fade-in">
-    <div class="hero-content">
-      <div class="terminal-text"></div>
-      <p class="hero-subtitle">Freelance IT Consultancy • Software Development • Cybersecurity • Europe</p>
-      <h1 class="hero-headline" id="hero-headline"></h1>
-      <p class="hero-value-prop" id="hero-value-prop"></p>
-      <button class="cta-button" id="cta-button" onclick="showContactModal()"></button>
-      <button class="cta-button" id="cta-pricing-button" onclick="(function(){ if(window.CampaignOverlay&&typeof window.CampaignOverlay.show==='function'){ window.CampaignOverlay.show(true); } else { const n=(window.nodes||[]).find(x=>x.id==='Pricing'); if(n && window.showNodeDescriptionModal){ window.showNodeDescriptionModal(n);} else { showContactModal(); } } })()">Se priser</button>
-    </div>
-  </section>
+  <!-- Main Wrapper -->
+  <div class="relative z-10 flex min-h-screen w-full flex-col">
+    <!-- Sticky Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <!-- Logo -->
+        <div class="header-logo">
+          <img src="images/cocode-logo.png" alt="cocode.dk" id="site-logo" />
+          <h2 class="hidden sm:block">cocode.dk</h2>
+        </div>
 
-  <!-- Service Cards Section -->
-  <section class="service-cards-section">
+        <!-- Desktop Navigation - Hidden on mobile -->
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#home" class="desktop-nav-link active">Home</a>
+          <a href="#services" class="desktop-nav-link">Services</a>
+          <a href="#portfolio" class="desktop-nav-link">Work</a>
+          <a href="#contact" class="desktop-nav-link">Contact</a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="header-actions">
+          <!-- Language Toggle -->
+          <div class="lang-toggle" id="lang-toggle">
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <span class="lang-divider">|</span>
+            <button class="lang-btn active" data-lang="da" onclick="setLanguage('da')">DK</button>
+          </div>
+
+          <!-- More Languages Dropdown -->
+          <button class="lang-more-btn" id="lang-more-btn" aria-label="More languages">
+            <span class="material-symbols-outlined">language</span>
+          </button>
+
+          <!-- Language Dropdown -->
+          <div class="lang-dropdown" id="lang-dropdown" hidden>
+            <button class="lang-dropdown-item" data-lang="es" onclick="setLanguage('es')">🇪🇸 Español</button>
+            <button class="lang-dropdown-item" data-lang="zh" onclick="setLanguage('zh')">🇨🇳 中文</button>
+            <button class="lang-dropdown-item" data-lang="ja" onclick="setLanguage('ja')">🇯🇵 日本語</button>
+            <button class="lang-dropdown-item" data-lang="de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+            <button class="lang-dropdown-item" data-lang="ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+            <button class="lang-dropdown-item" data-lang="fa" onclick="setLanguage('fa')">🇮🇷 فارسی</button>
+            <button class="lang-dropdown-item" data-lang="hi" onclick="setLanguage('hi')">🇮🇳 हिन्दी</button>
+            <button class="lang-dropdown-item" data-lang="ur" onclick="setLanguage('ur')">🇵🇰 اردو</button>
+            <button class="lang-dropdown-item" data-lang="fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="site-main flex-1 w-full max-w-md mx-auto px-4 py-6">
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <!-- Terminal Hero Card -->
+        <div class="terminal-card glass-panel">
+          <!-- Terminal Header -->
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title font-mono text-xs text-white/30">bash — 80x24</div>
+          </div>
+
+          <!-- Terminal Body -->
+          <div class="terminal-body font-mono">
+            <div class="terminal-prompt text-primary/80">
+              user@cocode:~$ ./init_secure_audit.sh
+            </div>
+            <div class="terminal-output text-white font-bold">
+              <span class="text-success">&gt;</span>
+              <span class="terminal-text"></span>
+              <span class="cursor"></span>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel">
+              <span class="status-comment">// System Status</span>
+              <div class="status-item">
+                <span class="material-symbols-outlined text-success">check_circle</span>
+                <span>GDPR Compliant</span>
+              </div>
+              <div class="status-item">
+                <span class="material-symbols-outlined text-success">check_circle</span>
+                <span>NIS2 Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Value Proposition Card -->
+        <div class="value-card glass-panel">
+          <div class="value-card-glow"></div>
+          <div class="value-badge">
+            <span class="material-symbols-outlined text-primary">shield</span>
+            <span class="text-primary text-xs font-bold uppercase tracking-wider">Compliance-Ready</span>
+          </div>
+          <h3 class="value-title text-h3 text-white" id="hero-headline"></h3>
+          <p class="value-description text-body-sm text-secondary" id="hero-value-prop"></p>
+
+          <!-- Abstract Visual -->
+          <div class="value-visual">
+            <div class="grid-pattern"></div>
+            <div class="shimmer-effect"></div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="cta-button" onclick="showContactModal()">
+            <span id="cta-button-text"></span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+          <button class="btn btn-secondary" id="cta-pricing-button" onclick="(function(){ if(window.CampaignOverlay&&typeof window.CampaignOverlay.show==='function'){ window.CampaignOverlay.show(true); } else { const n=(window.nodes||[]).find(x=>x.id==='Pricing'); if(n && window.showNodeDescriptionModal){ window.showNodeDescriptionModal(n);} else { showContactModal(); } } })()">
+            <span id="cta-pricing-text"></span>
+          </button>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-section">
+          <p class="trust-label text-caption text-tertiary">Trusted Standards</p>
+          <div class="trust-badges">
+            <div class="trust-badge glass-chip">
+              <span class="material-symbols-outlined">verified_user</span>
+              <span>ISO 27001</span>
+            </div>
+            <div class="trust-badge glass-chip">
+              <span class="material-symbols-outlined">lock</span>
+              <span>GDPR</span>
+            </div>
+            <div class="trust-badge glass-chip">
+              <span class="material-symbols-outlined">policy</span>
+              <span>NIS2</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Cards Section -->
+      <section id="services" class="service-cards-section">
     <div class="cards-grid" id="service-cards-container"></div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section class="portfolio-section">
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="portfolio-section">
     <h2 class="portfolio-title" id="portfolio-title">Seneste arbejde</h2>
     <div class="cards-grid" id="portfolio-cards-container"></div>
   </section>
 
-  <!-- Activity Feed Section -->
-  <section class="activity-feed-section">
-    <h2 class="activity-feed-title" id="activity-feed-title">Seneste aktivitet</h2>
-    <div class="activity-feed-grid" id="activity-feed-container"></div>
-  </section>
+      <!-- Activity Feed Section -->
+      <section class="activity-feed-section">
+        <h2 class="activity-feed-title" id="activity-feed-title">Seneste aktivitet</h2>
+        <div class="activity-feed-grid" id="activity-feed-container"></div>
+      </section>
 
-  <!-- Scripts are automatically injected by webpack -->
-  <div id="campaign-root" class="campaign-overlay" aria-hidden="true"></div>
+      <!-- Contact/About Section -->
+      <section id="contact" class="about-section">
+        <!-- Hero Text -->
+        <div class="about-hero">
+          <h2 class="about-title">
+            Secure Code.<br>
+            <span class="text-primary">Human Expertise.</span>
+          </h2>
+          <p class="about-subtitle">
+            Bridging the gap between building fast and staying safe. We specialize in secure software development and cybersecurity for European SMEs.
+          </p>
+        </div>
 
-  <footer id="site-footer">
-    <div class="footer-content">
-      <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
-      <div class="footer-center-group">
-        <div id="languageSelector" class="footer-lang-menu" role="tablist" aria-label="Language selection">
-          <div class="lang-item" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="false" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
-            <div class="flag-icon" aria-hidden="true">🇬🇧</div>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card glass-panel">
+            <div class="stat-icon-wrap">
+              <span class="material-symbols-outlined">workspace_premium</span>
+            </div>
+            <p class="stat-label">Experience</p>
+            <p class="stat-value">10+ Years</p>
           </div>
-          <div class="lang-item active" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="true" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
-            <div class="flag-icon" aria-hidden="true">🇩🇰</div>
-          </div>
-          <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">
-            <div class="flag-icon" aria-hidden="true">🇪🇸</div>
-          </div>
-          <div class="lang-item" data-lang="zh" onclick="setLanguage('zh')" role="tab" aria-selected="false" tabindex="0" title="Chinese" onkeydown="handleLanguageKeydown(event, 'zh')">
-            <div class="flag-icon" aria-hidden="true">🇨🇳</div>
-          </div>
-          <div class="lang-item" data-lang="ja" onclick="setLanguage('ja')" role="tab" aria-selected="false" tabindex="0" title="Japanese" onkeydown="handleLanguageKeydown(event, 'ja')">
-            <div class="flag-icon" aria-hidden="true">🇯🇵</div>
-          </div>
-          <div class="lang-item" data-lang="de" onclick="setLanguage('de')" role="tab" aria-selected="false" tabindex="0" title="German" onkeydown="handleLanguageKeydown(event, 'de')">
-            <div class="flag-icon" aria-hidden="true">🇩🇪</div>
-          </div>
-          <div class="lang-item" data-lang="ar" onclick="setLanguage('ar')" role="tab" aria-selected="false" tabindex="0" title="Arabic" onkeydown="handleLanguageKeydown(event, 'ar')">
-            <div class="flag-icon" aria-hidden="true">🇸🇦</div>
-          </div>
-          <div class="lang-item" data-lang="fa" onclick="setLanguage('fa')" role="tab" aria-selected="false" tabindex="0" title="Persian" onkeydown="handleLanguageKeydown(event, 'fa')">
-            <div class="flag-icon" aria-hidden="true">🇮🇷</div>
-          </div>
-          <div class="lang-item" data-lang="hi" onclick="setLanguage('hi')" role="tab" aria-selected="false" tabindex="0" title="Hindi" onkeydown="handleLanguageKeydown(event, 'hi')">
-            <div class="flag-icon" aria-hidden="true">🇮🇳</div>
-          </div>
-          <div class="lang-item" data-lang="ur" onclick="setLanguage('ur')" role="tab" aria-selected="false" tabindex="0" title="Urdu" onkeydown="handleLanguageKeydown(event, 'ur')">
-            <div class="flag-icon" aria-hidden="true">🇵🇰</div>
-          </div>
-          <div class="lang-item" data-lang="fr" onclick="setLanguage('fr')" role="tab" aria-selected="false" tabindex="0" title="French" onkeydown="handleLanguageKeydown(event, 'fr')">
-            <div class="flag-icon" aria-hidden="true">🇫🇷</div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon-wrap">
+              <span class="material-symbols-outlined">security</span>
+            </div>
+            <p class="stat-label">Focus</p>
+            <p class="stat-value">Dev & Sec</p>
           </div>
         </div>
-        <a href="https://cocodedk.github.io/cv-generator/" target="_blank" rel="noopener noreferrer" class="footer-cv-link" id="footer-cv-link" aria-label="CV Generator">
-          <span class="cv-icon" aria-hidden="true">📄</span>
-          <span id="cv-link-text">CV</span>
+
+        <!-- Location Section -->
+        <div class="location-section">
+          <div class="location-header">
+            <h3 class="location-title">Location</h3>
+            <span class="location-badge">
+              <span class="material-symbols-outlined">location_on</span>
+              Copenhagen
+            </span>
+          </div>
+
+          <div class="location-card glass-panel">
+            <div class="map-container">
+              <div class="map-overlay"></div>
+              <div class="map-pin">
+                <span class="material-symbols-outlined">pin_drop</span>
+                <span>Magistervej 54, NV</span>
+              </div>
+            </div>
+            <a href="https://maps.google.com/?q=Magistervej+54,+2400+Copenhagen+NV,+Denmark" target="_blank" class="location-link">
+              <div class="location-details">
+                <span class="location-street">Magistervej 54</span>
+                <span class="location-city">2400 Copenhagen NV, Denmark</span>
+              </div>
+              <span class="material-symbols-outlined">arrow_outward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Connect Section -->
+        <div class="connect-section">
+          <h3 class="connect-title">Connect</h3>
+
+          <!-- Phone Card -->
+          <a href="tel:+4553737514" class="connect-card glass-panel">
+            <div class="connect-icon connect-icon-phone">
+              <span class="material-symbols-outlined">call</span>
+            </div>
+            <div class="connect-info">
+              <span class="connect-label">Call Us</span>
+              <span class="connect-value">+45 53 73 75 14</span>
+            </div>
+            <span class="material-symbols-outlined connect-arrow">chevron_right</span>
+          </a>
+
+          <!-- Social Grid -->
+          <div class="social-grid">
+            <a href="mailto:hello@cocode.dk" class="social-card glass-panel">
+              <span class="material-symbols-outlined">mail</span>
+              <span class="social-label">Email</span>
+            </a>
+            <a href="https://linkedin.com/company/cocode-dk" target="_blank" class="social-card glass-panel">
+              <span class="material-symbols-outlined">business_center</span>
+              <span class="social-label">LinkedIn</span>
+            </a>
+            <a href="https://github.com/cocode-dk" target="_blank" class="social-card glass-panel">
+              <span class="material-symbols-outlined">code</span>
+              <span class="social-label">GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-section glass-panel">
+          <h3 class="form-title">Get in Touch</h3>
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Name</label>
+              <input type="text" id="contact-name" class="glass-input" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email</label>
+              <input type="email" id="contact-email" class="glass-input" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Project Brief</label>
+              <textarea id="contact-message" class="glass-input" rows="3" placeholder="Tell us about your security needs..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit btn btn-primary">
+              <span>Start a Conversation</span>
+              <span class="material-symbols-outlined">send</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts are automatically injected by webpack -->
+    <div id="campaign-root" class="campaign-overlay" aria-hidden="true"></div>
+
+    <!-- Footer (will be simplified in Phase 2) -->
+    <footer id="site-footer">
+      <div class="footer-content">
+        <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
+        <div class="footer-center-group">
+          <div id="languageSelector" class="footer-lang-menu" role="tablist" aria-label="Language selection">
+            <div class="lang-item" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="false" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
+              <div class="flag-icon" aria-hidden="true">🇬🇧</div>
+            </div>
+            <div class="lang-item active" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="true" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
+              <div class="flag-icon" aria-hidden="true">🇩🇰</div>
+            </div>
+            <div class="lang-item" data-lang="es" onclick="setLanguage('es')" role="tab" aria-selected="false" tabindex="0" title="Spanish" onkeydown="handleLanguageKeydown(event, 'es')">
+              <div class="flag-icon" aria-hidden="true">🇪🇸</div>
+            </div>
+            <div class="lang-item" data-lang="zh" onclick="setLanguage('zh')" role="tab" aria-selected="false" tabindex="0" title="Chinese" onkeydown="handleLanguageKeydown(event, 'zh')">
+              <div class="flag-icon" aria-hidden="true">🇨🇳</div>
+            </div>
+            <div class="lang-item" data-lang="ja" onclick="setLanguage('ja')" role="tab" aria-selected="false" tabindex="0" title="Japanese" onkeydown="handleLanguageKeydown(event, 'ja')">
+              <div class="flag-icon" aria-hidden="true">🇯🇵</div>
+            </div>
+            <div class="lang-item" data-lang="de" onclick="setLanguage('de')" role="tab" aria-selected="false" tabindex="0" title="German" onkeydown="handleLanguageKeydown(event, 'de')">
+              <div class="flag-icon" aria-hidden="true">🇩🇪</div>
+            </div>
+            <div class="lang-item" data-lang="ar" onclick="setLanguage('ar')" role="tab" aria-selected="false" tabindex="0" title="Arabic" onkeydown="handleLanguageKeydown(event, 'ar')">
+              <div class="flag-icon" aria-hidden="true">🇸🇦</div>
+            </div>
+            <div class="lang-item" data-lang="fa" onclick="setLanguage('fa')" role="tab" aria-selected="false" tabindex="0" title="Persian" onkeydown="handleLanguageKeydown(event, 'fa')">
+              <div class="flag-icon" aria-hidden="true">🇮🇷</div>
+            </div>
+            <div class="lang-item" data-lang="hi" onclick="setLanguage('hi')" role="tab" aria-selected="false" tabindex="0" title="Hindi" onkeydown="handleLanguageKeydown(event, 'hi')">
+              <div class="flag-icon" aria-hidden="true">🇮🇳</div>
+            </div>
+            <div class="lang-item" data-lang="ur" onclick="setLanguage('ur')" role="tab" aria-selected="false" tabindex="0" title="Urdu" onkeydown="handleLanguageKeydown(event, 'ur')">
+              <div class="flag-icon" aria-hidden="true">🇵🇰</div>
+            </div>
+            <div class="lang-item" data-lang="fr" onclick="setLanguage('fr')" role="tab" aria-selected="false" tabindex="0" title="French" onkeydown="handleLanguageKeydown(event, 'fr')">
+              <div class="flag-icon" aria-hidden="true">🇫🇷</div>
+            </div>
+          </div>
+          <a href="https://cocodedk.github.io/cv-generator/" target="_blank" rel="noopener noreferrer" class="footer-cv-link" id="footer-cv-link" aria-label="CV Generator">
+            <span class="cv-icon" aria-hidden="true">📄</span>
+            <span id="cv-link-text">CV</span>
+          </a>
+        </div>
+        <p class="footer-copyright">© 2025 Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
+      </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <div class="nav-content">
+        <a href="#home" class="nav-item active" data-section="home">
+          <span class="material-symbols-outlined">home</span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="#services" class="nav-item" data-section="services">
+          <span class="material-symbols-outlined">grid_view</span>
+          <span class="nav-label">Services</span>
+        </a>
+        <a href="#portfolio" class="nav-item" data-section="portfolio">
+          <span class="material-symbols-outlined">work</span>
+          <span class="nav-label">Work</span>
+        </a>
+        <a href="#contact" class="nav-item" data-section="contact">
+          <span class="material-symbols-outlined">mail</span>
+          <span class="nav-label">Contact</span>
         </a>
       </div>
-      <p class="footer-copyright">© 2025 Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
-    </div>
-  </footer>
+    </nav>
+  </div>
 </body>
 </html>
