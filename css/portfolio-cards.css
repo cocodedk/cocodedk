@@ -1,0 +1,16 @@
+/* Portfolio Section Styles */
+
+.portfolio-section {
+  padding: 0 20px 60px 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.portfolio-title {
+  max-width: 1400px;
+  margin: 0 auto 16px auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+

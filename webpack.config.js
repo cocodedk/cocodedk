@@ -12,12 +12,17 @@ module.exports = {
     // New redesign components
     terminal: './js/components/terminal.js',
     serviceCard: './js/components/service-card.js',
+    campaignOverlay: './js/components/campaign-overlay.js',
+    portfolioCard: './js/components/portfolio-card.js',
     activityCard: './js/components/activity-card.js',
     cache: './js/utils/cache.js',
     linkify: './js/utils/linkify.js',
     githubAPI: './js/api/github.js',
     youtubeAPI: './js/api/youtube.js',
     linkedinAPI: './js/api/linkedin.js',
+    portfolioData: './js/data/portfolio/index.js',
+    sectionTranslations: './js/data/section-translations.js',
+    campaignTranslations: './js/data/campaign-translations.js',
 
     main: './js/main.js',
   },

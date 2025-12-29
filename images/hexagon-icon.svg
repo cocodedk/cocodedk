@@ -4,4 +4,5 @@
            stroke="currentColor" 
            stroke-width="2"
            opacity="0.8"/>
+  <polygon points="50,35 54.33,37.5 54.33,42.5 50,45 45.67,42.5 45.67,37.5" fill="#FFD700" />
 </svg>

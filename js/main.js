@@ -10,9 +10,10 @@ import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './ma
 import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
 import { updateHeroContent } from './main/updateHeroContent.js';
+import { updateSectionContent } from './main/updateSectionContent.js';
 
-// Current language selection
-let mainCurrentLanguage = 'en';
+// Current language selection (default to Danish)
+let mainCurrentLanguage = 'da';
 
 // Define currentModal at the top to avoid ReferenceError
 let currentModal = null;
@@ -84,6 +85,8 @@ window.showContactModal = function() {
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize hero content
   updateHeroContent(mainCurrentLanguage);
+  // Initialize static section content
+  updateSectionContent(mainCurrentLanguage);
 
   // Initialize terminal effect
   if (window.terminal && typeof window.terminal.init === 'function') {
@@ -100,6 +103,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.activityFeed.render();
   }
 
+  // Render portfolio items (if data/component loaded)
+  if (window.renderPortfolio && window.portfolioItems) {
+    window.renderPortfolio(window.portfolioItems, mainCurrentLanguage);
+  }
+
   // Language selector is now always visible in footer
   // No toggle functionality needed
 
@@ -111,11 +119,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Expose updateHeroContent function globally
   window.updateHeroContent = updateHeroContent;
+  // Expose updateSectionContent function globally for setLanguage()
+  window.updateSectionContent = updateSectionContent;
+
+  // Open campaign overlay on page load (forced)
+  if (window.CampaignOverlay && typeof window.CampaignOverlay.show === 'function') {
+    window.CampaignOverlay.show(true);
+  }
+  // Expose updateSectionContent globally (assigned below after import)
 
   // Set initial language from URL hash or localStorage
   // Valid language codes
   const validLanguages = ['en', 'da', 'es', 'zh', 'ja', 'de', 'ar', 'fa', 'hi', 'ur', 'fr'];
-  let initialLang = 'en';
+  let initialLang = 'da';
 
   if (window.location.hash && window.location.hash.length > 1) {
     const hashValue = window.location.hash.substring(1);
