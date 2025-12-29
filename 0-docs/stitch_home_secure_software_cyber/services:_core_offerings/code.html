@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Services: Core Offerings</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee5f2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221510",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Glassmorphism Utilities if Tailwind opacity utilities aren't enough */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-nav {
+            background: rgba(34, 21, 16, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Custom Scrollbar hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Ambient Background Glows -->
+<div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[-10%] left-[-20%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] opacity-40"></div>
+<div class="absolute bottom-[20%] right-[-10%] w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] opacity-30"></div>
+</div>
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 glass-nav transition-all duration-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">code_blocks</span>
+<h2 class="text-white text-xl font-bold tracking-tight">cocode.dk</h2>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col gap-6 p-4 pt-6">
+<!-- Headline Section -->
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-bold leading-tight tracking-tight text-white">
+                    Our <span class="text-primary">Expertise</span>
+</h1>
+<p class="text-gray-400 text-base font-normal leading-relaxed max-w-md">
+                    Secure, scalable, and modern IT solutions empowering European SMEs.
+                </p>
+</div>
+<!-- Service Cards Loop -->
+<div class="flex flex-col gap-5">
+<!-- Card 1: Software Development -->
+<div class="group relative">
+<!-- Glow effect behind card on hover/active -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-orange-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative flex flex-col items-start rounded-lg glass-panel p-5 overflow-hidden transition-transform active:scale-[0.98]">
+<div class="flex w-full items-start justify-between mb-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[28px]">terminal</span>
+</div>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="w-full h-32 mb-4 rounded-lg overflow-hidden relative">
+<!-- Image Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent z-10"></div>
+<img alt="Abstract code on a dark monitor screen" class="w-full h-full object-cover opacity-80" data-alt="Abstract code on a dark monitor screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9yV2MabR32ZXp02licb9DwHpLWeXE_D1s5jj5jutaEBftAO06rgSg78G88GtbcDHNZPoC-cal4CzfnsU0Pe_zAyMBSmHk-JgRUqIwbtwYEJG2Qw9kbHdhW5lfCks4f-8wXrFNN_vI9eWyX3EJLtIWaeFFbnn2Pa5-gOwx-MIZZTRuVnNGeWvREiPJaoCZcc3IHCfgRtyG2eKWJwc79mCBPCQfnCt6H1QqCb06TLQ6DLt7ueGOWo_BddBUgzBwdKJIs6xIY47uXA"/>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Software Development</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Custom secure software tailored to your business logic using modern frameworks.
+                        </p>
+<button class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider group-hover:underline decoration-primary/50 underline-offset-4">
+                            Learn More
+                        </button>
+</div>
+</div>
+<!-- Card 2: Cybersecurity -->
+<div class="group relative">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-orange-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative flex flex-col items-start rounded-lg glass-panel p-5 overflow-hidden transition-transform active:scale-[0.98]">
+<div class="flex w-full items-start justify-between mb-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[28px]">security</span>
+</div>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="w-full h-32 mb-4 rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent z-10"></div>
+<img alt="Digital padlock and binary data stream" class="w-full h-full object-cover opacity-80" data-alt="Digital padlock and binary data stream" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuZ7qwXPYTDyAacFMWA-sc-I6fMw6VKBIWScszBtCREh_1cPVMCPWCsIDo0hCn6eadz9FTPdtcrCzhsU7pKWto793ZJEpMZtdgA6yACjLk28MHYxe8G5OZ8mOUP4ldx9sOyayByWXZcmCkmzy60IpySGkp04bvlbY_cxD4pv3wpcvJkOE5WhesLOTLVBC4XXd0qKT-Ycjobm0wv6R2YTZDNqTFIDfnBPq8R8J2hvmVKT95lxBGBeUEn_mI9gHgVNFT4KabNh0FGQ"/>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Cybersecurity &amp; Compliance</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            GDPR-ready security audits and penetration testing to keep your data safe.
+                        </p>
+<button class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider group-hover:underline decoration-primary/50 underline-offset-4">
+                            Learn More
+                        </button>
+</div>
+</div>
+<!-- Card 3: AI & Modern Technologies -->
+<div class="group relative">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-orange-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative flex flex-col items-start rounded-lg glass-panel p-5 overflow-hidden transition-transform active:scale-[0.98]">
+<div class="flex w-full items-start justify-between mb-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[28px]">neurology</span>
+</div>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="w-full h-32 mb-4 rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent z-10"></div>
+<img alt="Abstract artificial intelligence neural network connections" class="w-full h-full object-cover opacity-80" data-alt="Abstract artificial intelligence neural network connections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwCfqZSmLfNl1FZv6ul7GWk1MbKWBBg36Sd5kQ1UYrvydXcyTg4E5JEEcaKXTZrEI38_hke-lbei4j5gUE3Iab5N8xoqFnQfEdUajUQKsFCPFHQI3hqTdCECbmTd9TCZif_5APH08wr2WgpGijtZDfWkFuEqDndp-OzZ5Mskc3_FFA1x23N-rI5OD7QflldqhhPKMNusKlyHjEde7eWfonCSaMhhZklW4AnAFduEbPSUEui1zV7p8GP4HtNzkGWesbPfdwIP8qfQ"/>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">AI &amp; Modern Tech</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Leverage machine learning to automate processes and innovate faster.
+                        </p>
+<button class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider group-hover:underline decoration-primary/50 underline-offset-4">
+                            Learn More
+                        </button>
+</div>
+</div>
+</div>
+<!-- Spacer for Nav/FAB -->
+<div class="h-10"></div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-4 z-40 flex items-center justify-center gap-2 bg-primary hover:bg-orange-600 text-white shadow-[0_8px_30px_rgb(238,95,43,0.3)] rounded-full px-5 py-3 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span class="font-bold text-sm tracking-wide">Book Consultation</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full glass-nav z-50 px-6 py-3 pb-6 flex justify-between items-center text-xs font-medium text-gray-400">
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:text-white transition-colors">home</span>
+<span class="group-hover:text-white transition-colors">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group w-16 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">grid_view</span>
+<span>Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:text-white transition-colors">mail</span>
+<span class="group-hover:text-white transition-colors">Contact</span>
+</a>
+</nav>
+</div>
+</body></html>

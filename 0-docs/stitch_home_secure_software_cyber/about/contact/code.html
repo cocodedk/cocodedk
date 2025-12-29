@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About - cocode.dk</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee5f2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221510",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for glassmorphism if needed beyond Tailwind */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #ee5f2b;
+            outline: none;
+        }
+        /* Gradient Orb Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .orb {
+            animation: float 8s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen relative overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Ambient Background Glows -->
+<div class="fixed top-[-10%] right-[-20%] w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] pointer-events-none orb"></div>
+<div class="fixed bottom-[10%] left-[-10%] w-[250px] h-[250px] bg-primary/10 rounded-full blur-[80px] pointer-events-none orb" style="animation-delay: -4s;"></div>
+<!-- Main Content Wrapper -->
+<div class="relative z-10 flex flex-col w-full max-w-md mx-auto min-h-screen">
+<!-- Header -->
+<header class="flex items-center p-4 sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/5">
+<button aria-label="Go back" class="text-white flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight flex-1 text-center pr-10">About cocode.dk</h2>
+</header>
+<main class="flex-1 flex flex-col px-4 pb-24 pt-4 gap-6">
+<!-- Hero Section -->
+<section>
+<h1 class="text-white text-[32px] font-bold leading-[1.1] mb-3">
+                    Secure Code.<br/>
+<span class="text-primary">Human Expertise.</span>
+</h1>
+<p class="text-white/70 text-base font-normal leading-relaxed font-body">
+                    Bridging the gap between building fast and staying safe. We specialize in secure software development and cybersecurity for European SMEs.
+                </p>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="glass-panel flex flex-col gap-1 rounded-2xl p-5 shadow-lg">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<p class="text-white/60 text-sm font-medium">Experience</p>
+<p class="text-white text-2xl font-bold">10+ Years</p>
+</div>
+<div class="glass-panel flex flex-col gap-1 rounded-2xl p-5 shadow-lg">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<p class="text-white/60 text-sm font-medium">Focus</p>
+<p class="text-white text-2xl font-bold">Dev &amp; Sec</p>
+</div>
+</section>
+<!-- Location Section -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-white text-xl font-bold">Location</h3>
+<span class="flex items-center text-primary text-sm font-medium bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-[16px] mr-1">location_on</span>
+                        Copenhagen
+                    </span>
+</div>
+<div class="glass-panel p-2 rounded-2xl overflow-hidden shadow-lg group">
+<div class="relative h-40 w-full rounded-xl overflow-hidden bg-gray-800">
+<!-- Abstract Map Visual -->
+<div class="absolute inset-0 bg-gray-800 opacity-60 z-10"></div>
+<img alt="Dark styled map of Copenhagen showing streets and water" class="w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 transition-transform duration-700" data-location="Copenhagen, Denmark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSlWBB3iuO5CA91vMOA1QhqKp3-JH5-dq4iYDN7yViLHwIEVTHucjuk7akGRjr5nlcQ4Bpbx3m6SlgId7q_qikee3bzXa9OjP-Sb40aZzAfM3_UJc-ZyUPy96f35PN9TKRV6IoI8mZMEwpM7SXmDS15Vkqma9lr1474l8sniJyGlq0GR1RaPC0GdDK1mYohVDRsLiGuXZ3PPdnibgCjaHV05JgmQppQgvQqBIv-J1-yvfEmxnbVYQqN4sdflXC4PrgIK62VTpxNw"/>
+<div class="absolute inset-0 z-20 flex items-center justify-center">
+<div class="bg-background-dark/80 backdrop-blur text-white px-4 py-2 rounded-lg border border-white/10 shadow-2xl flex items-center gap-2 transform translate-y-1 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined text-primary text-[20px]">pin_drop</span>
+<span class="text-sm font-medium">Magistervej 54, NV</span>
+</div>
+</div>
+</div>
+<a class="flex items-center justify-between p-4 text-white hover:bg-white/5 rounded-xl transition-colors mt-1" href="https://maps.google.com" target="_blank">
+<div class="flex flex-col">
+<span class="font-bold text-sm">Magistervej 54</span>
+<span class="text-xs text-white/60">2400 Copenhagen NV, Denmark</span>
+</div>
+<span class="material-symbols-outlined text-white/40">arrow_outward</span>
+</a>
+</div>
+</section>
+<!-- Contact Actions -->
+<section class="flex flex-col gap-3">
+<h3 class="text-white text-xl font-bold mt-2">Connect</h3>
+<div class="grid grid-cols-1 gap-3">
+<a class="glass-panel p-4 rounded-xl flex items-center gap-4 hover:bg-white/5 transition-colors group" href="tel:+4553737514">
+<div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="flex-1">
+<p class="text-white/50 text-xs font-medium uppercase tracking-wider">Call Us</p>
+<p class="text-white text-lg font-medium font-display">+45 53 73 75 14</p>
+</div>
+<span class="material-symbols-outlined text-white/30">chevron_right</span>
+</a>
+<div class="grid grid-cols-3 gap-3">
+<a class="glass-panel p-3 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors aspect-square group" href="#">
+<span class="material-symbols-outlined text-3xl text-white/80 group-hover:text-primary transition-colors">mail</span>
+<span class="text-xs text-white/60">Email</span>
+</a>
+<a class="glass-panel p-3 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors aspect-square group" href="#">
+<!-- Using a generic icon for LinkedIn as specific brand icons might not be in Material Symbols, using 'work' or similar -->
+<span class="material-symbols-outlined text-3xl text-white/80 group-hover:text-blue-400 transition-colors">business_center</span>
+<span class="text-xs text-white/60">LinkedIn</span>
+</a>
+<a class="glass-panel p-3 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors aspect-square group" href="#">
+<span class="material-symbols-outlined text-3xl text-white/80 group-hover:text-gray-300 transition-colors">code</span>
+<span class="text-xs text-white/60">GitHub</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="glass-panel p-5 rounded-2xl shadow-lg mt-2">
+<h3 class="text-white text-xl font-bold mb-4">Get in Touch</h3>
+<form class="flex flex-col gap-4 font-body">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-white/60 uppercase tracking-wide ml-1" for="name">Name</label>
+<input class="glass-input w-full px-4 py-3 rounded-xl text-sm placeholder:text-white/20 focus:ring-1 focus:ring-primary/50 transition-all" id="name" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-white/60 uppercase tracking-wide ml-1" for="email">Email</label>
+<input class="glass-input w-full px-4 py-3 rounded-xl text-sm placeholder:text-white/20 focus:ring-1 focus:ring-primary/50 transition-all" id="email" placeholder="john@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-white/60 uppercase tracking-wide ml-1" for="message">Project Brief</label>
+<textarea class="glass-input w-full px-4 py-3 rounded-xl text-sm placeholder:text-white/20 focus:ring-1 focus:ring-primary/50 transition-all resize-none" id="message" placeholder="Tell us about your security needs..." rows="3"></textarea>
+</div>
+<button class="mt-2 w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl shadow-[0_4px_14px_0_rgba(238,95,43,0.39)] hover:shadow-[0_6px_20px_rgba(238,95,43,0.23)] hover:-translate-y-[1px] transition-all flex items-center justify-center gap-2" type="button">
+<span>Start a Conversation</span>
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</form>
+</section>
+<!-- Footer Simple -->
+<div class="text-center pt-4 pb-2">
+<p class="text-white/20 text-xs">© 2024 cocode.dk</p>
+</div>
+</main>
+</div>
+</body></html>

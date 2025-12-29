@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio: Recent Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee5f2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#181311", // Keeping consistent with the darker background from provided components
+                        "surface-dark": "#271f1c",
+                        "surface-glass": "rgba(39, 31, 28, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                    backgroundImage: {
+                        'warm-glow': 'radial-gradient(circle at 50% 0%, rgba(238, 95, 43, 0.15) 0%, rgba(24, 19, 17, 0) 70%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(39, 31, 28, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-chip-active {
+            background: #ee5f2b;
+            box-shadow: 0 4px 12px rgba(238, 95, 43, 0.3);
+            border: 1px solid rgba(238, 95, 43, 0.5);
+        }
+        .glass-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-x-hidden min-h-screen">
+<!-- Ambient Glow Background -->
+<div class="fixed inset-0 pointer-events-none z-0 bg-warm-glow"></div>
+<div class="relative z-10 flex flex-col min-h-screen w-full max-w-md mx-auto border-x border-white/5 shadow-2xl">
+<!-- Sticky Header with Glassmorphism -->
+<header class="sticky top-0 z-50 glass-panel border-b border-white/5">
+<div class="flex items-center px-4 py-4 justify-between">
+<button class="text-white/80 hover:text-white transition-colors flex size-10 items-center justify-center rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight tracking-wide flex-1 text-center uppercase text-sm">Recent Work</h2>
+<button class="text-white/80 hover:text-white transition-colors flex size-10 items-center justify-center rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-3 px-4 pb-4 pt-1 overflow-x-auto no-scrollbar mask-gradient-right">
+<button class="glass-chip-active flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-5 transition-all">
+<p class="text-white text-xs font-bold uppercase tracking-wider">All</p>
+</button>
+<button class="glass-chip flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-5 hover:bg-white/10 transition-all">
+<p class="text-white/70 text-xs font-bold uppercase tracking-wider">Security</p>
+</button>
+<button class="glass-chip flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-5 hover:bg-white/10 transition-all">
+<p class="text-white/70 text-xs font-bold uppercase tracking-wider">E-commerce</p>
+</button>
+<button class="glass-chip flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-5 hover:bg-white/10 transition-all">
+<p class="text-white/70 text-xs font-bold uppercase tracking-wider">Audit</p>
+</button>
+<button class="glass-chip flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-5 hover:bg-white/10 transition-all">
+<p class="text-white/70 text-xs font-bold uppercase tracking-wider">Cloud</p>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-4 flex flex-col gap-6 pb-24">
+<!-- Card 1: Featured (Rahimi Tires) -->
+<article class="group relative flex flex-col rounded-xl overflow-hidden glass-panel transition-all duration-300 hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+<!-- Image Container with Overlay -->
+<div class="relative h-56 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#181311] via-transparent to-transparent z-10 opacity-90"></div>
+<div class="w-full h-full bg-cover bg-center transform transition-transform duration-700 group-hover:scale-105" data-alt="Modern e-commerce interface on a mobile device showing tire selection" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC4DPgislrUqyD6jOBpJYYvWb32a78BVDegColxB1qpGnw8Dn30W1mjPVo1Ie8aSCvXfmpl6Idfkfc-668rH5zJTK6vHaWZsiyxvdJRfixfKefPRU3a6iQ1vh20NoP3B-1hHTan41GR6vDHMd4CMDtzQQ2Drzfttp0BzNQ-Y54sgZ10Q5iiafLuVeJAqfv9arPDxGgoBkQpw8Dqjw5gzKGj1d6sNxyFy8eT_VrYt3ouC67wbrDj4BfpbN8KiNJEAPLN1r7BCG8Sjg");'>
+</div>
+<!-- Floating Badge -->
+<div class="absolute top-3 right-3 z-20">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-2.5 py-0.5 text-xs font-semibold text-white shadow-lg backdrop-blur-sm">
+                            Featured
+                        </span>
+</div>
+<!-- Overlay Content -->
+<div class="absolute bottom-0 left-0 right-0 p-5 z-20">
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">E-commerce • Security</p>
+<h3 class="text-white text-2xl font-bold leading-tight tracking-tight">Rahimi Tires</h3>
+</div>
+</div>
+<!-- Content Body -->
+<div class="p-5 pt-2 flex flex-col gap-4">
+<p class="text-gray-400 text-sm font-normal leading-relaxed">
+                        Secure transaction platform for a leading European automotive SME. Implemented end-to-end encryption.
+                    </p>
+<div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+<div class="flex items-center gap-2 text-green-400 text-xs font-medium bg-green-400/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+                            100% Uptime
+                        </div>
+<button class="flex items-center gap-2 text-primary hover:text-white text-sm font-bold transition-colors group/btn">
+                            View Case Study
+                            <span class="material-symbols-outlined text-[18px] transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: FinSecure Audit -->
+<article class="group relative flex flex-col rounded-xl overflow-hidden glass-panel transition-all duration-300 hover:border-primary/30">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#181311] via-transparent to-transparent z-10 opacity-80"></div>
+<div class="w-full h-full bg-cover bg-center transform transition-transform duration-700 group-hover:scale-105" data-alt="Abstract blue digital security lock interface visualization" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFqh9lmM3VJKUy2K9gF0sFi1WAzy3Zuiqc7d60QmbYQSU_GeUwoet52zyPcDILLwAgVWwrHGiK0_M0ieZ9uI29PxihkL87pKsdObFyBCc0u-8Ei5VsKoXElyVEipoe_PFmd76wVYaFoMcjBbmhecG70-_rLJOfIAwOfhFFcwGm5Nnc1FJ0sGYgoJVvmG70Kq3Q0MkPXRoTSzVMPYuA3bV1HLmIw_TIAtgM0IpSUJOASx0uziOiWiGPM6LhglHu1Daw-j8NH2-Ovw");'>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-20">
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Cybersecurity</p>
+<h3 class="text-white text-xl font-bold leading-tight tracking-tight">FinSecure Audit</h3>
+</div>
+</div>
+<div class="p-5 pt-2 flex flex-col gap-4">
+<p class="text-gray-400 text-sm font-normal leading-relaxed">
+                        Automated vulnerability scanning for fintech applications. Reduced risk exposure significantly.
+                    </p>
+<div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+<div class="flex items-center gap-2 text-blue-400 text-xs font-medium bg-blue-400/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+                            Risk -40%
+                        </div>
+<button class="flex items-center gap-2 text-primary hover:text-white text-sm font-bold transition-colors group/btn">
+                            View Case Study
+                            <span class="material-symbols-outlined text-[18px] transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Nordic Cloud Migration -->
+<article class="group relative flex flex-col rounded-xl overflow-hidden glass-panel transition-all duration-300 hover:border-primary/30">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#181311] via-transparent to-transparent z-10 opacity-80"></div>
+<div class="w-full h-full bg-cover bg-center transform transition-transform duration-700 group-hover:scale-105" data-alt="Server room with blue lights representing cloud infrastructure" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGVfcLwT-09u_4HMGH74S4MyFmTpEbOe7_8jrpSdW8mkTffzD_bkeDsAwpdgoBpMyfnpOzMuJ-DXLfAaQRcBf7ITm4PIQhUQuNZ4RSG4_NhHNhQoqVwI6rfmVwvpwf_jOFC2UktQpOM0ZFH-F1nql-ILahXZL5wZ-lb7LCHtuvN3zdCTUDSlTOV8ZDQa9UB_PPdWRiyOCz90VgfN-8lqtbn32DbbpznEFEIceXlbqXMDDMnGmj_Kpe7zVcfgufbWqsMF-flTt2jg");'>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-20">
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Cloud Infrastructure</p>
+<h3 class="text-white text-xl font-bold leading-tight tracking-tight">Nordic Cloud Migration</h3>
+</div>
+</div>
+<div class="p-5 pt-2 flex flex-col gap-4">
+<p class="text-gray-400 text-sm font-normal leading-relaxed">
+                        Seamless transition to secure cloud infrastructure with zero operational downtime.
+                    </p>
+<div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+<div class="flex items-center gap-2 text-purple-400 text-xs font-medium bg-purple-400/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">cloud_done</span>
+                            0 Downtime
+                        </div>
+<button class="flex items-center gap-2 text-primary hover:text-white text-sm font-bold transition-colors group/btn">
+                            View Case Study
+                            <span class="material-symbols-outlined text-[18px] transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Bottom CTA -->
+<div class="mt-4 p-6 rounded-xl bg-gradient-to-br from-primary to-[#c94112] text-center shadow-lg relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+<div class="relative z-10">
+<h3 class="text-white text-lg font-bold mb-2">Have a project in mind?</h3>
+<p class="text-white/90 text-sm mb-4">Let's build something secure together.</p>
+<div class="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-white text-primary font-bold text-sm shadow-md transition-transform transform group-hover:scale-105">
+                        Start a Project
+                    </div>
+</div>
+</div>
+</main>
+<!-- Floating Bottom Navigation (Simulated iOS Tab Bar) -->
+<nav class="fixed bottom-0 w-full max-w-md bg-[#181311]/90 backdrop-blur-xl border-t border-white/5 pb-5 pt-2 z-50">
+<div class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px] fill-current">work</span>
+<span class="text-[10px] font-medium">Work</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">design_services</span>
+<span class="text-[10px] font-medium">Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+<span class="text-[10px] font-medium">Contact</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>
