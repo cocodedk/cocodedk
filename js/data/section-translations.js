@@ -37,6 +37,18 @@ export const sectionTranslations = {
     hi: 'कीमत देखें',
     ur: 'قیمتیں دیکھیں',
     fr: 'Voir les tarifs'
+  },
+  cvLink: {
+    da: 'CV',
+    en: 'CV',
+    es: 'CV',
+    zh: '简历',
+    ja: '履歴書',
+    de: 'Lebenslauf',
+    ar: 'السيرة الذاتية',
+    fa: 'رزومه',
+    hi: 'सीवी',
+    ur: 'سی وی',
+    fr: 'CV'
   }
 };
-

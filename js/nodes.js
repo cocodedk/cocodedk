@@ -18,6 +18,7 @@ import unityFoundation from './data/nodes/12-unity-foundation.js';
 import about from './data/nodes/13-about.js';
 import testimonials from './data/nodes/14-testimonials.js';
 import pricing from './data/nodes/15-pricing.js';
+import cv from './data/nodes/16-cv.js';
 
 /**
  * @typedef {Object} HoverColors
@@ -49,6 +50,7 @@ window.nodes = [
     fitsDK,
     github,
     linkedin,
+    cv,
     unityFoundation,
     about,
     testimonials,
@@ -68,6 +70,7 @@ window.links = [
     ['cocode.dk', 'Contact'],
     ['cocode.dk', 'GitHub'],
     ['cocode.dk', 'LinkedIn'],
+    ['cocode.dk', 'CV'],
     ['cocode.dk', 'Unity Foundation'],
     ['cocode.dk', 'About'],
     ['cocode.dk', 'Testimonials'],

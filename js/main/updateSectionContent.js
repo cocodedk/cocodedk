@@ -17,10 +17,14 @@ export function updateSectionContent(lang) {
       pricingCta.textContent = sectionTranslations.pricingButton[lang] || sectionTranslations.pricingButton.en;
     }
 
+    const cvLink = document.getElementById('cv-link-text');
+    if (cvLink) {
+      cvLink.textContent = sectionTranslations.cvLink[lang] || sectionTranslations.cvLink.en;
+    }
+
     return true;
   } catch (e) {
     console.error('Error updating section content', e);
     return false;
   }
 }
-
