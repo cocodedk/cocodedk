@@ -32,6 +32,8 @@
   padding: 20px;
   transition: all 0.3s var(--ease-out);
   will-change: transform, box-shadow;
+  display: flex;
+  flex-direction: column;
 }
 
 .activity-card:hover {
@@ -112,25 +114,63 @@
   color: var(--text-secondary);
   margin: 0 0 12px 0;
   line-height: 1.4;
+  flex-grow: 1;
 }
 
 .activity-card__meta {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-tertiary);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.activity-card__meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.activity-card__meta .fas {
+  font-size: 14px;
+  color: var(--accent-amber);
+}
+
+.activity-card__footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid rgba(232, 115, 94, 0.2);
+  padding-top: 12px;
+  margin-top: auto;
 }
 
 .activity-card__link {
   color: var(--accent-coral);
   text-decoration: none;
   transition: color 0.2s;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .activity-card__link:hover {
   color: var(--accent-warm-orange);
   text-decoration: underline;
+}
+
+.activity-card__link--demo {
+  background: var(--accent-coral);
+  color: var(--background-primary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.activity-card__link--demo:hover {
+  background: var(--accent-warm-orange);
+  color: var(--background-primary);
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {

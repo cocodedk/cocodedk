@@ -5,21 +5,28 @@ function createActivityCard(activityItem) {
   card.className = 'activity-card';
   card.setAttribute('role', 'article');
 
-  const meta = activityItem.meta ? `• ${activityItem.meta}` : '';
-  const link = activityItem.url ? `<a href="${activityItem.url}" target="_blank" rel="noopener" class="activity-card__link">View →</a>` : '';
-  
-  const iconClass = activityItem.icon ? `activity-card__icon activity-card__icon--${activityItem.icon}` : 'activity-card__icon activity-card__icon--default';
+  const { title, description, date, url, homepage, icon, meta, platform, stars, language } = activityItem;
+
+  const githubLink = url ? `<a href="${url}" target="_blank" rel="noopener" class="activity-card__link">GitHub</a>` : '';
+  const demoLink = homepage ? `<a href="${homepage}" target="_blank" rel="noopener" class="activity-card__link activity-card__link--demo">Live Demo</a>` : '';
+
+  const iconClass = icon ? `activity-card__icon activity-card__icon--${icon}` : 'activity-card__icon activity-card__icon--default';
 
   card.innerHTML = `
     <div class="activity-card__header">
       <img src="images/hexagon-icon.svg" class="${iconClass}" aria-hidden="true" alt="">
-      <span class="activity-card__platform">${activityItem.platform || 'Activity'}</span>
+      <span class="activity-card__platform">${platform || 'Activity'}</span>
     </div>
-    <h3 class="activity-card__title">${activityItem.title}</h3>
-    <p class="activity-card__description">${activityItem.description}</p>
+    <h3 class="activity-card__title">${title}</h3>
+    <p class="activity-card__description">${description}</p>
     <div class="activity-card__meta">
-      <span>${activityItem.date} ${meta}</span>
-      ${link}
+      ${language ? `<span><i class="fas fa-code"></i> ${language}</span>` : ''}
+      ${stars > 0 ? `<span><i class="fas fa-star"></i> ${stars}</span>` : ''}
+      <span><i class="fas fa-calendar-alt"></i> ${date}</span>
+    </div>
+    <div class="activity-card__footer">
+      ${githubLink}
+      ${demoLink}
     </div>
   `;
 
@@ -45,8 +52,10 @@ async function renderActivityFeed() {
         description: r.description,
         date: r.updated || r.date,
         url: r.url,
+        homepage: r.homepage,
         icon: r.icon,
-        meta: r.language ? `${r.language}` : (r.stars ? `⭐ ${r.stars}` : ''),
+        stars: r.stars,
+        language: r.language,
         platform: 'GitHub'
       })),
       ...(youtubeVideos || []).map(v => ({
