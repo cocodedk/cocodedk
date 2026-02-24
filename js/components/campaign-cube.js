@@ -42,7 +42,7 @@ function rotateX(v, a) {
 
 function project(v, cx, cy, scale) {
   const z = v[2] || 0;
-  const f = 4 / (4 + z * 0.5); // perspective
+  const f = 6 / (6 + z * 0.3); // gentle perspective
   return [cx + v[0] * scale * f, cy + v[1] * scale * f, z];
 }
 
@@ -67,9 +67,9 @@ function drawFrame(ctx, w, h, t) {
   const pulse = 1 + 0.08 * Math.sin(t * 2);
   const baseScale = 28 * pulse;
 
-  // Rotation speeds
-  const ry = t * 0.7;
-  const rx = -0.4 + Math.sin(t * 0.3) * 0.2;
+  // Rotation: steady Y spin, fixed gentle X tilt
+  const ry = t * 0.6;
+  const rx = -0.35;
 
   if (morph < 0.01) {
     // Draw flat hexagon
