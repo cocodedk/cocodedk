@@ -6,8 +6,8 @@ export default {
             da: 'MCP-udvikling'
         },
         translations: {
-            en: 'Building secure, locally-running MCP servers connecting AI assistants to tools and data sources. Current implementations: \u2713 Code Scanner MCP (https://github.com/cocodedk/codescan) - analyze codebases with AI via Neo4j graph \u2713 MS Teams Planner Task Creator (https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP) - manage task boards securely with OAuth \u2713 Calendar Consolidator (https://github.com/cocodedk/calendar-consolidator-mcp) - unified multi-calendar view (Microsoft 365, iCloud/CalDAV). The future of AI tooling. \ud83d\ude80',
-            da: 'Udvikling af sikre, lokalt k\u00f8rende MCP-servere, der forbinder AI-assistenter med v\u00e6rkt\u00f8jer og datakilder. Nuv\u00e6rende implementeringer: \u2713 Kodescanner MCP (github.com/cocodedk/codescan) - analyser kodebase med AI via Neo4j-graf \u2713 MS Teams Planner Opgavestyring (github.com/cocodedk/Planner-Task-Creator-CLI-MCP) - sikker h\u00e5ndtering af opgavetavler med OAuth \u2713 Kalenderkonsolidering (github.com/cocodedk/calendar-consolidator-mcp) - samlet multi-kalender visning (Microsoft 365, iCloud/CalDAV). Fremtiden for AI-v\u00e6rkt\u00f8jer. \ud83d\ude80'
+            en: 'MCP is how AI assistants talk to your tools. I build servers that run locally, securely, and give AI access to exactly what it needs. Nothing more. Three shipped so far: CodeScan (codebase analysis via Neo4j), Planner Task Creator (MS Teams), and Calendar Consolidator (Microsoft 365 + iCloud). All open source.',
+            da: 'MCP er m\u00e5den AI-assistenter snakker med jeres v\u00e6rkt\u00f8jer p\u00e5. Jeg bygger servere der k\u00f8rer lokalt, sikkert, og giver AI adgang til pr\u00e6cis det den har brug for. Intet mere. Tre leveret indtil videre: CodeScan (kodebase-analyse via Neo4j), Planner Task Creator (MS Teams) og Calendar Consolidator (Microsoft 365 + iCloud). Alle open source.'
         },
         category: 'MCP'
 };

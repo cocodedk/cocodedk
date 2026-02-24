@@ -6,8 +6,8 @@ export default {
             da: 'AI Workflow-automatisering'
         },
         translations: {
-            en: 'Connecting AI models to your business systems to automate repetitive knowledge work. What I build: \u2713 Document processing pipelines that extract, classify, and route information \u2713 Task automation connecting AI to MS Teams, calendars, and project tools \u2713 Custom agent workflows using OpenAI, Claude, and other LLM platforms \u2713 Production-ready implementations with error handling, cost optimization, and monitoring. Real automation that delivers measurable ROI\u2014not just proof-of-concepts.',
-            da: 'Forbinder AI-modeller med jeres forretningssystemer for at automatisere gentagne vidensopgaver. Det jeg bygger: \u2713 Dokumentbehandlings-pipelines der udtr\u00e6kker, klassificerer og ruter information \u2713 Opgaveautomatisering der forbinder AI med MS Teams, kalendere og projektv\u00e6rkt\u00f8jer \u2713 Skr\u00e6ddersyede agent-workflows med OpenAI, Claude og andre LLM-platforme \u2713 Produktionsklar implementering med fejlh\u00e5ndtering, omkostningsoptimering og overv\u00e5gning. \u00c6gte automatisering der leverer m\u00e5lbart ROI\u2014ikke bare proof-of-concepts.'
+            en: 'That thing your team does every week that nobody enjoys? Sorting documents, updating spreadsheets, copying data between systems. I wire AI into those workflows so they just happen. Not a proof-of-concept in a slide deck. Actual pipelines in production, with monitoring and error handling.',
+            da: 'Den ting jeres team g\u00f8r hver uge som ingen gider? Sortere dokumenter, opdatere regneark, kopiere data mellem systemer. Jeg kobler AI ind i de workflows s\u00e5 det bare sker. Ikke en proof-of-concept i et slide deck. Rigtige pipelines i produktion, med overv\u00e5gning og fejlh\u00e5ndtering.'
         },
         category: 'AI'
 };

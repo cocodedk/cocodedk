@@ -6,8 +6,8 @@ export default {
         da: 'Om mig'
     },
     translations: {
-        en: 'Babak Bandpey \u2014 AI agent specialist with a cybersecurity background. 10+ years building secure, scalable systems for European SMEs. Now focused on connecting AI to real business systems. Specializations: \u2713 AI agent development & MCP servers \u2713 Workflow automation for Danish SMEs \u2713 Cybersecurity compliance (CIS18, DORA, NIS2, ISO27001, EU AI Act) \u2713 Neo4j graph databases for compliance mapping. One of few consultants who can both build AI agents AND audit them for compliance. Based in Copenhagen, Denmark.',
-        da: 'Babak Bandpey \u2014 AI agent-specialist med cybersikkerhedsbaggrund. 10+ \u00e5rs erfaring med at bygge sikre, skalerbare systemer til europ\u00e6iske SMV\u2019er. Nu fokuseret p\u00e5 at forbinde AI med rigtige forretningssystemer. Specialiseringer: \u2713 AI agent-udvikling & MCP-servere \u2713 Workflow-automatisering til danske SMV\u2019er \u2713 Cybersikkerhedscompliance (CIS18, DORA, NIS2, ISO27001, EU AI Act) \u2713 Neo4j-grafdatabaser til compliance-mapping. En af f\u00e5 konsulenter der b\u00e5de kan bygge AI-agenter OG auditere dem for compliance. Baseret i K\u00f8benhavn, Danmark.'
+        en: 'I\u2019m Babak Bandpey, based in Copenhagen. I spent 10+ years doing cybersecurity compliance for European SMEs before getting into AI agent development. Now I do both. I build MCP servers, wire AI into business systems, and audit the results for compliance. I\u2019m fluent in English, Danish, and Persian. I also build with Neo4j because compliance mapping is really a graph problem, not a spreadsheet problem.',
+        da: 'Jeg er Babak Bandpey, baseret i K\u00f8benhavn. Jeg brugte 10+ \u00e5r p\u00e5 cybersikkerhedscompliance for europ\u00e6iske SMV\u2019er f\u00f8r jeg gik ind i AI agent-udvikling. Nu g\u00f8r jeg begge dele. Jeg bygger MCP-servere, kobler AI p\u00e5 forretningssystemer, og auditerer resultaterne for compliance. Jeg taler flydende engelsk, dansk og persisk. Jeg bygger ogs\u00e5 med Neo4j fordi compliance-mapping egentlig er et grafproblem, ikke et regnearksproblem.'
     },
     category: 'About'
 };

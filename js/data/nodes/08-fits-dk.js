@@ -6,8 +6,8 @@ export default {
             da: 'AI Governance & Compliance'
         },
         translations: {
-            en: 'Ensuring AI agent deployments meet EU regulatory requirements. Services: \u2713 EU AI Act compliance assessment for AI systems \u2713 GDPR data processing impact assessments for AI workflows \u2713 DORA & NIS2 compliance for AI in financial and critical sectors \u2713 AI risk classification and documentation \u2713 Ongoing compliance monitoring and governance frameworks. One of few consultants who can both build and audit AI systems. \ud83d\udee1\ufe0f',
-            da: 'Sikrer at AI-agent-udrulninger overholder EU-reguleringskrav. Ydelser: \u2713 EU AI Act compliance-vurdering for AI-systemer \u2713 GDPR databehandlings-konsekvensanalyser for AI-workflows \u2713 DORA & NIS2 compliance for AI i finansielle og kritiske sektorer \u2713 AI-risikoklassificering og dokumentation \u2713 L\u00f8bende compliance-overv\u00e5gning og governance-rammer. En af f\u00e5 konsulenter der b\u00e5de kan bygge og auditere AI-systemer. \ud83d\udee1\ufe0f'
+            en: 'If you\u2019re deploying AI agents in the EU, you need to deal with the EU AI Act, GDPR, and probably DORA or NIS2 too. I help sort out what applies to your specific setup: risk classification, impact assessments, documentation, and ongoing monitoring. I can do this because I\u2019ve built the agents myself and know what the auditors look for.',
+            da: 'Hvis I ruller AI-agenter ud i EU, skal I forholde jer til EU AI Act, GDPR, og sandsynligvis ogs\u00e5 DORA eller NIS2. Jeg hj\u00e6lper med at finde ud af hvad der g\u00e6lder for jeres specifikke setup: risikoklassificering, konsekvensanalyser, dokumentation og l\u00f8bende overv\u00e5gning. Det kan jeg fordi jeg selv har bygget agenterne og ved hvad auditorerne kigger efter.'
         },
         category: 'Compliance'
 };
