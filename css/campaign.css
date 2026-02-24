@@ -94,18 +94,13 @@
   border-color: var(--border-hover);
 }
 
-.campaign-badge {
-  width: 240px;
-  max-width: 60vw;
-  height: auto;
-  display: block;
-  cursor: default;
-  user-select: none;
-  -webkit-user-drag: none;
+.campaign-hexagon {
+  animation: hex-spin 6s linear infinite;
 }
 
-@media (max-width: 520px) {
-  .campaign-badge { width: 200px; }
+@keyframes hex-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .campaign-close {
