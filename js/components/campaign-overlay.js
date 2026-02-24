@@ -31,7 +31,7 @@ function buildOverlay(lang) {
         <p class="campaign-sub">${sub}</p>
       </div>
       <div class="campaign-body">
-        <img class="campaign-badge" src="images/campaign-999.svg" alt="Prisbadge: 999 DKK + moms" />
+        <img class="campaign-badge" src="images/campaign-999.svg" alt="Free AI agent strategy call" />
         <p class="campaign-social-proof">${socialProof}</p>
       </div>
       <div class="campaign-actions">
