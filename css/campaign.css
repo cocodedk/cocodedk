@@ -94,37 +94,8 @@
   border-color: var(--border-hover);
 }
 
-.cube-scene {
-  width: 70px;
-  height: 70px;
-  perspective: 300px;
-}
-
-.cube-3d {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: cube-spin-3d 8s linear infinite;
-}
-
-.cube-face {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border: 1.5px solid #000;
-}
-
-.cube-front  { background: #4ade80; transform: translateZ(35px); }
-.cube-back   { background: #16a34a; transform: rotateY(180deg) translateZ(35px); }
-.cube-right  { background: #22c55e; transform: rotateY(90deg) translateZ(35px); }
-.cube-left   { background: #15803d; transform: rotateY(-90deg) translateZ(35px); }
-.cube-top    { background: #86efac; transform: rotateX(90deg) translateZ(35px); }
-.cube-bottom { background: #166534; transform: rotateX(-90deg) translateZ(35px); }
-
-@keyframes cube-spin-3d {
-  0%   { transform: rotateX(-20deg) rotateY(0deg); }
-  100% { transform: rotateX(-20deg) rotateY(360deg); }
+.campaign-canvas {
+  display: block;
 }
 
 .campaign-close {

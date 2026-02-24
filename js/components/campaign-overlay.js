@@ -31,16 +31,7 @@ function buildOverlay(lang) {
         <p class="campaign-sub">${sub}</p>
       </div>
       <div class="campaign-body">
-        <div class="cube-scene" aria-hidden="true">
-          <div class="cube-3d">
-            <div class="cube-face cube-front"></div>
-            <div class="cube-face cube-back"></div>
-            <div class="cube-face cube-right"></div>
-            <div class="cube-face cube-left"></div>
-            <div class="cube-face cube-top"></div>
-            <div class="cube-face cube-bottom"></div>
-          </div>
-        </div>
+        <canvas class="campaign-canvas" width="160" height="160"></canvas>
         <p class="campaign-social-proof">${socialProof}</p>
       </div>
       <div class="campaign-actions">
@@ -109,6 +100,7 @@ function show(force=false) {
     if (!root) return;
     root.style.display = 'flex';
     root.setAttribute('aria-hidden', 'false');
+    if (window.CampaignCube) window.CampaignCube.start();
     // Close on ESC
     escHandler = (ev) => { if (ev.key === 'Escape') hide(); };
     document.addEventListener('keydown', escHandler);
@@ -135,6 +127,7 @@ function hide() {
   if (!root) return;
   root.style.display = 'none';
   root.setAttribute('aria-hidden', 'true');
+  if (window.CampaignCube) window.CampaignCube.stop();
   // Store dismissal timestamp for 7-day cooldown
   try {
     localStorage.setItem(getDismissKey(), Date.now().toString());
