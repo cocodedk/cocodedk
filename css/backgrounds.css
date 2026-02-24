@@ -1,51 +1,12 @@
-/* Warm Background Gradients */
+/* Background Styles - Terminal Aesthetic */
 
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0a0a;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
   overflow: auto;
   position: relative;
-  animation: subtleWarmShift 25s ease-in-out infinite alternate;
-}
-
-/* Animated Warm Background Shift */
-@keyframes subtleWarmShift {
-  0% {
-    background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  }
-  25% {
-    background: radial-gradient(circle at center, #3d1a2a 0%, #1a1a1a 70%);
-  }
-  50% {
-    background: radial-gradient(circle at center, #5c2e1f 0%, #1a1a1a 70%);
-  }
-  75% {
-    background: radial-gradient(circle at center, #3d1a2a 0%, #1a1a1a 70%);
-  }
-  100% {
-    background: radial-gradient(circle at center, #4d2a1f 0%, #1a1a1a 70%);
-  }
-}
-
-/* Warm Section Backgrounds */
-.section-warm {
-  background: var(--gradient-warm);
-}
-
-.section-overlay {
-  background: linear-gradient(135deg, rgba(232, 115, 94, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
-}
-
-/* Dark overlay for content */
-.overlay-dark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
 }

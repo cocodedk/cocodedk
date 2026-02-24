@@ -1,6 +1,6 @@
-import rahimi from './01-rahimi-tires.js';
-import nick from './02-nick-autoteknik.js';
-import venus from './03-klinik-venus.js';
+import plannerMcp from './01-planner-mcp.js';
+import calendarMcp from './02-calendar-mcp.js';
+import codescan from './03-codescan.js';
+import fitsDk from './04-fits-dk.js';
 
-window.portfolioItems = [rahimi, nick, venus];
-
+window.portfolioItems = [plannerMcp, calendarMcp, codescan, fitsDk];

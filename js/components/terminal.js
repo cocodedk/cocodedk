@@ -1,17 +1,8 @@
 /* Terminal Typewriter Effect Component */
 
 const terminalText = {
-  en: 'cocode.dk | IT • Security • Innovation',
-  da: 'cocode.dk | IT • Sikkerhed • Innovation',
-  es: 'cocode.dk | IT • Seguridad • Innovación',
-  zh: 'cocode.dk | 信息技术 • 安全 • 创新',
-  ja: 'cocode.dk | IT • セキュリティ • イノベーション',
-  de: 'cocode.dk | IT • Sicherheit • Innovation',
-  ar: 'cocode.dk | تكنولوجيا المعلومات • الأمن • الابتكار',
-  fa: 'cocode.dk | فناوری اطلاعات • امنیت • نوآوری',
-  hi: 'cocode.dk | आईटी • सुरक्षा • नवाचार',
-  ur: 'cocode.dk | آئی ٹی • سیکیورٹی • نوآوری',
-  fr: 'cocode.dk | TI • Sécurité • Innovation'
+  en: 'cocode.dk | AI Agents \u2022 Automation \u2022 Security',
+  da: 'cocode.dk | AI Agenter \u2022 Automatisering \u2022 Sikkerhed'
 };
 
 let typewriterTimeout;
@@ -19,7 +10,7 @@ let currentLanguage = 'en';
 
 function typeWriter(text, element, speed = 80) {
   if (!element) return;
-  
+
   element.textContent = '';
   let index = 0;
 
@@ -46,7 +37,7 @@ function showCursor(element) {
 function startTerminalEffect(lang = 'en') {
   currentLanguage = lang;
   clearTimeout(typewriterTimeout);
-  
+
   const terminalElement = document.querySelector('.terminal-text');
   if (!terminalElement) return;
 

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Pre-commit hook: enforce max file length on staged files
+
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+exec "$DIR/scripts/check-file-length.sh" --staged

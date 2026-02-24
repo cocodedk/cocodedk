@@ -63,12 +63,8 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
     }
   });
 
-  // Set RTL direction for Arabic, Persian, and Urdu
-  if (lang === 'ar' || lang === 'fa' || lang === 'ur') {
-    document.body.setAttribute('dir', 'rtl');
-  } else {
-    document.body.setAttribute('dir', 'ltr');
-  }
+  // Always LTR (only en/da supported)
+  document.body.setAttribute('dir', 'ltr');
 
   // Language selector is always visible in footer
   // No need to auto-hide

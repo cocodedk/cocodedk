@@ -1,4 +1,4 @@
-/* Portfolio Section Styles */
+/* Portfolio Section Styles - Terminal Aesthetic */
 
 .portfolio-section {
   padding: 0 20px 60px 20px;
@@ -7,10 +7,18 @@
 }
 
 .portfolio-title {
-  max-width: 1400px;
+  max-width: 700px;
   margin: 0 auto 16px auto;
   font-size: 18px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
+.portfolio-title::before {
+  content: "$ ";
+  color: var(--accent-primary);
+  opacity: 0.7;
+}

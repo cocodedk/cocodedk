@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set initial language from URL hash or localStorage
   // Valid language codes
-  const validLanguages = ['en', 'da', 'es', 'zh', 'ja', 'de', 'ar', 'fa', 'hi', 'ur', 'fr'];
+  const validLanguages = ['en', 'da'];
   let initialLang = 'da';
 
   if (window.location.hash && window.location.hash.length > 1) {

@@ -1,27 +1,26 @@
-/* Modal Link Styles */
+/* Modal Link Styles - Terminal Aesthetic */
 
 .modal-link {
-  color: var(--accent-warm-orange, #FFB88C);
+  color: var(--accent-secondary);
   text-decoration: underline;
-  transition: all 0.2s ease;
+  transition: color 0.1s ease;
   cursor: pointer;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
 .modal-link:hover {
-  color: var(--accent-coral, #E8735E);
-  text-shadow: 0 0 8px rgba(255, 184, 140, 0.4);
-  transform: translateY(-1px);
+  color: var(--accent-secondary-hover);
 }
 
 .modal-link:active {
-  color: var(--accent-terracotta, #D4A574);
+  color: var(--accent-secondary);
 }
 
 .modal-link:focus {
-  outline: 2px solid var(--accent-warm-orange, #FFB88C);
+  outline: 1px solid var(--accent-secondary);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 /* Ensure links work in modal content */
@@ -30,4 +29,3 @@
   position: relative;
   z-index: 2;
 }
-
