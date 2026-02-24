@@ -2,7 +2,7 @@
 
 > AI agent development, workflow automation, and cybersecurity compliance for Danish SMEs. Based in Copenhagen, Denmark. Every AI agent built is secure and compliant from day one.
 
-Babak Bandpey connects AI models to real business systems — task management, calendars, codebases, compliance platforms — so businesses can automate repetitive knowledge work. 10+ years of cybersecurity compliance experience (CIS18, DORA, NIS2, ISO27001, EU AI Act).
+Babak Bandpey connects AI models to real business systems — task management, calendars, codebases, compliance platforms — so businesses can automate repetitive knowledge work. 26 years of software development, 5 years of cybersecurity compliance experience (CIS18, DORA, NIS2, ISO27001, EU AI Act).
 
 ## Services
 
