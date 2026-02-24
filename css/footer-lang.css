@@ -1,7 +1,4 @@
-/*
- * Footer Language Selector Styles
- * Horizontal language selector integrated into footer
- */
+/* Footer Language Selector - Terminal Aesthetic */
 
 /* Footer language menu - Desktop */
 .footer-lang-menu {
@@ -15,22 +12,20 @@
 .footer-lang-menu .lang-item {
   cursor: pointer;
   padding: 6px 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  transition: color 0.1s ease;
+  background: transparent;
+  border: none;
 }
 
 .footer-lang-menu .lang-item:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 
 .footer-lang-menu .lang-item.active {
-  background: rgba(255, 138, 91, 0.3);
-  border-color: rgba(255, 138, 91, 0.5);
-  box-shadow: 0 0 12px rgba(255, 138, 91, 0.4);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--accent-primary);
 }
 
 .footer-lang-menu .flag-icon {
@@ -81,7 +76,6 @@
     text-align: center;
   }
 
-  /* Hide credit and copyright on mobile */
   .footer-credit,
   .footer-copyright {
     display: none;
@@ -99,29 +93,14 @@
     justify-content: center;
   }
 
-  .footer-lang-menu .flag-icon {
-    font-size: 20px;
-  }
-
-  .footer-lang-menu .lang-item {
-    padding: 6px 8px;
-    border-radius: 4px;
-  }
+  .footer-lang-menu .flag-icon { font-size: 20px; }
+  .footer-lang-menu .lang-item { padding: 6px 8px; }
 }
 
 @media (max-width: 480px) {
-  .footer-lang-menu {
-    gap: 3px;
-    padding: 3px 0;
-  }
-
-  .footer-lang-menu .flag-icon {
-    font-size: 18px;
-  }
-
-  .footer-lang-menu .lang-item {
-    padding: 4px 6px;
-  }
+  .footer-lang-menu { gap: 3px; padding: 3px 0; }
+  .footer-lang-menu .flag-icon { font-size: 18px; }
+  .footer-lang-menu .lang-item { padding: 4px 6px; }
 }
 
 /* CV Link Styles */
@@ -130,26 +109,25 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  color: var(--accent-secondary);
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.2s ease;
+  font-family: var(--font-mono);
+  transition: color 0.1s ease;
   margin-left: 12px;
 }
 
 .footer-cv-link:hover {
-  background: rgba(255, 138, 91, 0.2);
-  border-color: rgba(255, 138, 91, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
-  color: rgba(255, 255, 255, 1);
+  color: var(--accent-secondary-hover);
+  background: transparent;
+  border: none;
 }
 
 .footer-cv-link:focus {
-  outline: 2px solid rgba(255, 138, 91, 0.5);
+  outline: 1px solid var(--accent-secondary);
   outline-offset: 2px;
 }
 

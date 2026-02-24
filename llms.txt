@@ -1,0 +1,31 @@
+# cocode.dk - Babak Bandpey
+
+> AI agent development, workflow automation, and cybersecurity compliance for Danish SMEs. Based in Copenhagen, Denmark. Every AI agent built is secure and compliant from day one.
+
+Babak Bandpey connects AI models to real business systems — task management, calendars, codebases, compliance platforms — so businesses can automate repetitive knowledge work. 10+ years of cybersecurity compliance experience (CIS18, DORA, NIS2, ISO27001, EU AI Act).
+
+## Services
+
+- [AI Agent Development](https://cocode.dk/#ai-integration): Building production-ready AI agents that integrate with business systems via the Model Context Protocol (MCP). Custom agent pipelines using Claude, OpenAI, and other LLM platforms.
+- [MCP Server Development](https://cocode.dk/#mcp-development): Creating Model Context Protocol servers that connect AI assistants to business tools, databases, and APIs.
+- [AI Workflow Automation](https://cocode.dk/#fullstack-innovation): Connecting AI models to business tools to automate document processing, task management, scheduling, and knowledge work.
+- [Cybersecurity & AI Governance](https://cocode.dk/#cybersecurity-audit): Expert audits for CIS18, DORA, NIS2, ISO27001 compliance. AI-specific governance and EU AI Act compliance.
+
+## Projects
+
+- [Planner Task Creator MCP](https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP): MCP server connecting AI assistants to Microsoft Teams Planner. OAuth authentication, task management, smart plan/bucket resolution. Python, Node.js, MCP.
+- [Calendar Consolidator MCP](https://github.com/cocodedk/calendar-consolidator-mcp): Consolidates multiple calendars (Microsoft 365, iCloud/CalDAV) into a unified view. One-way sync, delta updates, web UI. Python, MCP, CalDAV.
+- [CodeScan](https://github.com/cocodedk/codescan): Static code analyzer that builds a Neo4j graph database of codebases. AST-based parsing, call graph construction, test coverage detection. Python, Neo4j, MCP.
+- [FITS.DK](https://fits.dk): Full GRC platform for governance, risk, and compliance. AI-powered gap assessments, RAG conversations, automated project planning. Supports ISO27001, CIS v8, HIPAA, GDPR, NIST. Django, Neo4j, Redis.
+
+## Contact
+
+- [LinkedIn](https://linkedin.com/in/babakbandpey): Professional profile
+- [GitHub](https://github.com/cocodedk): Open source projects and MCP servers
+- [CV](https://cocodedk.github.io/cv-generator/): Full curriculum vitae
+- [Email](mailto:bb@cocode.dk): bb@cocode.dk
+- [Phone](tel:+4553737514): +45 53737514
+
+## Optional
+
+- [Unity Foundation](https://cocode.dk/#unity-foundation): Community involvement — charity organization dedicated to positive social impact through technology

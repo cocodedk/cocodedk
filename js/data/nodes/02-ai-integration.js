@@ -1,31 +1,13 @@
 export default {
-        id: 'AI Integration',
+        id: 'AI Agent Development',
         x: -140, y: -120, r: 40,
         labels: {
-            en: 'AI Integration',
-            da: 'AI-integration',
-            es: 'Integración IA',
-            zh: 'AI集成',
-            ja: 'AI統合',
-            de: 'KI-Integration',
-            ar: 'تكامل الذكاء الاصطناعي',
-            fa: 'یکپارچه‌سازی هوش مصنوعی',
-            hi: 'एआई एकीकरण',
-            ur: 'AI انٹیگریشن',
-            fr: 'Intégration IA'
+            en: 'AI Agent Development',
+            da: 'AI Agent-udvikling'
         },
         translations: {
-            en: 'Implementing Large Language Models into business workflows using OpenAI, Claude, and other leading AI platforms. Development with Cursor, Claude Code CLI, and Codex CLI for rapid prototyping. We deliver: ✓ Automated risk assessments & compliance audits ✓ Intelligent document analysis & insight generation ✓ Custom AI agents for specific business processes. Real AI solutions that deliver measurable ROI, not just proof-of-concepts. Reduce manual review time by 60-80%. 🔗 Projects: https://github.com/cocodedk',
-            da: 'Implementering af store sprogmodeller i forretningsprocesser ved hjælp af OpenAI, Claude og andre førende AI-platforme. Udvikling med Cursor, Claude Code CLI og Codex CLI til hurtig prototyping. Vi leverer: ✓ Automatiserede risikovurderinger & compliance-audits ✓ Intelligent dokumentanalyse & indsigts-generering ✓ Tilpassede AI-agenter. Ægte AI-løsninger der leverer målbart ROI. Reducer manuel gennemgangstid med 60-80%. 🔗 Projekter: https://github.com/cocodedk',
-            es: 'Implementación de LLMs (GPT-4, Claude, Mistral) en flujos de trabajo empresariales—desde evaluaciones de riesgo automatizadas hasta auditorías de cumplimiento inteligentes y generación de insights. Soluciones de IA reales que entregan ROI medible. 🔗 Ver proyectos: https://github.com/cocodedk',
-            zh: '将大型语言模型（GPT-4、Claude、Mistral）实施到业务工作流程中—从自动化风险评估到智能合规审计和洞察生成。提供可衡量ROI的真正AI解决方案。🔗 查看项目：https://github.com/cocodedk',
-            ja: 'LLM（GPT-4、Claude、Mistral）をビジネスワークフローに実装—自動化されたリスク評価からインテリジェントなコンプライアンス監査、インサイト生成まで。測定可能なROIを提供する真のAIソリューション。🔗 プロジェクトを見る：https://github.com/cocodedk',
-            de: 'Implementierung von LLMs (GPT-4, Claude, Mistral) in Geschäftsprozesse—von automatisierten Risikobewertungen bis zu intelligenten Compliance-Audits und Insight-Generierung. Echte KI-Lösungen mit messbarem ROI. 🔗 Projekte ansehen: https://github.com/cocodedk',
-            ar: 'تنفيذ النماذج اللغوية الكبيرة (GPT-4، Claude، Mistral) في سير العمل التجاري—من تقييمات المخاطر الآلية إلى عمليات التدقيق الذكية للامتثال وتوليد الرؤى. حلول ذكاء اصطناعي حقيقية تقدم عائد استثمار قابل للقياس. 🔗 شاهد المشاريع: https://github.com/cocodedk',
-            fa: 'پیاده‌سازی مدل‌های زبانی بزرگ (GPT-4، Claude، Mistral) در گردش کارهای کسب‌وکار—از ارزیابی ریسک خودکار تا حسابرسی هوشمند انطباق و تولید بینش. راه‌حل‌های واقعی هوش مصنوعی که ROI قابل اندازه‌گیری ارائه می‌دهند. 🔗 پروژه‌ها را ببینید: https://github.com/cocodedk',
-            hi: 'व्यावसायिक वर्कफ़्लो में LLMs (GPT-4, Claude, Mistral) का कार्यान्वयन—स्वचालित जोखिम मूल्यांकन से लेकर बुद्धिमान अनुपालन ऑडिट और अंतर्दृष्टि उत्पादन तक। वास्तविक एआई समाधान जो मापने योग्य ROI प्रदान करते हैं। 🔗 परियोजनाएं देखें: https://github.com/cocodedk',
-            ur: 'کاروباری ورک فلوز میں LLMs (GPT-4, Claude, Mistral) کا نفاذ—خودکار خطرے کی تشخیص سے لے کر ذہین کمپلائنس آڈٹس اور بصیرت کی تخلیق تک۔ حقیقی AI حل جو قابل پیمائش ROI فراہم کرتے ہیں۔ 🔗 پراجیکٹس دیکھیں: https://github.com/cocodedk',
-            fr: 'Mise en œuvre de LLMs (GPT-4, Claude, Mistral) dans les flux de travail d\'entreprise—des évaluations de risques automatisées aux audits de conformité intelligents et génération d\'insights. Solutions IA réelles offrant un ROI mesurable. 🔗 Voir projets: https://github.com/cocodedk'
+            en: 'Building production-ready AI agents that integrate with business systems. Real projects in production: \u2713 Planner Task Creator MCP\u2014connects AI assistants to Microsoft Teams Planner with OAuth authentication and smart plan resolution \u2713 Calendar Consolidator MCP\u2014unifies Microsoft 365 and iCloud calendars with delta sync and AI control \u2713 CodeScan\u2014static analysis with Neo4j graph database, exposed to AI agents via MCP. Development with Claude Code, Cursor, and Codex CLI for rapid iteration. \ud83d\udd17 Projects: https://github.com/cocodedk',
+            da: 'Bygger produktionsklare AI-agenter der integrerer med forretningssystemer. Rigtige projekter i produktion: \u2713 Planner Task Creator MCP\u2014forbinder AI-assistenter med Microsoft Teams Planner med OAuth-godkendelse og smart planopslag \u2713 Calendar Consolidator MCP\u2014samler Microsoft 365 og iCloud-kalendere med delta-synkronisering og AI-styring \u2713 CodeScan\u2014statisk analyse med Neo4j-grafdatabase, eksponeret til AI-agenter via MCP. Udvikling med Claude Code, Cursor og Codex CLI til hurtig iteration. \ud83d\udd17 Projekter: https://github.com/cocodedk'
         },
         category: 'AI'
 };

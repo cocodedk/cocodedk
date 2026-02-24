@@ -37,24 +37,25 @@ import cv from './data/nodes/16-cv.js';
 // Category-specific hover colors
 window.categoryHoverColors = {};
 
-// Define nodes array - REORDER BY CHANGING IMPORT ORDER ABOVE
+// Define nodes array - REORDER BY CHANGING ORDER BELOW
+// Order: revenue services → compliance → trust-builders → secondary
 window.nodes = [
-    cocodedk,
-    contact,
     aiIntegration,
-    mcpDevelopment,
     openaiIntegration,
-    fullstackInnovation,
+    mcpDevelopment,
     specDrivenDevelopment,
     cybersecurityAudit,
+    fullstackInnovation,
     fitsDK,
-    github,
-    linkedin,
-    cv,
-    unityFoundation,
-    about,
+    pricing,
     testimonials,
-    pricing
+    about,
+    cocodedk,
+    github,
+    cv,
+    linkedin,
+    contact,
+    unityFoundation
 ];
 
 // Define links between nodes - Flat structure

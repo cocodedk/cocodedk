@@ -1,106 +1,34 @@
 export const campaignTranslations = {
   headline: {
-    da: 'Har du brug for en professionel hjemmeside hurtigt? Kom online på 48 timer',
-    en: 'Need a Professional Website Fast? Get Online in 48 Hours',
-    es: '¿Necesitas un sitio web profesional rápido? Estar en línea en 48 horas',
-    zh: '需要快速的专业网站？48小时内上线',
-    ja: 'プロフェッショナルなウェブサイトを急いで必要ですか？48時間でオンラインに',
-    de: 'Brauchen Sie schnell eine professionelle Website? In 48 Stunden online',
-    ar: 'هل تحتاج إلى موقع ويب احترافي بسرعة؟ كن متصلاً بالإنترنت في 48 ساعة',
-    fa: 'نیاز به وب‌سایت حرفه‌ای دارید؟ در 48 ساعت آنلاین شوید',
-    hi: 'जल्दी पेशेवर वेबसाइट चाहिए? 48 घंटों में ऑनलाइन हो जाएं',
-    ur: 'جلدی پیشہ ورانہ ویب سائٹ چاہیے؟ 48 گھنٹوں میں آن لائن ہو جائیں',
-    fr: 'Besoin d\'un site web professionnel rapidement ? En ligne en 48 heures'
+    da: 'Vil du have AI agenter der arbejder for din virksomhed?',
+    en: 'Want AI Agents Working For Your Business?'
   },
   sub: {
-    da: 'Mobil-optimeret, SEO-klar, hurtig indlæsning. Inkluderer hosting-opsætning og løbende support.',
-    en: 'Mobile-optimized, SEO-ready, fast loading. Includes hosting setup and ongoing support.',
-    es: 'Optimizado para móviles, listo para SEO, carga rápida. Incluye configuración de hosting y soporte continuo.',
-    zh: '移动优化、SEO就绪、快速加载。包括托管设置和持续支持。',
-    ja: 'モバイル最適化、SEO対応、高速読み込み。ホスティング設定と継続的なサポートを含む。',
-    de: 'Mobil-optimiert, SEO-bereit, schnelles Laden. Inklusive Hosting-Einrichtung und laufender Support.',
-    ar: 'محسّن للجوال، جاهز لمحركات البحث، تحميل سريع. يتضمن إعداد الاستضافة والدعم المستمر.',
-    fa: 'بهینه‌شده برای موبایل، آماده SEO، بارگذاری سریع. شامل راه‌اندازی هاستینگ و پشتیبانی مداوم.',
-    hi: 'मोबाइल-अनुकूलित, SEO-तैयार, तेज़ लोडिंग। होस्टिंग सेटअप और निरंतर सहायता शामिल है।',
-    ur: 'موبائل-بہتر، SEO-تیار، تیز لوڈنگ۔ ہوسٹنگ سیٹ اپ اور جاری تعاون شامل ہے۔',
-    fr: 'Optimisé mobile, prêt pour le SEO, chargement rapide. Inclut la configuration de l\'hébergement et le support continu.'
+    da: 'Automatiser gentagne opgaver, forbind AI med jeres forretningssystemer og v\u00e6r compliant fra dag \u00e9t. GDPR, DORA, NIS2 og EU AI Act.',
+    en: 'Automate repetitive tasks, connect AI to your business systems, and stay compliant from day one. GDPR, DORA, NIS2, and EU AI Act.'
   },
   phone: {
     da: 'Ring',
-    en: 'Call',
-    es: 'Llamar',
-    zh: '致电',
-    ja: '電話',
-    de: 'Anrufen',
-    ar: 'اتصال',
-    fa: 'تماس',
-    hi: 'कॉल',
-    ur: 'کال',
-    fr: 'Appeler'
+    en: 'Call'
   },
   email: {
-    da: 'E‑mail',
-    en: 'Email',
-    es: 'Correo',
-    zh: '邮件',
-    ja: 'メール',
-    de: 'E‑Mail',
-    ar: 'بريد',
-    fa: 'ایمیل',
-    hi: 'ईमेल',
-    ur: 'ای میل',
-    fr: 'E‑mail'
+    da: 'E\u2011mail',
+    en: 'Email'
   },
   sms: {
     da: 'SMS',
-    en: 'SMS',
-    es: 'SMS',
-    zh: '短信',
-    ja: 'SMS',
-    de: 'SMS',
-    ar: 'رسالة SMS',
-    fa: 'پیامک',
-    hi: 'SMS',
-    ur: 'SMS',
-    fr: 'SMS'
+    en: 'SMS'
   },
   primary: {
-    da: 'Få gratis tilbud',
-    en: 'Get Free Quote',
-    es: 'Obtener cotización gratis',
-    zh: '获取免费报价',
-    ja: '無料見積もりを取得',
-    de: 'Kostenloses Angebot erhalten',
-    ar: 'احصل على عرض مجاني',
-    fa: 'دریافت پیشنهاد رایگان',
-    hi: 'मुफ्त उद्धरण प्राप्त करें',
-    ur: 'مفت پیشکش حاصل کریں',
-    fr: 'Obtenir un devis gratuit'
+    da: 'Book strategikald',
+    en: 'Book Strategy Call'
   },
   secondary: {
-    da: 'Se eksempler',
-    en: 'View Examples',
-    es: 'Ver ejemplos',
-    zh: '查看示例',
-    ja: '例を見る',
-    de: 'Beispiele ansehen',
-    ar: 'عرض الأمثلة',
-    fa: 'مشاهده نمونه‌ها',
-    hi: 'उदाहरण देखें',
-    ur: 'مثالیں دیکھیں',
-    fr: 'Voir des exemples'
+    da: 'Se projekter',
+    en: 'View Projects'
   },
   socialProof: {
-    da: 'Betroet af 50+ danske virksomheder',
-    en: 'Trusted by 50+ Danish businesses',
-    es: 'Confiado por más de 50 empresas danesas',
-    zh: '受到 50+ 家丹麦企业信赖',
-    ja: '50以上のデンマーク企業に信頼されています',
-    de: 'Vertraut von über 50 dänischen Unternehmen',
-    ar: 'موثوق به من قبل أكثر من 50 شركة دنماركية',
-    fa: 'مورد اعتماد بیش از 50 کسب‌وکار دانمارکی',
-    hi: '50+ डेनिश व्यवसायों द्वारा भरोसा',
-    ur: '50+ ڈینش کاروباروں کی طرف سے بھروسہ',
-    fr: 'Fait confiance par plus de 50 entreprises danoises'
+    da: 'AI-agenter i produktion for danske virksomheder',
+    en: 'AI agents in production for Danish businesses'
   }
 };
