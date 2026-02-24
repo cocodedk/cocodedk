@@ -23,10 +23,12 @@
 }
 
 .hero-avatar {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   margin: 0 0 20px 0;
+  background: var(--accent-primary, #4ade80);
+  padding: 3px;
 }
 
 .hero-avatar img {
@@ -34,6 +36,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
 }
 
 .terminal-text {
