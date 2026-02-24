@@ -13,6 +13,7 @@ module.exports = {
     terminal: './js/components/terminal.js',
     serviceCard: './js/components/service-card.js',
     campaignOverlay: './js/components/campaign-overlay.js',
+    campaignCube: './js/components/campaign-cube.js',
     portfolioCard: './js/components/portfolio-card.js',
     activityCard: './js/components/activity-card.js',
     cache: './js/utils/cache.js',
