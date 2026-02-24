@@ -1,12 +1,12 @@
 export const campaignTranslations = {
-  version: 2,
+  version: 3,
   headline: {
-    da: 'Vil du have AI agenter der arbejder for din virksomhed?',
-    en: 'Want AI Agents Working For Your Business?'
+    da: 'Hvad hvis AI kunne klare det kedelige?',
+    en: 'What If AI Could Handle the Boring Stuff?'
   },
   sub: {
-    da: 'Automatiser gentagne opgaver, forbind AI med jeres forretningssystemer og v\u00e6r compliant fra dag \u00e9t. GDPR, DORA, NIS2 og EU AI Act.',
-    en: 'Automate repetitive tasks, connect AI to your business systems, and stay compliant from day one. GDPR, DORA, NIS2, and EU AI Act.'
+    da: 'Jeg bygger agenter der tager sig af det gentagende, s\u00e5 I kan bruge tiden p\u00e5 det der betyder noget. GDPR, DORA og NIS2 er t\u00e6nkt ind fra starten.',
+    en: 'I build agents that take care of the repetitive work so you can spend your time on what matters. GDPR, DORA, and NIS2 are baked in from the start.'
   },
   phone: {
     da: 'Ring',
@@ -21,15 +21,15 @@ export const campaignTranslations = {
     en: 'SMS'
   },
   primary: {
-    da: 'Book strategikald',
-    en: 'Book Strategy Call'
+    da: 'Lad os snakke',
+    en: 'Let\u2019s Talk'
   },
   secondary: {
-    da: 'Se projekter',
-    en: 'View Projects'
+    da: 'Se hvad jeg har bygget',
+    en: 'See What I\u2019ve Built'
   },
   socialProof: {
-    da: 'AI-agenter i produktion for danske virksomheder',
-    en: 'AI agents in production for Danish businesses'
+    da: 'AI-agenter i produktion hos danske virksomheder',
+    en: 'AI agents running in production at Danish companies'
   }
 };
