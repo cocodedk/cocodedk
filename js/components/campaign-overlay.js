@@ -31,8 +31,10 @@ function buildOverlay(lang) {
         <p class="campaign-sub">${sub}</p>
       </div>
       <div class="campaign-body">
-        <svg class="campaign-hexagon" width="80" height="80" viewBox="0 0 100 100" aria-hidden="true">
-          <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="none" stroke="var(--accent-primary, #4ade80)" stroke-width="3"/>
+        <svg class="campaign-cube" width="80" height="80" viewBox="0 0 100 100" aria-hidden="true">
+          <polygon points="50,15 85,33 50,51 15,33" fill="#4ade80" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+          <polygon points="15,33 50,51 50,85 15,67" fill="#22c55e" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+          <polygon points="85,33 50,51 50,85 85,67" fill="#16a34a" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
         </svg>
         <p class="campaign-social-proof">${socialProof}</p>
       </div>

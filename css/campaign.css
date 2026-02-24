@@ -94,11 +94,11 @@
   border-color: var(--border-hover);
 }
 
-.campaign-hexagon {
-  animation: hex-spin 6s linear infinite;
+.campaign-cube {
+  animation: cube-spin 6s linear infinite;
 }
 
-@keyframes hex-spin {
+@keyframes cube-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
