@@ -1,4 +1,5 @@
 export const campaignTranslations = {
+  version: 2,
   headline: {
     da: 'Vil du have AI agenter der arbejder for din virksomhed?',
     en: 'Want AI Agents Working For Your Business?'

@@ -75,19 +75,19 @@ function buildOverlay(lang) {
   return root;
 }
 
+function getDismissKey() {
+  return `campaignDismissed_v${campaignTranslations.version || 1}`;
+}
+
 function shouldShow() {
-  // Check if forced (manual trigger)
-  // Otherwise check 7-day cooldown
-  const dismissedKey = 'campaignDismissedV2';
+  const dismissedKey = getDismissKey();
   const dismissed = localStorage.getItem(dismissedKey);
   if (dismissed) {
     const dismissedTime = parseInt(dismissed, 10);
-    const now = Date.now();
-    const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
-    if (now - dismissedTime < sevenDays) {
-      return false; // Still in cooldown period
+    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - dismissedTime < sevenDays) {
+      return false;
     }
-    // Cooldown expired, clear the flag
     localStorage.removeItem(dismissedKey);
   }
   return true;
@@ -128,9 +128,7 @@ function hide() {
   root.setAttribute('aria-hidden', 'true');
   // Store dismissal timestamp for 7-day cooldown
   try {
-    localStorage.setItem('campaignDismissedV2', Date.now().toString());
-    // Remove old key if exists
-    localStorage.removeItem('campaignSeenV1');
+    localStorage.setItem(getDismissKey(), Date.now().toString());
   } catch (_) {}
   if (escHandler) {
     document.removeEventListener('keydown', escHandler);
