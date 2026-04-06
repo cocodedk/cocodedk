@@ -1,12 +1,30 @@
 /* Background Styles - Terminal Aesthetic */
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   background: #0a0a0a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: transparent;
   font-family: var(--font-mono);
   color: var(--text-primary);
   overflow: auto;
   position: relative;
+}
+
+#mesh-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
 }
