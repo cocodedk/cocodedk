@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:630px;overflow:hidden;font-family:'Inter',sans-serif}
+
+.card{
+  width:1200px;height:630px;
+  background:#0a0a0a;
+  display:flex;position:relative;overflow:hidden;
+}
+
+/* Subtle grid */
+.card::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(74,246,38,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(74,246,38,0.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+
+/* Green glow */
+.card::after{
+  content:'';position:absolute;
+  top:-200px;left:-100px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(74,246,38,0.07) 0%,transparent 65%);
+}
+
+/* LEFT */
+.left{
+  flex:1;padding:52px 36px 52px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+  z-index:2;
+}
+
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(74,246,38,0.07);
+  border:1px solid rgba(74,246,38,0.25);
+  color:#4af626;
+  font-family:'Fira Code',monospace;
+  font-size:11px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:7px 16px;border-radius:4px;
+  margin-bottom:28px;width:fit-content;
+}
+.prompt{color:rgba(74,246,38,0.5);margin-right:2px;}
+
+.name{
+  font-size:48px;font-weight:800;color:#fff;
+  letter-spacing:-1.5px;line-height:1;
+  margin-bottom:14px;
+}
+
+.tagline{
+  font-size:19px;font-weight:400;
+  color:rgba(176,176,176,0.75);
+  margin-bottom:34px;line-height:1.4;
+  max-width:440px;
+}
+.tagline strong{color:#b0b0b0;font-weight:600;}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+.chip{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px;padding:6px 14px;
+  font-size:12px;color:rgba(176,176,176,0.6);font-weight:500;
+  white-space:nowrap;
+}
+.chip.hi{
+  background:rgba(74,246,38,0.07);
+  border-color:rgba(74,246,38,0.25);
+  color:#4af626;
+  font-family:'Fira Code',monospace;font-size:11px;
+}
+
+.url{
+  font-family:'Fira Code',monospace;
+  font-size:14px;color:rgba(79,109,245,0.8);font-weight:500;
+  letter-spacing:0.3px;
+}
+
+/* RIGHT — terminal window */
+.right{
+  width:460px;display:flex;align-items:center;justify-content:center;
+  z-index:2;position:relative;padding-right:48px;
+}
+
+.terminal{
+  width:380px;
+  background:#0e0e0e;
+  border:1px solid rgba(74,246,38,0.2);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 0 40px rgba(74,246,38,0.08),0 20px 60px rgba(0,0,0,0.6);
+}
+
+.term-bar{
+  background:#121212;border-bottom:1px solid rgba(74,246,38,0.12);
+  padding:10px 16px;display:flex;align-items:center;gap:8px;
+}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dot.r{background:#ff5f57;}
+.dot.y{background:#febc2e;}
+.dot.g{background:#28c840;}
+.term-title{
+  margin-left:8px;font-family:'Fira Code',monospace;
+  font-size:11px;color:rgba(176,176,176,0.35);
+}
+
+.term-body{padding:20px 20px 24px;font-family:'Fira Code',monospace;font-size:13px;line-height:1.8;}
+
+.line{display:flex;align-items:flex-start;gap:0;}
+.p{color:rgba(74,246,38,0.6);margin-right:6px;flex-shrink:0;}
+.cmd{color:#b0b0b0;}
+.out{color:rgba(176,176,176,0.45);padding-left:16px;}
+.ok{color:#4af626;}
+.blue{color:#4f6df5;}
+.dim{color:rgba(176,176,176,0.25);}
+.blink{
+  display:inline-block;width:8px;height:14px;
+  background:#4af626;vertical-align:middle;margin-left:2px;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* Bottom bar */
+.bottom-bar{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#4af626,#4f6df5,#4af626,transparent);
+  z-index:3;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="left">
+    <div class="badge">
+      <span class="prompt">&gt;</span> Copenhagen · Available
+    </div>
+
+    <div class="name">Babak Bandpey</div>
+
+    <div class="tagline">
+      AI agents that are <strong>secure<br>and compliant</strong> from day one.
+    </div>
+
+    <div class="chips">
+      <div class="chip hi">AI Automation</div>
+      <div class="chip hi">MCP Servers</div>
+      <div class="chip">GDPR · DORA · NIS2</div>
+      <div class="chip">EU AI Act</div>
+      <div class="chip">ISO 27001</div>
+    </div>
+
+    <div class="url">cocode.dk</div>
+  </div>
+
+  <div class="right">
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+        <div class="term-title">agent — workflow.py</div>
+      </div>
+      <div class="term-body">
+        <div class="line"><span class="p">$</span><span class="cmd">agent run --secure --compliant</span></div>
+        <div class="line"><span class="out">Loading GDPR rules&hellip;&nbsp;&nbsp;<span class="ok">✓</span></span></div>
+        <div class="line"><span class="out">Connecting MS Teams&hellip;&nbsp;&nbsp;<span class="ok">✓</span></span></div>
+        <div class="line"><span class="out">Scanning codebase&hellip;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">✓</span></span></div>
+        <div class="line"><span class="out">Running workflow&hellip;</span></div>
+        <div class="line"><span class="out">&nbsp;</span></div>
+        <div class="line"><span class="out"><span class="blue">47 tasks</span> completed&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">✓</span></span></div>
+        <div class="line"><span class="out">Audit log saved&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">✓</span></span></div>
+        <div class="line"><span class="out">&nbsp;</span></div>
+        <div class="line"><span class="p">$</span><span class="cmd dim"></span><span class="blink"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+</body></html>
