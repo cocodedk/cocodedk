@@ -131,3 +131,9 @@ dist
 
 # Local Netlify folder
 .netlify
+
+# Claude Code worktrees
+.claude/worktrees/
+
+# Superpowers brainstorm artefacts
+.superpowers/
