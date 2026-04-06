@@ -25,6 +25,7 @@ module.exports = {
     sectionTranslations: './js/data/section-translations.js',
     campaignTranslations: './js/data/campaign-translations.js',
 
+    meshBackground: './js/components/mesh-background.js',
     main: './js/main.js',
   },
   output: {
