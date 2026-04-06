@@ -23,11 +23,13 @@ function makeMockCtx() {
 }
 
 beforeAll(() => {
-  mockCtx = makeMockCtx();
-  HTMLCanvasElement.prototype.getContext = jest.fn(() => mockCtx);
   global.requestAnimationFrame = jest.fn();
   global.ResizeObserver = jest.fn(() => ({ observe: jest.fn(), disconnect: jest.fn() }));
-  global.matchMedia = jest.fn(() => ({ matches: false }));
+  global.matchMedia = jest.fn(() => ({
+    matches: false,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  }));
 });
 
 beforeEach(() => {
