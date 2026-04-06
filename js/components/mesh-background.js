@@ -79,8 +79,87 @@ function drawNodes(ctx, nodes, ox, oy, size, opacity, rgbStr, fontSize) {
   });
 }
 
-if (typeof window !== 'undefined') {
-  window.MeshBackground = { init: function () {} };
+function init(config) {
+  const canvas = document.getElementById('mesh-bg');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const rgbStr = hexToRgbStr(config.nodeColor);
+  const thresholds = [130, 110, 90];
+  const fontSizes = [7, 8, 9];
+  const lineWidths = [0.5, 0.7, 0.9];
+
+  let scrollY = 0;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let targetMouseX = mouseX;
+  let targetMouseY = mouseY;
+  let layers = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    layers = config.layers.map(l => ({
+      cfg: l,
+      nodes: seedNodes(l, canvas.width, canvas.height, config.labels),
+    }));
+  }
+
+  function draw() {
+    mouseX += (targetMouseX - mouseX) * 0.06;
+    mouseY += (targetMouseY - mouseY) * 0.06;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = config.bg;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (config.glow) {
+      const grad = ctx.createRadialGradient(
+        canvas.width * 0.5, canvas.height * 0.4, 0,
+        canvas.width * 0.5, canvas.height * 0.4, canvas.width * 0.6
+      );
+      grad.addColorStop(0, config.glow);
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    layers.forEach(function (layer, i) {
+      const off = nodeOffset(scrollY, mouseX, mouseY, canvas.width, canvas.height, layer.cfg);
+      layer.nodes.forEach(function (n) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < -20) n.x = canvas.width + 20;
+        if (n.x > canvas.width + 20) n.x = -20;
+        if (n.y < -20) n.y = canvas.height + 20;
+        if (n.y > canvas.height + 20) n.y = -20;
+      });
+      drawEdges(ctx, layer.nodes, off.ox, off.oy, thresholds[i], layer.cfg.opacity, rgbStr, lineWidths[i]);
+      drawNodes(ctx, layer.nodes, off.ox, off.oy, layer.cfg.size, layer.cfg.opacity, rgbStr, fontSizes[i]);
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+
+  window.addEventListener('scroll', function () { scrollY = window.scrollY; });
+
+  if (!window.matchMedia('(hover: none)').matches) {
+    window.addEventListener('mousemove', function (e) {
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
+    });
+  }
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(document.body);
+
+  draw();
 }
 
-module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges, drawNodes };
+if (typeof window !== 'undefined') {
+  window.MeshBackground = { init };
+}
+
+module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges, drawNodes, init };
