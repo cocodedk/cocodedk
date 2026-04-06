@@ -5,7 +5,6 @@
 // Import modular functions
 import { setLanguage as setLanguageModule } from './main/setLanguage.js';
 import { handleLanguageKeydown as handleLanguageKeydownModule } from './main/handleLanguageKeydown.js';
-import { closeMenuOnEscape } from './main/closeMenuOnEscape.js';
 import { showNodeDescriptionModal as showNodeDescriptionModalModule } from './main/showNodeDescriptionModal.js';
 import { closeNodeDescriptionModal as closeNodeDescriptionModalModule } from './main/closeNodeDescriptionModal.js';
 import { addTitleParallaxEffect } from './main/addTitleParallaxEffect.js';
@@ -18,12 +17,10 @@ let mainCurrentLanguage = 'da';
 // Define currentModal at the top to avoid ReferenceError
 let currentModal = null;
 let isModalOpening = false; // Flag to prevent immediate closure
-let lastSelectionTime = 0; // For debouncing node selection
-let debounceTimeout = 300; // Debounce time in milliseconds
 
 // Handle language change by updating node display
 function setLanguage(lang) {
-  mainCurrentLanguage = setLanguageModule(lang, false, closeMenuOnEscape);
+  mainCurrentLanguage = setLanguageModule(lang);
 }
 
 // Function to handle keyboard navigation in language selector

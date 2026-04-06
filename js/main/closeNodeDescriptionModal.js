@@ -35,7 +35,7 @@ export function closeNodeDescriptionModal(event, isModalOpeningRef, currentEscap
 
   // Remove hash from URL if present
   if (window.location.hash) {
-    window.history.pushState('', document.title, window.location.pathname);
+    window.history.replaceState('', document.title, window.location.pathname);
   }
 
   const modalContainer = document.getElementById('node-description-modal-container');
@@ -53,11 +53,4 @@ export function closeNodeDescriptionModal(event, isModalOpeningRef, currentEscap
   const leftoverModals = document.querySelectorAll('.node-modal-overlay, .node-modal, .modal-backdrop, .node-description-modal');
   leftoverModals.forEach(modal => modal.remove());
   // console.log('Modal closed, state reset - checking for lingering elements:', document.querySelectorAll('.modal-backdrop, .node-description-modal').length);
-  // Reset node selection state to allow immediate reselection
-  if (window.CytoscapeManager && typeof window.CytoscapeManager.clearSelection === 'function') {
-    window.CytoscapeManager.clearSelection();
-    // console.log('Node selection state reset after modal closure');
-  } else {
-    // console.log('CytoscapeManager.clearSelection not available, selection state not reset');
-  }
 }
