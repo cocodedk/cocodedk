@@ -39,7 +39,7 @@ beforeEach(() => {
 });
 
 describe('mesh-background', () => {
-  const { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset } = require('../../js/components/mesh-background');
+  const { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges } = require('../../js/components/mesh-background');
 
   test('infrastructure check', () => {
     expect(true).toBe(true);
@@ -139,6 +139,48 @@ describe('mesh-background', () => {
     test('mouse at left edge produces negative x offset', () => {
       const off = nodeOffset(0, 0, 400, 1000, 800, layer);
       expect(off.ox).toBeCloseTo(-5);
+    });
+  });
+
+  describe('drawEdges', () => {
+    test('draws a stroke between two nearby nodes', () => {
+      const nodes = [
+        { x: 0, y: 0, label: null },
+        { x: 50, y: 0, label: null },
+      ];
+      drawEdges(mockCtx, nodes, 0, 0, 130, 0.42, '74,246,38', 0.7);
+      expect(mockCtx.beginPath).toHaveBeenCalled();
+      expect(mockCtx.moveTo).toHaveBeenCalledWith(0, 0);
+      expect(mockCtx.lineTo).toHaveBeenCalledWith(50, 0);
+      expect(mockCtx.stroke).toHaveBeenCalled();
+    });
+
+    test('does not draw stroke when nodes are beyond maxDist', () => {
+      const nodes = [
+        { x: 0, y: 0, label: null },
+        { x: 200, y: 0, label: null },
+      ];
+      drawEdges(mockCtx, nodes, 0, 0, 130, 0.42, '74,246,38', 0.7);
+      expect(mockCtx.stroke).not.toHaveBeenCalled();
+    });
+
+    test('applies offset to node positions', () => {
+      const nodes = [
+        { x: 10, y: 10, label: null },
+        { x: 20, y: 10, label: null },
+      ];
+      drawEdges(mockCtx, nodes, 5, 3, 130, 0.42, '74,246,38', 0.7);
+      expect(mockCtx.moveTo).toHaveBeenCalledWith(15, 13);
+      expect(mockCtx.lineTo).toHaveBeenCalledWith(25, 13);
+    });
+
+    test('skips duplicate pairs (i < j only)', () => {
+      const nodes = [
+        { x: 0, y: 0, label: null },
+        { x: 10, y: 0, label: null },
+      ];
+      drawEdges(mockCtx, nodes, 0, 0, 130, 0.42, '74,246,38', 0.7);
+      expect(mockCtx.stroke).toHaveBeenCalledTimes(1);
     });
   });
 });

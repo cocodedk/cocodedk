@@ -34,6 +34,24 @@ function nodeOffset(scrollY, mouseX, mouseY, canvasW, canvasH, layer) {
   };
 }
 
+function drawEdges(ctx, nodes, ox, oy, maxDist, baseOpacity, rgbStr, lineWidth) {
+  for (var i = 0; i < nodes.length; i++) {
+    for (var j = i + 1; j < nodes.length; j++) {
+      var dx = nodes[i].x - nodes[j].x;
+      var dy = nodes[i].y - nodes[j].y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var op = edgeOpacity(dist, maxDist, baseOpacity);
+      if (op <= 0) continue;
+      ctx.beginPath();
+      ctx.moveTo(nodes[i].x + ox, nodes[i].y + oy);
+      ctx.lineTo(nodes[j].x + ox, nodes[j].y + oy);
+      ctx.strokeStyle = 'rgba(' + rgbStr + ',' + op + ')';
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+  }
+}
+
 window.MeshBackground = { init: function () {} };
 
-module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset };
+module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges };
