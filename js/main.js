@@ -93,6 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.terminal.init();
   }
 
+  // Initialize mesh background
+  if (window.MeshBackground && typeof window.MeshBackground.init === 'function') {
+    window.MeshBackground.init({
+      bg: '#0a0a0a',
+      glow: null,
+      nodeColor: '#4af626',
+      labels: ['MCP', 'AGENT', 'GDPR', 'NIS2', 'DORA', 'WORKFLOW'],
+      layers: [
+        { count: 8, speed: 0.25, mouseStrength: 4,  size: 1.8, opacity: 0.28 },
+        { count: 6, speed: 0.50, mouseStrength: 10, size: 2.8, opacity: 0.42 },
+        { count: 4, speed: 0.80, mouseStrength: 18, size: 4.0, opacity: 0.62 },
+      ],
+    });
+  }
+
   // Initialize service cards
   if (window.serviceCards && window.nodes) {
     window.serviceCards.render(window.nodes, mainCurrentLanguage);
