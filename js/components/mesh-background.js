@@ -22,6 +22,11 @@ function seedNodes(layerCfg, w, h, labels) {
   return nodes;
 }
 
+function edgeOpacity(dist, maxDist, baseOpacity) {
+  if (dist >= maxDist) return 0;
+  return baseOpacity * 0.55 * (1 - dist / maxDist);
+}
+
 window.MeshBackground = { init: function () {} };
 
-module.exports = { hexToRgbStr, seedNodes };
+module.exports = { hexToRgbStr, seedNodes, edgeOpacity };

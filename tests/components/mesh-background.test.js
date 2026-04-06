@@ -39,7 +39,7 @@ beforeEach(() => {
 });
 
 describe('mesh-background', () => {
-  const { hexToRgbStr, seedNodes } = require('../../js/components/mesh-background');
+  const { hexToRgbStr, seedNodes, edgeOpacity } = require('../../js/components/mesh-background');
 
   test('infrastructure check', () => {
     expect(true).toBe(true);
@@ -97,6 +97,24 @@ describe('mesh-background', () => {
 
     test('returns empty array when count is 0', () => {
       expect(seedNodes({ count: 0 }, 1000, 800, [])).toHaveLength(0);
+    });
+  });
+
+  describe('edgeOpacity', () => {
+    test('returns 0 when distance equals maxDist', () => {
+      expect(edgeOpacity(130, 130, 0.42)).toBe(0);
+    });
+
+    test('returns 0 when distance exceeds maxDist', () => {
+      expect(edgeOpacity(150, 130, 0.42)).toBe(0);
+    });
+
+    test('returns max opacity at distance 0', () => {
+      expect(edgeOpacity(0, 130, 0.42)).toBeCloseTo(0.42 * 0.55);
+    });
+
+    test('returns half max opacity at half maxDist', () => {
+      expect(edgeOpacity(65, 130, 0.42)).toBeCloseTo(0.42 * 0.55 * 0.5);
     });
   });
 });
