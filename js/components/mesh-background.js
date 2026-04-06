@@ -27,6 +27,13 @@ function edgeOpacity(dist, maxDist, baseOpacity) {
   return baseOpacity * 0.55 * (1 - dist / maxDist);
 }
 
+function nodeOffset(scrollY, mouseX, mouseY, canvasW, canvasH, layer) {
+  return {
+    ox: ((mouseX - canvasW / 2) / canvasW) * layer.mouseStrength,
+    oy: ((mouseY - canvasH / 2) / canvasH) * layer.mouseStrength - scrollY * layer.speed,
+  };
+}
+
 window.MeshBackground = { init: function () {} };
 
-module.exports = { hexToRgbStr, seedNodes, edgeOpacity };
+module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset };

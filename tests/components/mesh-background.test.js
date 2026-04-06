@@ -39,7 +39,7 @@ beforeEach(() => {
 });
 
 describe('mesh-background', () => {
-  const { hexToRgbStr, seedNodes, edgeOpacity } = require('../../js/components/mesh-background');
+  const { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset } = require('../../js/components/mesh-background');
 
   test('infrastructure check', () => {
     expect(true).toBe(true);
@@ -115,6 +115,30 @@ describe('mesh-background', () => {
 
     test('returns half max opacity at half maxDist', () => {
       expect(edgeOpacity(65, 130, 0.42)).toBeCloseTo(0.42 * 0.55 * 0.5);
+    });
+  });
+
+  describe('nodeOffset', () => {
+    const layer = { speed: 0.5, mouseStrength: 10 };
+
+    test('scroll moves layer down by speed × scrollY', () => {
+      const off = nodeOffset(100, 500, 400, 1000, 800, layer);
+      expect(off.oy).toBeCloseTo(-50);
+    });
+
+    test('mouse at canvas centre produces zero x offset', () => {
+      const off = nodeOffset(0, 500, 400, 1000, 800, layer);
+      expect(off.ox).toBeCloseTo(0);
+    });
+
+    test('mouse at right edge produces positive x offset', () => {
+      const off = nodeOffset(0, 1000, 400, 1000, 800, layer);
+      expect(off.ox).toBeCloseTo(5);
+    });
+
+    test('mouse at left edge produces negative x offset', () => {
+      const off = nodeOffset(0, 0, 400, 1000, 800, layer);
+      expect(off.ox).toBeCloseTo(-5);
     });
   });
 });
