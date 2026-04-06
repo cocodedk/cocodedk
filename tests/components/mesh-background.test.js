@@ -39,7 +39,19 @@ beforeEach(() => {
 });
 
 describe('mesh-background', () => {
+  const { hexToRgbStr } = require('../../js/components/mesh-background');
+
   test('infrastructure check', () => {
     expect(true).toBe(true);
+  });
+
+  describe('hexToRgbStr', () => {
+    test('converts terminal green hex to rgb string', () => {
+      expect(hexToRgbStr('#4af626')).toBe('74,246,38');
+    });
+
+    test('converts navy blue hex to rgb string', () => {
+      expect(hexToRgbStr('#05050f')).toBe('5,5,15');
+    });
   });
 });
