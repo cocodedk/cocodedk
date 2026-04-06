@@ -142,12 +142,4 @@ export function showNodeDescriptionModal(nodeData, mainCurrentLanguage, currentM
     }, 500); // Reduced from 2000ms to 500ms
   }, 500);
 
-  // Add global click event listener to log background clicks outside modal and backdrop
-  document.addEventListener('click', function(event) {
-    const modalElement = document.querySelector('.node-description-modal');
-    const backdropElement = document.querySelector('.modal-backdrop');
-    if (modalElement && backdropElement && !modalElement.contains(event.target) && !backdropElement.contains(event.target)) {
-      //console.log('Background clicked outside modal and backdrop - Event details:', event);
-    }
-  }, true);
 }

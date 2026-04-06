@@ -34,15 +34,10 @@ module.exports = {
     clean: true, // Cleans the output directory before emit
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.js'],
   },
   module: {
     rules: [
-      {
-        test: /\.ts$/,
-        exclude: [/node_modules/, /tests/],
-        use: 'ts-loader',
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

@@ -19,12 +19,6 @@ canvas {
   display: none;
 }
 
-/* Hide Cytoscape container */
-#cy-container,
-.cy-container {
-  display: none !important;
-}
-
 /* ===== LOGO ELEMENTS ===== */
 #logo-container {
   position: absolute;
@@ -43,8 +37,8 @@ canvas {
   max-width: 300px;
   height: auto;
   display: block;
+  opacity: 0.7;
   transition: opacity 0.1s ease;
-  filter: grayscale(1) brightness(0.8);
 }
 
 #subtitle {
@@ -424,88 +418,6 @@ canvas {
   #site-footer {
     padding: 6px 0;
   }
-}
-
-/* Hide node container when using Cytoscape implementation */
-body[data-vis="cytoscape"] .node-container {
-  display: none;
-}
-
-/* Debug panel styles */
-.debug-panel {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 15px;
-  background: #0a0a0a;
-  border: 1px solid var(--border-default);
-  border-radius: 0;
-  color: var(--text-primary);
-  z-index: 9999;
-  width: 300px;
-  max-height: 400px;
-  overflow-y: auto;
-  font-family: var(--font-mono);
-}
-
-.debug-panel h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  border-bottom: 1px solid var(--border-default);
-  padding-bottom: 5px;
-  color: var(--accent-primary);
-}
-
-.debug-panel button {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-default);
-  padding: 8px 12px;
-  margin-right: 8px;
-  margin-bottom: 10px;
-  border-radius: 0;
-  cursor: pointer;
-  font-family: var(--font-mono);
-}
-
-.debug-panel button:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--accent-primary);
-}
-
-#debugOutput {
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 0;
-  line-height: 1.4;
-  font-family: var(--font-mono);
-  white-space: pre-wrap;
-  max-height: 400px;
-  overflow: auto;
-}
-
-#debugOutput p {
-  margin: 5px 0;
-}
-
-body[data-vis="legacy"] .node-container {
-  box-shadow: none;
-  border: 1px solid var(--accent-primary);
-}
-
-.implementation-status {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 8px 12px;
-  border-radius: 0;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-.implementation-status strong {
-  color: var(--accent-primary);
-  font-weight: bold;
 }
 
 /* Test results styling */

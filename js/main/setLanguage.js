@@ -3,8 +3,6 @@
  *
  * args:
  *   ▸ lang: string - language code to set
- *   ▸ useCytoscape: boolean - current implementation flag
- *   ▸ closeMenuOnEscape: function - function to close menu on escape key
  * return:
  *   ▸ string - the language that was set
  * raise:
@@ -13,7 +11,7 @@
  *   ▸ /home/bba/0-projects/cocodedk/js/main/test/setLanguage.test.js
  *   ▸ npm test -- --testPathPattern=setLanguage.test.js
  */
-export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
+export function setLanguage(lang) {
   // Update hero content with new language
   if (window.updateHeroContent && typeof window.updateHeroContent === 'function') {
     window.updateHeroContent(lang);
@@ -37,18 +35,6 @@ export function setLanguage(lang, useCytoscape, closeMenuOnEscape) {
   // Re-render portfolio items with new language
   if (window.renderPortfolio && window.portfolioItems) {
     window.renderPortfolio(window.portfolioItems, lang);
-  }
-
-  // Update visualization based on active implementation
-  if (useCytoscape) {
-    if (window.CytoscapeManager) {
-      window.CytoscapeManager.setLanguage(lang);
-    }
-  } else {
-    // Legacy implementation
-    if (window.NodeDisplay) {
-      window.NodeDisplay.setLanguage(lang);
-    }
   }
 
   // Update active class and ARIA attributes in language menu
