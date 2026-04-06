@@ -8,6 +8,20 @@ function hexToRgbStr(hex) {
   return r + ',' + g + ',' + b;
 }
 
+function seedNodes(layerCfg, w, h, labels) {
+  var nodes = [];
+  for (var i = 0; i < layerCfg.count; i++) {
+    nodes.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      label: i < labels.length ? labels[i] : null,
+    });
+  }
+  return nodes;
+}
+
 window.MeshBackground = { init: function () {} };
 
-module.exports = { hexToRgbStr };
+module.exports = { hexToRgbStr, seedNodes };
