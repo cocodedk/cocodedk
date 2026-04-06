@@ -39,7 +39,7 @@ beforeEach(() => {
 });
 
 describe('mesh-background', () => {
-  const { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges } = require('../../js/components/mesh-background');
+  const { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges, drawNodes } = require('../../js/components/mesh-background');
 
   test('infrastructure check', () => {
     expect(true).toBe(true);
@@ -181,6 +181,42 @@ describe('mesh-background', () => {
       ];
       drawEdges(mockCtx, nodes, 0, 0, 130, 0.42, '74,246,38', 0.7);
       expect(mockCtx.stroke).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('drawNodes', () => {
+    test('calls arc and fill for each node', () => {
+      const nodes = [
+        { x: 100, y: 100, label: null },
+        { x: 200, y: 200, label: null },
+      ];
+      drawNodes(mockCtx, nodes, 0, 0, 2.8, 0.42, '74,246,38', 8);
+      expect(mockCtx.arc).toHaveBeenCalledTimes(2);
+      expect(mockCtx.fill).toHaveBeenCalledTimes(2);
+    });
+
+    test('hub node calls fillText with its label', () => {
+      const nodes = [{ x: 100, y: 100, label: 'MCP' }];
+      drawNodes(mockCtx, nodes, 0, 0, 2.8, 0.42, '74,246,38', 8);
+      expect(mockCtx.fillText).toHaveBeenCalledWith('MCP', expect.any(Number), expect.any(Number));
+    });
+
+    test('non-hub node does not call fillText', () => {
+      const nodes = [{ x: 100, y: 100, label: null }];
+      drawNodes(mockCtx, nodes, 0, 0, 2.8, 0.42, '74,246,38', 8);
+      expect(mockCtx.fillText).not.toHaveBeenCalled();
+    });
+
+    test('applies offset to node position', () => {
+      const nodes = [{ x: 100, y: 100, label: null }];
+      drawNodes(mockCtx, nodes, 10, 20, 2.8, 0.42, '74,246,38', 8);
+      expect(mockCtx.arc).toHaveBeenCalledWith(110, 120, expect.any(Number), 0, Math.PI * 2);
+    });
+
+    test('hub node draws glow halo (extra arc call)', () => {
+      const nodes = [{ x: 100, y: 100, label: 'AGENT' }];
+      drawNodes(mockCtx, nodes, 0, 0, 2.8, 0.42, '74,246,38', 8);
+      expect(mockCtx.arc).toHaveBeenCalledTimes(2);
     });
   });
 });

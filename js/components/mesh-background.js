@@ -52,6 +52,33 @@ function drawEdges(ctx, nodes, ox, oy, maxDist, baseOpacity, rgbStr, lineWidth) 
   }
 }
 
+function drawNodes(ctx, nodes, ox, oy, size, opacity, rgbStr, fontSize) {
+  nodes.forEach(function (n) {
+    var nx = n.x + ox;
+    var ny = n.y + oy;
+    var sz = n.label ? size * 1.4 : size;
+    var op = n.label ? opacity : opacity * 0.7;
+
+    if (n.label) {
+      ctx.beginPath();
+      ctx.arc(nx, ny, sz * 2.2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + rgbStr + ',' + (op * 0.07) + ')';
+      ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.arc(nx, ny, sz, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(' + rgbStr + ',' + op + ')';
+    ctx.fill();
+
+    if (n.label) {
+      ctx.font = fontSize + "px 'Courier New',monospace";
+      ctx.fillStyle = 'rgba(' + rgbStr + ',' + (op * 0.85) + ')';
+      ctx.fillText(n.label, nx + sz + 3, ny + 3);
+    }
+  });
+}
+
 window.MeshBackground = { init: function () {} };
 
-module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges };
+module.exports = { hexToRgbStr, seedNodes, edgeOpacity, nodeOffset, drawEdges, drawNodes };
