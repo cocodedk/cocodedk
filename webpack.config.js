@@ -70,7 +70,9 @@ module.exports = {
       patterns: [
         { from: 'css', to: 'css' },
         { from: 'images', to: 'images' },
-        { from: 'llms.txt', to: 'llms.txt' }
+        { from: 'llms.txt', to: 'llms.txt' },
+        { from: 'robots.txt', to: 'robots.txt' },
+        { from: 'sitemap.xml', to: 'sitemap.xml' }
       ]
     })
   ],

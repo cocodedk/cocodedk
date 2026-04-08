@@ -41,16 +41,17 @@ canvas {
   transition: all 0.3s ease;
 }
 
-/* Scrolled state: logo moves to top-left and shrinks */
+/* Scrolled state: logo moves to top-right and shrinks */
 .header-container.scrolled #logo-container {
   top: 8px;
-  left: 20px;
+  left: auto;
+  right: 16px;
   transform: none;
 }
 
 .header-container.scrolled #site-logo {
-  max-width: 100px;
-  opacity: 0.5;
+  max-width: 70px;
+  opacity: 0.4;
 }
 
 #subtitle {
@@ -313,11 +314,12 @@ canvas {
 
   .header-container.scrolled #logo-container {
     top: 6px;
-    left: 15px;
+    left: auto;
+    right: 12px;
   }
 
   .header-container.scrolled #site-logo {
-    max-width: 70px;
+    max-width: 50px;
   }
 
   canvas {
