@@ -1,11 +1,19 @@
 export const sectionTranslations = {
+  fitsShowcaseTitle: {
+    da: 'FITS — Framework for IT Security',
+    en: 'FITS — Framework for IT Security'
+  },
   portfolioTitle: {
-    da: 'AI Projekter',
-    en: 'AI Projects'
+    da: 'Projekter',
+    en: 'Projects'
+  },
+  skillsTitle: {
+    da: 'Teknisk Ekspertise',
+    en: 'Technical Expertise'
   },
   activityTitle: {
-    da: 'Seneste fra GitHub',
-    en: 'Latest from GitHub'
+    da: 'GitHub Projekter',
+    en: 'GitHub Projects'
   },
   pricingButton: {
     da: 'Se ydelser',

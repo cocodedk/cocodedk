@@ -1,35 +1,54 @@
 export const campaignTranslations = {
-  version: 3,
+  version: 4,
   headline: {
-    da: 'Hvad hvis AI kunne klare det kedelige?',
-    en: 'What If AI Could Handle the Boring Stuff?'
+    da: 'Hvad kan jeg g\u00f8re for dig?',
+    en: 'What Can I Do for You?'
   },
   sub: {
-    da: 'Jeg bygger agenter der tager sig af det gentagende, s\u00e5 I kan bruge tiden p\u00e5 det der betyder noget. GDPR, DORA og NIS2 er t\u00e6nkt ind fra starten.',
-    en: 'I build agents that take care of the repetitive work so you can spend your time on what matters. GDPR, DORA, and NIS2 are baked in from the start.'
+    da: 'Konkrete ydelser \u2014 leveret af \u00e9n person med 25+ \u00e5rs erfaring.',
+    en: 'Concrete services \u2014 delivered by one person with 25+ years of experience.'
   },
-  phone: {
-    da: 'Ring',
-    en: 'Call'
-  },
-  email: {
-    da: 'E\u2011mail',
-    en: 'Email'
-  },
-  sms: {
-    da: 'SMS',
-    en: 'SMS'
-  },
-  primary: {
-    da: 'Lad os snakke',
-    en: 'Let\u2019s Talk'
-  },
-  secondary: {
-    da: 'Se hvad jeg har bygget',
-    en: 'See What I\u2019ve Built'
-  },
-  socialProof: {
-    da: 'AI-agenter i produktion hos danske virksomheder',
-    en: 'AI agents running in production at Danish companies'
-  }
+  services: [
+    {
+      icon: '\ud83d\ude80',
+      title: { da: 'Job-Jagger', en: 'Job-Jagger' },
+      desc: {
+        da: 'AI-v\u00e6rkt\u00f8j der skriver CV, ans\u00f8gning og optimerer din LinkedIn. Allerede landede jobsamtaler.',
+        en: 'AI toolkit that writes your CV, cover letter & optimizes your LinkedIn. Already landing interviews.'
+      },
+      cta: { da: 'Pr\u00f8v Job-Jagger', en: 'Try Job-Jagger' },
+      url: 'https://cocodedk.github.io/job-jagger/'
+    },
+    {
+      icon: '\ud83c\udf10',
+      title: { da: 'Professionel hjemmeside', en: 'Professional Website' },
+      desc: {
+        da: '3 kundesites live. Moderne, hurtig og mobilvenlig. Fra 25.000 DKK. Lancering p\u00e5 6 uger.',
+        en: '3 client sites live. Modern, fast & mobile-first. From 25,000 DKK. Launched in 6 weeks.'
+      },
+      cta: { da: 'Se eksempler', en: 'See Examples' },
+      action: 'portfolio'
+    },
+    {
+      icon: '\ud83d\udee1\ufe0f',
+      title: { da: 'FITS.DK \u2014 GRC Platform', en: 'FITS.DK \u2014 GRC Platform' },
+      desc: {
+        da: 'Compliance gjort overskueligt. ISO 27001, NIS2, GDPR, DORA, EU AI Act. 3.000+ timer bygget.',
+        en: 'Compliance made manageable. ISO 27001, NIS2, GDPR, DORA, EU AI Act. 3,000+ hours built.'
+      },
+      cta: { da: 'Bes\u00f8g FITS.dk', en: 'Visit FITS.dk' },
+      url: 'https://fits.dk'
+    },
+    {
+      icon: '\ud83e\udd16',
+      title: { da: 'AI-agenter & Automatisering', en: 'AI Agents & Automation' },
+      desc: {
+        da: 'MCP-servere, workflow-automatisering og AI-integration. Sikker og compliant fra dag \u00e9t.',
+        en: 'MCP servers, workflow automation & AI integration. Secure and compliant from day one.'
+      },
+      cta: { da: 'Lad os snakke', en: 'Let\u2019s Talk' },
+      action: 'contact'
+    }
+  ],
+  close: { da: 'Luk', en: 'Close' }
 };

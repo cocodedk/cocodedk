@@ -10,5 +10,6 @@ export default {
   },
   stack: ['Python', 'Node.js', 'MCP', 'OAuth'],
   link: 'https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP',
-  details: 'Production MCP server with OAuth flow and smart resolution.'
+  details: 'Production MCP server with OAuth flow and smart resolution.',
+  category: 'ai'
 };

@@ -12,5 +12,11 @@ export const heroTranslations = {
   ctaButton: {
     en: 'Let\u2019s Talk',
     da: 'Lad os snakke'
+  },
+  stats: {
+    years: { en: 'Years Experience', da: 'Års Erfaring' },
+    projects: { en: 'Projects Built', da: 'Projekter Bygget' },
+    rank: { en: 'Developer (Cursor AI)', da: 'Udvikler (Cursor AI)' },
+    fits: { en: 'Hours on FITS', da: 'Timer på FITS' }
   }
 };

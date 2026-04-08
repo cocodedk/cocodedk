@@ -1,32 +1,25 @@
-/* Activity Card Component */
+/* GitHub Projects Card Component */
 
-function createActivityCard(activityItem) {
-  const card = document.createElement('div');
-  card.className = 'activity-card';
+function createGitHubCard(repo) {
+  const card = document.createElement('a');
+  card.className = 'github-card';
+  card.href = repo.url;
+  card.target = '_blank';
+  card.rel = 'noopener noreferrer';
   card.setAttribute('role', 'article');
 
-  const { title, description, date, url, homepage, icon, meta, platform, stars, language } = activityItem;
-
-  const githubLink = url ? `<a href="${url}" target="_blank" rel="noopener" class="activity-card__link">GitHub</a>` : '';
-  const demoLink = homepage ? `<a href="${homepage}" target="_blank" rel="noopener" class="activity-card__link activity-card__link--demo">Live Demo</a>` : '';
-
-  const iconClass = icon ? `activity-card__icon activity-card__icon--${icon}` : 'activity-card__icon activity-card__icon--default';
+  const langClass = (repo.language || '').toLowerCase().replace(/[^a-z]/g, '');
 
   card.innerHTML = `
-    <div class="activity-card__header">
-      <img src="images/hexagon-icon.svg" class="${iconClass}" aria-hidden="true" alt="">
-      <span class="activity-card__platform">${platform || 'Activity'}</span>
+    <div class="github-card__header">
+      <h3 class="github-card__name">${repo.name}</h3>
+      ${repo.stars > 0 ? `<span class="github-card__stars"><i class="fas fa-star"></i> ${repo.stars}</span>` : ''}
     </div>
-    <h3 class="activity-card__title">${title}</h3>
-    <p class="activity-card__description">${description}</p>
-    <div class="activity-card__meta">
-      ${language ? `<span><i class="fas fa-code"></i> ${language}</span>` : ''}
-      ${stars > 0 ? `<span><i class="fas fa-star"></i> ${stars}</span>` : ''}
-      <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-    </div>
-    <div class="activity-card__footer">
-      ${githubLink}
-      ${demoLink}
+    <p class="github-card__desc">${repo.description}</p>
+    <div class="github-card__footer">
+      ${repo.language && repo.language !== 'N/A' ? `<span class="github-card__lang github-card__lang--${langClass}"><i class="fas fa-circle"></i> ${repo.language}</span>` : ''}
+      <span class="github-card__date">${repo.updated}</span>
+      ${repo.homepage ? `<span class="github-card__demo">Live</span>` : ''}
     </div>
   `;
 
@@ -37,66 +30,30 @@ async function renderActivityFeed() {
   const container = document.getElementById('activity-feed-container');
   if (!container) return;
 
-  container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-tertiary);">Loading activities...</div>';
+  container.innerHTML = '<div class="github-loading">Loading...</div>';
 
   try {
-    const [githubRepos, youtubeVideos, linkedinActivity] = await Promise.all([
-      window.githubAPI?.fetchRepos() || Promise.resolve([]),
-      window.youtubeAPI?.fetchLatestVideos() || Promise.resolve([]),
-      window.linkedInHandler?.fetchActivity() || Promise.resolve([])
-    ]);
-
-    const allActivities = [
-      ...(githubRepos || []).map(r => ({
-        title: r.name || r.title,
-        description: r.description,
-        date: r.updated || r.date,
-        url: r.url,
-        homepage: r.homepage,
-        icon: r.icon,
-        stars: r.stars,
-        language: r.language,
-        platform: 'GitHub'
-      })),
-      ...(youtubeVideos || []).map(v => ({
-        title: v.title,
-        description: v.description,
-        date: v.date,
-        url: v.url,
-        icon: v.icon,
-        meta: v.views ? `👁 ${v.views}` : '',
-        platform: 'YouTube'
-      })),
-      ...(linkedinActivity || []).map(l => ({
-        title: l.title,
-        description: l.description,
-        date: l.date,
-        url: l.url,
-        icon: l.icon,
-        meta: l.meta || '',
-        platform: 'LinkedIn'
-      }))
-    ];
+    const githubRepos = await (window.githubAPI?.fetchRepos() || Promise.resolve([]));
 
     container.innerHTML = '';
 
-    if (allActivities.length === 0) {
-      container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-tertiary);">No activities found</div>';
+    if (!githubRepos || githubRepos.length === 0) {
+      container.innerHTML = '<div class="github-loading">No projects found</div>';
       return;
     }
 
-    allActivities.slice(0, 9).forEach((activity, index) => {
-      const card = createActivityCard(activity);
-      card.style.animationDelay = `${index * 100}ms`;
+    githubRepos.slice(0, 12).forEach((repo, index) => {
+      const card = createGitHubCard(repo);
+      card.style.animationDelay = `${index * 50}ms`;
       container.appendChild(card);
     });
   } catch (error) {
-    console.error('Activity render error:', error);
-    container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--accent-coral);">Error loading activities</div>';
+    console.error('GitHub render error:', error);
+    container.innerHTML = '<div class="github-loading">Error loading projects</div>';
   }
 }
 
 window.activityFeed = {
   render: renderActivityFeed,
-  createCard: createActivityCard
+  createCard: createGitHubCard
 };

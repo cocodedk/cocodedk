@@ -10,5 +10,6 @@ export default {
   },
   stack: ['Python', 'MCP', 'CalDAV', 'Microsoft 365'],
   link: 'https://github.com/cocodedk/calendar-consolidator-mcp',
-  details: 'Multi-source calendar unification with AI agent access.'
+  details: 'Multi-source calendar unification with AI agent access.',
+  category: 'ai'
 };

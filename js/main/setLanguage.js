@@ -37,6 +37,16 @@ export function setLanguage(lang) {
     window.renderPortfolio(window.portfolioItems, lang);
   }
 
+  // Re-render FITS showcase with new language
+  if (window.fitsShowcase) {
+    window.fitsShowcase.updateLanguage(lang);
+  }
+
+  // Re-render skills section with new language
+  if (window.skillsSection) {
+    window.skillsSection.updateLanguage(lang);
+  }
+
   // Update active class and ARIA attributes in language menu
   const langItems = document.querySelectorAll('.lang-item');
   langItems.forEach(item => {

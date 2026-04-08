@@ -1,42 +1,39 @@
-/* Portfolio Card Component */
+/* Portfolio Card Component with Category Filters */
+
+let activeCategory = 'all';
 
 function createPortfolioCard(item, language = 'da') {
   const card = document.createElement('div');
-  card.className = 'service-card';
+  card.className = 'portfolio-card';
   card.dataset.id = item.id;
+  card.dataset.category = item.category || 'ai';
   card.setAttribute('role', 'button');
   card.setAttribute('tabindex', '0');
-  const label = (item.labels && item.labels[language]) || item.title || (item.labels && item.labels.en) || '';
+  const label = (item.labels && item.labels[language]) || item.title || '';
   card.setAttribute('aria-label', label);
 
-  const iconHTML = '<img src="images/hexagon-icon.svg" class="service-card__icon" aria-hidden="true" alt="" />';
-  const title = label;
   const summary = (item.translations && item.translations[language]) || item.summary || '';
   const stack = Array.isArray(item.stack) ? item.stack : [];
 
   card.innerHTML = `
-    ${iconHTML}
-    <h3 class="service-card__title">${title}</h3>
-    <p class="service-card__description">${summary}</p>
-    <div class="service-card__tags"></div>
+    <h3 class="portfolio-card__title">${label}</h3>
+    <p class="portfolio-card__description">${summary}</p>
+    <div class="portfolio-card__tags"></div>
   `;
 
-  // Render tags from stack
-  const tagsEl = card.querySelector('.service-card__tags');
-  stack.slice(0, 4).forEach(tag => {
+  const tagsEl = card.querySelector('.portfolio-card__tags');
+  stack.forEach(tag => {
     const span = document.createElement('span');
-    span.className = 'service-card__tag';
+    span.className = 'portfolio-card__tag';
     span.textContent = tag;
     tagsEl.appendChild(span);
   });
 
-  // Click opens either live link or a simple modal
   const openDetails = () => {
     if (item.link) {
       window.open(item.link, '_blank', 'noopener,noreferrer');
       return;
     }
-    // Fallback: simple in‑place modal using existing node modal infra if available
     if (window.showNodeDescriptionModal) {
       const nodeLike = {
         id: label,
@@ -58,12 +55,38 @@ function createPortfolioCard(item, language = 'da') {
   return card;
 }
 
+function renderCategoryFilters(language = 'da') {
+  const filterContainer = document.getElementById('portfolio-filters');
+  if (!filterContainer || !window.portfolioCategories) return;
+
+  filterContainer.innerHTML = '';
+  const cats = window.portfolioCategories;
+
+  Object.keys(cats).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = 'portfolio-filter' + (key === activeCategory ? ' portfolio-filter--active' : '');
+    btn.textContent = cats[key][language] || cats[key].en;
+    btn.dataset.category = key;
+    btn.addEventListener('click', () => {
+      activeCategory = key;
+      renderPortfolio(window.portfolioItems, language);
+    });
+    filterContainer.appendChild(btn);
+  });
+}
+
 function renderPortfolio(items, language = 'da') {
   const container = document.getElementById('portfolio-cards-container');
   if (!container) return;
+
+  renderCategoryFilters(language);
+
   container.innerHTML = '';
-  items.forEach(item => container.appendChild(createPortfolioCard(item, language)));
+  const filtered = activeCategory === 'all'
+    ? items
+    : items.filter(i => i.category === activeCategory);
+
+  filtered.forEach(item => container.appendChild(createPortfolioCard(item, language)));
 }
 
-// Expose globally so main can render without importing
 window.renderPortfolio = renderPortfolio;

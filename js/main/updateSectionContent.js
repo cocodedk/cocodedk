@@ -2,9 +2,19 @@ import { sectionTranslations } from '../data/section-translations.js';
 
 export function updateSectionContent(lang) {
   try {
+    const fitsTitle = document.getElementById('fits-showcase-title');
+    if (fitsTitle) {
+      fitsTitle.textContent = sectionTranslations.fitsShowcaseTitle[lang] || sectionTranslations.fitsShowcaseTitle.en;
+    }
+
     const portfolioTitle = document.getElementById('portfolio-title') || document.querySelector('.portfolio-title');
     if (portfolioTitle) {
       portfolioTitle.textContent = sectionTranslations.portfolioTitle[lang] || sectionTranslations.portfolioTitle.en;
+    }
+
+    const skillsTitle = document.getElementById('skills-title');
+    if (skillsTitle) {
+      skillsTitle.textContent = sectionTranslations.skillsTitle[lang] || sectionTranslations.skillsTitle.en;
     }
 
     const activityTitle = document.getElementById('activity-feed-title') || document.querySelector('.activity-feed-title');
