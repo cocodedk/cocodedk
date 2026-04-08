@@ -78,6 +78,6 @@ jobs:
           lftp -c "
             set sftp:auto-confirm yes;
             open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }};
-            mirror --reverse --delete --verbose ./dist/ /;
+            mirror --reverse --only-newer --verbose ./dist/ /public_html/;
             quit;
           "
