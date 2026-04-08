@@ -10,5 +10,6 @@ export default {
   },
   stack: ['Python', 'Neo4j', 'MCP', 'AST'],
   link: 'https://github.com/cocodedk/codescan',
-  details: 'Graph-powered code analysis with MCP agent exposure.'
+  details: 'Graph-powered code analysis with MCP agent exposure.',
+  category: 'security'
 };

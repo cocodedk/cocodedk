@@ -9,7 +9,7 @@ const GitHubAPI = {
     if (cached) return cached;
 
     try {
-      const url = `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=20`;
+      const url = `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=30`;
       const response = await fetch(url);
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -24,6 +24,7 @@ const GitHubAPI = {
         stars: repo.stargazers_count,
         language: repo.language || 'N/A',
         updated: new Date(repo.updated_at).toLocaleDateString(),
+        topics: repo.topics || [],
         icon: 'github'
       }));
 

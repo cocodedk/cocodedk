@@ -80,6 +80,17 @@ window.showContactModal = function() {
 
 // Setup language toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // Logo shrink on scroll — listen on window + body (body may be scroll container)
+  const header = document.querySelector('.header-container');
+  if (header) {
+    const onScroll = function() {
+      const y = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+      header.classList.toggle('scrolled', y > 50);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.body.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   // Initialize hero content
   updateHeroContent(mainCurrentLanguage);
   // Initialize static section content
@@ -110,6 +121,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.serviceCards.render(window.nodes, mainCurrentLanguage);
   }
 
+  // Initialize FITS showcase
+  if (window.fitsShowcase) {
+    window.fitsShowcase.render(mainCurrentLanguage);
+  }
+
+  // Initialize skills section
+  if (window.skillsSection) {
+    window.skillsSection.render(mainCurrentLanguage);
+  }
+
+  // Initialize floating contact badges
+  if (window.floatBadges) {
+    window.floatBadges.init();
+  }
+
   // Initialize activity feed
   if (window.activityFeed) {
     window.activityFeed.render();
@@ -120,63 +146,43 @@ document.addEventListener('DOMContentLoaded', function() {
     window.renderPortfolio(window.portfolioItems, mainCurrentLanguage);
   }
 
-  // Language selector is now always visible in footer
-  // No toggle functionality needed
-
-  // Make handle language keydown available globally
+  // Expose globals for HTML onclick handlers
   window.handleLanguageKeydown = handleLanguageKeydown;
-
-  // Expose setLanguage function globally for HTML onclick handlers
   window.setLanguage = setLanguage;
-
-  // Expose updateHeroContent function globally
   window.updateHeroContent = updateHeroContent;
-  // Expose updateSectionContent function globally for setLanguage()
   window.updateSectionContent = updateSectionContent;
 
-  // Set up campaign overlay with smart triggers (scroll/time-based, not forced)
   if (window.CampaignOverlay && typeof window.CampaignOverlay.autoShow === 'function') {
     window.CampaignOverlay.autoShow();
   }
-  // Expose updateSectionContent globally (assigned below after import)
+
+  // Scroll-triggered section fade-in
+  const revealSections = document.querySelectorAll('.fits-showcase-section, .portfolio-section, .skills-section, .activity-feed-section');
+  revealSections.forEach(s => s.classList.add('section-hidden'));
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('section-visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    revealSections.forEach(s => obs.observe(s));
+  } else { revealSections.forEach(s => s.classList.add('section-visible')); }
 
   // Set initial language from URL hash or localStorage
-  // Valid language codes
   const validLanguages = ['en', 'da'];
   let initialLang = 'da';
-
-  if (window.location.hash && window.location.hash.length > 1) {
-    const hashValue = window.location.hash.substring(1);
-    // Only use hash as language if it's a valid language code
-    if (validLanguages.includes(hashValue)) {
-      initialLang = hashValue;
-    } else if (localStorage.getItem('preferredLanguage')) {
-      initialLang = localStorage.getItem('preferredLanguage');
-    }
-  } else if (localStorage.getItem('preferredLanguage')) {
-    initialLang = localStorage.getItem('preferredLanguage');
-  }
+  const hash = window.location.hash && window.location.hash.substring(1);
+  if (hash && validLanguages.includes(hash)) { initialLang = hash; }
+  else if (localStorage.getItem('preferredLanguage')) { initialLang = localStorage.getItem('preferredLanguage'); }
   setLanguage(initialLang);
 
-  // Handle browser back/forward button - close modals when hash is removed
-  window.addEventListener('popstate', function(event) {
+  // Handle browser back/forward — close modals when hash is removed
+  window.addEventListener('popstate', function() {
     if (!window.location.hash) {
-      // Close node description modal if open
-      const modalContainer = document.getElementById('node-description-modal-container');
-      if (modalContainer) {
-        // Create a synthetic event for the close function
-        const syntheticEvent = {
-          preventDefault: () => {},
-          stopPropagation: () => {},
-          target: { classList: { contains: () => true } }
-        };
-        window.closeNodeDescriptionModal(syntheticEvent);
+      const mc = document.getElementById('node-description-modal-container');
+      if (mc) {
+        const ev = { preventDefault(){}, stopPropagation(){}, target: { classList: { contains: () => true } } };
+        window.closeNodeDescriptionModal(ev);
       }
-
-      // Close contact modal if open (pass true to skip hash removal since it's already removed)
-      if (window.ContactModal && typeof window.ContactModal.hideModal === 'function') {
-        window.ContactModal.hideModal(true);
-      }
+      if (window.ContactModal && typeof window.ContactModal.hideModal === 'function') { window.ContactModal.hideModal(true); }
     }
   });
 });

@@ -26,6 +26,15 @@ export function updateHeroContent(lang) {
     valueProp.textContent = heroTranslations.valueProp[lang] || heroTranslations.valueProp.en;
     ctaButton.textContent = heroTranslations.ctaButton[lang] || heroTranslations.ctaButton.en;
 
+    // Update stat labels
+    const stats = heroTranslations.stats || {};
+    document.querySelectorAll('.hero-stat__label[data-stat]').forEach(el => {
+      const key = el.getAttribute('data-stat');
+      if (stats[key]) {
+        el.textContent = stats[key][lang] || stats[key].en;
+      }
+    });
+
     return true;
   } catch (error) {
     console.error('Error updating hero content:', error);
