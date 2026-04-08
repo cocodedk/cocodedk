@@ -10,5 +10,5 @@ fi
 
 echo ""
 echo "=== Merged to main — deploying to one.com ==="
-DIR="$(cd "$(dirname "$0")/.." && pwd)"
+DIR="$(git rev-parse --show-toplevel)"
 "$DIR/scripts/deploy-onecom.sh" --build
