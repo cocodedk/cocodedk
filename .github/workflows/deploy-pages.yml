@@ -77,7 +77,8 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -c "
             set sftp:auto-confirm yes;
+            set net:max-retries 3;
             open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }};
-            mirror --reverse --only-newer --no-symlinks --verbose ./dist/ /;
+            mirror --reverse --no-perms --no-symlinks --verbose ./dist/ .;
             quit;
           "
