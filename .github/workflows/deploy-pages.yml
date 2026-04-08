@@ -1,12 +1,10 @@
-name: Deploy to GitHub Pages
-
-# Triggers on push to main or manual dispatch
+name: Deploy to GitHub Pages & one.com
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -47,7 +45,13 @@ jobs:
         with:
           path: './dist'
 
-  deploy:
+      - name: Upload dist for one.com deploy
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: './dist'
+
+  deploy-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -57,3 +61,23 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-onecom:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: './dist'
+
+      - name: Deploy to one.com via SFTP
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -c "
+            set sftp:auto-confirm yes;
+            open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }};
+            mirror --reverse --delete --verbose ./dist/ /;
+            quit;
+          "
