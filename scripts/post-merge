@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Post-merge hook: auto-deploy to one.com after merging into main
+set -euo pipefail
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$BRANCH" != "main" ]; then
+  exit 0
+fi
+
+echo ""
+echo "=== Merged to main — deploying to one.com ==="
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"$DIR/scripts/deploy-onecom.sh" --build
