@@ -73,12 +73,16 @@ jobs:
           path: './dist'
 
       - name: Deploy to one.com via SFTP
+        env:
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SFTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          SFTP_HOST: ${{ secrets.FTP_SERVER }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -c "
             set sftp:auto-confirm yes;
             set net:max-retries 3;
-            open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }};
+            open -u \$SFTP_USER,\$SFTP_PASS sftp://\$SFTP_HOST;
             mirror --reverse --no-perms --no-symlinks --verbose ./dist/ .;
             quit;
           "
