@@ -79,10 +79,9 @@ jobs:
           SFTP_HOST: ${{ secrets.FTP_SERVER }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          lftp -c "
+          lftp -u "$SFTP_USER","$SFTP_PASS" -e "
             set sftp:auto-confirm yes;
             set net:max-retries 3;
-            open -u \$SFTP_USER,\$SFTP_PASS sftp://\$SFTP_HOST;
             mirror --reverse --no-perms --no-symlinks --verbose ./dist/ .;
             quit;
-          "
+          " "sftp://$SFTP_HOST"
