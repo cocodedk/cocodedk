@@ -114,7 +114,7 @@ These belong to the web-presence rollout, not the design rebuild. They're listed
 
 ---
 
-## Final 7-test gate (from `checklists.md` Section 7 — Phase 7 Validation)
+## Final 9-test gate (from `checklists.md` Section 7 — Phase 7 Validation)
 
 These are the last gates the implementation must pass *after* Phases 1–6. Capture before/after screenshots so the next progress-check (Mode B in 6 months) has a baseline.
 
@@ -151,7 +151,7 @@ These are the last gates the implementation must pass *after* Phases 1–6. Capt
 - Day 1: Phases 1 + 2 (foundation + hero) — biggest visual change, biggest credibility unlock
 - Day 2: Phase 3 (motion + CTAs) + Phase 4 (content + structure)
 - Day 3: Phase 5 (fingerprint amplification) + Phase 6 (assets + responsive)
-- Day 4: Run the 7-test gate, capture before/after, ship
+- Day 4: Run the 9-test gate, capture before/after, ship
 
 Anything not done by end of week becomes a backlog ticket — but Phases 1–3 are non-negotiable for the design audit to be considered closed.
 

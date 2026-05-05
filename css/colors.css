@@ -43,7 +43,7 @@
   --success: #4af626;
 
   /* Font stacks */
-  --font-sans: 'IBM Plex Sans', 'Söhne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-sans: 'IBM Plex Sans', 'Söhne', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Berkeley Mono', 'Fira Code', 'Courier New', monospace;
 
   /* Motion — durations */

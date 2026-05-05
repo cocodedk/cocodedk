@@ -42,6 +42,15 @@ function startTerminalEffect(lang = 'en') {
   if (!terminalElement) return;
 
   const text = terminalText[lang] || terminalText['en'];
+
+  // Respect prefers-reduced-motion (WCAG 2.3.3): render static text + cursor,
+  // skip the character-by-character typing animation.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    terminalElement.textContent = text;
+    showCursor(terminalElement);
+    return;
+  }
+
   typeWriter(text, terminalElement, 80);
 }
 

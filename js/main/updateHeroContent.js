@@ -35,6 +35,17 @@ export function updateHeroContent(lang) {
       }
     });
 
+    // Update stat notes (the # comment-style microcopy under each label)
+    const statNotes = heroTranslations.statNotes || {};
+    document.querySelectorAll('.hero-stat__note').forEach(el => {
+      const parent = el.closest('.hero-stat');
+      const labelEl = parent && parent.querySelector('[data-stat]');
+      const key = labelEl && labelEl.getAttribute('data-stat');
+      if (key && statNotes[key]) {
+        el.textContent = statNotes[key][lang] || statNotes[key].en;
+      }
+    });
+
     return true;
   } catch (error) {
     console.error('Error updating hero content:', error);

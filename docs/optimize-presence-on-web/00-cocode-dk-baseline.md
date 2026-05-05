@@ -15,10 +15,11 @@
 | `hreflang` DA/EN | ✓ Set | But points to fragments `#en` / `#da` (not separate URLs) |
 | Open Graph + Twitter Card | ✓ Complete | OG image 1200×630 |
 | JSON-LD schema | ✓ Excellent | `ProfessionalService` + `ConsultingBusiness`, geo coords, knowsAbout list |
-| H1 | ⚠ Dynamic | Set by JS — Google may render but not all crawlers will |
+| H1 | ✓ Server-rendered | Phase 4.2 of design rollout — DA default in template, JS overwrites on language toggle |
 | Content depth | ✗ Weak | Single-page SPA — no dedicated `/ai-compliance/`, `/mcp-development/`, `/grc/` URLs |
 | Indexed page count | ✗ Likely 1 | All content under `/` — no internal SEO surface area |
-| Sitemap.xml / robots.txt | ? Unknown | Needs check |
+| Sitemap.xml / robots.txt | ✓ Present | `sitemap.xml` returns HTTP 200; `robots.txt` has valid directives + `Sitemap:` reference |
+| H1 server-rendered (Phase 4.2) | ✓ Done | Hero H1, value-prop, primary CTA ship with DA defaults; JS overwrites on language toggle |
 
 ## Trust signals on the site
 

@@ -30,7 +30,7 @@
 
 Staggered fade-up in reading order — `transform: translateY(16px) → 0` + `opacity: 0 → 1`, 300 ms each, `--ease-out-expo`:
 
-```
+```text
 0 ms     hexagon avatar
 60       "$ cocode.dk | …" (terminal-typing begins after this slide-in)
 120      "# AI Agent Development …"

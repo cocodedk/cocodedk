@@ -37,7 +37,7 @@ Complementary (green + magenta) would be too jarring for a GRC brief. Triadic (g
 
 ## Full token palette + roles
 
-```
+```text
 BACKGROUND LAYER (cool, recede)
   --primary-bg         #0a0a0a   page background (unchanged)
   --secondary-bg       #0e0e0e   raised surfaces (unchanged)

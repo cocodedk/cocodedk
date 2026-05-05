@@ -8,7 +8,7 @@
 
 **Terminal / CLI / hacker** — defensible and specific (per AI-tells "brutalist / warm-industrial / luxury / playful"-style direction list). Heritage: CRT phosphor green, hacker culture, FITS = Framework for IT Security. This is a deliberate creative stance, **not** "clean and modern" generic-default territory.
 
-**Existing strengths the audit should preserve:** hexagon avatar with green outline, `$ ` command-prompt prefix on the headline, `# AI Agent Development...` comment-styled subtitle, ASCII tree-character (`──`) navigation, `v8.8.29` changelog-style badges. These are *visual fingerprint* — keep them.
+**Existing strengths the audit should preserve:** hexagon avatar with green outline, `$` command-prompt prefix on the headline, `#` comment-styled subtitle, ASCII tree-character (`──`) navigation, `v8.8.29` changelog-style badges. These are *visual fingerprint* — keep them.
 
 ---
 
@@ -52,7 +52,7 @@
 | Primary font NOT Inter / Roboto / Open Sans / Arial | ✓ (Courier New — but see C1) |
 | Color palette NOT cyan-on-dark or purple-to-blue gradient | ✓ (terminal green has independent heritage) |
 | Layout includes intentional asymmetry / non-card variety | ◐ partial (hero is asymmetric; portfolio + service sections fall into card grids) |
-| If shown to someone with "AI made this", they would NOT immediately believe it | ✓ — hexagon, `$ ` prompt, ASCII menu, FITS-as-software-version, `v8.8.29` are all visual fingerprint |
+| If shown to someone with "AI made this", they would NOT immediately believe it | ✓ — hexagon, `$` prompt, ASCII menu, FITS-as-software-version, `v8.8.29` are all visual fingerprint |
 
 **Verdict:** the design is **authored, not AI slop**. The fixes above are *upgrades to a deliberate design*, not rescue from a generic one.
 
