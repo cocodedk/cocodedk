@@ -66,6 +66,11 @@
   --ease-in: cubic-bezier(0.42, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.58, 1);
   --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+  /* Legacy color aliases — referenced by 5 CSS files that pre-date colors.md.
+     Will be migrated to var(--link-*) in a follow-up pass. */
+  --accent-secondary: #4f6df5;
+  --accent-secondary-hover: #7b93ff;
 }
 
 /* Fallback for older browsers */

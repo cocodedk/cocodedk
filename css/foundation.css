@@ -42,3 +42,57 @@ code, pre, kbd, samp {
   .terminal-text { animation: none !important; }
   #mesh-bg { display: none !important; }
 }
+
+/* --- $ section-title prefix (Phase 5.1 / brand.md F2) --- */
+.fits-showcase-title,
+.portfolio-title,
+.skills-title,
+.activity-feed-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+.fits-showcase-title::before,
+.portfolio-title::before,
+.skills-title::before,
+.activity-feed-title::before {
+  content: "$ ";
+  color: var(--accent-primary);
+  opacity: 0.75;
+  margin-right: 2px;
+}
+
+/* --- Footer contact strip (Phase 3.2) — email + WhatsApp demoted from
+   floating CTAs to a static row, prefixed with the ── ASCII tree treatment
+   (Phase 5.2 / brand.md F4). --- */
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  margin: 12px 0 4px;
+}
+.footer-contact-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 6px 4px;
+  transition: color var(--dur-micro) var(--ease-out-expo);
+}
+.footer-contact-link::before {
+  content: "── ";
+  color: var(--accent-primary);
+  opacity: 0.6;
+}
+.footer-contact-link:hover { color: var(--accent-primary); }
+.footer-contact-link:focus-visible {
+  outline: 2px solid var(--text-emphasis);
+  outline-offset: 2px;
+}
