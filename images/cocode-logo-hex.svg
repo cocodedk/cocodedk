@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" width="240" height="80" role="img" aria-label="cocode.dk">
+  <title>cocode.dk</title>
+  <!-- Hexagon mark — terminal green outline, transparent fill -->
+  <g transform="translate(8 8)">
+    <polygon points="32,2 60,18 60,46 32,62 4,46 4,18"
+             fill="none"
+             stroke="#4af626"
+             stroke-width="2.5"
+             stroke-linejoin="round"/>
+    <!-- Inner accent dot — amber, the credibility colour from colors.md -->
+    <circle cx="32" cy="32" r="4" fill="#ffb86c"/>
+  </g>
+  <!-- Wordmark in mono-style geometry -->
+  <text x="84" y="45"
+        font-family="'IBM Plex Mono', 'Courier New', monospace"
+        font-size="22"
+        font-weight="500"
+        fill="#f5ecd6"
+        letter-spacing="0.5">cocode<tspan fill="#4af626">.dk</tspan></text>
+</svg>

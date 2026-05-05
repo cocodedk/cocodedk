@@ -1,8 +1,9 @@
-/* Hero Section Styles - Terminal Aesthetic */
+/* Hero Section — Terminal Authority, Phase 2 of design rollout.
+   Uses tokens from colors.css + foundation.css.
+   See docs/optimize-presence-on-web/design/{flow,brand,colors,fonts}.md. */
 
 .hero {
   position: relative;
-  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,46 +17,39 @@
   z-index: 2;
   max-width: 700px;
   margin: 0 auto;
-  background: transparent;
-  border: none;
-  border-radius: 0;
   padding: 40px 20px;
 }
 
+/* --- Hexagon avatar (the brand mark per design/brand.md) --- */
 .hero-avatar {
   width: 160px;
   height: 160px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-  margin: 0 0 20px 0;
-  background: var(--accent-primary, #4ade80);
+  margin: 0 0 var(--space-fluid) 0;
+  background: var(--accent-primary);
   padding: 3px;
 }
-
 .hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
 }
 
+/* --- $ command-prompt headline (mono, terminal green) --- */
 .terminal-text {
-  font-family: var(--font-mono);
-  font-size: 28px;
-  font-weight: bold;
+  font-size: var(--fs-xl);
+  font-weight: 700;
   color: var(--accent-primary);
-  letter-spacing: 2px;
-  line-height: 1.4;
+  letter-spacing: 1.5px;
+  line-height: 1.3;
   min-height: 50px;
   margin: 0 0 20px 0;
 }
-
 .terminal-text::before {
   content: "$ ";
   color: var(--accent-primary);
   opacity: 0.7;
 }
-
 .terminal-cursor {
   display: inline-block;
   width: 3px;
@@ -64,138 +58,136 @@
   margin-left: 4px;
   animation: cursorBlink 1s infinite;
 }
+@keyframes cursorBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
 
-@keyframes cursorBlink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
+/* --- # comment-style subtitle --- */
 .hero-subtitle {
-  font-size: 14px;
+  font-size: var(--fs-sm);
   color: var(--text-secondary);
-  font-weight: 300;
-  letter-spacing: 1px;
-  margin: 0 0 25px 0;
   font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 0 0 28px 0;
 }
-
 .hero-subtitle::before {
   content: "# ";
   color: var(--text-tertiary);
 }
 
-/* Hero Stats Bar */
-.hero-stats {
-  display: flex;
-  gap: 24px;
-  margin: 0 0 28px 0;
-  flex-wrap: wrap;
-}
-
-.hero-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
+/* --- Hero stats — reduced size so they no longer outweigh the H1 (audit C2) --- */
+.hero-stats { display: flex; gap: 24px; margin: 0 0 28px 0; flex-wrap: wrap; }
+.hero-stat { display: flex; flex-direction: column; gap: 2px; }
 .hero-stat__number {
-  font-size: 22px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);          /* was 22 px hard-coded → now 19 px from scale */
   font-weight: 700;
   color: var(--accent-primary);
-  font-family: var(--font-mono);
   line-height: 1.2;
 }
-
 .hero-stat__label {
-  font-size: 11px;
-  color: var(--text-secondary);
   font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);      /* cooler than before — recedes (Ch 9) */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
+/* --- H1 — promoted to dominant (audit C2): largest size, warm amber --- */
 .hero-headline {
-  font-size: 28px;
-  font-weight: bold;
-  color: #ffffff;
-  margin: 0 0 15px 0;
-  line-height: 1.4;
-  font-family: var(--font-mono);
+  font-size: var(--fs-3xl);          /* clamp 44–59 px */
+  font-weight: 700;
+  color: var(--text-emphasis);       /* amber — the credibility colour */
+  margin: 0 0 18px 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 .hero-value-prop {
-  font-size: 16px;
+  font-size: var(--fs-base);
   color: var(--text-secondary);
   line-height: 1.6;
-  margin: 0 0 30px;
+  margin: 0 0 32px;
   max-width: 650px;
-  font-family: var(--font-mono);
 }
 
+/* --- CTAs — primary filled-amber, secondary outlined-green (flow.md) --- */
 .cta-button {
-  background: transparent;
-  color: var(--accent-primary);
-  font-size: 14px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
   font-weight: 600;
-  padding: 12px 28px;
-  border: 1px solid var(--accent-primary);
+  padding: 14px 28px;
   border-radius: 0;
   cursor: pointer;
   min-height: 44px;
-  transition: all 0.2s ease;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  font-family: var(--font-mono);
-  animation: ctaGlow 3s ease-in-out infinite;
+  transition: transform var(--dur-micro) var(--ease-out-expo),
+              background-color var(--dur-micro) var(--ease-out-expo),
+              box-shadow var(--dur-micro) var(--ease-out-expo);
 }
 
-.hero-content .cta-button + .cta-button {
-  margin-left: 10px;
-  animation-delay: 1.5s;
+/* Primary — Lad os snakke (#cta-button): filled amber, dark text */
+#cta-button.cta-button {
+  background: var(--text-emphasis);
+  color: var(--primary-bg);
+  border: 1px solid var(--text-emphasis);
+}
+#cta-button.cta-button:hover {
+  background: var(--warm-hover);
+  border-color: var(--warm-hover);
+  transform: scale(1.02);
 }
 
-.cta-button:hover {
-  background: var(--accent-primary);
-  color: #0a0a0a;
-  animation: none;
-  box-shadow: 0 0 20px rgba(74, 246, 38, 0.4);
+/* Secondary — Se ydelser (#cta-pricing-button): outlined green, transparent */
+#cta-pricing-button.cta-button {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-border);
+}
+#cta-pricing-button.cta-button:hover {
+  background: var(--accent-muted);
+  border-color: var(--accent-primary);
+  transform: scale(1.02);
 }
 
-.cta-button:active { background: var(--accent-hover); color: #0a0a0a; }
-
-@keyframes ctaGlow {
-  0%, 100% { box-shadow: 0 0 4px rgba(74, 246, 38, 0.1), inset 0 0 4px rgba(74, 246, 38, 0); border-color: var(--accent-primary); }
-  50% { box-shadow: 0 0 24px rgba(74, 246, 38, 0.6), inset 0 0 8px rgba(74, 246, 38, 0.15); border-color: #6fff4a; }
+.cta-button:active { transform: scale(0.97); }
+.cta-button:focus-visible {
+  outline: 2px solid var(--text-emphasis);
+  outline-offset: 4px;
 }
 
-/* Hero Animation */
-.hero-fade-in { animation: heroFadeIn 0.5s ease-out forwards; opacity: 0; }
-@keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero-content .cta-button + .cta-button { margin-left: 10px; }
+
+/* --- Page-load stagger (flow.md choreography) --- */
+.hero-fade-in .hero-content > * {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroReveal var(--dur-standard) var(--ease-out-expo) forwards;
+}
+.hero-fade-in .hero-avatar         { animation-delay: 0ms; }
+.hero-fade-in .terminal-text       { animation-delay: calc(var(--stagger) * 1); }
+.hero-fade-in .hero-subtitle       { animation-delay: calc(var(--stagger) * 2); }
+.hero-fade-in .hero-stats          { animation-delay: calc(var(--stagger) * 3); }
+.hero-fade-in .hero-headline       { animation-delay: calc(var(--stagger) * 4); }
+.hero-fade-in .hero-value-prop     { animation-delay: calc(var(--stagger) * 5); }
+.hero-fade-in .cta-button          { animation-delay: calc(var(--stagger) * 6); }
+.hero-fade-in .cta-button + .cta-button { animation-delay: calc(var(--stagger) * 6 + 50ms); }
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 768px) {
-  .hero { min-height: auto; padding: 90px 20px 40px; }
+  .hero { padding: 90px 20px 40px; }
   .hero-content { padding: 30px 15px; }
-  .terminal-text { font-size: 22px; letter-spacing: 1.5px; }
-  .hero-subtitle { font-size: 13px; margin: 0 0 20px 0; }
-  .hero-stats { gap: 16px; margin: 0 0 22px 0; }
-  .hero-stat__number { font-size: 18px; }
-  .hero-stat__label { font-size: 10px; }
-  .hero-headline { font-size: 22px; margin: 0 0 12px 0; }
-  .hero-value-prop { font-size: 15px; margin: 0 0 25px; }
-  .cta-button { font-size: 13px; padding: 11px 24px; display: block; width: 100%; }
+  .hero-stats { gap: 16px; margin-bottom: 22px; }
+  .hero-value-prop { margin-bottom: 26px; }
+  .cta-button { display: block; width: 100%; padding: 12px 24px; }
   .hero-content .cta-button + .cta-button { margin-left: 0; margin-top: 10px; }
 }
 
 @media (max-width: 480px) {
-  .hero { min-height: auto; padding: 80px 15px 30px; }
+  .hero { padding: 80px 15px 30px; }
   .hero-content { padding: 20px 10px; }
-  .terminal-text { font-size: 18px; letter-spacing: 1px; }
-  .hero-subtitle { font-size: 11px; margin: 0 0 15px 0; }
-  .hero-stats { gap: 12px; margin: 0 0 18px 0; }
-  .hero-stat__number { font-size: 16px; }
-  .hero-stat__label { font-size: 9px; }
-  .hero-headline { font-size: 17px; margin: 0 0 10px 0; line-height: 1.3; }
-  .hero-value-prop { font-size: 13px; margin: 0 0 20px; }
-  .cta-button { font-size: 12px; padding: 11px 22px; display: block; width: 100%; }
-  .hero-content .cta-button + .cta-button { margin-left: 0; margin-top: 10px; }
+  .hero-avatar { width: 140px; height: 140px; }
+  .hero-stats { gap: 12px; }
 }
