@@ -1,47 +1,82 @@
-/* Terminal Aesthetic - CSS Variables */
+/* Design tokens — palette, font stacks, motion, spacing.
+   See docs/optimize-presence-on-web/design/colors.md + flow.md + fonts.md. */
 
 :root {
-  /* Primary Backgrounds */
+  /* Backgrounds (cool, recede) */
   --primary-bg: #0a0a0a;
   --secondary-bg: #0e0e0e;
-  --tertiary-bg: #121212;
+  --tertiary-bg: #121214;
+  --shadow-deep: #050609;
+  --surface-hover: rgba(255, 200, 130, 0.04);
 
-  /* Surface */
-  --surface-hover: rgba(255, 255, 255, 0.03);
+  /* Borders (cool grays) */
+  --border-subtle: #1f2024;
+  --border-default: #282a30;
+  --border-hover: #3a3c44;
 
-  /* Borders */
-  --border-subtle: #222222;
-  --border-default: #2a2a2a;
-  --border-hover: #3a3a3a;
+  /* Text — warm primary pops forward, cool secondary recedes */
+  --text-primary: #f5ecd6;   /* warm parchment, replaces pure #fff */
+  --text-secondary: #c4c4cc;
+  --text-tertiary: #80808c;
+  --text-emphasis: #ffb86c;  /* amber, reserved for H1 + primary CTAs only */
 
-  /* Accent - Terminal Green */
+  /* Accent — terminal green (heritage; success + brand) */
   --accent-primary: #4af626;
   --accent-hover: #6fff4a;
-  --accent-muted: rgba(74, 246, 38, 0.1);
-  --accent-border: rgba(74, 246, 38, 0.3);
+  --accent-muted: rgba(74, 246, 38, 0.12);
+  --accent-border: rgba(74, 246, 38, 0.32);
 
-  /* Accent - Blue (links) */
-  --accent-secondary: #4f6df5;
-  --accent-secondary-hover: #7b93ff;
+  /* Accent — warm (split-complementary partner to terminal green) */
+  --warm-primary: #ffb86c;
+  --warm-hover: #ffd09a;
+  --warm-muted: rgba(255, 184, 108, 0.10);
+  --warm-border: rgba(255, 184, 108, 0.30);
 
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #d0d0d0;
-  --text-tertiary: #a0a0a0;
+  /* Link (UI blue — reserved for links to avoid the "blue text = link" tell) */
+  --link-primary: #4f6df5;
+  --link-hover: #7b93ff;
 
-  /* Font */
-  --font-mono: 'Courier New', 'Fira Code', monospace;
+  /* Functional */
+  --error: #ff5577;
+  --error-bg: rgba(255, 85, 119, 0.10);
+  --warning: #ffb86c;
+  --success: #4af626;
 
-  /* Easing Functions */
+  /* Font stacks */
+  --font-sans: 'IBM Plex Sans', 'Söhne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Berkeley Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Motion — durations */
+  --dur-micro: 100ms;
+  --dur-standard: 300ms;
+  --dur-complex: 500ms;
+
+  /* Motion — easing (exponential curves; legacy basic curves kept below for migration) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Stagger increment for grouped reveals */
+  --stagger: 60ms;
+
+  /* Fluid spacing — scales 16 → 32 px between 320 and 1100 px */
+  --space-fluid: clamp(1rem, 0.6rem + 2vw, 2rem);
+
+  /* Legacy easing (pre-flow.md) — keep for one release cycle while migrating */
   --ease-in: cubic-bezier(0.42, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.58, 1);
   --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+  /* Legacy color aliases — referenced by 5 CSS files that pre-date colors.md.
+     Will be migrated to var(--link-*) in a follow-up pass. */
+  --accent-secondary: #4f6df5;
+  --accent-secondary-hover: #7b93ff;
 }
 
 /* Fallback for older browsers */
 @supports not (--css: variables) {
   body {
     background-color: #0a0a0a;
-    color: #ffffff;
+    color: #f5ecd6;
   }
 }

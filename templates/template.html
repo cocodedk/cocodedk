@@ -27,15 +27,7 @@
   <meta name="twitter:image:alt" content="Babak Bandpey — AI agents that are secure and compliant from day one. Copenhagen.">
 
   <!-- Keywords (EN + DA) -->
-  <meta name="keywords" content="
-    AI agent development Denmark, AI automation consultant Copenhagen,
-    MCP server development, AI workflow automation Danish SME,
-    AI compliance consultant Denmark, agentic AI consulting Europe,
-    AI agent udvikling Danmark, AI automatisering konsulent K\u00f8benhavn,
-    AI workflow automatisering, AI compliance konsulent Danmark,
-    agentic AI r\u00e5dgivning, cybersecurity audit Denmark,
-    GDPR compliance, DORA, NIS2, EU AI Act, ISO27001
-  ">
+  <meta name="keywords" content="AI agent development Denmark, AI automation consultant Copenhagen, MCP server development, AI workflow automation Danish SME, AI compliance consultant Denmark, agentic AI consulting Europe, AI agent udvikling Danmark, AI automatisering konsulent K\u00f8benhavn, AI workflow automatisering, AI compliance konsulent Danmark, agentic AI r\u00e5dgivning, cybersecurity audit Denmark, GDPR compliance, DORA, NIS2, EU AI Act, ISO27001">
 
   <!-- Hreflang Tags -->
   <link rel="alternate" hreflang="en" href="https://cocode.dk/#en">
@@ -47,9 +39,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-  <!-- External CSS -->
+  <!-- Web fonts: IBM Plex Sans + Mono (see docs/optimize-presence-on-web/design/fonts.md) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+
+  <!-- External CSS — colors.css first (tokens), then styles.css (legacy),
+       then foundation.css (overrides body to sans + reduced-motion), then components. -->
+  <link rel="stylesheet" href="css/colors.css?v=1.1.0">
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
-  <link rel="stylesheet" href="css/colors.css?v=1.0.0">
+  <link rel="stylesheet" href="css/foundation.css?v=1.0.0">
   <link rel="stylesheet" href="css/backgrounds.css?v=1.0.0">
   <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
   <link rel="stylesheet" href="css/hero.css?v=1.0.0">
@@ -77,33 +76,10 @@
     "url": "https://cocode.dk",
     "telephone": "+4553737514",
     "priceRange": "$$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Magistervej 54",
-      "addressLocality": "Copenhagen",
-      "postalCode": "2400",
-      "addressCountry": "DK"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 55.676098,
-      "longitude": 12.568337
-    },
-    "knowsAbout": [
-      "AI Agent Development",
-      "Model Context Protocol (MCP)",
-      "AI Workflow Automation",
-      "Cybersecurity Compliance",
-      "GDPR", "DORA", "NIS2", "EU AI Act", "ISO27001",
-      "Neo4j Graph Databases",
-      "Python", "Django"
-    ],
-    "sameAs": [
-      "https://linkedin.com/in/babakbandpey",
-      "https://github.com/cocodedk",
-      "https://cocodedk.github.io/cv-generator/",
-      "https://fits.dk"
-    ]
+    "address": {"@type": "PostalAddress", "streetAddress": "Magistervej 54", "addressLocality": "Copenhagen", "postalCode": "2400", "addressCountry": "DK"},
+    "geo": {"@type": "GeoCoordinates", "latitude": 55.676098, "longitude": 12.568337},
+    "knowsAbout": ["AI Agent Development", "Model Context Protocol (MCP)", "AI Workflow Automation", "Cybersecurity Compliance", "GDPR", "DORA", "NIS2", "EU AI Act", "ISO27001", "ISO 42001", "Neo4j Graph Databases", "Python", "Django", "Go", "TypeScript", "Kotlin"],
+    "sameAs": ["https://linkedin.com/in/babakbandpey", "https://github.com/cocodedk", "https://cocodedk.github.io/cv-generator/", "https://fits.dk"]
   }
   </script>
 </head>
@@ -111,7 +87,7 @@
   <canvas id="mesh-bg" aria-hidden="true"></canvas>
   <div class="header-container">
     <div id="logo-container">
-      <img src="images/cocode-logo.png" alt="cocode.dk" id="site-logo" />
+      <img src="images/cocode-logo-hex.svg" alt="cocode.dk" id="site-logo" width="240" height="80" />
     </div>
   </div>
 
@@ -119,19 +95,20 @@
   <section class="hero hero-fade-in">
     <div class="hero-content">
       <div class="hero-avatar">
-        <img src="images/babak-profile.jpg" alt="Babak Bandpey" />
+        <img src="images/babak-profile.png" alt="Babak Bandpey" />
       </div>
       <div class="terminal-text"></div>
       <p class="hero-subtitle">AI Agent Development &bull; Workflow Automation &bull; Cybersecurity &bull; Denmark</p>
       <div class="hero-stats" id="hero-stats">
-        <div class="hero-stat"><span class="hero-stat__number">25+</span><span class="hero-stat__label" data-stat="years">Years Experience</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">50+</span><span class="hero-stat__label" data-stat="projects">Projects Built</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">Top 2%</span><span class="hero-stat__label" data-stat="rank">Developer (Cursor AI)</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">3000+</span><span class="hero-stat__label" data-stat="fits">Hours on FITS</span></div>
+        <div class="hero-stat"><span class="hero-stat__number">25+</span><span class="hero-stat__label" data-stat="years">Years Experience</span><span class="hero-stat__note"># active in software since 2000</span></div>
+        <div class="hero-stat"><span class="hero-stat__number">50+</span><span class="hero-stat__label" data-stat="projects">Projects Built</span><span class="hero-stat__note"># shipped to production</span></div>
+        <div class="hero-stat"><span class="hero-stat__number">Top 2%</span><span class="hero-stat__label" data-stat="rank">Developer (Cursor AI)</span><span class="hero-stat__note"># Cursor AI ranking, 2025</span></div>
+        <div class="hero-stat"><span class="hero-stat__number">3000+</span><span class="hero-stat__label" data-stat="fits">Hours on FITS</span><span class="hero-stat__note"># in production</span></div>
       </div>
-      <h1 class="hero-headline" id="hero-headline"></h1>
-      <p class="hero-value-prop" id="hero-value-prop"></p>
-      <button class="cta-button" id="cta-button" onclick="showContactModal()"></button>
+      <div class="compliance-strip" aria-label="Compliance frameworks"><span class="compliance-strip__label">⬢ compliance:</span> <span class="compliance-strip__item">NIS2</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">DORA</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">GDPR</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">EU AI Act</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">ISO 42001</span></div>
+      <h1 class="hero-headline" id="hero-headline">Jeg Bygger AI-Agenter Der Rent Faktisk Virker</h1>
+      <p class="hero-value-prop" id="hero-value-prop">Ikke demoer. Ikke prototyper. Produktionsagenter koblet direkte til jeres kalendere, opgavetavler og compliance-platforme. Sikkerhed og EU-compliance fra start, ikke tilf&oslash;jet bagefter.</p>
+      <button class="cta-button" id="cta-button" onclick="showContactModal()">Lad os snakke</button>
       <button class="cta-button" id="cta-pricing-button" onclick="(function(){ if(window.CampaignOverlay&&typeof window.CampaignOverlay.show==='function'){ window.CampaignOverlay.show(true); } else { const n=(window.nodes||[]).find(x=>x.id==='Pricing'); if(n && window.showNodeDescriptionModal){ window.showNodeDescriptionModal(n);} else { showContactModal(); } } })()">Se ydelser</button>
     </div>
   </section>
@@ -160,6 +137,16 @@
     <div class="skills-grid" id="skills-container"></div>
   </section>
 
+  <!-- Om mig — asymmetric section, breaks the centred-stack pattern (brand.md B3) -->
+  <section class="about-section" id="about-section">
+    <div class="about-portrait"><img src="images/babak-profile.png" alt="Babak Bandpey" loading="lazy" /></div>
+    <div class="about-text">
+      <h2 class="about-title">$ whoami</h2>
+      <p class="about-bio">25+ år som softwareudvikler. Bygger AI-agenter og workflow-automatisering for danske SMV&#39;er — direkte koblet til kalendere, opgavetavler og compliance-platforme. Sikkerhed og EU-compliance fra start. Bag <strong>FITS — Framework for IT Security</strong>, en multi-tenant GRC-platform i produktion.</p>
+      <p class="about-meta"># Magistervej 54, 2400 K&oslash;benhavn NV · CVR 37219630</p>
+    </div>
+  </section>
+
   <!-- Activity Feed Section -->
   <section class="activity-feed-section">
     <h2 class="activity-feed-title" id="activity-feed-title">Seneste fra GitHub</h2>
@@ -170,6 +157,10 @@
   <div id="campaign-root" class="campaign-overlay" aria-hidden="true"></div>
 
   <footer id="site-footer">
+    <div class="footer-contact" role="group" aria-label="Contact alternatives">
+      <button type="button" class="footer-contact-link" onclick="window.floatBadges &amp;&amp; window.floatBadges.showEmail(event)">Email</button>
+      <button type="button" class="footer-contact-link" onclick="window.floatBadges &amp;&amp; window.floatBadges.openWA()">WhatsApp</button>
+    </div>
     <div class="footer-content">
       <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
       <div class="footer-center-group">

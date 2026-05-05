@@ -1,0 +1,190 @@
+/* Foundation — type scale, body defaults, mono whitelist, reduced-motion.
+   Pairs with colors.css (which holds palette + font + motion tokens).
+   See docs/optimize-presence-on-web/design/{fonts,flow}.md. */
+
+:root {
+  /* Type scale — 3:4 ratio, base 16 px (fonts.md) */
+  --fs-xs: 0.6875rem;   /* 11 px — micro metadata */
+  --fs-sm: 0.875rem;    /* 14 px — secondary metadata, captions */
+  --fs-base: 1rem;      /* 16 px — body copy */
+  --fs-md: 1.1875rem;   /* 19 px — sub-headings, hero stat labels */
+  --fs-lg: 1.5625rem;   /* 25 px — section H3 */
+  --fs-xl: 2.0625rem;   /* 33 px — H2 */
+  --fs-2xl: 2.75rem;    /* 44 px — hero stat numbers */
+  --fs-3xl: clamp(2.75rem, 4.5vw, 3.6875rem); /* 44–59 px — H1 hero */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.45;
+  font-feature-settings: "kern" 1, "liga" 1;
+  color: var(--text-primary);
+}
+
+/* Mono is reserved for terminal contexts ONLY (fonts.md C1 fix) */
+.terminal-text,
+.prompt-line,
+.fits-version-badge,
+.ascii-tree-menu,
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+/* Critical accessibility: respect user motion preference (motion.md) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .terminal-text { animation: none !important; }
+  #mesh-bg { display: none !important; }
+}
+
+/* --- $ section-title prefix (Phase 5.1 / brand.md F2) --- */
+.fits-showcase-title,
+.portfolio-title,
+.skills-title,
+.activity-feed-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+.fits-showcase-title::before,
+.portfolio-title::before,
+.skills-title::before,
+.activity-feed-title::before {
+  content: "$ ";
+  color: var(--accent-primary);
+  opacity: 0.75;
+  margin-right: 2px;
+}
+
+/* --- Footer contact strip (Phase 3.2) — email + WhatsApp demoted from
+   floating CTAs to a static row, prefixed with the ── ASCII tree treatment
+   (Phase 5.2 / brand.md F4). --- */
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  margin: 12px 0 4px;
+}
+.footer-contact-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 6px 4px;
+  transition: color var(--dur-micro) var(--ease-out-expo);
+}
+.footer-contact-link::before {
+  content: "── ";
+  color: var(--accent-primary);
+  opacity: 0.6;
+}
+.footer-contact-link:hover { color: var(--accent-primary); }
+.footer-contact-link:focus-visible {
+  outline: 2px solid var(--text-emphasis);
+  outline-offset: 2px;
+}
+
+/* --- Hero stat microcopy (Phase 5.3 / brand.md F6) — comment-styled
+   factual context below each stat label. --- */
+.hero-stat__note {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  letter-spacing: 0.2px;
+}
+
+/* --- Static compliance strip (Phase 2.3) — replaces the orbiting
+   regulation badges. ⬢ glyph echoes the brand hexagon. --- */
+.compliance-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  margin: 0 0 28px 0;
+}
+.compliance-strip__label {
+  color: var(--accent-primary);
+  opacity: 0.85;
+  margin-right: 4px;
+}
+.compliance-strip__item {
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+.compliance-strip__sep {
+  color: var(--text-tertiary);
+  opacity: 0.6;
+}
+
+/* --- "Om mig" asymmetric section (Phase 5.5 / brand.md B3) — breaks
+   the centred-stack rhythm with portrait-left / narrative-right. --- */
+.about-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  container-type: inline-size;
+}
+.about-portrait {
+  width: 220px;
+  height: 220px;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: var(--accent-primary);
+  padding: 3px;
+  justify-self: start;
+}
+.about-portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+.about-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin: 0 0 16px 0;
+  letter-spacing: 0.5px;
+}
+.about-bio {
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+.about-bio strong {
+  color: var(--text-emphasis);
+  font-weight: 600;
+}
+.about-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+@container (min-width: 600px) {
+  .about-section { grid-template-columns: 220px 1fr; gap: 40px; }
+}

@@ -107,11 +107,17 @@ document.addEventListener('DOMContentLoaded', function() {
       bg: '#0a0a0a',
       glow: null,
       nodeColor: '#4af626',
-      labels: ['MCP', 'AGENT', 'GDPR', 'NIS2', 'DORA', 'WORKFLOW'],
+      // Phase 2.3: regulation labels (MCP, AGENT, GDPR, NIS2, DORA, WORKFLOW)
+      // moved out of the floating mesh and into a static compliance strip below
+      // the hero stats — see templates/template.html .compliance-strip.
+      // Mesh now renders ambient dots only (no orbiting text).
+      labels: [],
+      // Quieted per design-audit M6 + design/flow.md: opacity ~0.5x, speed ~0.5x
+      // so the mesh becomes ambient texture rather than active motion.
       layers: [
-        { count: 8, speed: 0.25, mouseStrength: 4,  size: 1.8, opacity: 0.28 },
-        { count: 6, speed: 0.50, mouseStrength: 10, size: 2.8, opacity: 0.42 },
-        { count: 4, speed: 0.80, mouseStrength: 18, size: 4.0, opacity: 0.62 },
+        { count: 8, speed: 0.13, mouseStrength: 4,  size: 1.8, opacity: 0.14 },
+        { count: 6, speed: 0.25, mouseStrength: 10, size: 2.8, opacity: 0.21 },
+        { count: 4, speed: 0.40, mouseStrength: 18, size: 4.0, opacity: 0.32 },
       ],
     });
   }
