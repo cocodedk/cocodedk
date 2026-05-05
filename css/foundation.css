@@ -31,7 +31,9 @@ code, pre, kbd, samp {
   font-family: var(--font-mono);
 }
 
-/* Critical accessibility: respect user motion preference (motion.md) */
+/* Critical accessibility: respect user motion preference (motion.md).
+   Note: the terminal-text typing is JS-driven (js/components/terminal.js)
+   and short-circuits to static text when prefers-reduced-motion is set. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -39,7 +41,6 @@ code, pre, kbd, samp {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .terminal-text { animation: none !important; }
   #mesh-bg { display: none !important; }
 }
 
