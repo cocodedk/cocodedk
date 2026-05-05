@@ -40,6 +40,11 @@ A 5th candidate (Visible Agency) was dropped — homepage returned no content (h
 - `comparison.md` — side-by-side tables + prioritized recommendations
 - `recommended-stack.md` — complete tech stack inventory (Babak's full skillset compiled from repos + projects)
 - `design-audit.md` — Design for Hackers checker review of the live site (typography, color, hierarchy, AI-tells)
+- `design/fonts.md` — typography pair (IBM Plex Sans + Mono), type scale, leading, CSS configuration
+- `design/colors.md` — split-complementary palette anchored on terminal green; warm amber accent; WCAG AA verified
+- `design/flow.md` — motion choreography, single primary CTA, mobile-first responsive plan, container queries
+- `design/brand.md` — Aesthetic-direction statement ("Terminal Authority" + the hexagon mark); AI-tells gate; fingerprint elements to amplify
+- `design/hone.md` — final consolidated quality pass + 6-phase rollout plan + 9-test ship gate
 
 ## Headline finding (TL;DR)
 
