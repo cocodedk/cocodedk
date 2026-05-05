@@ -39,6 +39,7 @@ A 5th candidate (Visible Agency) was dropped — homepage returned no content (h
 - `04-leave-a-mark-group.md` — Leave a Mark Group
 - `comparison.md` — side-by-side tables + prioritized recommendations
 - `recommended-stack.md` — complete tech stack inventory (Babak's full skillset compiled from repos + projects)
+- `design-audit.md` — Design for Hackers checker review of the live site (typography, color, hierarchy, AI-tells)
 
 ## Headline finding (TL;DR)
 
