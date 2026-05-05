@@ -47,6 +47,11 @@ export function setLanguage(lang) {
     window.skillsSection.updateLanguage(lang);
   }
 
+  // Update floating phone CTA aria-label/title
+  if (window.floatBadges && typeof window.floatBadges.updateLanguage === 'function') {
+    window.floatBadges.updateLanguage(lang);
+  }
+
   // Update active class and ARIA attributes in language menu
   const langItems = document.querySelectorAll('.lang-item');
   langItems.forEach(item => {
