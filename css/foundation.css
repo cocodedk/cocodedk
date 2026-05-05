@@ -1,0 +1,44 @@
+/* Foundation — type scale, body defaults, mono whitelist, reduced-motion.
+   Pairs with colors.css (which holds palette + font + motion tokens).
+   See docs/optimize-presence-on-web/design/{fonts,flow}.md. */
+
+:root {
+  /* Type scale — 3:4 ratio, base 16 px (fonts.md) */
+  --fs-xs: 0.6875rem;   /* 11 px — micro metadata */
+  --fs-sm: 0.875rem;    /* 14 px — secondary metadata, captions */
+  --fs-base: 1rem;      /* 16 px — body copy */
+  --fs-md: 1.1875rem;   /* 19 px — sub-headings, hero stat labels */
+  --fs-lg: 1.5625rem;   /* 25 px — section H3 */
+  --fs-xl: 2.0625rem;   /* 33 px — H2 */
+  --fs-2xl: 2.75rem;    /* 44 px — hero stat numbers */
+  --fs-3xl: clamp(2.75rem, 4.5vw, 3.6875rem); /* 44–59 px — H1 hero */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.45;
+  font-feature-settings: "kern" 1, "liga" 1;
+  color: var(--text-primary);
+}
+
+/* Mono is reserved for terminal contexts ONLY (fonts.md C1 fix) */
+.terminal-text,
+.prompt-line,
+.fits-version-badge,
+.ascii-tree-menu,
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+/* Critical accessibility: respect user motion preference (motion.md) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .terminal-text { animation: none !important; }
+  #mesh-bg { display: none !important; }
+}

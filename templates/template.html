@@ -47,9 +47,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-  <!-- External CSS -->
+  <!-- Web fonts: IBM Plex Sans + Mono (see docs/optimize-presence-on-web/design/fonts.md) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+
+  <!-- External CSS — colors.css first (tokens), then styles.css (legacy),
+       then foundation.css (overrides body to sans + reduced-motion), then components. -->
+  <link rel="stylesheet" href="css/colors.css?v=1.1.0">
   <link rel="stylesheet" href="css/styles.css?v=1.0.2">
-  <link rel="stylesheet" href="css/colors.css?v=1.0.0">
+  <link rel="stylesheet" href="css/foundation.css?v=1.0.0">
   <link rel="stylesheet" href="css/backgrounds.css?v=1.0.0">
   <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
   <link rel="stylesheet" href="css/hero.css?v=1.0.0">
