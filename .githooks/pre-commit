@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
 
-SMOKE_CMD="npm run lint:length && npm test"
-
-$SMOKE_CMD
+cd "$(git rev-parse --show-toplevel)"
+bash scripts/check-file-length.sh --staged
+npm test
