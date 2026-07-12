@@ -24,7 +24,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.4.1",
     "style-loader": "^4.0.0",
-    "webpack": "^5.106.2",
+    "webpack": "^5.108.4",
     "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^5.2.4"
   }
