@@ -1,4 +1,4 @@
-import { readWorks, readServices, readContact, readPlaces, readIntro } from '../js/page-facts';
+import { readWorks, readServices, readContact, readPlaces, readIntro, readAbout } from '../js/page-facts';
 import { loadPage } from './helpers/page';
 
 const work = (name) => readWorks().find((w) => w.name === name);
@@ -44,6 +44,22 @@ describe('what the page says about itself', () => {
 
   test('should introduce Babak the way the page does', () => {
     expect(readIntro()).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg bygger selv det, jeg anbefaler.');
+  });
+
+  test('should read the letter in Om mig, paragraph by paragraph', () => {
+    expect(readAbout().paragraphs).toEqual([
+      'Mit fag er at bygge software. Det har jeg gjort i over 25 år, og i dag handler det meste om AI: Jeg rådgiver om den, og jeg bygger med den.',
+      'Meget af det, du ser her, er lavet med de samme AI-værktøjer, som jeg anbefaler til mine kunder. Derfor ved jeg, hvad der virker i praksis, og hvad der kun ser godt ud i en præsentation.',
+      'Du taler altid med mig. Ikke med en sælger.',
+    ]);
+  });
+
+  test('should read the notes in the margin as a list, whatever they are', () => {
+    expect(readAbout().notes).toEqual(['Babak Bandpey', 'København', 'Dansk, engelsk og persisk']);
+  });
+
+  test('should give the section its heading', () => {
+    expect(readAbout().heading).toBe('Et par ord fra mig');
   });
 
   test('should list the three services', () => {

@@ -11,7 +11,7 @@ function registry({ failOn } = {}) {
   };
 }
 const put = (target, value) => Object.defineProperty(target, 'modelContext', { value, configurable: true });
-const NAMES = ['draft_inquiry', 'get_contact', 'get_services', 'go_to_section', 'list_works'];
+const NAMES = ['draft_inquiry', 'get_about', 'get_contact', 'get_services', 'go_to_section', 'list_works'];
 
 describe('WebMCP', () => {
   let openUrl;
@@ -28,7 +28,7 @@ describe('WebMCP', () => {
     await expect(initWebMcp({ openUrl })).resolves.toEqual([]);
   });
 
-  test('should register its five tools with Chrome 150 and later', async () => {
+  test('should register its six tools with Chrome 150 and later', async () => {
     const reg = registry(); put(document, reg);
     await start(reg);
     expect(reg.tools.map((t) => t.name).sort()).toEqual(NAMES);
@@ -37,7 +37,7 @@ describe('WebMCP', () => {
   test('should keep going when one tool is refused', async () => {
     const reg = registry({ failOn: 'get_contact' }); put(document, reg);
     await start(reg);
-    expect(reg.tools).toHaveLength(4);
+    expect(reg.tools).toHaveLength(5);
   });
 
   test('should report what the browser actually holds, not what it asked for', async () => {
@@ -64,7 +64,7 @@ describe('WebMCP', () => {
   test('should mark the reading tools read-only', async () => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
-    expect(['list_works', 'get_services', 'get_contact'].every((n) => tool(n).annotations.readOnlyHint)).toBe(true);
+    expect(['list_works', 'get_services', 'get_contact', 'get_about'].every((n) => tool(n).annotations.readOnlyHint)).toBe(true);
   });
 
   test('should not call the tools that act read-only', async () => {
@@ -73,7 +73,7 @@ describe('WebMCP', () => {
     expect(['go_to_section', 'draft_inquiry'].some((n) => tool(n).annotations && tool(n).annotations.readOnlyHint)).toBe(false);
   });
 
-  test.each(['list_works', 'get_services', 'get_contact', 'go_to_section', 'draft_inquiry'])('should answer %s even when the agent sends null', async (name) => {
+  test.each(NAMES)('should answer %s even when the agent sends null', async (name) => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
     await expect(tool(name).execute(null)).resolves.toBeDefined();
@@ -83,6 +83,12 @@ describe('WebMCP', () => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
     expect((await tool('get_services').execute({})).who).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg bygger selv det, jeg anbefaler.');
+  });
+
+  test('should answer get_about from the page', async () => {
+    const reg = registry(); put(document, reg);
+    const tool = await start(reg);
+    expect((await tool('get_about').execute({})).paragraphs).toHaveLength(3);
   });
 
   test('should only narrow list_works for a real true', async () => {

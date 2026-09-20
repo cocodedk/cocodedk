@@ -28,7 +28,7 @@ Services: advice on where AI is worth using, AI agents that carry out real work,
 
 ## For AI agents in the browser
 
-The page registers WebMCP tools (`document.modelContext`): `list_works`, `get_services`, `get_contact`, `go_to_section` and `draft_inquiry`. `draft_inquiry` opens a prefilled e-mail to Babak in the visitor's mail app; nothing is sent until the visitor presses send.
+The page registers WebMCP tools (`document.modelContext`): `list_works`, `get_services`, `get_about`, `get_contact`, `go_to_section` and `draft_inquiry`. `draft_inquiry` opens a prefilled e-mail to Babak in the visitor's mail app; nothing is sent until the visitor presses send.
 
 ## Contact
 

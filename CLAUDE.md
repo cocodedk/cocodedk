@@ -51,8 +51,8 @@ cocodedk/
 - `js/scenes.js` and the media query in `css/slide.css` must name the same conditions; change one, change the other
 - The plates live once, in `templates/partials/sprite.html`; everything else points at them with `<use>`
 - No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
-- WebMCP (`js/webmcp.js`) offers five tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
-  `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
+- WebMCP (`js/webmcp.js`) offers six tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
+  `get_about`, `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
   copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`, the old alias is gone since Chrome 153); check
   https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
   `google-chrome-stable --enable-features=WebMCP` (or `~/.claude-shared/skills/webmcp/scripts/probe.py https://cocode.dk/`),
