@@ -46,9 +46,10 @@ module.exports = {
         { from: 'css', to: 'css' },
         { from: 'fonts', to: 'fonts' },
         { from: 'images', to: 'images' },
-        // GitHub Pages reads the custom domain from this file in the published output.
-        // Without it the domain is dropped on the next deploy.
-        { from: 'CNAME', to: 'CNAME' },
+        // Pages takes the custom domain from the repository setting when a workflow deploys, so this file is
+        // belt and braces. toType matters: a name without an extension is otherwise taken for a folder,
+        // and the site shipped a CNAME/ directory for a while.
+        { from: 'CNAME', to: 'CNAME', toType: 'file' },
         { from: 'llms.txt', to: 'llms.txt' },
         { from: 'robots.txt', to: 'robots.txt' },
         { from: 'sitemap.xml', to: 'sitemap.xml' },
