@@ -37,7 +37,7 @@ cocodedk/
 │   ├── partials/        ← the page in pieces, placed with <%= partials.name %>
 │   └── og-card.html     ← source of the share picture (OG_CARD=1 npm run build)
 ├── css/                 ← fonts, base, dock, page, wide, slide — linked in that order; the order is the cascade
-├── js/                  ← menu.js, place-marker.js, scenes.js, wired up in main.js
+├── js/                  ← menu.js, place-marker.js, scenes.js, webmcp.js (+ page-facts.js), wired up in main.js
 ├── fonts/               ← self-hosted woff2 (no font CDN: visitors' addresses stay here)
 ├── images/              ← favicons and the share picture
 ├── tests/               ← Jest (jsdom)
@@ -51,6 +51,13 @@ cocodedk/
 - `js/scenes.js` and the media query in `css/slide.css` must name the same conditions; change one, change the other
 - The plates live once, in `templates/partials/sprite.html`; everything else points at them with `<use>`
 - No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
+- WebMCP (`js/webmcp.js`) offers five tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
+  `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
+  copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`); check
+  https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
+  `google-chrome-stable --enable-features=WebMCP,WebMCPTesting --enable-blink-features=WebMCP,WebMCPTesting`,
+  then `await document.modelContext.getTools()` in the console. Real visitors get it only with an origin-trial
+  token in `templates/template.html` (trial ends 2026-11-16) or once Chrome ships it by default
 
 ---
 

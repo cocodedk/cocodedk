@@ -26,6 +26,10 @@ Services: advice on where AI is worth using, AI agents that carry out real work,
 - [Venus Høreklinik](https://klinikvenus.dk), [Nick Autoteknik](https://nick-autoteknik.dk), Klinik for Manuel Terapi, Unity Foundation
 - [graph-loop](https://graph-loop.cocode.dk): unattended AI agent loops. MCP servers for calendars, Teams Planner and memory. [FITS.DK](https://fits.dk): a compliance platform, more than 3000 hours of work.
 
+## For AI agents in the browser
+
+The page registers WebMCP tools (`document.modelContext`): `list_works`, `get_services`, `get_contact`, `go_to_section` and `draft_inquiry`. `draft_inquiry` opens a prefilled e-mail to Babak in the visitor's mail app; nothing is sent until the visitor presses send.
+
 ## Contact
 
 - [Email](mailto:bb@cocode.dk): bb@cocode.dk
