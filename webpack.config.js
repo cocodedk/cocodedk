@@ -70,6 +70,9 @@ module.exports = {
       patterns: [
         { from: 'css', to: 'css' },
         { from: 'images', to: 'images' },
+        // GitHub Pages reads the custom domain from this file in the published output.
+        // Without it the domain is dropped on the next deploy.
+        { from: 'CNAME', to: 'CNAME' },
         { from: 'llms.txt', to: 'llms.txt' },
         { from: 'robots.txt', to: 'robots.txt' },
         { from: 'sitemap.xml', to: 'sitemap.xml' }
