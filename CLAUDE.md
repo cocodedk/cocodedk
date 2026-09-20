@@ -56,8 +56,9 @@ cocodedk/
   copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`, the old alias is gone since Chrome 153); check
   https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
   `google-chrome-stable --enable-features=WebMCP` (or `~/.claude-shared/skills/webmcp/scripts/probe.py https://cocode.dk/`),
-  then `await document.modelContext.getTools()` in the console. Real visitors get it only with an origin-trial
-  token in `templates/template.html` (trial ends 2026-11-17) or once Chrome ships it by default
+  then `await document.modelContext.getTools()` in the console. Real visitors get it through the origin-trial token in
+  `templates/template.html` (registered 2026-09-20 for https://cocode.dk, expires 2026-11-17: renew it at
+  developer.chrome.com/origintrials or remove the tag then), or without it once Chrome ships WebMCP by default
 
 ---
 
