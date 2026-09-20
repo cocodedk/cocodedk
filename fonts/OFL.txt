@@ -1,0 +1,6 @@
+The fonts in this folder are licensed under the SIL Open Font License, Version 1.1
+(https://openfontlicense.org), and are served unmodified as the Latin subsets published by Google Fonts.
+
+Ibarra Real Nova  Copyright 2007 The Ibarra Real Nova Project Authors (https://github.com/googlefonts/ibarrareal)
+Ysabeau Office    Copyright 2020 The Ysabeau Project Authors (https://github.com/CatharsisFonts/Ysabeau)
+Ysabeau SC        Copyright 2020 The Ysabeau Project Authors (https://github.com/CatharsisFonts/Ysabeau)
