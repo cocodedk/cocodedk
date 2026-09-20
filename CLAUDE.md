@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-GitHub profile repository and personal portfolio SPA for Babak Bandpey. Vanilla JS single-page application built with Webpack 5, featuring warm glassmorphism design, bilingual support (English/Danish), and live API integrations with GitHub, YouTube, and LinkedIn.
+GitHub profile repository and the cocode.dk homepage for Babak Bandpey, AI consultant. One static Danish page built with Webpack 5: warm paper, serif type, illustrated plates, and featured works that slide over each other. The audience is potential clients, not developers, so nothing on the page should look technical. The design brief is `design/mockups/BRIEF.md`., and live API integrations with GitHub, YouTube, and LinkedIn.
 
-- **Language / Runtime**: JavaScript / Node.js 20, TypeScript (new code in `src/ts/`)
-- **Framework**: Vanilla JS SPA (no framework), Webpack 5
-- **Architecture**: Component-based, hash navigation for i18n
+- **Language / Runtime**: JavaScript (ES modules) / Node.js 20
+- **Framework**: none. Static HTML and CSS, three small scripts, Webpack 5
+- **Language of the page**: Danish. English is phase two; until it exists there is no language switch
 - **Package / Namespace**: `cocodedk`
 
 ---
@@ -32,23 +32,25 @@ These skills **must** be invoked when the relevant situation arises. Never skip 
 
 ```
 cocodedk/
-├── js/                  ← Component logic (Vanilla JS), exposes via window.*
-│   ├── components/      ← Self-contained UI components
-│   ├── api/             ← GitHub, YouTube, LinkedIn integrations (5-min cache)
-│   └── data/            ← i18n strings (section-translations.js)
-├── css/                 ← Component stylesheets + color tokens (colors.css)
-├── src/ts/              ← New TypeScript code
-├── templates/           ← template.html (single page, Webpack-injected)
-├── tests/               ← Jest (jsdom) tests
-├── scripts/             ← check-file-length.sh, deploy-onecom.sh
-├── dist/                ← Production build output (gitignored)
-└── webpack.config.js    ← Multiple entry points per component
+├── templates/
+│   ├── template.html    ← the head and the order of the page
+│   ├── partials/        ← the page in pieces, placed with <%= partials.name %>
+│   └── og-card.html     ← source of the share picture (OG_CARD=1 npm run build)
+├── css/                 ← fonts, base, dock, page, wide, slide — linked in that order; the order is the cascade
+├── js/                  ← menu.js, place-marker.js, scenes.js, wired up in main.js
+├── fonts/               ← self-hosted woff2 (no font CDN: visitors' addresses stay here)
+├── images/              ← favicons and the share picture
+├── tests/               ← Jest (jsdom)
+├── design/mockups/      ← the design brief; mockups beside it stay untracked (single files, over the line limit)
+├── dist/                ← build output (gitignored)
+└── webpack.config.js    ← one entry; reads templates/partials/ into the template
 ```
 
 ### Layer Rules
-- Components in `js/components/` must be self-contained and attach to `window.*`
-- API calls go in `js/api/` with 5-minute localStorage caching
-- New code in TypeScript (`src/ts/`), not plain JS
+- The mobile menu never repeats itself: the bottom bar owns the four section jumps, the "Indhold" sheet holds only what the bar cannot (the works, the catalogue groups, the mail button)
+- `js/scenes.js` and the media query in `css/slide.css` must name the same conditions; change one, change the other
+- The plates live once, in `templates/partials/sprite.html`; everything else points at them with `<use>`
+- No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
 
 ---
 
@@ -56,9 +58,8 @@ cocodedk/
 
 - [ ] All models are **immutable** — use spread for mutations
 - [ ] Functions are **pure** where possible — no hidden side effects
-- [ ] No hardcoded strings — use `js/data/section-translations.js` for i18n
+- [ ] Danish copy goes through the `humanizer-da` skill before it ships
 - [ ] **Max 200 lines per file** — enforced by pre-commit hook and CI
-- [ ] **New code in TypeScript** (`src/ts/`)
 - [ ] **One feature per commit**
 
 ---

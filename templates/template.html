@@ -1,184 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Babak Bandpey | AI Agent Development & Cybersecurity | cocode.dk</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babak Bandpey, AI-konsulent. cocode.dk</title>
+<meta name="description" content="Jeg hjælper virksomheder med at bruge AI, og jeg bygger selv det, jeg anbefaler. Se apps, spil, hjemmesider og AI-værktøjer fra cocode.dk.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cocode.dk/">
 
-  <meta name="description" content="Babak Bandpey builds AI agents and automated workflows for Danish SMEs. MCP server development, workflow automation, and cybersecurity compliance (GDPR, DORA, NIS2). Based in Copenhagen, Denmark.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://cocode.dk/">
-  <meta property="og:locale" content="da_DK">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Babak Bandpey | AI Agent Development & Cybersecurity | cocode.dk">
-  <meta property="og:description" content="AI agents and automated workflows for Danish SMEs. MCP server development, workflow automation, and cybersecurity compliance (GDPR, DORA, NIS2, EU AI Act).">
-  <meta property="og:image" content="https://cocode.dk/images/og-card-1200x630.png">
-  <meta property="og:image:alt" content="Babak Bandpey - AI Agent Development & Cybersecurity">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://cocode.dk/">
-  <meta property="og:site_name" content="cocode.dk">
+<meta property="og:locale" content="da_DK">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="cocode.dk">
+<meta property="og:url" content="https://cocode.dk/">
+<meta property="og:title" content="Babak Bandpey, AI-konsulent">
+<meta property="og:description" content="Jeg hjælper virksomheder med at bruge AI, og jeg bygger selv det, jeg anbefaler.">
+<meta property="og:image" content="https://cocode.dk/images/share-atelier-1200x630.png">
+<meta property="og:image:alt" content="Babak Bandpey, AI-konsulent. cocode.dk">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Babak Bandpey | AI Agent Development & Cybersecurity | cocode.dk">
-  <meta name="twitter:description" content="AI agents and automated workflows for Danish SMEs. Secure and compliant from day one.">
-  <meta name="twitter:image" content="https://cocode.dk/images/og-card-1200x630.png">
-  <meta name="twitter:image:alt" content="Babak Bandpey — AI agents that are secure and compliant from day one. Copenhagen.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<meta name="theme-color" content="#ECE2CF">
 
-  <!-- Keywords (EN + DA) -->
-  <meta name="keywords" content="AI agent development Denmark, AI automation consultant Copenhagen, MCP server development, AI workflow automation Danish SME, AI compliance consultant Denmark, agentic AI consulting Europe, AI agent udvikling Danmark, AI automatisering konsulent K\u00f8benhavn, AI workflow automatisering, AI compliance konsulent Danmark, agentic AI r\u00e5dgivning, cybersecurity audit Denmark, GDPR compliance, DORA, NIS2, EU AI Act, ISO27001">
+<!-- In the head, not deferred: the no-JavaScript layout must never flash before the real one. -->
+<script>document.documentElement.classList.add('js');</script>
 
-  <!-- Hreflang Tags -->
-  <link rel="alternate" hreflang="en" href="https://cocode.dk/#en">
-  <link rel="alternate" hreflang="da" href="https://cocode.dk/#da">
+<!-- The order is the cascade: tokens and type, the dock, the page, the wider layouts, then the slide. -->
+<link rel="preload" href="fonts/ibarra-real-nova.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ysabeau-office.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=2.0.0">
+<link rel="stylesheet" href="css/base.css?v=2.0.0">
+<link rel="stylesheet" href="css/dock.css?v=2.0.0">
+<link rel="stylesheet" href="css/page.css?v=2.0.0">
+<link rel="stylesheet" href="css/wide.css?v=2.0.0">
+<link rel="stylesheet" href="css/slide.css?v=2.0.0">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-
-  <!-- Web fonts: IBM Plex Sans + Mono (see docs/optimize-presence-on-web/design/fonts.md) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-
-  <!-- External CSS — colors.css first (tokens), then styles.css (legacy),
-       then foundation.css (overrides body to sans + reduced-motion), then components. -->
-  <link rel="stylesheet" href="css/colors.css?v=1.1.0">
-  <link rel="stylesheet" href="css/styles.css?v=1.0.2">
-  <link rel="stylesheet" href="css/foundation.css?v=1.0.0">
-  <link rel="stylesheet" href="css/backgrounds.css?v=1.0.0">
-  <link rel="stylesheet" href="css/glassmorphism.css?v=1.0.0">
-  <link rel="stylesheet" href="css/hero.css?v=1.0.0">
-  <link rel="stylesheet" href="css/service-cards.css?v=1.0.0">
-  <link rel="stylesheet" href="css/portfolio-cards.css?v=1.0.0">
-  <link rel="stylesheet" href="css/campaign.css?v=1.0.0">
-  <link rel="stylesheet" href="css/fits-showcase.css?v=1.0.0">
-  <link rel="stylesheet" href="css/skills-section.css?v=1.0.0">
-  <link rel="stylesheet" href="css/activity-feed.css?v=1.0.0">
-  <link rel="stylesheet" href="css/modal-links.css?v=1.0.0">
-  <link rel="stylesheet" href="css/float-badges.css?v=1.0.0">
-  <link rel="stylesheet" href="css/footer-lang.css?v=1.0.0">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["ProfessionalService", "ConsultingBusiness"],
-    "name": "Babak Bandpey | cocode.dk",
-    "image": "https://cocode.dk/logo.png",
-    "@id": "https://cocode.dk",
-    "url": "https://cocode.dk",
-    "telephone": "+4553737514",
-    "priceRange": "$$$",
-    "address": {"@type": "PostalAddress", "streetAddress": "Magistervej 54", "addressLocality": "Copenhagen", "postalCode": "2400", "addressCountry": "DK"},
-    "geo": {"@type": "GeoCoordinates", "latitude": 55.676098, "longitude": 12.568337},
-    "knowsAbout": ["AI Agent Development", "Model Context Protocol (MCP)", "AI Workflow Automation", "Cybersecurity Compliance", "GDPR", "DORA", "NIS2", "EU AI Act", "ISO27001", "ISO 42001", "Neo4j Graph Databases", "Python", "Django", "Go", "TypeScript", "Kotlin"],
-    "sameAs": ["https://linkedin.com/in/babakbandpey", "https://github.com/cocodedk", "https://cocodedk.github.io/cv-generator/", "https://fits.dk"]
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["ProfessionalService", "ConsultingBusiness"],
+  "@id": "https://cocode.dk",
+  "name": "Babak Bandpey | cocode.dk",
+  "description": "AI-konsulent. Rådgivning om AI, AI-agenter der udfører rigtigt arbejde, og automatisering.",
+  "url": "https://cocode.dk",
+  "image": "https://cocode.dk/images/share-atelier-1200x630.png",
+  "email": "bb@cocode.dk",
+  "telephone": "+4553737514",
+  "address": {"@type": "PostalAddress", "streetAddress": "Magistervej 54", "addressLocality": "Copenhagen", "postalCode": "2400", "addressCountry": "DK"},
+  "geo": {"@type": "GeoCoordinates", "latitude": 55.676098, "longitude": 12.568337},
+  "founder": {"@type": "Person", "name": "Babak Bandpey", "jobTitle": "AI-konsulent"},
+  "knowsAbout": ["AI consulting", "AI agents", "Workflow automation", "Model Context Protocol (MCP)", "Android apps", "Web development"],
+  "sameAs": ["https://linkedin.com/in/babakbandpey", "https://github.com/cocodedk", "https://cv.cocode.dk/", "https://fits.dk"]
+}
+</script>
 </head>
 <body>
-  <canvas id="mesh-bg" aria-hidden="true"></canvas>
-  <div class="header-container">
-    <div id="logo-container">
-      <img src="images/cocode-logo-hex.svg" alt="cocode.dk" id="site-logo" width="240" height="80" />
-    </div>
-  </div>
+<a class="skip" href="#indhold">Spring til indholdet</a>
 
-  <!-- Hero Section with Terminal Text -->
-  <section class="hero hero-fade-in">
-    <div class="hero-content">
-      <div class="hero-avatar">
-        <img src="images/babak-profile.png" alt="Babak Bandpey" />
-      </div>
-      <div class="terminal-text"></div>
-      <p class="hero-subtitle">AI Agent Development &bull; Workflow Automation &bull; Cybersecurity &bull; Denmark</p>
-      <div class="hero-stats" id="hero-stats">
-        <div class="hero-stat"><span class="hero-stat__number">25+</span><span class="hero-stat__label" data-stat="years">&Aring;rs Erfaring</span><span class="hero-stat__note"># aktiv i software siden 2000</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">50+</span><span class="hero-stat__label" data-stat="projects">Projekter Bygget</span><span class="hero-stat__note"># leveret i produktion</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">Top 2%</span><span class="hero-stat__label" data-stat="rank">Udvikler (Cursor AI)</span><span class="hero-stat__note"># Cursor AI-rangering, 2025</span></div>
-        <div class="hero-stat"><span class="hero-stat__number">3000+</span><span class="hero-stat__label" data-stat="fits">Timer p&aring; FITS</span><span class="hero-stat__note"># i produktion</span></div>
-      </div>
-      <div class="compliance-strip" aria-label="Compliance frameworks"><span class="compliance-strip__label">⬢ compliance:</span> <span class="compliance-strip__item">NIS2</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">DORA</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">GDPR</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">EU AI Act</span> <span class="compliance-strip__sep">·</span> <span class="compliance-strip__item">ISO 42001</span></div>
-      <h1 class="hero-headline" id="hero-headline">Jeg Bygger AI-Agenter Der Rent Faktisk Virker</h1>
-      <p class="hero-value-prop" id="hero-value-prop">Ikke demoer. Ikke prototyper. Produktionsagenter koblet direkte til jeres kalendere, opgavetavler og compliance-platforme. Sikkerhed og EU-compliance fra start, ikke tilf&oslash;jet bagefter.</p>
-      <button class="cta-button" id="cta-button" onclick="showContactModal()">Lad os snakke</button>
-      <button class="cta-button" id="cta-pricing-button" onclick="(function(){ if(window.CampaignOverlay&&typeof window.CampaignOverlay.show==='function'){ window.CampaignOverlay.show(true); } else { const n=(window.nodes||[]).find(x=>x.id==='Pricing'); if(n && window.showNodeDescriptionModal){ window.showNodeDescriptionModal(n);} else { showContactModal(); } } })()">Se ydelser</button>
-    </div>
-  </section>
+<!-- the plates: each featured work has its own inks -->
+<%= partials.sprite %>
+<%= partials.header %>
+<%= partials.dock %>
+<main id="indhold">
+<%= partials.hero %>
+<%= partials.works %>
+<%= partials.catalogue %>
+<%= partials.services %>
+<%= partials.about %>
+<%= partials.contact %>
+</main>
 
-  <!-- Service Cards Section -->
-  <section class="service-cards-section">
-    <div class="cards-grid" id="service-cards-container"></div>
-  </section>
-
-  <!-- FITS Flagship Showcase -->
-  <section class="fits-showcase-section">
-    <h2 class="fits-showcase-title" id="fits-showcase-title">FITS — Framework for IT Security</h2>
-    <div class="fits-showcase" id="fits-showcase-container"></div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section class="portfolio-section">
-    <h2 class="portfolio-title" id="portfolio-title">Projekter</h2>
-    <div class="portfolio-filters" id="portfolio-filters"></div>
-    <div class="portfolio-grid" id="portfolio-cards-container"></div>
-  </section>
-
-  <!-- Skills/Tech Section -->
-  <section class="skills-section">
-    <h2 class="skills-title" id="skills-title">Teknisk Ekspertise</h2>
-    <div class="skills-grid" id="skills-container"></div>
-  </section>
-
-  <!-- Om mig — asymmetric section, breaks the centred-stack pattern (brand.md B3) -->
-  <section class="about-section" id="about-section">
-    <div class="about-portrait"><img src="images/babak-profile.png" alt="Babak Bandpey" loading="lazy" /></div>
-    <div class="about-text">
-      <h2 class="about-title">$ whoami</h2>
-      <p class="about-bio">25+ år som softwareudvikler. Bygger AI-agenter og workflow-automatisering for danske SMV&#39;er — direkte koblet til kalendere, opgavetavler og compliance-platforme. Sikkerhed og EU-compliance fra start. Bag <strong>FITS — Framework for IT Security</strong>, en multi-tenant GRC-platform i produktion.</p>
-      <p class="about-meta"># Magistervej 54, 2400 K&oslash;benhavn NV · CVR 37219630</p>
-    </div>
-  </section>
-
-  <!-- Activity Feed Section -->
-  <section class="activity-feed-section">
-    <h2 class="activity-feed-title" id="activity-feed-title">Seneste fra GitHub</h2>
-    <div class="activity-feed-grid" id="activity-feed-container"></div>
-  </section>
-
-  <!-- Scripts are automatically injected by webpack -->
-  <div id="campaign-root" class="campaign-overlay" aria-hidden="true"></div>
-
-  <footer id="site-footer">
-    <div class="footer-contact" role="group" aria-label="Contact alternatives">
-      <button type="button" class="footer-contact-link" onclick="window.floatBadges &amp;&amp; window.floatBadges.showEmail(event)">Email</button>
-      <button type="button" class="footer-contact-link" onclick="window.floatBadges &amp;&amp; window.floatBadges.openWA()">WhatsApp</button>
-    </div>
-    <div class="footer-content">
-      <p class="footer-credit">Design + Implementation &lt;/cocode.dk&gt;</p>
-      <div class="footer-center-group">
-        <div id="languageSelector" class="footer-lang-menu" role="tablist" aria-label="Language selection">
-          <div class="lang-item" data-lang="en" onclick="setLanguage('en')" role="tab" aria-selected="false" tabindex="0" title="English" onkeydown="handleLanguageKeydown(event, 'en')">
-            <div class="flag-icon" aria-hidden="true">&#127468;&#127463;</div>
-          </div>
-          <div class="lang-item active" data-lang="da" onclick="setLanguage('da')" role="tab" aria-selected="true" tabindex="0" title="Danish" onkeydown="handleLanguageKeydown(event, 'da')">
-            <div class="flag-icon" aria-hidden="true">&#127465;&#127472;</div>
-          </div>
-        </div>
-        <a href="https://cocodedk.github.io/cv-generator/" target="_blank" rel="noopener noreferrer" class="footer-cv-link" id="footer-cv-link" aria-label="CV Generator">
-          <span class="cv-icon" aria-hidden="true">&#128196;</span>
-          <span id="cv-link-text">CV</span>
-        </a>
-      </div>
-      <p class="footer-copyright">&copy; 2026 Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
-    </div>
-  </footer>
+<%= partials.footer %>
 </body>
 </html>

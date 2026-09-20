@@ -1,0 +1,80 @@
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="ticks" width="40" height="20" patternUnits="userSpaceOnUse"><path d="M0 .5H13" stroke="#1D2130" stroke-width="2"/></pattern>
+    <pattern id="ticks-long" width="40" height="100" patternUnits="userSpaceOnUse"><path d="M0 .5H24" stroke="#1D2130" stroke-width="2.5"/></pattern>
+    <clipPath id="lp-left"><circle cx="250" cy="300" r="118"/></clipPath>
+  </defs>
+  <symbol id="art-weather" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#BCD5DD"/>
+    <g class="e-sun"><circle cx="385" cy="214" r="96" fill="#E8A63A"/>
+    <circle cx="392" cy="207" r="96" fill="none" stroke="#1D2130" stroke-width="2"/></g>
+    <g fill="#F6EFE0"><circle cx="215" cy="300" r="56"/><circle cx="292" cy="262" r="80"/><circle cx="374" cy="300" r="58"/><rect x="159" y="300" width="273" height="58" rx="29"/></g>
+    <g stroke="#27446B" stroke-width="7" stroke-linecap="round"><path d="M214 382l-16 40M264 382l-16 40M314 382l-16 40M364 382l-16 40"/></g>
+    <rect y="452" width="600" height="148" fill="#27446B"/>
+    <path d="M-10 480q25-13 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0" fill="none" stroke="#BCD5DD" stroke-width="2"/>
+    <path d="M-35 548q25-13 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0" fill="none" stroke="#BCD5DD" stroke-opacity=".5" stroke-width="2"/>
+  </symbol>
+  <symbol id="art-measure" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#E4BA4B"/>
+    <rect x="84" width="40" height="600" fill="#F6EFE0"/>
+    <rect x="84" width="40" height="600" fill="url(#ticks)"/><rect x="84" width="40" height="600" fill="url(#ticks-long)"/>
+    <rect x="236" y="150" width="128" height="128" rx="8" fill="#F6EFE0"/>
+    <rect x="243" y="143" width="128" height="128" rx="8" fill="none" stroke="#1D2130" stroke-width="2"/>
+    <g stroke="#1D2130" stroke-linecap="round"><path d="M254 278v22M346 278v22" stroke-width="8"/><path d="M232 322l-10 130M368 322l10 130" stroke-width="9"/></g>
+    <rect x="216" y="298" width="168" height="24" rx="4" fill="#1D2130"/>
+    <g stroke="#A5312B" stroke-width="3" fill="none"><path class="e-rule-v" d="M446 150v302M433 150h26M433 452h26"/><path class="e-rule-h" d="M216 497h168M216 485v24M384 485v24"/></g>
+    <g fill="#1D2130" font-family="Ysabeau Office, Gill Sans, sans-serif" font-size="27" font-weight="500"><text x="464" y="310">86 cm</text><text x="300" y="484" text-anchor="middle">45 cm</text></g>
+  </symbol>
+  <symbol id="art-swan" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#163C35"/>
+    <circle cx="212" cy="228" r="112" fill="#1F4D43"/>
+    <!-- everything on the water sits 6 units low, so the head clears the top edge when a short phone crops the plate wide -->
+    <g transform="translate(0 6)">
+    <!-- the reflection first, then bars of water laid over it so it thins out as it sinks -->
+    <g class="e-swan"><g transform="translate(300 400) scale(1.1) translate(-300 -396)"><g transform="matrix(1 0 0 -1 0 792)">
+      <path fill="#2A6556" d="M140 310C150 352 180 388 214 396L392 396C420 384 432 350 410 322 350 296 214 342 140 310Z"/>
+      <path fill="none" stroke="#2A6556" stroke-width="26" stroke-linecap="round" d="M400 346C440 300 366 268 378 222 386 190 428 182 440 214"/>
+    </g></g></g>
+    <g fill="#163C35"><rect y="400" width="600" height="4"/><rect y="418" width="600" height="6"/><rect y="436" width="600" height="9"/><rect y="455" width="600" height="13"/><rect y="476" width="600" height="18"/><rect y="500" width="600" height="24"/><rect y="528" width="600" height="72"/></g>
+    <path d="M84 452h58M462 446h74M124 510h46M478 516h52" stroke="#CFE0D3" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+    <!-- the requirements along the waterline: five behind the swan are met, two ahead are still open -->
+    <g fill="#E8A63A"><circle cx="55" cy="400" r="6.5"/><circle cx="85" cy="400" r="6.5"/><circle cx="115" cy="400" r="6.5"/><circle cx="145" cy="400" r="6.5"/><circle cx="175" cy="400" r="6.5"/></g>
+    <g fill="none" stroke="#E8A63A" stroke-width="2.5"><circle cx="462" cy="400" r="6.5"/><circle cx="496" cy="400" r="6.5"/></g>
+    <g class="e-swan"><g transform="translate(300 400) scale(1.1) translate(-300 -396)">
+      <path fill="#F6EFE0" d="M140 310C150 352 180 388 214 396L392 396C420 384 432 350 410 322 350 296 214 342 140 310Z"/>
+      <path fill="none" stroke="#F6EFE0" stroke-width="26" stroke-linecap="round" d="M400 346C440 300 366 268 378 222 386 190 428 182 440 214"/>
+      <circle cx="440" cy="214" r="17" fill="#F6EFE0"/>
+      <path d="M452 203L498 238 443 230Z" fill="#E8A63A"/>
+      <circle cx="455" cy="205" r="6.5" fill="#1D2130"/><circle cx="442" cy="209" r="2.6" fill="#1D2130"/>
+      <path fill="#DFCFAE" d="M384 350C330 282 236 262 170 296 214 340 300 378 384 350Z"/>
+      <path fill="none" stroke="#CFE0D3" stroke-opacity=".6" stroke-width="2" d="M391 343C337 275 243 255 177 289 221 333 307 371 391 343Z"/>
+    </g></g>
+    </g>
+  </symbol>
+  <symbol id="art-parvaz" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#1E2A5E"/>
+    <circle cx="462" cy="140" r="25" fill="#F6EFE0"/><circle cx="473" cy="132" r="23" fill="#1E2A5E"/>
+    <path d="M96 520C170 450 236 350 322 224" fill="none" stroke="#E8A63A" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 14"/>
+    <g fill="#3A4A8C"><rect x="72" y="262" width="24" height="338"/><rect x="129" y="262" width="24" height="338"/><rect x="186" y="262" width="24" height="338"/><rect x="243" y="262" width="24" height="338"/><rect x="300" y="262" width="24" height="338"/><rect x="357" y="262" width="24" height="338"/><rect x="414" y="262" width="24" height="338"/><rect x="471" y="262" width="24" height="338"/><rect x="528" y="262" width="24" height="338"/></g>
+    <rect x="40" y="262" width="540" height="10" fill="#3A4A8C"/>
+    <g class="e-bird"><path transform="translate(356 176) rotate(-34) scale(.98)" fill="#E8A63A" d="M62 0C52-7 40-9 28-8 24-40 0-70-40-90c22 28 30 56 32 82-22 0-52-4-88-14 16 12 26 18 34 22-8 4-18 10-34 22 36-10 66-14 88-14-2 26-10 54-32 82C0 70 24 40 28 8c12 1 24-1 34-8z"/></g>
+  </symbol>
+  <symbol id="art-mail" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#A2322C"/>
+    <path d="M150 282L300 172l150 110z" fill="#DFCFAE"/>
+    <rect x="150" y="282" width="300" height="190" fill="#C9B78F"/>
+    <g class="e-letter"><rect x="186" y="128" width="228" height="280" fill="#FBF6EA"/>
+    <g stroke="#1D2130" stroke-width="5" stroke-linecap="round"><path d="M246 178h140M246 216h140M246 254h92"/></g>
+    <g fill="none" stroke="#C07F14" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M206 178l7 8 13-17M206 216l7 8 13-17M206 254l7 8 13-17"/></g></g>
+    <path d="M150 282l150 106 150-106v190H150z" fill="#F6EFE0"/>
+    <path d="M150 282l150 106 150-106" fill="none" stroke="#1D2130" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M150 472l112-100M450 472L338 372" stroke="#1D2130" stroke-opacity=".5" stroke-width="2"/>
+  </symbol>
+  <symbol id="art-therapy" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#7F9A8B"/>
+    <circle class="e-a" cx="250" cy="300" r="118" fill="#F6EFE0"/>
+    <circle class="e-b" cx="350" cy="300" r="118" fill="#C9705B"/>
+    <g class="e-a"><g clip-path="url(#lp-left)"><circle class="e-lens" cx="350" cy="300" r="118" fill="#EBB9A3"/></g></g>
+    <circle class="e-b" cx="357" cy="293" r="118" fill="none" stroke="#1D2130" stroke-width="2"/>
+  </symbol>
+</svg>

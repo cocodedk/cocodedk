@@ -1,31 +1,35 @@
 # cocode.dk - Babak Bandpey
 
-> AI agent development, workflow automation, and cybersecurity compliance for Danish SMEs. Based in Copenhagen, Denmark. Every AI agent built is secure and compliant from day one.
+> Babak Bandpey is an AI consultant in Copenhagen, Denmark. He helps companies put AI to work, and he builds what he recommends himself. cocode.dk is one person; the site shows what he has built.
 
-Babak Bandpey connects AI models to real business systems — task management, calendars, codebases, compliance platforms — so businesses can automate repetitive knowledge work. 26 years of software development, 5 years of cybersecurity compliance experience (CIS18, DORA, NIS2, ISO27001, EU AI Act).
+Services: advice on where AI is worth using, AI agents that carry out real work, and automation of repetitive tasks. The site is in Danish.
 
-## Services
+## Featured work
 
-- [AI Agent Development](https://cocode.dk/#ai-integration): Building production-ready AI agents that integrate with business systems via the Model Context Protocol (MCP). Custom agent pipelines using Claude, OpenAI, and other LLM platforms.
-- [MCP Server Development](https://cocode.dk/#mcp-development): Creating Model Context Protocol servers that connect AI assistants to business tools, databases, and APIs.
-- [AI Workflow Automation](https://cocode.dk/#fullstack-innovation): Connecting AI models to business tools to automate document processing, task management, scheduling, and knowledge work.
-- [Cybersecurity & AI Governance](https://cocode.dk/#cybersecurity-audit): Expert audits for CIS18, DORA, NIS2, ISO27001 compliance. AI-specific governance and EU AI Act compliance.
+- [SwanReady](https://sr.cocode.dk): His own product. An AI agent that helps manufacturers apply for the Nordic Swan Ecolabel: it finds the product category, walks through the requirements one at a time, tracks the documentation and writes the application summary. [Two-minute story](https://swanready.cocode.dk).
+- [Weather](https://weather.cocode.dk): Android weather app for any location.
+- [Metrologist](https://measure.cocode.dk): Android app that measures real objects from a single photo.
+- [Parvaz](https://parvaz.cocode.dk): Android app for getting around internet censorship in Iran.
+- [claude-email](https://claude-email.cocode.dk): Hand a task to an AI agent by e-mail; it replies when the work is done.
+- [lpterapi.dk](https://lpterapi.dk): Website for a couples therapist.
 
-## Projects
+## More apps
 
-- [Planner Task Creator MCP](https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP): MCP server connecting AI assistants to Microsoft Teams Planner. OAuth authentication, task management, smart plan/bucket resolution. Python, Node.js, MCP.
-- [Calendar Consolidator MCP](https://github.com/cocodedk/calendar-consolidator-mcp): Consolidates multiple calendars (Microsoft 365, iCloud/CalDAV) into a unified view. One-way sync, delta updates, web UI. Python, MCP, CalDAV.
-- [CodeScan](https://github.com/cocodedk/codescan): Static code analyzer that builds a Neo4j graph database of codebases. AST-based parsing, call graph construction, test coverage detection. Python, Neo4j, MCP.
-- [FITS.DK](https://fits.dk): Full GRC platform for governance, risk, and compliance. AI-powered gap assessments, RAG conversations, automated project planning. Supports ISO27001, CIS v8, HIPAA, GDPR, NIST. Django, Neo4j, Redis.
+- [Chess Puzzles](https://chess.cocode.dk), [Battleship](https://battleship.cocode.dk), [BabakCast](https://cast.cocode.dk), [BabakPlayer](https://player.cocode.dk), [Link QR Wallet](https://qr.cocode.dk), [LifeMeter](https://lifemeter.cocode.dk), [Calendar](https://calendar.cocode.dk), [TMS Measurement](https://tms.cocode.dk)
+
+## Web, games and TV
+
+- [Danish-Persian lessons](https://persisk.cocode.dk), [Danish-Japanese lessons](https://japansk.cocode.dk), [7kasif](https://7kasif.cocode.dk), [Dune](https://dune.cocode.dk), [TIE Fighter](https://tiefighter.cocode.dk), [Reverse Prime Plot](https://primes.cocode.dk), [Copenhagen Weather for Samsung TV](https://tv-vejr.cocode.dk), [Night Gallery](https://nightgallery.cocode.dk)
+
+## Client sites and AI tools
+
+- [Venus Høreklinik](https://klinikvenus.dk), [Nick Autoteknik](https://nick-autoteknik.dk), Klinik for Manuel Terapi, Unity Foundation
+- [graph-loop](https://graph-loop.cocode.dk): unattended AI agent loops. MCP servers for calendars, Teams Planner and memory. [FITS.DK](https://fits.dk): a compliance platform, more than 3000 hours of work.
 
 ## Contact
 
-- [LinkedIn](https://linkedin.com/in/babakbandpey): Professional profile
-- [GitHub](https://github.com/cocodedk): Open source projects and MCP servers
-- [CV](https://cocodedk.github.io/cv-generator/): Full curriculum vitae
 - [Email](mailto:bb@cocode.dk): bb@cocode.dk
-- [Phone](tel:+4553737514): +45 53737514
-
-## Optional
-
-- [Unity Foundation](https://cocode.dk/#unity-foundation): Community involvement — charity organization dedicated to positive social impact through technology
+- [Phone](tel:+4553737514): +45 53 73 75 14
+- [LinkedIn](https://linkedin.com/in/babakbandpey)
+- [GitHub](https://github.com/cocodedk)
+- [CV](https://cv.cocode.dk/)
