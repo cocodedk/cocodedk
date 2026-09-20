@@ -53,7 +53,7 @@ cocodedk/
 - No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
 - WebMCP (`js/webmcp.js`) offers five tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
   `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
-  copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`); check
+  copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`, the old alias is gone since Chrome 153); check
   https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
   `google-chrome-stable --enable-features=WebMCP,WebMCPTesting --enable-blink-features=WebMCP,WebMCPTesting`,
   then `await document.modelContext.getTools()` in the console. Real visitors get it only with an origin-trial

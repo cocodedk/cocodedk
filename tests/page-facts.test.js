@@ -1,4 +1,4 @@
-import { readWorks, readServices, readContact, readPlaces } from '../js/page-facts';
+import { readWorks, readServices, readContact, readPlaces, readIntro } from '../js/page-facts';
 import { loadPage } from './helpers/page';
 
 const work = (name) => readWorks().find((w) => w.name === name);
@@ -7,11 +7,11 @@ describe('what the page says about itself', () => {
   beforeEach(loadPage);
 
   test('should list the six featured works first', () => {
-    expect(readWorks().slice(0, 6).every((w) => w.featured)).toBe(true);
+    expect(readWorks().map((w) => w.featured).join('').startsWith('true'.repeat(6) + 'false')).toBe(true);
   });
 
-  test('should list the catalogue after them', () => {
-    expect(readWorks().length).toBeGreaterThan(20);
+  test('should list the whole catalogue after them', () => {
+    expect(readWorks().slice(6).filter((w) => !w.featured).length).toBe(document.querySelectorAll('.index__list > li').length);
   });
 
   test('should give a featured work its kind', () => {
@@ -42,13 +42,16 @@ describe('what the page says about itself', () => {
     expect(work('claude-email').url).toBeNull();
   });
 
+  test('should introduce Babak the way the page does', () => {
+    expect(readIntro()).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg bygger selv det, jeg anbefaler.');
+  });
+
   test('should list the three services', () => {
     expect(readServices().map((s) => s.name)).toEqual(['Rådgivning', 'AI-agenter', 'Automatisering']);
   });
 
   test('should read the contact details', () => {
     expect(readContact()).toEqual({
-      name: 'Babak Bandpey',
       email: 'bb@cocode.dk',
       phone: '+4553737514',
       linkedin: 'https://linkedin.com/in/babakbandpey',

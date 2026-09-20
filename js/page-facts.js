@@ -11,7 +11,8 @@ function featured(scene) {
     name: text(scene.querySelector('.scene__title')),
     kind: text(scene.querySelector('.scene__meta .sc')),
     description: [text(scene.querySelector('.scene__lead')), text(scene.querySelector('.scene__desc'))].filter(Boolean).join(' '),
-    url: site(scene.querySelector('a.scene__cta, a.work__link')),
+    // The button, when a work has one, is its main site; the plain link is the fallback.
+    url: site(scene.querySelector('a.scene__cta') || scene.querySelector('a.work__link')),
     featured: true,
   };
 }
@@ -48,11 +49,16 @@ export function readContact() {
   };
   const strip = (value, prefix) => (value ? value.slice(prefix.length) : null);
   return {
-    name: 'Babak Bandpey',
     email: strip(href('mailto:'), 'mailto:'),
     phone: strip(href('tel:'), 'tel:'),
     linkedin: href('https://linkedin.com'),
   };
+}
+
+// Who this is, in the page's own words: the line above the title, then the title's two sentences.
+export function readIntro() {
+  const title = all('#titel > span').map(text).join(' ') || text(document.getElementById('titel'));
+  return [text(document.querySelector('.hero .sc')), title].filter(Boolean).join('. ');
 }
 
 // Everywhere on the page an agent can send the visitor: the sections, then the featured works.
