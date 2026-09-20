@@ -4,7 +4,7 @@
 //
 // Spec: https://webmachinelearning.github.io/webmcp/ (draft). The shape has already moved once, which
 // is why tests/webmcp.test.js also feeds it registries that misbehave, instead of trusting one tidy mock.
-import { readWorks, readServices, readContact, readPlaces, readIntro } from './page-facts';
+import { readWorks, readServices, readContact, readPlaces, readIntro, readAbout } from './page-facts';
 
 // Mail apps cut a mailto: URL short somewhere past a few thousand characters, and the agent's text is
 // not ours to trust with the visitor's address bar. These keep the draft a note, not a document.
@@ -41,6 +41,14 @@ function tools(openUrl) {
       inputSchema: { type: 'object', properties: {} },
       annotations: READ_ONLY,
       execute: async () => ({ who: readIntro(), services: readServices() }),
+    },
+    {
+      name: 'get_about',
+      title: 'Who Babak is',
+      description: 'Babak Bandpey in his own words (Danish): what his trade is, how long he has done it, why he recommends what he recommends, and who a client actually talks to. Also his city and the languages he works in. Use it when someone asks who is behind cocode.dk or why they should pick him.',
+      inputSchema: { type: 'object', properties: {} },
+      annotations: READ_ONLY,
+      execute: async () => readAbout(),
     },
     {
       name: 'get_contact',

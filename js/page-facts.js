@@ -61,6 +61,19 @@ export function readIntro() {
   return [text(document.querySelector('.hero .sc')), title].filter(Boolean).join('. ');
 }
 
+// "Om mig": the letter, paragraph by paragraph, and the notes in its margin. The notes come back as a
+// list because nothing in the markup says which is the city and which the languages; naming them by
+// position would break silently the day a line is added.
+export function readAbout() {
+  const section = document.getElementById('om');
+  if (!section) return { heading: '', paragraphs: [], notes: [] };
+  return {
+    heading: text(section.querySelector('h2')),
+    paragraphs: all('.letter p', section).map(text),
+    notes: all('.margin-notes p', section).map(text),
+  };
+}
+
 // Everywhere on the page an agent can send the visitor: the sections, then the featured works.
 export function readPlaces() {
   const sections = all('section[id]').map((s) => s.id);
