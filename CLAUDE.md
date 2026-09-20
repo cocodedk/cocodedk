@@ -55,9 +55,9 @@ cocodedk/
   `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
   copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`, the old alias is gone since Chrome 153); check
   https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
-  `google-chrome-stable --enable-features=WebMCP,WebMCPTesting --enable-blink-features=WebMCP,WebMCPTesting`,
+  `google-chrome-stable --enable-features=WebMCP` (or `~/.claude-shared/skills/webmcp/scripts/probe.py https://cocode.dk/`),
   then `await document.modelContext.getTools()` in the console. Real visitors get it only with an origin-trial
-  token in `templates/template.html` (trial ends 2026-11-16) or once Chrome ships it by default
+  token in `templates/template.html` (trial ends 2026-11-17) or once Chrome ships it by default
 
 ---
 
