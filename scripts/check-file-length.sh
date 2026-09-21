@@ -21,6 +21,9 @@ fi
 for ext in $EXTENSIONS; do
   for file in $(echo "$FILES" | grep "\.$ext$"); do
     [ -f "$file" ] || continue
+    # design/ holds single-file mockups kept as the record of an approved design; they are
+    # not built or deployed, and splitting them would only make them harder to open.
+    case "$file" in design/*) continue ;; esac
     lines=$(wc -l < "$file")
     if [ "$lines" -gt "$MAX_LINES" ]; then
       echo "FAIL: $file has $lines lines (max $MAX_LINES)"

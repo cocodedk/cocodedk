@@ -41,7 +41,8 @@ cocodedk/
 ├── fonts/               ← self-hosted woff2 (no font CDN: visitors' addresses stay here)
 ├── images/              ← favicons and the share picture
 ├── tests/               ← Jest (jsdom)
-├── design/mockups/      ← the design brief; mockups beside it stay untracked (single files, over the line limit)
+├── design/mockups/      ← the brief and the single-file mockups (atelier-slide.html is the approved one); not built, not deployed,
+│                          exempt from the 200-line check
 ├── dist/                ← build output (gitignored)
 └── webpack.config.js    ← one entry; reads templates/partials/ into the template
 ```

@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Babak Bandpey, AI-konsulent | cocode.dk</title>
+<meta name="description" content="Babak Bandpey er AI-konsulent. Han hjælper virksomheder med at bruge AI, og han bygger selv det, han anbefaler.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Sofia+Sans:wght@400;500;600;700&family=Sofia+Sans+Extra+Condensed:wght@800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@900&text=%D9%BE%D8%B1%D9%88%D8%A7%D8%B2&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ─────────────────────────────────────────────── */
+:root{
+  --black:#000; --bone:#F1ECE2; --lapis:#1F35D9; --saffron:#FFB000; --pom:#A3112B;
+  --field:var(--black); --ink:var(--bone); --quiet:#B9B4AA;
+  --f-display:"Sofia Sans Extra Condensed","Arial Narrow",Impact,sans-serif;
+  --f-voice:"Bodoni Moda",Didot,"Bodoni 72",Georgia,serif;
+  --f-text:"Sofia Sans","Helvetica Neue",Arial,sans-serif;
+  --gutter:16px; --bar-h:72px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.76,0,.24,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+@media (min-width:700px){ :root{ --gutter:32px } }
+@media (min-width:1100px){ :root{ --gutter:56px; --bar-h:88px } }
+
+/* ── Base ───────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+html:has(dialog[open]){overflow:hidden}
+body{margin:0;background:var(--black);color:var(--bone);font:400 1.0625rem/1.5 var(--f-text);
+  overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,p,ul,dl,dd,dt{margin:0;padding:0} ul{list-style:none}
+a{color:inherit} svg{display:block}
+:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:fixed;left:var(--gutter);top:12px;z-index:60;padding:14px 18px;background:var(--bone);color:#000;
+  font-weight:600;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.anchor{display:block;height:0}
+
+.display{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.005em}
+.fit{display:inline-block;white-space:nowrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;
+  font:600 1.0625rem/1 var(--f-text);text-decoration:none;background:var(--saffron);color:#000;border:0;cursor:pointer;
+  transition:background-color .2s, color .2s}
+.btn:hover{background:var(--bone)}
+.btn--black{background:#000;color:var(--bone)} .btn--black:hover{background:var(--pom);color:var(--bone)}
+.textlink{display:inline-flex;align-items:center;min-height:48px;font-weight:500;
+  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.3em}
+.textlink:hover{text-decoration-thickness:3px}
+
+/* ── Bar ────────────────────────────────────────────────── */
+.bar{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--bar-h);padding:0 var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  --ink:var(--bone);--under:#000;color:var(--ink);transition:color .25s,background-color .25s}
+.bar[data-solid="black"]{background:#000}
+.bar[data-solid="saffron"]{background:var(--saffron)}
+.bar[data-tone="black"]{--ink:#000;--under:var(--bone)}
+.bar__mark{font:700 1.1875rem/1 var(--f-text);letter-spacing:-.01em;text-decoration:none;
+  display:inline-flex;align-items:center;min-height:48px}
+.bar__nav,.bar .lang,.bar .btn{display:none}
+.bar__end{display:flex;align-items:center;gap:20px}
+.menu-btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 18px;cursor:pointer;
+  font:600 1rem/1 var(--f-text);color:inherit;background:transparent;border:1.5px solid currentColor}
+.menu-btn i{position:relative;width:16px;height:8px;display:block}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;
+  transition:transform .45s var(--ease-io)}
+.menu-btn i::before{top:0} .menu-btn i::after{bottom:0}
+.menu-btn--close i::before{transform:translateY(3.25px) rotate(45deg)}
+.menu-btn--close i::after{transform:translateY(-3.25px) rotate(-45deg)}
+.lang{display:flex;align-items:center}
+.lang a{display:inline-grid;place-items:center;min-width:48px;min-height:48px;font-weight:600;text-decoration:none;opacity:.82}
+.lang a[aria-current]{opacity:1;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.35em}
+.lang a:hover{opacity:1}
+@media (min-width:900px){
+  .menu-btn--open{display:none}
+  .bar__nav{display:flex;gap:34px;margin-left:auto}
+  .bar__nav a{display:inline-flex;align-items:center;min-height:48px;font-weight:500;text-decoration:none;
+    background:linear-gradient(currentColor,currentColor) 0 72%/0 1.5px no-repeat;transition:background-size .35s var(--ease-out)}
+  .bar__nav a:hover{background-size:100% 1.5px}
+  .bar .lang{display:flex}
+  .bar .btn{display:inline-flex;min-height:48px;padding:0 24px;background:var(--ink);color:var(--under)}
+  .bar .btn:hover{background:var(--saffron);color:#000}
+}
+
+/* ── The reel: hero + scenes stack like cuts ────────────── */
+.scene{position:relative;min-height:100vh;min-height:100svh;background:var(--field);color:var(--ink);
+  overflow:clip;isolation:isolate;--enter:1;--cover:0}
+.scene::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:var(--grain),
+    radial-gradient(95% 70% at 12% 0%,rgba(255,255,255,var(--key,.15)),transparent 62%),
+    radial-gradient(120% 85% at 92% 112%,rgba(0,0,0,var(--fall,.4)),transparent 58%)}
+.scene__inner{min-height:inherit;height:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto auto;
+  padding:calc(var(--bar-h) + 8px) var(--gutter) 14px;transform-origin:50% 0}
+@media (min-height:700px){
+  .scene{position:sticky;top:0;height:clamp(640px,100svh,1100px);min-height:0}
+  .scene::after{content:"";position:absolute;inset:0;z-index:5;background:#000;pointer-events:none;
+    opacity:calc(var(--cover) * var(--dim,.55))}
+  .scene__inner{transform:scale(calc(1 - var(--cover) * .05))}
+}
+.scene--weather{--field:var(--lapis)}
+.scene--cast{--field:var(--pom);--key:.12}
+.scene--parvaz{--field:#000;--key:.13;--fall:0}
+.scene--metro{--field:var(--saffron);--ink:#000;--key:.3;--fall:.1}
+.scene--lp{--field:var(--bone);--ink:#000;--key:.5;--fall:.16}
+
+.scene__art{min-height:0;display:grid;place-items:center;padding:4px 0 10px}
+.emblem{height:100%;width:auto;max-width:100%;max-height:52svh;aspect-ratio:1}
+.scene__name{--fit-cap:.3;overflow:visible;transform:translateX(calc((1 - var(--enter)) * var(--dir,1) * 16%))}
+.scene__name .fit{font-size:26vw}
+.scene__copy{padding-top:10px;max-width:34rem}
+.scene__tag{font:italic 500 1.75rem/1.12 var(--f-voice);letter-spacing:-.005em}
+.scene__note{margin-top:10px;max-width:40ch}
+.scene__meta{margin-top:14px;padding-top:4px;border-top:1.5px solid currentColor;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;font-size:1rem}
+.scene__meta span{font-weight:500}
+
+/* emblem moves — each says what the thing does */
+.e-sun{transform:translate(calc((1 - var(--enter)) * -70px),calc((1 - var(--enter)) * 90px))}
+.e-sheet{transform:translate(calc((1 - var(--enter)) * -120px),calc((1 - var(--enter)) * -110px))}
+.e-rule{transform-box:fill-box;transform-origin:50% 50%;transform:scaleY(calc(.05 + var(--enter) * .95))}
+.e-a{transform:translateX(calc((1 - var(--enter)) * -70px))}
+.e-b{transform:translateX(calc((1 - var(--enter)) * 70px))}
+.emblem--parvaz{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-height:none;aspect-ratio:auto}
+.e-word{font:900 min(44vw,27svh)/1.42 "Vazirmatn",var(--f-text);color:var(--saffron);
+  transform:translateY(calc((1 - var(--enter)) * 58%))}
+.e-bars{position:relative;width:100%;height:min(24%,130px);
+  background:repeating-linear-gradient(90deg,var(--bone) 0 5px,transparent 5px 26px) left / 31% 100% no-repeat,
+    repeating-linear-gradient(270deg,var(--bone) 0 5px,transparent 5px 26px) right / 31% 100% no-repeat}
+
+@media (min-width:900px){
+  .scene__inner{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:minmax(0,1fr) auto auto;column-gap:24px;
+    padding-bottom:22px}
+  .scene__art{grid-column:6 / 13;grid-row:1;padding:0 0 4px;justify-items:end}
+  .emblem{max-height:60svh}
+  .scene__copy{grid-column:1 / 6;grid-row:1;align-self:end;padding:0 0 28px}
+  .scene__name,.scene__meta{grid-column:1 / -1}
+  .scene__name{--fit-cap:.31}
+  .scene__tag{font-size:clamp(2.25rem,3.3vw,3.25rem)}
+  .scene__note{margin-top:16px;font-size:1.1875rem}
+  .scene--flip .scene__art{grid-column:1 / 8;justify-items:start}
+  .scene--flip .scene__copy{grid-column:8 / 13}
+  .scene--flip .scene__name{text-align:right;--dir:-1}
+  .e-word{font-size:min(17vw,30svh)}
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero{--dim:0}
+.hero::before{background:none}
+.hero__spot{position:absolute;z-index:-1;width:118vw;aspect-ratio:1;right:-38vw;top:-6vw;
+  transform:scale(calc(1 + var(--cover) * 2.6));transform-origin:40% 60%}
+.hero__spot i{display:block;width:100%;height:100%;border-radius:50%;
+  background:var(--grain),radial-gradient(circle at 34% 30%,#3a52f5 0,#1f35d9 46%,#1527a8 100%)}
+.hero .scene__inner{grid-template-rows:minmax(0,1fr) auto auto;padding-bottom:22px}
+.hero__title{grid-row:2;--fit-cap:.118}
+.hero__title .fit{font-size:24.6vw}
+.hero__title .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em 0 .1em;margin:-.2em 0 -.1em}
+.hero__title .w > span{display:inline-block}
+.hero__foot{grid-row:3;padding-top:20px;display:grid;gap:18px}
+.hero__lede{font:500 1.25rem/1.4 var(--f-voice);max-width:36ch}
+.hero__actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+@media (min-width:700px){
+  .hero__spot{width:min(78vw,96svh);right:-6vw;top:auto;bottom:16svh}
+  .hero__title{--fit-cap:.235}
+  .hero__title .fit{font-size:14.6vw}
+  .br-m{display:none}
+  .hero__foot{grid-template-columns:minmax(0,38rem) auto;justify-content:space-between;align-items:end;padding-top:28px}
+  .hero__lede{font-size:1.5rem}
+}
+@media (min-width:900px){
+  .hero .scene__inner{grid-template-columns:minmax(0,1fr)}
+  .hero__spot{width:min(62vw,98svh);right:4vw;bottom:auto;top:9svh}
+}
+
+/* ── Ydelser ────────────────────────────────────────────── */
+.offer,.credits{position:relative;z-index:1;background:#000;color:var(--bone);--ink:var(--bone)}
+.offer{padding:96px var(--gutter) 40px}
+.offer__h{font:italic 500 2rem/1.1 var(--f-voice)}
+.offer__list{margin-top:36px}
+.offer__list li{padding:26px 0 30px;border-top:1.5px solid rgba(241,236,226,.4)}
+.offer__word{--fit-cap:.2}
+.offer__word .fit{font-size:22vw}
+.offer__list p{margin-top:12px;max-width:34ch;font:500 1.25rem/1.4 var(--f-voice)}
+@media (min-width:900px){
+  .offer{padding:160px var(--gutter) 80px}
+  .offer__h{font-size:3.25rem}
+  .offer__list{margin-top:72px}
+  .offer__list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,23rem);gap:48px;align-items:end;padding:30px 0 38px}
+  .offer__word .fit{font-size:min(13.4vw,210px)}
+  .offer__list p{margin:0 0 .5em;font-size:1.4375rem}
+}
+
+/* ── Rulletekster / indeks ──────────────────────────────── */
+.credits{padding:72px var(--gutter) 96px}
+.credits__h{--fit-cap:.2}
+.credits__h .fit{font-size:22vw}
+.credits__lede{margin-top:14px;max-width:30ch;font:italic 500 1.4375rem/1.3 var(--f-voice)}
+.roll{margin-top:48px;display:grid;gap:40px}
+.roll__group{display:grid;grid-template-columns:92px minmax(0,1fr);column-gap:20px}
+.roll dt{text-align:right;color:var(--quiet);font-size:.9375rem;line-height:1.3;padding-top:15px}
+.roll li + li{border-top:1px solid rgba(241,236,226,.2)}
+.roll__item{display:grid;padding:12px 0;min-height:48px;align-content:center;text-decoration:none}
+.roll__name{font-weight:600;font-size:1.125rem;line-height:1.3}
+.roll__what{font:italic 400 1.0625rem/1.35 var(--f-voice);color:var(--quiet)}
+.roll__url{font-size:.9375rem;color:var(--quiet);text-decoration:underline;text-underline-offset:.25em;margin-top:2px}
+a.roll__item:hover .roll__name{color:var(--saffron)} a.roll__item:hover .roll__url{color:var(--bone)}
+@media (min-width:900px){
+  .credits{padding:120px var(--gutter) 160px}
+  .credits__h .fit{font-size:min(13.4vw,210px)}
+  .credits__lede{font-size:1.75rem;margin-top:20px}
+  .roll{margin-top:96px;gap:64px}
+  .roll__group{grid-template-columns:minmax(0,36%) minmax(0,1fr);column-gap:40px}
+  .roll dt{font-size:1.0625rem;padding-top:16px}
+  .roll__item{grid-template-columns:minmax(0,15rem) minmax(0,1fr) auto;column-gap:28px;align-items:baseline;padding:13px 0}
+  .roll__name{font-size:1.25rem} .roll__what{font-size:1.1875rem} .roll__url{margin:0}
+  .roll dd{max-width:52rem}
+}
+
+/* ── Sidste kort ────────────────────────────────────────── */
+.final{position:relative;z-index:1;background:var(--saffron);color:#000;--ink:#000;isolation:isolate;
+  padding:88px var(--gutter) 40px;min-height:100svh;display:grid;grid-template-rows:minmax(0,1fr) auto auto auto;overflow:clip}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--grain),radial-gradient(95% 70% at 12% 0%,rgba(255,255,255,.3),transparent 62%),
+    radial-gradient(120% 85% at 92% 112%,rgba(0,0,0,.1),transparent 58%)}
+.final__h{grid-row:2;--fit-cap:.24}
+.final__h .fit{font-size:22vw}
+.final__h .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em 0 .1em;margin:-.2em 0 -.1em}
+.final__h .w > span{display:inline-block}
+.final__lede{grid-row:3;margin-top:18px;max-width:30ch;font:500 1.375rem/1.36 var(--f-voice)}
+.final__actions{grid-row:4;margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 28px}
+.final__actions .btn{min-height:64px;padding:0 40px;font-size:1.1875rem;width:100%}
+@media (min-width:700px){
+  .final{padding-top:140px;min-height:min(100svh,1100px)}
+  .final__h{--fit-cap:.42}
+  .final__lede{font-size:1.875rem;margin-top:28px}
+  .final__actions{margin-top:40px} .final__actions .btn{width:auto}
+}
+.foot{position:relative;z-index:1;background:#000;color:var(--quiet);--ink:var(--bone);padding:28px var(--gutter) 36px;
+  display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;align-items:center;font-size:.9375rem}
+.foot .lang{color:var(--bone)}
+
+/* ── Menu: the spot takes over the screen ───────────────── */
+.menu{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;padding:0;
+  background:var(--lapis);color:var(--bone);--ink:var(--bone);overflow-y:auto;overscroll-behavior:contain;
+  --origin:calc(100% - var(--gutter) - 52px) calc(var(--bar-h) / 2)}
+.menu::backdrop{background:transparent}
+.menu[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.menu::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:var(--grain),radial-gradient(95% 60% at 100% 0%,rgba(255,255,255,.16),transparent 60%),
+    radial-gradient(120% 70% at 0% 110%,rgba(0,0,0,.42),transparent 60%)}
+.menu > *{position:relative}
+.menu__top{height:var(--bar-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between}
+.menu nav{align-self:end}
+.menu__list{padding:8px var(--gutter) 0}
+.menu__list li + li{border-top:1.5px solid rgba(241,236,226,.34)}
+.menu__list a{display:grid;gap:2px;padding:14px 0 16px;min-height:96px;text-decoration:none}
+.menu__word{display:block;overflow:hidden;padding-top:.16em;margin-top:-.16em;
+  font:900 clamp(3.5rem,17.5vw,5.25rem)/.9 var(--f-display);text-transform:uppercase}
+.menu__word > span{display:block}
+.menu__note{font:italic 400 1.1875rem/1.2 var(--f-voice);color:#DAD6FF}
+.menu__foot{padding:18px var(--gutter) max(20px,env(safe-area-inset-bottom));display:grid;gap:14px}
+.menu__foot .lang a{min-width:0;padding:0 18px 0 0;margin-right:10px}
+.menu__foot .btn{width:100%;min-height:64px;font-size:1.1875rem}
+
+/* ── The serif, kept sturdy ─────────────────────────────────
+   Bodoni's hairlines (and its hyphen) vanish on 1x screens at text sizes. A low optical
+   size keeps them. This sits after every `font:` shorthand, because the shorthand resets it. */
+.hero__lede,.offer__list p,.final__lede,.roll__what,.menu__note{font-optical-sizing:none;font-variation-settings:"opsz" 8;text-wrap:pretty}
+.scene__tag,.offer__h,.credits__lede{font-optical-sizing:none;font-variation-settings:"opsz" 14;text-wrap:balance}
+.final__lede{text-wrap:balance}
+
+/* ── Motion (only when welcome) ─────────────────────────── */
+@keyframes rise{from{transform:translateY(112%)}to{transform:none}}
+@keyframes iris{from{transform:scale(0)}to{transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes iris-in{from{clip-path:circle(0 at var(--origin))}to{clip-path:circle(150vmax at var(--origin))}}
+@keyframes iris-out{from{clip-path:circle(150vmax at var(--origin))}to{clip-path:circle(0 at var(--origin))}}
+@keyframes wipe{from{clip-path:inset(-10% 100% -10% 0)}to{clip-path:inset(-10% -2% -10% 0)}}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .hero__spot i{animation:iris 1.25s var(--ease-out) .05s both}
+  .hero__title .w > span{animation:rise 1s var(--ease-out) calc(.3s + var(--i) * .075s) both}
+  .hero__foot{animation:fade .9s ease 1.05s both}
+  .bar{animation:fade .8s ease .9s both}
+  .scene__name,.e-sun,.e-sheet,.e-rule,.e-a,.e-b,.e-word,.scene__inner,.hero__spot{will-change:transform}
+  .menu[open]{animation:iris-in .75s var(--ease-io) both}
+  .menu[open] .menu__word > span{animation:rise .85s var(--ease-out) calc(.2s + var(--i) * .07s) both}
+  .menu[open] .menu__note,.menu[open] .menu__foot{animation:fade .6s ease calc(.45s + var(--i,3) * .07s) both}
+  .menu.is-closing{animation:iris-out .5s var(--ease-io) both}
+  .js .rv-wipe{clip-path:inset(-10% 100% -10% 0)}
+  .js .rv-wipe.is-in{animation:wipe 1.1s var(--ease-io) both}
+  .js .rv-after{opacity:0;transition:opacity .8s ease .5s}
+  .js .is-in ~ .rv-after,.js .rv-after.is-in{opacity:1}
+  .js .final__h .w > span{transform:translateY(112%)}
+  .js .final__h.is-in .w > span{animation:rise 1s var(--ease-out) calc(var(--i) * .09s) both}
+}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#indhold">Spring til indhold</a>
+
+<header class="bar" data-tone="bone">
+  <a class="bar__mark" href="#top" aria-label="cocode.dk, til toppen af siden">cocode.dk</a>
+  <nav class="bar__nav" aria-label="Primær">
+    <a href="#arbejde">Arbejde</a>
+    <a href="#ydelser">Ydelser</a>
+    <a href="#indeks">Alt det andet</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <div class="bar__end">
+    <div class="lang" role="group" aria-label="Sprog">
+      <a href="#top" lang="da" hreflang="da" aria-current="true" aria-label="Dansk, valgt">DA</a>
+      <a href="?lang=en" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
+    </div>
+    <a class="btn" href="#kontakt">Lad os tale</a>
+    <button class="menu-btn menu-btn--open" type="button" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">Menu <i aria-hidden="true"></i></button>
+  </div>
+</header>
+
+<dialog class="menu" id="menu" aria-label="Menu">
+  <div class="menu__top">
+    <a class="bar__mark" href="#top" data-close aria-label="cocode.dk, til toppen af siden">cocode.dk</a>
+    <button class="menu-btn menu-btn--close" type="button" data-close autofocus>Luk <i aria-hidden="true"></i></button>
+  </div>
+  <nav aria-label="Menu">
+    <ul class="menu__list">
+      <li style="--i:0"><a href="#arbejde" data-close><span class="menu__word"><span>Arbejde</span></span><span class="menu__note">fem ting, jeg gerne viser frem</span></a></li>
+      <li style="--i:1"><a href="#ydelser" data-close><span class="menu__word"><span>Ydelser</span></span><span class="menu__note">det, jeg kan gøre for dig</span></a></li>
+      <li style="--i:2"><a href="#indeks" data-close><span class="menu__word"><span>Alt det andet</span></span><span class="menu__note">apps, spil, tv og værktøjer</span></a></li>
+      <li style="--i:3"><a href="#kontakt" data-close><span class="menu__word"><span>Kontakt</span></span><span class="menu__note">skriv eller ring</span></a></li>
+    </ul>
+  </nav>
+  <div class="menu__foot" style="--i:5">
+    <div class="lang" role="group" aria-label="Sprog">
+      <a href="#top" data-close lang="da" hreflang="da" aria-current="true">Dansk</a>
+      <a href="?lang=en" lang="en" hreflang="en">English</a>
+    </div>
+    <a class="btn" href="#kontakt" data-close>Lad os tale</a>
+  </div>
+</dialog>
+
+<main id="indhold">
+  <div class="reel">
+    <section class="scene hero" data-tone="bone" aria-labelledby="h-hero">
+      <div class="hero__spot" aria-hidden="true"><i></i></div>
+      <div class="scene__inner">
+        <h1 class="hero__title display" id="h-hero"><span class="fit" data-fit>
+          <span class="w" style="--i:0"><span>Jeg</span></span> <span class="w" style="--i:1"><span>bygger</span></span><br class="br-m">
+          <span class="w" style="--i:2"><span>selv</span></span><br>
+          <span class="w" style="--i:3"><span>det,</span></span> <span class="w" style="--i:4"><span>jeg</span></span><br class="br-m">
+          <span class="w" style="--i:5"><span>anbefaler.</span></span>
+        </span></h1>
+        <div class="hero__foot">
+          <p class="hero__lede">Jeg hedder Babak Bandpey og er AI-konsulent. Jeg hjælper virksomheder med at bruge AI, og alt på denne side har jeg selv bygget.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#kontakt">Lad os tale</a>
+            <a class="textlink" href="#arbejde">Se arbejdet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-work">
+      <span class="anchor" id="arbejde"></span>
+      <h2 class="vh" id="h-work">Udvalgt arbejde</h2>
+
+      <article class="scene scene--weather" data-tone="bone" aria-labelledby="s-weather">
+        <div class="scene__inner">
+          <div class="scene__art" aria-hidden="true">
+            <svg class="emblem" viewBox="0 0 400 400">
+              <circle class="e-sun" cx="262" cy="138" r="92" fill="#F1ECE2"/>
+              <g fill="#000"><circle cx="134" cy="246" r="60"/><circle cx="210" cy="206" r="84"/><circle cx="290" cy="250" r="56"/><rect x="134" y="236" width="156" height="70"/></g>
+              <path d="M152 330l-20 56M206 330l-20 56M260 330l-20 56" stroke="#F1ECE2" stroke-width="13"/>
+            </svg>
+          </div>
+          <h3 class="scene__name display" id="s-weather"><span class="fit" data-fit>Weather</span></h3>
+          <div class="scene__copy">
+            <p class="scene__tag">Vejr for ethvert sted.</p>
+            <p class="scene__note">Søg på en by, eller brug din egen placering. Tokyo vises i Tokyos tid, også når du sidder i København.</p>
+          </div>
+          <p class="scene__meta"><span>Android-app</span><a class="textlink" href="https://weather.cocode.dk">Besøg weather.cocode.dk</a></p>
+        </div>
+      </article>
+
+      <article class="scene scene--cast scene--flip" data-tone="bone" aria-labelledby="s-cast">
+        <div class="scene__inner">
+          <div class="scene__art" aria-hidden="true">
+            <svg class="emblem" viewBox="0 0 400 400">
+              <g class="e-sheet"><rect x="172" y="206" width="200" height="176" fill="#F1ECE2"/>
+                <path d="M198 270h148M198 300h148M198 330h148M198 360h86" stroke="#000" stroke-width="11"/></g>
+              <rect x="28" y="52" width="300" height="190" fill="#000"/>
+              <path d="M150 105l74 42-74 42z" fill="#F1ECE2"/>
+            </svg>
+          </div>
+          <h3 class="scene__name display" id="s-cast"><span class="fit" data-fit>BabakCast</span></h3>
+          <div class="scene__copy">
+            <p class="scene__tag">Hent en video. Få et resumé.</p>
+            <p class="scene__note">Til dig, der ikke har 40 minutter. BabakCast koger videoen ned til det vigtigste, og BabakPlayer afspiller det, du deler videre.</p>
+          </div>
+          <p class="scene__meta"><span>Android-app</span><a class="textlink" href="https://cast.cocode.dk">Besøg cast.cocode.dk</a></p>
+        </div>
+      </article>
+
+      <article class="scene scene--parvaz" data-tone="bone" aria-labelledby="s-parvaz">
+        <div class="scene__inner">
+          <div class="scene__art" aria-hidden="true">
+            <div class="emblem emblem--parvaz"><span class="e-word" lang="fa" dir="rtl">پرواز</span><span class="e-bars"></span></div>
+          </div>
+          <h3 class="scene__name display" id="s-parvaz"><span class="fit" data-fit>Parvaz</span></h3>
+          <div class="scene__copy">
+            <p class="scene__tag">En vej uden om censuren.</p>
+            <p class="scene__note">Parvaz er persisk for at flyve. Appen er en VPN til mennesker i Iran, som vil ud på det åbne internet.</p>
+          </div>
+          <p class="scene__meta"><span>Android-app</span><a class="textlink" href="https://parvaz.cocode.dk">Besøg parvaz.cocode.dk</a></p>
+        </div>
+      </article>
+
+      <article class="scene scene--metro scene--flip" data-tone="black" aria-labelledby="s-metro">
+        <div class="scene__inner">
+          <div class="scene__art" aria-hidden="true">
+            <svg class="emblem" viewBox="0 0 400 400">
+              <rect x="36" y="24" width="236" height="352" fill="#F1ECE2"/>
+              <g fill="#000"><rect x="96" y="76" width="18" height="250"/><rect x="90" y="76" width="30" height="96"/>
+                <rect x="96" y="206" width="124" height="20"/><rect x="202" y="206" width="18" height="120"/></g>
+              <g class="e-rule" stroke="#000" stroke-width="6"><path d="M314 76v250M296 76h36M296 326h36"/></g>
+              <text x="340" y="214" font-family="'Sofia Sans Extra Condensed','Arial Narrow',sans-serif" font-weight="900" font-size="46" fill="#000">82</text>
+              <text x="341" y="240" font-family="'Sofia Sans',Arial,sans-serif" font-weight="600" font-size="20" fill="#000">cm</text>
+            </svg>
+          </div>
+          <h3 class="scene__name display" id="s-metro"><span class="fit" data-fit>Metrologist</span></h3>
+          <div class="scene__copy">
+            <p class="scene__tag">Mål ting ud fra ét foto.</p>
+            <p class="scene__note">Tag et billede, og få målene. Uden tommestok og uden at gætte.</p>
+          </div>
+          <p class="scene__meta"><span>Android-app</span><a class="textlink" href="https://measure.cocode.dk">Besøg measure.cocode.dk</a></p>
+        </div>
+      </article>
+
+      <article class="scene scene--lp" data-tone="black" aria-labelledby="s-lp">
+        <div class="scene__inner">
+          <div class="scene__art" aria-hidden="true">
+            <svg class="emblem" viewBox="0 0 400 400" style="overflow:visible">
+              <circle class="e-a" cx="138" cy="200" r="112" fill="none" stroke="#A3112B" stroke-width="30"/>
+              <circle class="e-b" cx="262" cy="200" r="112" fill="none" stroke="#000" stroke-width="30"/>
+              <path class="e-a" d="M157.4 89.7A112 112 0 0 1 249.9 196.1" fill="none" stroke="#A3112B" stroke-width="30"/>
+            </svg>
+          </div>
+          <h3 class="scene__name display" id="s-lp"><span class="fit" data-fit>lpterapi.dk</span></h3>
+          <div class="scene__copy">
+            <p class="scene__tag">En rolig side til et svært emne.</p>
+            <p class="scene__note">Hjemmeside for en parterapeut. Bygget til mobilen først, hurtig at bruge og nem at finde rundt i.</p>
+          </div>
+          <p class="scene__meta"><span>Kundeprojekt</span><a class="textlink" href="https://lpterapi.dk">Besøg lpterapi.dk</a></p>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <section class="offer" id="ydelser" data-tone="bone" data-solid="black" aria-labelledby="h-offer">
+    <h2 class="offer__h" id="h-offer">Det kan jeg gøre for dig</h2>
+    <ul class="offer__list">
+      <li><h3 class="offer__word display rv-wipe"><span class="fit" data-fit>Rådgivning</span></h3>
+        <p class="rv-after">Hvor giver AI mening hos jer, og hvor gør det ikke? Du får et ærligt svar og en plan, I kan bruge.</p></li>
+      <li><h3 class="offer__word display rv-wipe"><span class="fit" data-fit>Agenter</span></h3>
+        <p class="rv-after">AI-agenter, der udfører rigtigt arbejde. De læser, sorterer, svarer og følger op. Jeg styrer selv en af mine via e-mail.</p></li>
+      <li><h3 class="offer__word display rv-wipe"><span class="fit" data-fit>Automatisering</span></h3>
+        <p class="rv-after">Det kedelige og det gentagne. Alt det, ingen har lyst til mandag morgen, kan en maskine tage.</p></li>
+    </ul>
+  </section>
+
+  <section class="credits" id="indeks" data-tone="bone" data-solid="black" aria-labelledby="h-credits">
+    <h2 class="credits__h display rv-wipe" id="h-credits"><span class="fit" data-fit>Alt det andet</span></h2>
+    <p class="credits__lede rv-after">Resten af det, jeg har bygget. Stort og småt, til arbejde og til sjov.</p>
+    <dl class="roll">
+      <div class="roll__group"><dt>Apps til Android</dt><dd><ul>
+        <li><a class="roll__item" href="https://chess.cocode.dk"><span class="roll__name">Chess Puzzles</span><span class="roll__what">rigtige skakopgaver, offline</span><span class="roll__url">chess.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://battleship.cocode.dk"><span class="roll__name">Battleship</span><span class="roll__what">sænke slagskibe</span><span class="roll__url">battleship.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://player.cocode.dk"><span class="roll__name">BabakPlayer</span><span class="roll__what">afspiller det, BabakCast deler</span><span class="roll__url">player.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://qr.cocode.dk"><span class="roll__name">Link QR Wallet</span><span class="roll__what">dine links som QR-koder</span><span class="roll__url">qr.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://lifemeter.cocode.dk"><span class="roll__name">LifeMeter</span><span class="roll__what">dit liv i tal</span><span class="roll__url">lifemeter.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://calendar.cocode.dk"><span class="roll__name">Calendar</span><span class="roll__what">persisk kalender</span><span class="roll__url">calendar.cocode.dk</span></a></li>
+        <li><a class="roll__item" href="https://tms.cocode.dk"><span class="roll__name">TMS Measurement</span><span class="roll__what">opmåling til TMS-behandling</span><span class="roll__url">tms.cocode.dk</span></a></li>
+      </ul></dd></div>
+      <div class="roll__group"><dt>Web og spil</dt><dd><ul>
+        <li><span class="roll__item"><span class="roll__name">Dansk-Persisk</span><span class="roll__what">lektioner</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">Dansk-Japansk</span><span class="roll__what">lektioner</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">7kasif</span><span class="roll__what">kortspil</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">Dune</span><span class="roll__what">strategispil i browseren</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">TIE Fighter</span><span class="roll__what">3D-spil</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">Reverse Prime Plot</span></span></li>
+      </ul></dd></div>
+      <div class="roll__group"><dt>Kunde&shy;projekter</dt><dd><ul>
+        <li><span class="roll__item"><span class="roll__name">Klinik for Manuel Terapi</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">Unity Foundation</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">SwanReady</span></span></li>
+      </ul></dd></div>
+      <div class="roll__group"><dt>Til tv</dt><dd><ul>
+        <li><span class="roll__item"><span class="roll__name">Copenhagen Weather</span><span class="roll__what">til Samsung-tv</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">Night Gallery</span><span class="roll__what">til Samsung-tv</span></span></li>
+      </ul></dd></div>
+      <div class="roll__group"><dt>AI-værktøjer</dt><dd><ul>
+        <li><span class="roll__item"><span class="roll__name">claude-email</span><span class="roll__what">styr en AI-agent via e-mail</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">graph-loop</span><span class="roll__what">agenter, der arbejder uden opsyn</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">MCP-servere</span><span class="roll__what">kalender, Teams Planner, hukommelse</span></span></li>
+        <li><span class="roll__item"><span class="roll__name">FITS.DK</span><span class="roll__what">compliance-platform, over 3.000 timer</span></span></li>
+      </ul></dd></div>
+    </dl>
+  </section>
+
+  <section class="final" id="kontakt" data-tone="black" data-solid="saffron" aria-labelledby="h-final">
+    <h2 class="final__h display" id="h-final"><span class="fit" data-fit>
+      <span class="w" style="--i:0"><span>Lad</span></span> <span class="w" style="--i:1"><span>os</span></span><br class="br-m">
+      <span class="w" style="--i:2"><span>tale.</span></span>
+    </span></h2>
+    <p class="final__lede">Fortæl mig, hvad der fylder hos jer. Så finder vi ud af, om AI kan tage noget af det.</p>
+    <div class="final__actions">
+      <a class="btn btn--black" href="#kontakt" data-mail="kd.edococ@bb">Skriv til mig</a>
+      <a class="textlink" href="tel:+4553737514">Ring på 53 73 75 14</a>
+      <a class="textlink" href="https://www.linkedin.com/in/babakbandpey">Find mig på LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>cocode.dk er én person: Babak Bandpey. © 2026</p>
+  <div class="lang" role="group" aria-label="Sprog">
+    <a href="#top" lang="da" hreflang="da" aria-current="true">Dansk</a>
+    <a href="?lang=en" lang="en" hreflang="en">English</a>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  root.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = v => Math.min(1, Math.max(0, v));
+  // Very tall windows (full-page captures, rotated monitors) get the composed, static page.
+  const fxOn = () => !reduce.matches && innerHeight <= 1400;
+
+  /* Fit display type to its column, capped by a share of the screen height */
+  const fits = [...document.querySelectorAll('[data-fit]')];
+  function fit() {
+    const vh = Math.min(innerHeight, 1100);
+    for (const el of fits) {
+      const box = el.parentElement;
+      const cap = parseFloat(getComputedStyle(box).getPropertyValue('--fit-cap')) || .3;
+      el.style.fontSize = '100px';
+      const size = Math.min(cap * vh, 100 * box.clientWidth / el.offsetWidth);
+      el.style.fontSize = Math.floor(size * 10) / 10 + 'px';
+    }
+  }
+
+  /* Scroll: bar tone always, scene progress only when motion is welcome */
+  const bar = document.querySelector('.bar');
+  const toned = [...document.querySelectorAll('[data-tone]')].filter(n => n !== bar);
+  const scenes = [...document.querySelectorAll('.scene')];
+  let queued = false;
+  function frame() {
+    queued = false;
+    const vh = innerHeight, tops = scenes.map(s => s.getBoundingClientRect().top);
+    let over = toned[0];
+    for (const s of toned) if (s.getBoundingClientRect().top <= 36) over = s;
+    bar.dataset.tone = over.dataset.tone;
+    bar.dataset.solid = over.dataset.solid || '';
+    const on = fxOn();
+    scenes.forEach((s, i) => {
+      if (!on) { s.style.removeProperty('--enter'); s.style.removeProperty('--cover'); return; }
+      s.style.setProperty('--enter', clamp(1 - tops[i] / vh).toFixed(3));
+      if (i + 1 < scenes.length) s.style.setProperty('--cover', clamp(1 - tops[i + 1] / vh).toFixed(3));
+    });
+  }
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', () => { fit(); queue(); });
+  reduce.addEventListener('change', queue);
+  fit(); frame();
+  const refit = () => { fit(); frame(); };
+  addEventListener('load', refit);
+  if (document.fonts) { document.fonts.ready.then(refit); document.fonts.addEventListener('loadingdone', refit); }
+
+  /* One-shot reveals */
+  const rv = document.querySelectorAll('.rv-wipe, .rv-after, .final__h');
+  if ('IntersectionObserver' in window && fxOn()) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -12% 0px' });
+    rv.forEach(n => io.observe(n));
+  } else rv.forEach(n => n.classList.add('is-in'));
+
+  /* Menu: native modal dialog gives the focus trap, Escape and an inert page */
+  const menu = document.getElementById('menu');
+  const opener = document.querySelector('.menu-btn--open');
+  let closing;
+  function openMenu() {
+    if (menu.open) return;
+    menu.classList.remove('is-closing');
+    menu.showModal();
+    opener.setAttribute('aria-expanded', 'true');
+  }
+  function finish() {
+    clearTimeout(closing); closing = 0;
+    menu.classList.remove('is-closing');
+    if (menu.open) menu.close();
+  }
+  function closeMenu() {
+    if (!menu.open || closing) return;
+    if (reduce.matches) return finish();
+    menu.classList.add('is-closing');
+    closing = setTimeout(finish, 650);
+  }
+  menu.addEventListener('animationend', e => { if (e.target === menu && e.animationName === 'iris-out') finish(); });
+  menu.addEventListener('cancel', e => { e.preventDefault(); closeMenu(); });
+  menu.addEventListener('close', () => { opener.setAttribute('aria-expanded', 'false'); opener.focus({ preventScroll: true }); });
+  menu.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeMenu(); });
+  opener.addEventListener('click', openMenu);
+  matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) finish(); });
+  if (location.hash === '#menu') openMenu();
+
+  /* The address stays out of the markup, as on the live site */
+  document.querySelectorAll('[data-mail]').forEach(a => {
+    a.href = 'mailto:' + [...a.dataset.mail].reverse().join('');
+  });
+})();
+</script>
+</body>
+</html>
