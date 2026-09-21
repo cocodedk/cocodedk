@@ -45,6 +45,9 @@ module.exports = {
       patterns: [
         { from: 'css', to: 'css' },
         { from: 'fonts', to: 'fonts' },
+        // The family frame other cocode.dk sites link (cocode.dk/brand/v1.css). It is published
+        // from here because the fonts it names live here too; this page does not use it.
+        { from: 'brand', to: 'brand' },
         { from: 'images', to: 'images' },
         // Pages takes the custom domain from the repository setting when a workflow deploys, so this file is
         // belt and braces. toType matters: a name without an extension is otherwise taken for a folder,

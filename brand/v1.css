@@ -1,0 +1,78 @@
+/* cocode.dk family frame, v1 — one hosted file, linked by every project site.
+ *
+ *   <link rel="stylesheet" href="https://cocode.dk/brand/v1.css">
+ *
+ * It supplies the furniture that makes the sites read as one family: the running head with the
+ * wordmark, the buttons, the small-caps labels, the colophon foot, and the type and spacing they
+ * share. It does NOT touch the page's own body — Battleship stays a naval terminal, Parvaz stays a
+ * boarding pass. Everything is scoped under .cd-* so it can never collide with a site's own rules.
+ *
+ * A site declares two things and inherits the rest:
+ *   :root { --cd-accent: #6ea8ff; --cd-on-accent: #0b1220; }   the one colour that is its own
+ *   <html class="cd-dark">                                      if the site is dark
+ *
+ * Versioned on purpose: a breaking change ships as brand/v2.css and nothing moves until each site
+ * chooses it. Fonts load from cocode.dk, so a visitor who has seen one site has them cached for all.
+ */
+
+/* Ibarra Real Nova and Ysabeau, the voices of cocode.dk. SIL OFL 1.1; see cocode.dk/fonts/OFL.txt. */
+@font-face{font-family:'Ibarra Real Nova';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://cocode.dk/fonts/ibarra-real-nova.woff2) format('woff2')}
+@font-face{font-family:'Ibarra Real Nova';font-style:italic;font-weight:400 700;font-display:swap;src:url(https://cocode.dk/fonts/ibarra-real-nova-italic.woff2) format('woff2')}
+@font-face{font-family:'Ysabeau Office';font-style:normal;font-weight:300 700;font-display:swap;src:url(https://cocode.dk/fonts/ysabeau-office.woff2) format('woff2')}
+@font-face{font-family:'Ysabeau SC';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://cocode.dk/fonts/ysabeau-sc.woff2) format('woff2')}
+
+:root{
+  /* Atelier's own values, so the frame is literally the homepage's. */
+  --cd-paper:#ECE2CF; --cd-sheet:#F6EFE0; --cd-ink:#1D2130; --cd-ink-2:#4A4639;
+  --cd-rule:#C8BCA4; --cd-saffron:#D8982C;
+  --cd-serif:"Ibarra Real Nova","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --cd-sans:"Ysabeau Office","Gill Sans","Trebuchet MS",sans-serif;
+  --cd-sc:"Ysabeau SC","Ysabeau Office","Gill Sans",sans-serif;
+  --cd-gutter:20px; --cd-max:1240px;
+  /* A site overrides these two; the defaults are the homepage's own lapis. */
+  --cd-accent:#233E8B; --cd-on-accent:#F6EFE0;
+  /* What the frame paints itself with. cd-dark swaps them. */
+  --cd-bg:var(--cd-paper); --cd-fg:var(--cd-ink); --cd-quiet:var(--cd-ink-2); --cd-line:var(--cd-rule);
+}
+/* A dark site keeps its own background; the frame only needs to read correctly on top of it. */
+.cd-dark{--cd-bg:transparent; --cd-fg:#F6EFE0; --cd-quiet:#B9B4A8; --cd-line:rgba(246,239,224,.28)}
+
+/* ---------- the running head ---------- */
+.cd-head{background:var(--cd-bg);color:var(--cd-fg);border-bottom:3px double var(--cd-line);font-family:var(--cd-sans)}
+.cd-head__bar{max-width:var(--cd-max);margin:0 auto;padding:10px var(--cd-gutter);display:flex;align-items:center;gap:16px;min-height:60px}
+.cd-wordmark{font-family:var(--cd-serif);font-size:1.5rem;letter-spacing:-.005em;color:inherit;text-decoration:none;display:inline-flex;align-items:center;min-height:48px;white-space:nowrap}
+.cd-wordmark i{color:var(--cd-saffron);font-style:normal}
+/* The project's own name, set quietly beside the wordmark. */
+.cd-head__here{font-family:var(--cd-sc);font-weight:520;font-size:1rem;letter-spacing:.075em;color:var(--cd-quiet);border-left:1px solid var(--cd-line);padding-left:16px}
+.cd-head__spacer{flex:1}
+.cd-head__links{display:flex;align-items:center;gap:4px}
+.cd-head__links a{font-family:var(--cd-sc);font-weight:520;letter-spacing:.06em;font-size:.95rem;color:inherit;text-decoration:none;opacity:.8;
+  display:inline-flex;align-items:center;min-height:44px;padding:0 10px}
+.cd-head__links a:hover,.cd-head__links a[aria-current]{opacity:1;color:var(--cd-saffron)}
+@media (max-width:560px){.cd-head__here{display:none}}
+
+/* ---------- buttons ---------- */
+.cd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--cd-accent);color:var(--cd-on-accent);
+  font-family:var(--cd-sans);font-weight:560;font-size:1.0625rem;letter-spacing:.01em;text-decoration:none;border:0;border-radius:2px;cursor:pointer;
+  transition:background-color .2s,color .2s}
+.cd-btn:hover{background:var(--cd-fg);color:var(--cd-bg,var(--cd-paper))}
+.cd-dark .cd-btn:hover{background:var(--cd-saffron);color:var(--cd-ink)}
+.cd-btn--quiet{background:transparent;color:inherit;border:1px solid var(--cd-line)}
+.cd-btn--quiet:hover{background:transparent;color:var(--cd-saffron);border-color:var(--cd-saffron)}
+.cd-btn--small{min-height:44px;padding:0 20px;font-size:1rem}
+
+/* ---------- small type ---------- */
+.cd-sc{font-family:var(--cd-sc);font-weight:520;font-size:1rem;letter-spacing:.075em;line-height:1.35;color:var(--cd-quiet)}
+.cd-note{font-family:var(--cd-serif);font-style:italic;font-size:1.15rem;line-height:1.45;color:var(--cd-quiet)}
+
+/* ---------- the colophon foot ---------- */
+.cd-foot{background:var(--cd-bg);color:var(--cd-fg);border-top:3px double var(--cd-line);font-family:var(--cd-sans);margin-top:auto}
+.cd-foot__bar{max-width:var(--cd-max);margin:0 auto;padding:22px var(--cd-gutter);display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-size:1rem}
+.cd-foot a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.25em;text-decoration-color:var(--cd-line)}
+.cd-foot a:hover{color:var(--cd-saffron);text-decoration-color:var(--cd-saffron)}
+.cd-foot__spacer{flex:1}
+.cd-foot__quiet{color:var(--cd-quiet)}
+
+/* Keyboard users see where they are, on every site. */
+.cd-head :focus-visible,.cd-foot :focus-visible,.cd-btn:focus-visible{outline:2px solid var(--cd-saffron);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.cd-btn{transition:none}}
