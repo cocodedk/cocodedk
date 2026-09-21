@@ -8,10 +8,6 @@ module.exports = {
   testMatch: ['<rootDir>/tests/**/*.test.js'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
   modulePathIgnorePatterns: ['<rootDir>/.claude/'],
-  moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': '<rootDir>/tests/mocks/styleMock.js',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/tests/mocks/fileMock.js'
-  },
   transform: {
     '^.+\\.jsx?$': 'babel-jest'
   },

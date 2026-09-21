@@ -72,7 +72,7 @@ Multi-tenant GRC platform built single-handedly over 3,000+ hours. Now at v8.8.2
 | **pharmx** | Pharmacy support web app | React, TypeScript, Tailwind | [GitHub](https://github.com/cocodedk/pharmx) |
 | **klinik-venus** | Clinic website with booking info | Static, Netlify | [klinikvenus.dk](https://klinikvenus.dk/) |
 | **aurarecruit** | Recruitment demo/showcase (Vue.js) | Vue, Node.js | [GitHub Pages](https://cocodedk.github.io/aura-recruit-demo/) |
-| **cocodedk** | This portfolio site (terminal aesthetic) | Vanilla JS, Webpack 5 | [cocode.dk](https://cocode.dk) |
+| **cocodedk** | This site: my work as an AI consultant, shown as a printed catalogue | Static HTML/CSS, vanilla JS, Webpack 5, WebMCP | [cocode.dk](https://cocode.dk) |
 
 ### Android / Mobile
 
@@ -131,7 +131,7 @@ Multi-tenant GRC platform built single-handedly over 3,000+ hours. Now at v8.8.2
 
 ## This Website
 
-Vanilla JS SPA with a terminal aesthetic. No framework. Webpack 5, bilingual (EN/DA).
+One static page in Danish: warm paper, serif type, illustrated plates, and featured works that slide over each other. No framework; Webpack 5 assembles it from partials. It also offers its content to AI agents in the browser through WebMCP.
 
 ```bash
 npm run dev       # Dev server on localhost:8080
@@ -141,4 +141,4 @@ npm test          # Jest tests
 
 ## Get in Touch
 
-[cocode.dk](https://cocode.dk) | [LinkedIn](https://linkedin.com/in/babakbandpey) | [GitHub](https://github.com/cocodedk) | [CV](https://cocodedk.github.io/cv-generator/) | bb@cocode.dk
+[cocode.dk](https://cocode.dk) | [LinkedIn](https://linkedin.com/in/babakbandpey) | [GitHub](https://github.com/cocodedk) | [CV](https://cv.cocode.dk/) | bb@cocode.dk
