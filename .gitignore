@@ -137,3 +137,8 @@ dist
 
 # Superpowers brainstorm artefacts
 .superpowers/
+
+# Local agent tooling: browser dumps, MCP config, per-machine Claude settings
+.playwright-mcp/
+.mcp.json
+.claude/

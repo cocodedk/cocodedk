@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babak Bandpey, AI-konsulent. cocode.dk</title>
+<meta name="description" content="Jeg hjælper virksomheder med at bruge AI, og jeg bygger selv det, jeg anbefaler. Se apps, spil, hjemmesider og AI-værktøjer fra cocode.dk.">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Ysabeau+Office:ital,wght@0,300..700;1,300..700&family=Ysabeau+SC:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* ATELIER. Paper, ink, lapis and a thread of saffron.
+   Ibarra Real Nova for the voice, Ysabeau for everything quiet. */
+:root{
+  --paper:#ECE2CF; --sheet:#F6EFE0; --ink:#1D2130; --ink-2:#4A4639;
+  --rule:#C8BCA4; --lapis:#233E8B; --lapis-deep:#1B3071; --saffron:#D8982C; --saffron-text:#EDB651;
+  --on-lapis:#F6EFE0; --on-lapis-2:#D5D3D6;
+  --serif:"Ibarra Real Nova","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Ysabeau Office","Gill Sans","Trebuchet MS",sans-serif;
+  --sc:"Ysabeau SC","Ysabeau Office","Gill Sans",sans-serif;
+  --gutter:20px; --max:1240px; --gap:32px;
+  --ease:cubic-bezier(.22,.8,.2,1);
+  /* --head is the sticky header's height (bar + double rule); the scenes pad themselves clear of it */
+  --head:69px; --scroll-pad:88px;
+  /* --dock is the height of the mobile bottom bar; content and scenes keep clear of it */
+  --dock:72px;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--scroll-pad);scroll-padding-bottom:var(--dock)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-size:1.125rem;line-height:1.6;font-weight:420;
+  background-color:var(--paper);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body{padding-bottom:calc(var(--dock) + env(safe-area-inset-bottom,0px))}
+body.is-locked{overflow:hidden}
+img,svg{display:block;max-width:100%}
+p{margin:0}
+a{color:var(--lapis);text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:2px}
+.wrap{width:100%;max-width:calc(var(--max) + 2*var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
+.nb{white-space:nowrap}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:var(--gutter);top:-80px;z-index:60;background:var(--ink);color:var(--sheet);padding:12px 18px}
+.skip:focus{top:12px;color:var(--sheet)}
+
+/* type */
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;font-feature-settings:"liga","kern"}
+h1{font-size:clamp(2.55rem,10.4vw,5.35rem);line-height:1.04;letter-spacing:-.012em}
+h1 span{display:block;text-wrap:balance}
+h1 span+span{text-indent:1.1em}
+h2{font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.08;letter-spacing:-.008em;text-wrap:balance}
+h3{font-size:clamp(1.85rem,4.4vw,2.5rem);line-height:1.1}
+.sc{font-family:var(--sc);font-weight:520;font-size:1rem;letter-spacing:.075em;line-height:1.35;color:var(--ink-2)}
+.note{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.45;color:var(--ink-2)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--lapis);color:var(--on-lapis);
+  font-family:var(--sans);font-weight:560;font-size:1.0625rem;letter-spacing:.01em;text-decoration:none;border-radius:2px;transition:background-color .2s}
+.btn:hover{background:var(--ink);color:var(--on-lapis)}
+.btn--small{min-height:44px;padding:0 20px;font-size:1rem}
+.btn--saffron{background:var(--saffron);color:var(--ink)}
+.btn--saffron:hover{background:var(--sheet);color:var(--ink)}
+.quiet-link{display:inline-flex;align-items:center;min-height:48px;color:var(--ink);font-weight:500}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:30;background:var(--paper)}
+.site-header::after{content:"";display:block;height:5px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+.wordmark{font-family:var(--serif);font-size:1.5rem;letter-spacing:-.005em;color:inherit;text-decoration:none;display:inline-flex;align-items:center;min-height:48px}
+.wordmark i{color:var(--lapis)}
+.nav{display:none}
+.lang--head{color:var(--ink)}
+/* "Luk" inside the sheet: two crossed hairlines, never a burger */
+.menu-toggle{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding-inline:14px 0;color:inherit;text-decoration:none;
+  font-family:var(--sc);font-weight:560;font-size:1.0625rem;letter-spacing:.09em;cursor:pointer}
+.menu-glyph{position:relative;width:22px;height:12px;flex:none}
+.menu-glyph::before,.menu-glyph::after{content:"";position:absolute;left:0;right:0;top:5px;height:1.5px;background:currentColor}
+.menu-glyph::before{transform:rotate(45deg)}.menu-glyph::after{transform:rotate(-45deg)}
+
+/* the menu, as on lpterapi.dk: no burger. A bar at the foot of the screen holds the destinations,
+   and its last column raises the full table of contents, a lapis endpaper, from behind the bar. */
+.sheet{position:fixed;inset:0 0 calc(var(--dock) + env(safe-area-inset-bottom,0px)) 0;z-index:50;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+  background-color:var(--lapis);color:var(--on-lapis);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23F6EFE0' stroke-opacity='.075' stroke-width='1'><rect x='14' y='14' width='28' height='28'/><rect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/></g></svg>");
+  visibility:hidden;clip-path:inset(100% 0 0 0);
+  transition:clip-path .34s cubic-bezier(.5,0,.75,.2),visibility 0s .34s}
+.sheet.is-open{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path .62s var(--ease),visibility 0s 0s}
+html:not(.js) .sheet:target{visibility:visible;clip-path:none}
+.sheet .bar{border-bottom:1px solid rgba(246,239,224,.35)}
+.sheet .wordmark i{color:var(--saffron)}
+.sheet :focus-visible{outline-color:var(--saffron)}
+.sheet__nav{padding-top:clamp(16px,3vh,28px)}
+.sheet__label{color:var(--saffron-text);margin-bottom:6px}
+.toc{list-style:none;margin:0;padding:0}
+/* The sheet lists what the bar cannot: the works one by one, then the catalogue's groups. */
+.toc>li>a{display:flex;align-items:center;gap:12px;min-height:clamp(50px,7.2vh,68px);color:inherit;text-decoration:none;border-bottom:1px solid rgba(246,239,224,.22)}
+.toc>li>a svg{flex:none;width:clamp(34px,5vh,44px);height:clamp(34px,5vh,44px);padding:2px;background:var(--sheet)}
+.toc__name{font-family:var(--serif);font-size:clamp(1.3rem,3.1vh,1.7rem);line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.toc__dots{flex:1;min-width:12px;align-self:flex-end;margin-bottom:clamp(17px,2.6vh,25px);border-bottom:2px dotted rgba(246,239,224,.45)}
+.toc__note{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--on-lapis-2);text-align:right;white-space:nowrap}
+.toc a:hover .toc__name,.toc__groups a:hover{color:var(--saffron-text)}
+.toc__cat{padding:clamp(14px,2.4vh,22px) 0 0}
+.toc__cat .sc{display:block;color:var(--saffron-text)}
+.toc__groups{display:flex;flex-wrap:wrap;gap:0 13px;font-family:var(--serif);font-size:1rem}
+.toc__groups a{display:inline-flex;align-items:center;min-height:48px;color:var(--on-lapis);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;text-decoration-color:rgba(246,239,224,.45)}
+@media (max-width:359px){.toc__note,.toc__dots{display:none}}
+.sheet .menu-toggle:hover{color:var(--saffron-text)}
+.sheet__foot{margin-top:auto;padding-top:clamp(14px,3vh,28px);padding-bottom:clamp(14px,3vh,28px);display:grid;gap:clamp(10px,2vh,18px)}
+.lang{display:inline-flex;align-items:center;gap:2px;font-family:var(--sc);font-weight:560;letter-spacing:.09em}
+.lang a{display:inline-flex;align-items:center;justify-content:center;min-width:48px;min-height:48px;padding:0 10px;color:inherit;text-decoration:none;opacity:.78}
+.lang a[aria-current]{opacity:1;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.35em;text-decoration-color:var(--saffron)}
+.lang a:hover{opacity:1}
+.sheet__lang{display:flex;align-items:center;justify-content:space-between}
+.sheet__lang .lang a{min-width:88px;border:1px solid rgba(246,239,224,.35);opacity:1}
+.sheet__lang .lang a + a{border-left:0}
+.sheet__lang .lang a[aria-current]{background:var(--on-lapis);color:var(--lapis-deep);text-decoration:none}
+.sheet__foot .btn{width:100%;min-height:56px;font-size:1.125rem}
+.toc li,.sheet__foot>*{opacity:0;transform:translateY(14px);transition:opacity .2s,transform .2s}
+.sheet.is-open .toc li,.sheet.is-open .sheet__foot>*{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .6s var(--ease);transition-delay:calc(.16s + var(--i,0)*.055s)}
+html:not(.js) .toc li,html:not(.js) .sheet__foot>*{opacity:1;transform:none}
+.sheet.no-motion,.sheet.no-motion *,.sheet.no-motion *::before,.sheet.no-motion *::after{transition:none!important}
+@media (prefers-reduced-motion:reduce){
+  .sheet,.sheet *,.sheet *::before,.sheet *::after,.btn,.dock__bar *{transition:none!important}
+}
+
+/* the bar: a running foot that mirrors the running head, double rule and all */
+.dock__bar{position:fixed;left:0;right:0;bottom:0;z-index:51;background:var(--paper);color:var(--ink);
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.dock__bar::before{content:"";display:block;height:5px;border-top:1px solid var(--ink);border-bottom:2px solid var(--ink)}
+.dock__cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));max-width:560px;margin-inline:auto}
+.dock__col{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;
+  height:67px;padding:0 2px 8px;color:var(--ink-2);text-decoration:none;cursor:pointer;
+  font-family:var(--sc);font-weight:560;font-size:.8125rem;letter-spacing:.07em;line-height:1.1;-webkit-tap-highlight-color:transparent}
+.dock__col:hover{color:var(--ink)}
+.dock__col:active{background:rgba(29,33,48,.07)}
+.dock__col:focus-visible{outline-offset:-4px}
+/* the emblems are drawn like the plates: a flat saffron shape, and an ink outline printed slightly off */
+.dock__col svg{width:30px;height:30px;flex:none;overflow:visible;fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.dock__col .f{fill:var(--saffron);stroke:none}
+/* you are here: a lapis bookmark ribbon hangs from the rule */
+.dock__col::before{content:"";position:absolute;top:0;left:50%;width:12px;height:12px;margin-left:-6px;background:var(--lapis);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 68%,0 100%);transform:scaleY(0);transform-origin:50% 0;transition:transform .35s var(--ease)}
+.dock__col[aria-current="true"]{color:var(--lapis)}
+.dock__col[aria-current="true"]::before,.dock__col[aria-expanded="true"]::before{transform:none}
+.dock__col[aria-expanded="true"]{color:var(--lapis)}
+/* one ribbon at a time: while the sheet is up, it belongs to "Indhold" */
+.dock__cols:has([aria-expanded="true"]) [aria-current="true"]{color:var(--ink-2)}
+.dock__cols:has([aria-expanded="true"]) [aria-current="true"]::before{transform:scaleY(0)}
+.dock__chev{transform-origin:14px 14px;transition:transform .45s var(--ease)}
+/* open: the chevron points back down at the bar the sheet will return to */
+.dock__col[aria-expanded="true"] .dock__chev{transform:rotate(180deg)}
+html:not(.js) .sheet:target ~ .dock__bar .dock__chev{transform:rotate(180deg)}
+
+/* hero: a title page with a specimen sheet for a frontispiece */
+.hero{padding-block:40px 56px}
+.hero .sc{margin-bottom:18px}
+.hero__intro{margin-top:24px;max-width:34em;font-size:1.1875rem}
+.hero__actions{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px}
+.specimen{margin:48px 0 0}
+.mount{background:var(--sheet);padding:9px;border:1px solid var(--rule);box-shadow:0 1px 0 rgba(74,52,20,.07),0 22px 40px -28px rgba(74,52,20,.5)}
+.specimen__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.specimen__grid a{display:block;position:relative}
+.specimen__grid svg{width:100%;aspect-ratio:1;height:auto}
+.specimen__grid a:focus-visible{outline-offset:2px;z-index:1}
+figcaption.sc{margin-top:12px}
+
+/* sections */
+.section{padding-block:64px}
+.section--ruled{border-top:1px solid var(--ink)}
+.section__head{display:grid;gap:14px;margin-bottom:40px}
+.section__head .note{max-width:24em}
+
+/* featured works: six catalogue plates. This is the plain, stacked layout (short screens,
+   reduced motion). The sliding version further down only adds to it.
+   --enter rests at 1, so without JavaScript everything sits in its final place. */
+.featured__head{padding-bottom:40px}
+.featured__head .section__head{margin-bottom:0}
+.anchor{display:block;height:0}
+.scene{position:relative;isolation:isolate;overflow:hidden;overflow:clip;--enter:1;--cover:0;--dir:1;
+  background-color:var(--page);background-image:var(--grain);color:var(--ink)}
+.scene--flip{--dir:-1}
+/* each plate lends its page a paper and an ink; links, small caps and focus rings follow the tokens */
+.scene--weather{--page:#27446B;--ink:#F6EFE0;--ink-2:#BCD5DD;--lapis:#EDB651;--accent:#E8A63A}
+.scene--measure{--page:#F2E4BC;--ink:#1D2130;--ink-2:#4A4639;--lapis:#A5312B;--accent:#A5312B}
+.scene--swan{--page:#1F4D43;--ink:#F6EFE0;--ink-2:#CFE0D3;--lapis:#EDB651;--accent:#E8A63A}
+.scene--parvaz{--page:#E8A63A;--ink:#1E2A5E;--ink-2:#1E2A5E;--lapis:#1E2A5E;--accent:#1E2A5E}
+.scene--mail{--page:#1D2130;--ink:#F6EFE0;--ink-2:#DFCFAE;--lapis:#EDB651;--accent:#C07F14}
+.scene--therapy{--page:#EBB9A3;--ink:#1D2130;--ink-2:#4A3A33;--lapis:#1D2130;--accent:#9B4A38}
+.scene__inner{display:grid;grid-template-columns:minmax(0,1fr);row-gap:22px;padding-block:48px 52px}
+.scene__art{margin:0;min-width:0;min-height:0}
+.plate svg{width:100%;height:auto;aspect-ratio:1}
+.scene__text{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.scene__meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;width:100%;margin-bottom:auto}
+.scene__no{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1;color:var(--accent);white-space:nowrap}
+.scene__dots{flex:1;min-width:16px;border-bottom:2px dotted currentColor;opacity:.4;transform:translateY(-4px)}
+.scene__title{font-size:clamp(2.5rem,11vw,3.4rem);line-height:1.02;letter-spacing:-.012em;margin:14px 0 10px;text-wrap:balance}
+.scene__desc{max-width:30em;font-size:1.0625rem;line-height:1.5}
+.work__link{display:inline-flex;align-items:center;min-height:48px;margin-top:4px;font-weight:520;text-decoration-color:var(--accent)}
+.scene .work__link:hover{text-decoration-thickness:2px}
+/* SwanReady has more to say than the others: a line under its title, and two ways on */
+.scene__lead{font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.3;color:var(--ink-2);margin:-2px 0 8px}
+.scene__links{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;margin-top:8px}
+.scene__links .work__link{margin-top:0}
+.scene__cta{padding-inline:18px;background:var(--accent);color:#1D2130}
+.scene__cta:hover{background:var(--ink);color:#1D2130}
+.work__link--quiet{color:var(--ink-2);font-weight:460;font-size:1rem}
+
+/* the plates move a little as their page arrives (values are SVG user units; --enter is inherited through <use>) */
+.e-sun{transform:translate(calc((1 - var(--enter,1)) * -64px),calc((1 - var(--enter,1)) * 84px))}
+.e-rule-v,.e-rule-h{transform-box:fill-box;transform-origin:50% 50%}
+.e-rule-v{transform:scaleY(calc(.06 + var(--enter,1) * .94))}
+.e-rule-h{transform:scaleX(calc(.06 + var(--enter,1) * .94))}
+.e-swan{transform:translateX(calc((1 - var(--enter,1)) * -120px))}
+.e-bird{transform:translate(calc((1 - var(--enter,1)) * -120px),calc((1 - var(--enter,1)) * 157px))}
+.e-letter{transform:translateY(calc((1 - var(--enter,1)) * 62px))}
+.e-a{transform:translateX(calc((1 - var(--enter,1)) * -64px))}
+.e-b{transform:translateX(calc((1 - var(--enter,1)) * 64px))}
+.e-lens{transform:translateX(calc((1 - var(--enter,1)) * 128px))}
+
+/* index */
+.index__group{padding-top:26px;margin-top:36px;border-top:1px solid var(--ink)}
+.index__group:first-of-type{margin-top:0}
+.index__group h3{font-family:var(--sc);font-weight:560;font-size:1.0625rem;letter-spacing:.085em;color:var(--ink);margin-bottom:6px}
+.index__list{list-style:none;margin:0;padding:0}
+.index__list li{display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:baseline;padding:13px 0 12px;border-bottom:1px solid var(--rule)}
+.index__list li:last-child{border-bottom:0}
+.index__name{font-family:var(--serif);font-size:1.4rem;line-height:1.2}
+.index__desc{grid-column:1/-1;grid-row:2;color:var(--ink-2);font-size:1.0625rem;line-height:1.45;margin-top:2px}
+.index__link{font-size:1rem;font-weight:500;display:inline-flex;align-items:center;min-height:32px}
+
+/* services */
+.services{margin:0}
+.services>div{padding:22px 0 24px;border-top:1px solid var(--rule)}
+.services>div:first-child{border-top:1px solid var(--ink)}
+.services dt{font-family:var(--serif);font-size:1.9rem;line-height:1.15;margin-bottom:8px}
+.services dd{margin:0;max-width:32em}
+
+/* letter */
+.about h2{margin-bottom:28px}
+.letter{font-family:var(--serif);font-size:1.34rem;line-height:1.55;max-width:31em}
+.letter p+p{margin-top:1em}
+.letter p:first-child::first-letter{float:left;font-size:4.55em;line-height:.74;padding:.09em .09em 0 0;color:var(--lapis)}
+.signature{margin-top:26px;font-family:var(--serif);font-style:italic;font-size:2.6rem;line-height:1;color:var(--lapis)}
+.margin-notes{display:grid;gap:4px;margin-top:36px;padding-top:18px;border-top:1px solid var(--rule)}
+
+/* contact and colophon: the back endpaper */
+.back{background-color:var(--lapis);color:var(--on-lapis);margin-top:32px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23F6EFE0' stroke-opacity='.06' stroke-width='1'><rect x='14' y='14' width='28' height='28'/><rect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/></g></svg>")}
+.back--foot{margin-top:0}
+.back :focus-visible{outline-color:var(--saffron)}
+.contact{padding-block:72px 64px}
+.contact .sc{color:var(--saffron-text);margin-bottom:14px}
+.contact h2{font-size:clamp(3rem,13vw,6.5rem);line-height:.98}
+.contact__lead{margin-top:20px;max-width:26em;font-size:1.1875rem;color:var(--on-lapis)}
+.contact__mail{display:inline-block;margin-top:30px;font-family:var(--serif);font-size:clamp(2rem,8.6vw,3.6rem);line-height:1.1;color:var(--on-lapis);
+  text-decoration-color:var(--saffron);text-decoration-thickness:2px;text-underline-offset:.16em}
+.contact__mail:hover{color:var(--saffron-text)}
+.contact__more{margin-top:22px;display:grid;gap:2px;color:var(--on-lapis-2)}
+.contact__more a{color:var(--on-lapis);display:inline-flex;align-items:center;min-height:44px}
+.colophon{border-top:1px solid rgba(246,239,224,.35);padding-block:26px 40px;display:grid;gap:10px;font-size:1rem;color:var(--on-lapis-2)}
+.colophon .wordmark{color:var(--on-lapis)}
+.colophon .wordmark i{color:var(--saffron)}
+
+/* tablet */
+@media (min-width:720px){
+  :root{--gutter:40px}
+  .hero{padding-block:64px 72px}
+  .specimen__grid{grid-template-columns:repeat(6,1fr)}
+  .section{padding-block:88px}
+  .section__head{grid-template-columns:1fr 1fr;column-gap:var(--gap);align-items:end;margin-bottom:56px}
+  .featured__head{padding-bottom:56px}
+  .scene__inner{row-gap:28px;padding-block:64px 72px}
+  .plate svg{aspect-ratio:7/5}
+  .scene__title{font-size:3.6rem}
+  .index__list li{grid-template-columns:minmax(11em,1fr) 2fr auto}
+  .index__desc{grid-column:2;grid-row:1;margin-top:0}
+  .services>div{display:grid;grid-template-columns:1fr 2fr;column-gap:var(--gap);align-items:baseline}
+  .services dt{margin-bottom:0}
+}
+
+/* desktop: twelve columns, with a margin column for notes */
+@media (min-width:1000px){
+  :root{--head:89px;--scroll-pad:110px;--dock:0px}
+  .bar{min-height:84px}
+  .wordmark{font-size:1.7rem}
+  .dock,.lang--head{display:none}
+  .nav{display:flex;align-items:center;gap:6px}
+  .nav__links{display:flex;gap:4px;margin-right:18px}
+  .nav__links a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;color:var(--ink);text-decoration:none;font-weight:500;font-size:1.0625rem}
+  .nav__links a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.4em}
+  .nav .lang{margin-right:20px;color:var(--ink)}
+  .nav .lang a{min-width:40px;min-height:44px;padding:0 6px}
+  .grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+  .hero{padding-block:84px 104px}
+  .hero__text{grid-column:1/9}
+  .hero .sc{margin-bottom:26px}
+  .hero__intro{margin-top:34px;font-size:1.3125rem;line-height:1.55;max-width:30em}
+  .hero__actions{margin-top:38px}
+  .specimen{grid-column:9/13;margin:0;align-self:end}
+  .specimen__grid{grid-template-columns:repeat(2,1fr)}
+  .section{padding-block:120px}
+  .section__head{grid-template-columns:repeat(12,minmax(0,1fr));margin-bottom:72px}
+  .section__head h2{grid-column:1/8}
+  .section__head .note{grid-column:9/13}
+  .featured__head{padding-bottom:72px}
+  .scene__inner{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-block:96px 104px}
+  .scene__art{grid-column:1/8;grid-row:1}
+  .scene__text{grid-column:8/13;grid-row:1;padding:0 0 6px var(--gap)}
+  .scene--flip .scene__art{grid-column:6/13}
+  .scene--flip .scene__text{grid-column:1/6;padding:0 var(--gap) 6px 0}
+  .plate svg{aspect-ratio:1}
+  .scene__no{font-size:1.75rem}
+  .scene__title{font-size:clamp(3.6rem,5.2vw,4.75rem);margin:0 0 18px}
+  .scene__desc{font-size:1.1875rem;line-height:1.55}
+  .work__link{margin-top:10px;font-size:1.125rem}
+  .scene__lead{font-size:1.6rem;margin:-6px 0 16px}
+  .scene__links{gap:0 28px;margin-top:16px}
+  .scene__cta{padding-inline:20px}
+  .work__link--quiet{font-size:1.0625rem}
+  .index{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .index__group{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-top:22px;margin-top:44px}
+  .index__group h3{grid-column:1/4;margin:14px 0 0}
+  .index__list{grid-column:4/13}
+  .index__list li{grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,2fr)}
+  .index__link{justify-self:end}
+  .services-wrap h2{grid-column:1/6}
+  .services-wrap .services{grid-column:6/13}
+  .services-wrap .section__head{display:contents}
+  .services dt{font-size:2.1rem}
+  .about .margin-notes{grid-column:1/4;grid-row:1;margin:0;padding-top:16px;border-top:1px solid var(--ink);align-self:start}
+  .about__body{grid-column:4/11}
+  .about h2{margin-bottom:40px}
+  .letter{font-size:1.5rem}
+  .contact{padding-block:128px 112px}
+  .contact__head{grid-column:1/8}
+  .contact__side{grid-column:8/13;align-self:end}
+  .contact__mail{margin-top:0}
+  .colophon{grid-template-columns:auto 1fr auto;align-items:baseline;column-gap:var(--gap)}
+}
+
+/* THE SLIDE. Each scene is one screen tall and sticks to the top, so the next page rides up over it.
+   JS writes --enter (0 to 1, how far this page has arrived) and --cover (how far the next one has).
+   Only when motion is welcome and the screen is tall enough to hold a plate and its text;
+   .is-flat is the script's veto when a scene's text would not fit (large text settings). */
+@media (prefers-reduced-motion:no-preference) and (min-height:600px) and (max-height:1400px){
+  html:not(.is-flat) .anchor{scroll-margin-top:calc(-1 * var(--scroll-pad))}
+  /* the shadow a page throws on the one beneath; it fades in with the first tenth of the arrival,
+     so a page still waiting below the fold does not smudge the bottom edge of the screen */
+  html:not(.is-flat) .scene{position:sticky;top:0;height:clamp(600px,100svh,1100px);
+    box-shadow:0 -22px 44px -26px rgba(29,33,48,calc(min(1,var(--enter) * 10) * .42))}
+  html:not(.is-flat) .scene::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;
+    background:#1D2130;opacity:calc(var(--cover) * .32)}
+  html:not(.is-flat) .scene__inner{height:100%;grid-template-rows:minmax(0,1fr) auto;row-gap:18px;
+    padding-block:calc(var(--head) + 16px) calc(var(--dock) + 14px);
+    transform-origin:50% 0;transform:scale(calc(1 - var(--cover) * .04));will-change:transform}
+  /* the plate takes the room that is left, within the crops the drawings allow (4:5 to 7:5) */
+  html:not(.is-flat) .scene__art{container-type:size;display:grid;place-items:center}
+  html:not(.is-flat) .plate{width:min(100cqw,140cqh);height:min(100cqh,125cqw);will-change:transform;
+    transform:translateX(calc((1 - var(--enter)) * var(--dir) * -1 * min(12vw,150px)))}
+  html:not(.is-flat) .plate svg{width:100%;height:100%;aspect-ratio:auto}
+  html:not(.is-flat) .scene__title{will-change:transform;
+    transform:translateX(calc((1 - var(--enter)) * var(--dir) * min(18vw,240px)))}
+  html:not(.is-flat) .scene__lead,html:not(.is-flat) .scene__desc,html:not(.is-flat) .scene__text>.work__link,html:not(.is-flat) .scene__links{
+    transform:translateX(calc((1 - var(--enter)) * var(--dir) * min(8vw,100px)))}
+  /* SwanReady's text is the longest, so on a short phone its plate may crop wider than the rest (the swan
+     holds to about 2:1), but never to a sliver: below 120px the guard in the script lays the stack flat */
+  html:not(.is-flat) .scene--swan .plate{width:min(100cqw,205cqh)}
+}
+@media (prefers-reduced-motion:no-preference) and (min-height:600px) and (max-height:1400px) and (max-width:999px){
+  html:not(.is-flat) .scene--swan .scene__inner{grid-template-rows:minmax(120px,1fr) auto}
+}
+@media (prefers-reduced-motion:no-preference) and (min-height:600px) and (max-height:1400px) and (min-width:720px){
+  html:not(.is-flat) .scene__inner{row-gap:24px;padding-block:calc(var(--head) + 28px) calc(var(--dock) + 28px)}
+}
+@media (prefers-reduced-motion:no-preference) and (min-height:600px) and (max-height:1400px) and (min-width:1000px){
+  html:not(.is-flat) .scene__inner{grid-template-rows:minmax(0,1fr);padding-block:calc(var(--head) + 40px) 48px}
+  html:not(.is-flat) .scene__art{justify-items:start}
+  html:not(.is-flat) .scene--flip .scene__art{justify-items:end}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#indhold">Spring til indholdet</a>
+
+<!-- the plates: each featured work has its own inks -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="ticks" width="40" height="20" patternUnits="userSpaceOnUse"><path d="M0 .5H13" stroke="#1D2130" stroke-width="2"/></pattern>
+    <pattern id="ticks-long" width="40" height="100" patternUnits="userSpaceOnUse"><path d="M0 .5H24" stroke="#1D2130" stroke-width="2.5"/></pattern>
+    <clipPath id="lp-left"><circle cx="250" cy="300" r="118"/></clipPath>
+  </defs>
+  <symbol id="art-weather" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#BCD5DD"/>
+    <g class="e-sun"><circle cx="385" cy="214" r="96" fill="#E8A63A"/>
+    <circle cx="392" cy="207" r="96" fill="none" stroke="#1D2130" stroke-width="2"/></g>
+    <g fill="#F6EFE0"><circle cx="215" cy="300" r="56"/><circle cx="292" cy="262" r="80"/><circle cx="374" cy="300" r="58"/><rect x="159" y="300" width="273" height="58" rx="29"/></g>
+    <g stroke="#27446B" stroke-width="7" stroke-linecap="round"><path d="M214 382l-16 40M264 382l-16 40M314 382l-16 40M364 382l-16 40"/></g>
+    <rect y="452" width="600" height="148" fill="#27446B"/>
+    <path d="M-10 480q25-13 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0" fill="none" stroke="#BCD5DD" stroke-width="2"/>
+    <path d="M-35 548q25-13 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0" fill="none" stroke="#BCD5DD" stroke-opacity=".5" stroke-width="2"/>
+  </symbol>
+  <symbol id="art-measure" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#E4BA4B"/>
+    <rect x="84" width="40" height="600" fill="#F6EFE0"/>
+    <rect x="84" width="40" height="600" fill="url(#ticks)"/><rect x="84" width="40" height="600" fill="url(#ticks-long)"/>
+    <rect x="236" y="150" width="128" height="128" rx="8" fill="#F6EFE0"/>
+    <rect x="243" y="143" width="128" height="128" rx="8" fill="none" stroke="#1D2130" stroke-width="2"/>
+    <g stroke="#1D2130" stroke-linecap="round"><path d="M254 278v22M346 278v22" stroke-width="8"/><path d="M232 322l-10 130M368 322l10 130" stroke-width="9"/></g>
+    <rect x="216" y="298" width="168" height="24" rx="4" fill="#1D2130"/>
+    <g stroke="#A5312B" stroke-width="3" fill="none"><path class="e-rule-v" d="M446 150v302M433 150h26M433 452h26"/><path class="e-rule-h" d="M216 497h168M216 485v24M384 485v24"/></g>
+    <g fill="#1D2130" font-family="Ysabeau Office, Gill Sans, sans-serif" font-size="27" font-weight="500"><text x="464" y="310">86 cm</text><text x="300" y="484" text-anchor="middle">45 cm</text></g>
+  </symbol>
+  <symbol id="art-swan" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#163C35"/>
+    <circle cx="212" cy="228" r="112" fill="#1F4D43"/>
+    <!-- everything on the water sits 6 units low, so the head clears the top edge when a short phone crops the plate wide -->
+    <g transform="translate(0 6)">
+    <!-- the reflection first, then bars of water laid over it so it thins out as it sinks -->
+    <g class="e-swan"><g transform="translate(300 400) scale(1.1) translate(-300 -396)"><g transform="matrix(1 0 0 -1 0 792)">
+      <path fill="#2A6556" d="M140 310C150 352 180 388 214 396L392 396C420 384 432 350 410 322 350 296 214 342 140 310Z"/>
+      <path fill="none" stroke="#2A6556" stroke-width="26" stroke-linecap="round" d="M400 346C440 300 366 268 378 222 386 190 428 182 440 214"/>
+    </g></g></g>
+    <g fill="#163C35"><rect y="400" width="600" height="4"/><rect y="418" width="600" height="6"/><rect y="436" width="600" height="9"/><rect y="455" width="600" height="13"/><rect y="476" width="600" height="18"/><rect y="500" width="600" height="24"/><rect y="528" width="600" height="72"/></g>
+    <path d="M84 452h58M462 446h74M124 510h46M478 516h52" stroke="#CFE0D3" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+    <!-- the requirements along the waterline: five behind the swan are met, two ahead are still open -->
+    <g fill="#E8A63A"><circle cx="55" cy="400" r="6.5"/><circle cx="85" cy="400" r="6.5"/><circle cx="115" cy="400" r="6.5"/><circle cx="145" cy="400" r="6.5"/><circle cx="175" cy="400" r="6.5"/></g>
+    <g fill="none" stroke="#E8A63A" stroke-width="2.5"><circle cx="462" cy="400" r="6.5"/><circle cx="496" cy="400" r="6.5"/></g>
+    <g class="e-swan"><g transform="translate(300 400) scale(1.1) translate(-300 -396)">
+      <path fill="#F6EFE0" d="M140 310C150 352 180 388 214 396L392 396C420 384 432 350 410 322 350 296 214 342 140 310Z"/>
+      <path fill="none" stroke="#F6EFE0" stroke-width="26" stroke-linecap="round" d="M400 346C440 300 366 268 378 222 386 190 428 182 440 214"/>
+      <circle cx="440" cy="214" r="17" fill="#F6EFE0"/>
+      <path d="M452 203L498 238 443 230Z" fill="#E8A63A"/>
+      <circle cx="455" cy="205" r="6.5" fill="#1D2130"/><circle cx="442" cy="209" r="2.6" fill="#1D2130"/>
+      <path fill="#DFCFAE" d="M384 350C330 282 236 262 170 296 214 340 300 378 384 350Z"/>
+      <path fill="none" stroke="#CFE0D3" stroke-opacity=".6" stroke-width="2" d="M391 343C337 275 243 255 177 289 221 333 307 371 391 343Z"/>
+    </g></g>
+    </g>
+  </symbol>
+  <symbol id="art-parvaz" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#1E2A5E"/>
+    <circle cx="462" cy="140" r="25" fill="#F6EFE0"/><circle cx="473" cy="132" r="23" fill="#1E2A5E"/>
+    <path d="M96 520C170 450 236 350 322 224" fill="none" stroke="#E8A63A" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 14"/>
+    <g fill="#3A4A8C"><rect x="72" y="262" width="24" height="338"/><rect x="129" y="262" width="24" height="338"/><rect x="186" y="262" width="24" height="338"/><rect x="243" y="262" width="24" height="338"/><rect x="300" y="262" width="24" height="338"/><rect x="357" y="262" width="24" height="338"/><rect x="414" y="262" width="24" height="338"/><rect x="471" y="262" width="24" height="338"/><rect x="528" y="262" width="24" height="338"/></g>
+    <rect x="40" y="262" width="540" height="10" fill="#3A4A8C"/>
+    <g class="e-bird"><path transform="translate(356 176) rotate(-34) scale(.98)" fill="#E8A63A" d="M62 0C52-7 40-9 28-8 24-40 0-70-40-90c22 28 30 56 32 82-22 0-52-4-88-14 16 12 26 18 34 22-8 4-18 10-34 22 36-10 66-14 88-14-2 26-10 54-32 82C0 70 24 40 28 8c12 1 24-1 34-8z"/></g>
+  </symbol>
+  <symbol id="art-mail" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#A2322C"/>
+    <path d="M150 282L300 172l150 110z" fill="#DFCFAE"/>
+    <rect x="150" y="282" width="300" height="190" fill="#C9B78F"/>
+    <g class="e-letter"><rect x="186" y="128" width="228" height="280" fill="#FBF6EA"/>
+    <g stroke="#1D2130" stroke-width="5" stroke-linecap="round"><path d="M246 178h140M246 216h140M246 254h92"/></g>
+    <g fill="none" stroke="#C07F14" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M206 178l7 8 13-17M206 216l7 8 13-17M206 254l7 8 13-17"/></g></g>
+    <path d="M150 282l150 106 150-106v190H150z" fill="#F6EFE0"/>
+    <path d="M150 282l150 106 150-106" fill="none" stroke="#1D2130" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M150 472l112-100M450 472L338 372" stroke="#1D2130" stroke-opacity=".5" stroke-width="2"/>
+  </symbol>
+  <symbol id="art-therapy" viewBox="0 0 600 600">
+    <rect width="600" height="600" fill="#7F9A8B"/>
+    <circle class="e-a" cx="250" cy="300" r="118" fill="#F6EFE0"/>
+    <circle class="e-b" cx="350" cy="300" r="118" fill="#C9705B"/>
+    <g class="e-a"><g clip-path="url(#lp-left)"><circle class="e-lens" cx="350" cy="300" r="118" fill="#EBB9A3"/></g></g>
+    <circle class="e-b" cx="357" cy="293" r="118" fill="none" stroke="#1D2130" stroke-width="2"/>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="wordmark" href="#" aria-label="cocode.dk, til toppen af siden">cocode<i>.</i>dk</a>
+    <nav class="nav" aria-label="Hovedmenu">
+      <div class="nav__links">
+        <a href="#vaerker">Værker</a><a href="#ydelser">Ydelser</a><a href="#om">Om mig</a><a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="lang" role="group" aria-label="Sprog">
+        <a href="#" data-lang aria-current="true" aria-label="Dansk, valgt">DA</a><span aria-hidden="true">/</span><a href="#" data-lang lang="en" hreflang="en" aria-label="English">EN</a>
+      </div>
+      <a class="btn btn--small" href="#kontakt">Lad os tale</a>
+    </nav>
+    <div class="lang lang--head" role="group" aria-label="Sprog">
+      <a href="#" data-lang aria-current="true" aria-label="Dansk, valgt">DA</a><span aria-hidden="true">/</span><a href="#" data-lang lang="en" hreflang="en" aria-label="English">EN</a>
+    </div>
+  </div>
+</header>
+
+<div class="dock">
+<div class="sheet" id="menu">
+  <div class="wrap bar">
+    <span class="wordmark" aria-hidden="true">cocode<i>.</i>dk</span>
+    <a class="menu-toggle" id="menu-close" href="#" role="button">Luk<span class="menu-glyph" aria-hidden="true"></span></a>
+  </div>
+  <nav class="wrap sheet__nav" aria-label="Indhold">
+    <p class="sc sheet__label">Indhold</p>
+    <ul class="toc">
+      <li style="--i:0"><a href="#weather"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-weather"/></svg><span class="vh">Nr. 1, </span><span class="toc__name">Weather</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">vejr overalt</span></a></li>
+      <li style="--i:1"><a href="#metrologist"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-measure"/></svg><span class="vh">Nr. 2, </span><span class="toc__name">Metrologist</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">mål fra ét foto</span></a></li>
+      <li style="--i:2"><a href="#swanready"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-swan"/></svg><span class="vh">Nr. 3, </span><span class="toc__name">SwanReady</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">Svanemærket med AI</span></a></li>
+      <li style="--i:3"><a href="#parvaz"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-parvaz"/></svg><span class="vh">Nr. 4, </span><span class="toc__name">Parvaz</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">et frit internet</span></a></li>
+      <li style="--i:4"><a href="#claude-email"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-mail"/></svg><span class="vh">Nr. 5, </span><span class="toc__name">claude-email</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">AI via e-mail</span></a></li>
+      <li style="--i:5"><a href="#lpterapi"><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-therapy"/></svg><span class="vh">Nr. 6, </span><span class="toc__name">lpterapi.dk</span><span class="toc__dots" aria-hidden="true"></span><span class="toc__note">parterapi</span></a></li>
+      <li class="toc__cat" style="--i:6"><span class="sc">Kataloget</span><span class="toc__groups"><a href="#g-apps">Apps</a><a href="#g-web">Web og spil</a><a href="#g-kunder">Kunder</a><a href="#g-tv">Tv</a><a href="#g-ai">AI-værktøjer</a></span></li>
+    </ul>
+  </nav>
+  <div class="wrap sheet__foot">
+    <div class="sheet__lang" style="--i:7">
+      <span class="sc" style="color:var(--on-lapis-2)">Sprog</span>
+      <div class="lang" role="group" aria-label="Sprog">
+        <a href="#" data-lang aria-current="true">Dansk</a><a href="#" data-lang lang="en" hreflang="en">English</a>
+      </div>
+    </div>
+    <a class="btn btn--saffron" style="--i:8" href="mailto:bb@cocode.dk">Skriv til mig</a>
+  </div>
+</div>
+<nav class="dock__bar" aria-label="Hovedmenu">
+  <div class="dock__cols">
+    <a class="dock__col" href="#vaerker">
+      <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><circle class="f" cx="15.4" cy="12.4" r="4.3"/><rect x="5" y="4" width="18" height="20"/><circle cx="14.2" cy="11.2" r="4.3"/><path d="M5 19.5h18"/></svg>
+      <span>Værker</span>
+    </a>
+    <a class="dock__col" href="#ydelser">
+      <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path class="f" d="M7.6 20.2a7.2 7.2 0 0 1 14.4 0z"/><path d="M6.4 19a7.2 7.2 0 0 1 14.4 0z"/><path d="M13.6 11.8V8.6M11.4 8.6h4.4M4.2 22.6h19.6"/></svg>
+      <span>Ydelser</span>
+    </a>
+    <a class="dock__col" href="#om">
+      <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><circle class="f" cx="14.9" cy="11.3" r="3.3"/><path class="f" d="M8.9 21.4c.7-3.9 2.9-5.6 6-5.6s5.3 1.7 6 5.6z"/><ellipse cx="14" cy="14" rx="9.2" ry="11.2"/><circle cx="13.9" cy="10.3" r="3.3"/></svg>
+      <span>Om mig</span>
+    </a>
+    <a class="dock__col" href="#kontakt">
+      <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path class="f" d="M5.7 9l9.4 7.1L24.5 9z"/><rect x="4.4" y="7.4" width="19.2" height="14"/><path d="M4.4 7.4l9.6 7.3 9.6-7.3"/></svg>
+      <span>Kontakt</span>
+    </a>
+    <a class="dock__col" id="menu-toggle" href="#menu" role="button" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><circle class="f" cx="15" cy="15" r="9.6"/><circle cx="14" cy="14" r="9.6"/><path class="dock__chev" d="M9.6 16.2l4.4-4.4 4.4 4.4"/></svg>
+      <span>Indhold</span>
+    </a>
+  </div>
+</nav>
+</div>
+
+<main id="indhold">
+  <section class="hero" aria-labelledby="titel">
+    <div class="wrap grid12">
+      <div class="hero__text">
+        <p class="sc">Babak Bandpey, AI-konsulent</p>
+        <h1 id="titel"><span>Jeg hjælper virksomheder med at bruge AI.</span> <span>Og jeg bygger selv det, jeg anbefaler.</span></h1>
+        <p class="hero__intro">Her på siden ser du det, jeg har lavet: apps, spil, hjemmesider og <span class="nb">AI-værktøjer</span>. Kig dig omkring. Og sig til, hvis du vil have noget lignende.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#kontakt">Lad os tale</a>
+          <a class="quiet-link" href="#vaerker">Se værkerne</a>
+        </div>
+      </div>
+      <figure class="specimen">
+        <div class="mount specimen__grid">
+          <a href="#weather"><span class="vh">Weather</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-weather"/></svg></a>
+          <a href="#metrologist"><span class="vh">Metrologist</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-measure"/></svg></a>
+          <a href="#swanready"><span class="vh">SwanReady</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-swan"/></svg></a>
+          <a href="#parvaz"><span class="vh">Parvaz</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-parvaz"/></svg></a>
+          <a href="#claude-email"><span class="vh">claude-email</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-mail"/></svg></a>
+          <a href="#lpterapi"><span class="vh">lpterapi.dk</span><svg viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#art-therapy"/></svg></a>
+        </div>
+        <figcaption class="sc">Seks værker fra kataloget</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="featured" id="vaerker" aria-labelledby="h-vaerker">
+    <div class="section section--ruled featured__head">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 id="h-vaerker">Udvalgte værker</h2>
+          <p class="note">Seks ting, jeg er særligt glad for. Resten står i kataloget længere nede.</p>
+        </div>
+      </div>
+    </div>
+    <!-- The anchors carry the ids: a stuck scene reports the wrong place to a #link, a plain span never does. -->
+    <div class="reel">
+      <span class="anchor" id="weather"></span>
+      <article class="scene scene--weather" aria-labelledby="t-weather">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-weather"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 1</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">App til Android</span></p>
+            <h3 class="scene__title" id="t-weather">Weather</h3>
+            <p class="scene__desc">Vejret for ethvert sted. Slå en by op, eller lad telefonen finde dig, og se, om cyklen skal blive hjemme i dag.</p>
+            <a class="work__link" href="https://weather.cocode.dk">weather.cocode.dk</a>
+          </div>
+        </div>
+      </article>
+      <span class="anchor" id="metrologist"></span>
+      <article class="scene scene--measure scene--flip" aria-labelledby="t-metrologist">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-measure"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 2</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">App til Android</span></p>
+            <h3 class="scene__title" id="t-metrologist">Metrologist</h3>
+            <p class="scene__desc">Tag ét foto, og få målene. Godt, når tommestokken ligger derhjemme.</p>
+            <a class="work__link" href="https://measure.cocode.dk">measure.cocode.dk</a>
+          </div>
+        </div>
+      </article>
+      <span class="anchor" id="swanready"></span>
+      <article class="scene scene--swan" aria-labelledby="t-swanready">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-swan"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 3</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">Mit eget produkt</span></p>
+            <h3 class="scene__title" id="t-swanready">SwanReady</h3>
+            <p class="scene__lead">Svanemærket, ét krav ad gangen.</p>
+            <p class="scene__desc">SwanReady er min egen <span class="nb">AI-agent</span> til producenter, der vil have Svanemærket. Du fortæller om produktet i en samtale. Agenten finder den rigtige kategori og går kravene igennem med dig. Den holder styr på dokumentationen, viser, hvad der mangler, og skriver resuméet til ansøgningen.</p>
+            <p class="scene__links"><a class="btn btn--small scene__cta" href="https://sr.cocode.dk">Se SwanReady</a><a class="work__link work__link--quiet" href="https://swanready.cocode.dk">Se historien på to minutter</a></p>
+          </div>
+        </div>
+      </article>
+      <span class="anchor" id="parvaz"></span>
+      <article class="scene scene--parvaz scene--flip" aria-labelledby="t-parvaz">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-parvaz"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 4</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">App til Android</span></p>
+            <h3 class="scene__title" id="t-parvaz">Parvaz</h3>
+            <p class="scene__desc">Parvaz betyder flyvning på persisk. Appen giver folk i Iran en vej uden om censuren.</p>
+            <a class="work__link" href="https://parvaz.cocode.dk">parvaz.cocode.dk</a>
+          </div>
+        </div>
+      </article>
+      <span class="anchor" id="claude-email"></span>
+      <article class="scene scene--mail" aria-labelledby="t-claude-email">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-mail"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 5</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">AI-værktøj</span></p>
+            <h3 class="scene__title" id="t-claude-email">claude-email</h3>
+            <p class="scene__desc">Jeg sender en mail med en opgave. En AI-agent løser den og svarer, når den er færdig.</p>
+            <a class="work__link" href="#kontakt">Bed om en demo</a>
+          </div>
+        </div>
+      </article>
+      <span class="anchor" id="lpterapi"></span>
+      <article class="scene scene--therapy scene--flip" aria-labelledby="t-lpterapi">
+        <div class="wrap scene__inner">
+          <figure class="scene__art"><div class="plate mount"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-therapy"/></svg></div></figure>
+          <div class="scene__text">
+            <p class="scene__meta"><span class="scene__no">Nr. 6</span><span class="scene__dots" aria-hidden="true"></span><span class="sc">Kundeprojekt</span></p>
+            <h3 class="scene__title" id="t-lpterapi">lpterapi.dk</h3>
+            <p class="scene__desc">Hjemmeside til en parterapeut. Rolig og enkel, så det bliver lettere at tage det første skridt.</p>
+            <a class="work__link" href="https://lpterapi.dk">lpterapi.dk</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--ruled" id="katalog" aria-labelledby="h-katalog">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="h-katalog">Resten af kataloget</h2>
+        <p class="note">Små ting, sjove ting og et par meget store.</p>
+      </div>
+      <div class="index">
+        <section class="index__group" aria-labelledby="g-apps">
+          <h3 id="g-apps">Apps til Android</h3>
+          <ul class="index__list">
+            <li><span class="index__name">Chess Puzzles</span><span class="index__desc">Rigtige skakopgaver, også når du er uden net.</span><a class="index__link" href="https://chess.cocode.dk">chess.cocode.dk</a></li>
+            <li><span class="index__name">Battleship</span><span class="index__desc">Sænke slagskibe, som du kender det.</span><a class="index__link" href="https://battleship.cocode.dk">battleship.cocode.dk</a></li>
+            <li><span class="index__name">BabakCast</span><span class="index__desc">Hent en video, og få et resumé.</span><a class="index__link" href="https://cast.cocode.dk">cast.cocode.dk</a></li>
+            <li><span class="index__name">BabakPlayer</span><span class="index__desc">Afspilleren til det, BabakCast deler.</span><a class="index__link" href="https://player.cocode.dk">player.cocode.dk</a></li>
+            <li><span class="index__name">Link QR Wallet</span><span class="index__desc">Dine links som QR-koder.</span><a class="index__link" href="https://qr.cocode.dk">qr.cocode.dk</a></li>
+            <li><span class="index__name">LifeMeter</span><span class="index__desc">Dit liv i tal.</span><a class="index__link" href="https://lifemeter.cocode.dk">lifemeter.cocode.dk</a></li>
+            <li><span class="index__name">Calendar</span><span class="index__desc">Persisk kalender.</span><a class="index__link" href="https://calendar.cocode.dk">calendar.cocode.dk</a></li>
+            <li><span class="index__name">TMS Measurement</span><span class="index__desc">Opmåling til TMS-behandling.</span><a class="index__link" href="https://tms.cocode.dk">tms.cocode.dk</a></li>
+          </ul>
+        </section>
+        <section class="index__group" aria-labelledby="g-web">
+          <h3 id="g-web">Web og spil</h3>
+          <ul class="index__list">
+            <li><span class="index__name">Dansk-Persisk</span><span class="index__desc">Sproglektioner på nettet.</span></li>
+            <li><span class="index__name">Dansk-Japansk</span><span class="index__desc">Sproglektioner på nettet.</span></li>
+            <li><span class="index__name">7kasif</span><span class="index__desc">Kortspil for flere spillere.</span></li>
+            <li><span class="index__name">Dune</span><span class="index__desc">Strategispil i browseren.</span></li>
+            <li><span class="index__name">TIE Fighter</span><span class="index__desc">3D-spil i browseren.</span></li>
+            <li><span class="index__name">Reverse Prime Plot</span><span class="index__desc">Primtal, tegnet som et mønster.</span></li>
+          </ul>
+        </section>
+        <section class="index__group" aria-labelledby="g-kunder">
+          <h3 id="g-kunder">Kundeprojekter</h3>
+          <ul class="index__list">
+            <li><span class="index__name">Venus Høreklinik</span><span class="index__desc">Høreapparater og høretest i København K.</span><a class="index__link" href="https://klinikvenus.dk">klinikvenus.dk</a></li>
+            <li><span class="index__name">Nick Autoteknik</span><span class="index__desc">Autoværksted i Rødovre.</span><a class="index__link" href="https://nick-autoteknik.dk">nick-autoteknik.dk</a></li>
+            <li><span class="index__name">Klinik for Manuel Terapi</span><span class="index__desc">Hjemmeside til en klinik.</span></li>
+            <li><span class="index__name">Unity Foundation</span><span class="index__desc">Hjemmeside til en velgørende forening.</span></li>
+          </ul>
+        </section>
+        <section class="index__group" aria-labelledby="g-tv">
+          <h3 id="g-tv">Til Samsung-tv</h3>
+          <ul class="index__list">
+            <li><span class="index__name">Copenhagen Weather</span><span class="index__desc">Vejret på den store skærm.</span></li>
+            <li><span class="index__name">Night Gallery</span><span class="index__desc">Et galleri til stuen.</span></li>
+          </ul>
+        </section>
+        <section class="index__group" aria-labelledby="g-ai">
+          <h3 id="g-ai">AI-værktøjer</h3>
+          <ul class="index__list">
+            <li><span class="index__name">graph-loop</span><span class="index__desc">AI-agenter, der arbejder videre uden opsyn.</span></li>
+            <li><span class="index__name">MCP-servere</span><span class="index__desc">Giver en AI adgang til kalender, opgaver og hukommelse.</span></li>
+            <li><span class="index__name">FITS.DK</span><span class="index__desc">Platform til compliance. Over 3000 timers arbejde.</span><a class="index__link" href="https://fits.dk">fits.dk</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled services-wrap" id="ydelser" aria-labelledby="h-ydelser">
+    <div class="wrap grid12">
+      <div class="section__head"><h2 id="h-ydelser">Det kan jeg hjælpe dig med</h2></div>
+      <dl class="services">
+        <div><dt>Rådgivning</dt><dd>Hvor giver AI mening hos jer, og hvor gør den ikke? Du får et ærligt svar og en plan, du kan bruge.</dd></div>
+        <div><dt>AI-agenter</dt><dd>Agenter, der udfører rigtigt arbejde: læser, sorterer, svarer og følger op. Bygget til jeres hverdag.</dd></div>
+        <div><dt>Automatisering</dt><dd>Det kedelige, der æder tiden, kan en maskine ofte klare. Jeg finder det og får det til at køre.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--ruled about" id="om" aria-labelledby="h-om">
+    <div class="wrap grid12">
+      <div class="about__body">
+        <h2 id="h-om">Et par ord fra mig</h2>
+        <div class="letter">
+          <p>Mit fag er at bygge software. Det har jeg gjort i over 25 år, og i dag handler det meste om AI: Jeg rådgiver om den, og jeg bygger med den.</p>
+          <p>Meget af det, du ser her, er lavet med de samme AI-værktøjer, som jeg anbefaler til mine kunder. Derfor ved jeg, hvad der virker i praksis, og hvad der kun ser godt ud i en præsentation.</p>
+          <p>Du taler altid med mig. Ikke med en sælger.</p>
+        </div>
+        <p class="signature">Babak</p>
+      </div>
+      <div class="margin-notes">
+        <p class="sc">Babak Bandpey</p>
+        <p class="sc">København</p>
+        <p class="sc">Dansk, engelsk og persisk</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="back contact" id="kontakt" aria-labelledby="h-kontakt">
+    <div class="wrap grid12">
+      <div class="contact__head">
+        <h2 id="h-kontakt">Lad os tale</h2>
+        <p class="contact__lead">Fortæl kort, hvad du står med. Jeg svarer selv.</p>
+      </div>
+      <div class="contact__side">
+        <a class="contact__mail" href="mailto:bb@cocode.dk">bb@cocode.dk</a>
+        <div class="contact__more">
+          <span>Eller ring på <a href="tel:+4553737514">53 73 75 14</a></span>
+          <a href="https://linkedin.com/in/babakbandpey">Babak Bandpey på LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="back back--foot">
+  <div class="wrap">
+    <div class="colophon">
+      <span class="wordmark">cocode<i>.</i>dk</span>
+      <span>Sat med Ibarra Real Nova og Ysabeau. Illustrationerne er tegnet til siden.</span>
+      <span>© 2026 Babak Bandpey</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var toggle = document.getElementById('menu-toggle');
+  var sheet = document.getElementById('menu');
+  var closeBtn = document.getElementById('menu-close');
+  var dock = document.querySelector('.dock');
+  var bar = document.querySelector('.dock__bar');
+  // The bar is deliberately not in this list: it stays usable while the sheet is open, as on lpterapi.dk.
+  var outside = [document.querySelector('.site-header'), document.querySelector('main'), document.querySelector('footer'), document.querySelector('.skip')];
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var desktop = window.matchMedia('(min-width: 1000px)');
+  var isOpen = false;
+
+  // Focus is held inside the dock: the sheet's links first, then the bar, then round again.
+  function focusables() {
+    return Array.prototype.slice.call(dock.querySelectorAll('a[href], button:not([disabled])'));
+  }
+  function setOpen(next, instant) {
+    if (next === isOpen) return;
+    isOpen = next;
+    // Reduced motion: no unfolding, no stagger. The sheet is simply there.
+    sheet.classList.toggle('no-motion', !!instant || reduce.matches);
+    sheet.classList.toggle('is-open', next);
+    sheet.inert = !next;
+    outside.forEach(function (el) { if (el) el.inert = next; });
+    document.body.classList.toggle('is-locked', next);
+    toggle.setAttribute('aria-expanded', String(next));
+    (next ? closeBtn : toggle).focus({ preventScroll: true });
+  }
+
+  sheet.inert = true;
+  toggle.addEventListener('click', function (e) { e.preventDefault(); setOpen(!isOpen); });
+  closeBtn.addEventListener('click', function (e) { e.preventDefault(); setOpen(false); });
+  [toggle, closeBtn].forEach(function (el) {
+    el.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); el.click(); } });
+  });
+  sheet.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href^="#"]:not([data-lang]):not(#menu-close)');
+    if (link) setOpen(false, true);
+  });
+  // A destination in the bar, tapped while the sheet is up: put the sheet away and go.
+  bar.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href^="#"]:not(#menu-toggle)');
+    if (link && isOpen) setOpen(false, true);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!isOpen) return;
+    if (e.key === 'Escape') { e.preventDefault(); setOpen(false); return; }
+    if (e.key !== 'Tab') return;
+    var items = focusables(), first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    else if (!dock.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  });
+
+  // You are here: the bar puts its ribbon on the section under the reader's eye.
+  // The rest of the catalogue still counts as "Værker".
+  var cols = Array.prototype.slice.call(bar.querySelectorAll('a[href^="#"]:not(#menu-toggle)'));
+  var places = [['vaerker', '#vaerker'], ['katalog', '#vaerker'], ['ydelser', '#ydelser'], ['om', '#om'], ['kontakt', '#kontakt']]
+    .map(function (p) { return { el: document.getElementById(p[0]), href: p[1] }; })
+    .filter(function (p) { return p.el; });
+  var marking = false;
+  function mark() {
+    marking = false;
+    var line = window.innerHeight * 0.45, here = '';
+    places.forEach(function (p) { if (p.el.getBoundingClientRect().top <= line) here = p.href; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) here = '#kontakt';
+    cols.forEach(function (c) {
+      if (c.getAttribute('href') === here) c.setAttribute('aria-current', 'true');
+      else c.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', function () { if (!marking) { marking = true; requestAnimationFrame(mark); } }, { passive: true });
+  window.addEventListener('resize', mark);
+  mark();
+  desktop.addEventListener('change', function (m) { if (m.matches) setOpen(false, true); });
+
+  // The language switch is a mockup: it marks the choice and stays on the page.
+  document.addEventListener('click', function (e) {
+    var l = e.target.closest('a[data-lang]');
+    if (l) e.preventDefault();
+  });
+
+  // atelier.html#menu opens the sheet directly.
+  if (location.hash === '#menu' && !desktop.matches) {
+    setOpen(true, true);
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+  }
+})();
+
+// The slide. For every scene: --enter is how far it has come up the screen (0 to 1),
+// --cover how far the next one has come up over it. CSS does the rest.
+(function () {
+  var root = document.documentElement;
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  if (!scenes.length || !window.matchMedia) return;
+  // Must say the same as the media query around "THE SLIDE" in the stylesheet.
+  var stack = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 600px) and (max-height: 1400px)');
+  var queued = false;
+
+  function clamp(v) { return Math.min(1, Math.max(0, v)); }
+
+  // A scene is exactly one screen tall, so text that outgrows it (large text settings)
+  // would be cut off. If that happens anywhere, the whole stack lies flat instead.
+  function guard() {
+    root.classList.remove('is-flat');
+    if (!stack.matches) return;
+    root.classList.toggle('is-flat', scenes.some(function (s) {
+      var inner = s.firstElementChild, text = inner.lastElementChild;
+      if (inner.scrollHeight > inner.clientHeight + 1) return true;
+      // scrollHeight only notices text that has left the box altogether. Text that has merely run
+      // into the bottom padding is already behind the bar, so measure where it ends (k undoes the scale).
+      var box = inner.getBoundingClientRect(), k = box.height / inner.offsetHeight || 1;
+      var room = inner.clientHeight - parseFloat(getComputedStyle(inner).paddingBottom);
+      return (text.getBoundingClientRect().bottom - box.top) / k > room + 1;
+    }));
+  }
+  function frame() {
+    queued = false;
+    var on = stack.matches && !root.classList.contains('is-flat');
+    var vh = window.innerHeight;
+    var tops = scenes.map(function (s) { return s.getBoundingClientRect().top; });
+    scenes.forEach(function (s, i) {
+      if (!on) { s.style.removeProperty('--enter'); s.style.removeProperty('--cover'); return; }
+      s.style.setProperty('--enter', clamp(1 - tops[i] / vh).toFixed(3));
+      if (i + 1 < scenes.length) s.style.setProperty('--cover', clamp(1 - tops[i + 1] / vh).toFixed(3));
+    });
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
+  function settle() { guard(); frame(); }
+
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', settle);
+  window.addEventListener('load', settle);
+  stack.addEventListener('change', settle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+  settle();
+})();
+</script>
+</body>
+</html>
