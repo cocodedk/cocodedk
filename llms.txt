@@ -19,7 +19,7 @@ Services: advice on where AI is worth using, AI agents that carry out real work,
 
 ## Web, games and TV
 
-- [Danish-Persian lessons](https://persisk.cocode.dk), [Danish-Japanese lessons](https://japansk.cocode.dk), [7kasif](https://7kasif.cocode.dk), [Dune](https://dune.cocode.dk), [TIE Fighter](https://tiefighter.cocode.dk), [Reverse Prime Plot](https://primes.cocode.dk), [Copenhagen Weather for Samsung TV](https://tv-vejr.cocode.dk), [Night Gallery](https://nightgallery.cocode.dk)
+- [Danish-Persian lessons](https://persisk.cocode.dk), [Danish-Japanese lessons](https://japansk.cocode.dk), [7kasif](https://7kasif.cocode.dk), [Dune](https://dune.cocode.dk), [TIE Fighter](https://tiefighter.cocode.dk), [Tetris](https://tetris.cocode.dk), [Reverse Prime Plot](https://primes.cocode.dk), [Copenhagen Weather for Samsung TV](https://tv-vejr.cocode.dk), [Night Gallery](https://nightgallery.cocode.dk)
 
 ## Client sites and AI tools
 
