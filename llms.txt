@@ -25,6 +25,7 @@ Services: advice on where AI is worth using, AI agents that carry out real work,
 
 - [Venus Høreklinik](https://klinikvenus.dk), [Nick Autoteknik](https://nick-autoteknik.dk), Klinik for Manuel Terapi, Unity Foundation
 - [Jev Bench](https://jev-bench.cocode.dk): an open workbench for measuring how fast and how accurately AI models classify, with repeatable datasets and downloadable results.
+- [zjm-rag](https://rag.cocode.dk): finds the file that holds the answer; zg searches, Jev ranks, and an LLM answers from those files only, citing their paths.
 - [graph-loop](https://graph-loop.cocode.dk): unattended AI agent loops. MCP servers for calendars, Teams Planner and memory. [FITS.DK](https://fits.dk): a compliance platform, more than 3000 hours of work.
 
 ## For AI agents in the browser
