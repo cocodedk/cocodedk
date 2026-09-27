@@ -27,24 +27,24 @@ function listed(item, group) {
   };
 }
 
-export function readWorks() {
-  const catalogue = all('.index__group').flatMap((group) => {
+export function readWorks(doc = document) {
+  const catalogue = all('.index__group', doc).flatMap((group) => {
     const heading = text(group.querySelector('h3'));
     return all('.index__list > li', group).map((item) => listed(item, heading));
   });
-  return all('.scene').map(featured).concat(catalogue);
+  return all('.scene', doc).map(featured).concat(catalogue);
 }
 
-export function readServices() {
-  return all('.services > div').map((row) => ({
+export function readServices(doc = document) {
+  return all('.services > div', doc).map((row) => ({
     name: text(row.querySelector('dt')),
     description: text(row.querySelector('dd')),
   }));
 }
 
-export function readContact() {
+export function readContact(doc = document) {
   const href = (selector) => {
-    const el = document.querySelector(`#kontakt a[href^="${selector}"]`);
+    const el = doc.querySelector(`#kontakt a[href^="${selector}"]`);
     return el ? el.getAttribute('href') : null;
   };
   const strip = (value, prefix) => (value ? value.slice(prefix.length) : null);

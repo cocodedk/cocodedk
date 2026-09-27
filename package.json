@@ -9,7 +9,8 @@
     "build": "webpack",
     "dev": "webpack serve --mode development --open",
     "lint:length": "bash scripts/check-file-length.sh",
-    "prepare": "cp scripts/pre-commit .git/hooks/pre-commit 2>/dev/null || true"
+    "prepare": "cp scripts/pre-commit .git/hooks/pre-commit 2>/dev/null || true",
+    "readme": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/readme/build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -21,6 +22,8 @@
     "html-webpack-plugin": "^5.6.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.4.1",
+    "jsdom": "^26.1.0",
+    "subset-font": "^2.9.0",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^5.2.4"

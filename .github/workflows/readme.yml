@@ -1,0 +1,46 @@
+name: README
+
+# The profile README is drawn from the page (npm run readme). When a PR changes the page, this
+# rebuilds the README and commits it to the PR branch, so what gets merged is always current.
+# Runs that the bot's own push starts wait for a manual approval ("action required"). That is fine
+# while main requires no checks; if it ever does, push with a GitHub App token instead.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    # A branch in someone else's fork cannot be pushed to from here.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.head_ref }}
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      # No install scripts: `prepare` would drop a stale pre-commit hook into .git/hooks and fail
+      # the bot's commit, and nothing the generator needs builds on install.
+      - run: npm ci --ignore-scripts
+
+      - run: npm run readme
+
+      - name: Commit the README if the page changed it
+        run: |
+          git add README.md readme/
+          if git diff --cached --quiet; then echo "The README is current."; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: regenerate the README from the page'
+          git push
