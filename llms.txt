@@ -1,41 +1,91 @@
-# cocode.dk - Babak Bandpey
+# cocode.dk
 
-> Babak Bandpey is an AI consultant in Copenhagen, Denmark. He helps companies put AI to work, and he builds what he recommends himself. cocode.dk is one person; the site shows what he has built.
+> Babak Bandpey is an AI consultant in Copenhagen, Denmark. He helps businesses put AI to work, and he builds what he recommends himself. cocode.dk is one person, and the site shows what he has built.
 
-Services: advice on where AI is worth using, AI agents that carry out real work, and automation of repetitive tasks. The site is in Danish.
+Babak has built software for more than 25 years. Today most of his work is about AI: he advises on it and he builds with it. Much of what is on the site was made with the same AI tools he recommends to clients, so his advice comes from practice. Clients always talk to him directly; there is no sales team. He works in Danish, English and Persian.
+
+The site is a single page in Danish (an English version is planned). It has four parts: selected works, the rest of the catalogue, services, and contact. Every app, game, site and tool listed below is his own work. Most of the apps are free and open source, and many run offline with no account or tracking. Client work also includes websites for Klinik for Manuel Terapi and for a charity, Unity Foundation, which are not linked from the site.
+
+Babak publishes his Android apps on F-Droid, the app store for free and open-source Android software. Battleship is on F-Droid now. Chess Puzzles has been accepted and appears after F-Droid's next build. Weather, TMS Measurement, LifeMeter, Link QR Wallet, Parvaz, BabakPlayer, BabakCast and Calendar are in F-Droid's review queue.
+
+To start a project, write or call with a short description of what you need. Babak replies himself.
+
+AI agents running in the visitor's browser can use the page's WebMCP tools (`document.modelContext`), which answer from the page itself:
+
+- `list_works` (optional `featured_only`): every work on the site, with name, kind, a one-line Danish description and its link.
+- `get_services`: the three services, in Babak's own Danish words.
+- `get_about`: who he is, how long he has worked, why he recommends what he does, his city and languages.
+- `get_contact`: e-mail, phone and LinkedIn.
+- `go_to_section` (`place`): scrolls to a section (`vaerker`, `katalog`, `ydelser`, `om`, `kontakt`) or a featured work (`weather`, `metrologist`, `swanready`, `parvaz`, `claude-email`, `lpterapi`).
+- `draft_inquiry` (`message` up to 1500 characters, optional `subject` up to 120): opens the visitor's mail app with a message to Babak already written. Nothing is sent until the visitor presses send.
+
+## Services
+
+- [Advice](https://cocode.dk/#ydelser): Where AI makes sense in your business and where it does not. You get an honest answer and a plan you can use.
+- [AI agents](https://cocode.dk/#ydelser): Agents that do real work, such as reading, sorting, replying and following up, built around how your business runs day to day.
+- [Automation](https://cocode.dk/#ydelser): He finds the dull work that eats your time, has a machine do it, and gets it running.
 
 ## Featured work
 
-- [SwanReady](https://sr.cocode.dk): His own product. An AI agent that helps manufacturers apply for the Nordic Swan Ecolabel: it finds the product category, walks through the requirements one at a time, tracks the documentation and writes the application summary. [Two-minute story](https://swanready.cocode.dk).
-- [Weather](https://weather.cocode.dk): Android weather app for any location.
-- [Metrologist](https://measure.cocode.dk): Android app that measures real objects from a single photo.
-- [Parvaz](https://parvaz.cocode.dk): Android app for getting around internet censorship in Iran.
-- [claude-email](https://claude-email.cocode.dk): Hand a task to an AI agent by e-mail; it replies when the work is done.
-- [lpterapi.dk](https://lpterapi.dk): Website for a couples therapist.
+- [SwanReady](https://sr.cocode.dk): His own product. An AI agent for manufacturers who want the Nordic Swan Ecolabel. You describe the product in a conversation; the agent finds the right product category, goes through the requirements with you one at a time, keeps track of the documentation, shows what is missing and writes the summary for the application.
+- [SwanReady in two minutes](https://swanready.cocode.dk): A short visual story of how SwanReady takes a product from documentation to an ecolabel-ready report.
+- [Weather](https://weather.cocode.dk): Free, open-source Android weather app. Search any city or use GPS, and read the forecast in that place's own local time. No API key, account or tracking.
+- [Metrologist](https://measure.cocode.dk): Android app that turns one photo into measurements. Mark four corners and a reference, and get width, height, area, diagonal and angles, offline.
+- [Parvaz](https://parvaz.cocode.dk): Persian-first Android app that gives people in Iran a way around internet censorship, through a relay each user deploys on Google Apps Script. Parvaz means flight in Persian.
+- [claude-email](https://claude-email.cocode.dk): Send a task by e-mail; a Claude Code agent does the work and replies when it is done. Handles several agents at once. Demo on request.
+- [lpterapi.dk](https://lpterapi.dk): Client project. A calm, simple website for LP Terapi, couples therapy in Roskilde, Slagelse and online.
 
-## More apps
+## Android apps
 
-- [Chess Puzzles](https://chess.cocode.dk), [Battleship](https://battleship.cocode.dk), [BabakCast](https://cast.cocode.dk), [BabakPlayer](https://player.cocode.dk), [Link QR Wallet](https://qr.cocode.dk), [LifeMeter](https://lifemeter.cocode.dk), [Calendar](https://calendar.cocode.dk), [TMS Measurement](https://tms.cocode.dk)
+- [Chess Puzzles](https://chess.cocode.dk): Real Lichess puzzles with streaks and progress, offline, free and open source.
+- [Battleship](https://battleship.cocode.dk): Offline naval strategy game with super weapons, medals and ranks. No account, network or ads.
+- [Battleship on F-Droid](https://f-droid.org/packages/com.cocode.battleship/): Install Battleship from F-Droid.
+- [BabakCast](https://cast.cocode.dk): Downloads videos from YouTube, X, Instagram and LinkedIn and summarizes transcripts with your own AI provider. No backend, no tracking.
+- [BabakPlayer](https://player.cocode.dk): Companion player for BabakCast; imports shared media parts in order and plays them straight through.
+- [Link QR Wallet](https://qr.cocode.dk): Keeps your links as QR codes.
+- [LifeMeter](https://lifemeter.cocode.dk): Turns your birthdate into a live dashboard of your life in numbers.
+- [Calendar](https://calendar.cocode.dk): Persian (Jalali) and Gregorian calendar with live date conversion.
+- [TMS Measurement](https://tms.cocode.dk): Measuring for TMS (transcranial magnetic stimulation) treatment, with a Beam F3 calculator.
 
-## Web, games and TV
+## Web and games
 
-- [Danish-Persian lessons](https://persisk.cocode.dk), [Danish-Japanese lessons](https://japansk.cocode.dk), [7kasif](https://7kasif.cocode.dk), [Dune](https://dune.cocode.dk), [TIE Fighter](https://tiefighter.cocode.dk), [Tetris](https://tetris.cocode.dk), [Reverse Prime Plot](https://primes.cocode.dk), [Copenhagen Weather for Samsung TV](https://tv-vejr.cocode.dk), [Night Gallery](https://nightgallery.cocode.dk)
+- [Danish-Persian](https://persisk.cocode.dk): Learn to read Persian from scratch: right-to-left reading, the alphabet, vowel marks and pronunciation.
+- [Danish-Japanese](https://japansk.cocode.dk): Learn to read and write the 46 hiragana, with pronunciation help.
+- [7kasif](https://7kasif.cocode.dk): Hafte Kasif ("the dirty seven"), a Danish-Persian card game played online with friends.
+- [Dune](https://dune.cocode.dk): Strategy game in the browser, set on Arrakis: harvest spice, forge Fremen alliances, outmanoeuvre rival Houses.
+- [TIE Fighter](https://tiefighter.cocode.dk): Low-poly 3D space combat in the browser, with keyboard or touch controls.
+- [Tetris](https://tetris.cocode.dk): The classic block game in the browser, with hold and next queue. Keyboard and touch, no sign-up.
+- [Reverse Prime Plot](https://primes.cocode.dk): Plots every number against its digit reversal, so the primes show up as a pattern.
 
-## Client sites and AI tools
+## Samsung TV apps
 
-- [Venus Høreklinik](https://klinikvenus.dk), [Nick Autoteknik](https://nick-autoteknik.dk), Klinik for Manuel Terapi, Unity Foundation
-- [Jev Bench](https://jev-bench.cocode.dk): an open workbench for measuring how fast and how accurately AI models classify, with repeatable datasets and downloadable results.
-- [zjm-rag](https://rag.cocode.dk): finds the file that holds the answer; zg searches, Jev ranks, and an LLM answers from those files only, citing their paths.
-- [graph-loop](https://graph-loop.cocode.dk): unattended AI agent loops. MCP servers for calendars, Teams Planner and memory. [FITS.DK](https://fits.dk): a compliance platform, more than 3000 hours of work.
+- [Copenhagen Weather](https://tv-vejr.cocode.dk): Weather for Copenhagen on a Samsung Tizen TV, driven by the remote.
+- [Night Gallery](https://nightgallery.cocode.dk): A quiet learning screen for the living room: chess puzzles, chess positions, concept cards and slow ambient light. Offline.
 
-## For AI agents in the browser
+## AI tools
 
-The page registers WebMCP tools (`document.modelContext`): `list_works`, `get_services`, `get_about`, `get_contact`, `go_to_section` and `draft_inquiry`. `draft_inquiry` opens a prefilled e-mail to Babak in the visitor's mail app; nothing is sent until the visitor presses send.
+- [Jev Bench](https://jev-bench.cocode.dk): Open workbench that measures how fast and how accurately AI models classify, with repeatable datasets, named models and downloadable results.
+- [graph-loop](https://graph-loop.cocode.dk): Unattended coding loop. It breaks a large job into small tasks; one model writes the code, and a second rejects any task that could pass without the work being done.
+- [zjm-rag](https://rag.cocode.dk): Question answering over local files. zg finds candidate files, Jev judges which hold the answer, and an LLM answers from those files only, citing each path.
+- [Calendar Consolidator MCP](https://github.com/cocodedk/calendar-consolidator-mcp): MCP server that merges Microsoft 365 and iCloud calendars into one.
+- [Planner Task Creator MCP](https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP): MCP server that lets an AI create tasks in Microsoft Teams Planner.
+- [FITS.DK](https://fits.dk): FITS, a compliance platform that uses AI to write policies and find and close gaps. Danish product, hosted in Europe. More than 3,000 hours of work.
+
+## Client websites
+
+- [Venus Høreklinik](https://klinikvenus.dk): Hearing clinic in central Copenhagen: hearing tests and hearing aids.
+- [Nick Autoteknik](https://nick-autoteknik.dk): Car repair shop in Rødovre.
 
 ## Contact
 
-- [Email](mailto:bb@cocode.dk): bb@cocode.dk
+- [E-mail](mailto:bb@cocode.dk): bb@cocode.dk. The fastest way in; Babak answers himself.
 - [Phone](tel:+4553737514): +45 53 73 75 14
-- [LinkedIn](https://linkedin.com/in/babakbandpey)
-- [GitHub](https://github.com/cocodedk)
-- [CV](https://cv.cocode.dk/)
+- [LinkedIn](https://linkedin.com/in/babakbandpey): Babak Bandpey on LinkedIn.
+- [cocode.dk contact](https://cocode.dk/#kontakt): The contact section of the site.
+
+## Optional
+
+- [GitHub](https://github.com/cocodedk): Babak's public repositories.
+- [Source of cocode.dk](https://github.com/cocodedk/cocodedk): The homepage's own code, including the WebMCP tools.
+- [WebMCP draft](https://webmachinelearning.github.io/webmcp/): The browser API the page's tools use.
+- [Sitemap](https://cocode.dk/sitemap.xml): The site's sitemap.
