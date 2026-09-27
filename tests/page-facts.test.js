@@ -78,3 +78,26 @@ describe('what the page says about itself', () => {
     expect(readPlaces()).toEqual(expect.arrayContaining(['vaerker', 'ydelser', 'om', 'kontakt', 'swanready']));
   });
 });
+
+// The README script reads the partials outside a browser, so the readers take the document they read.
+describe('reading a document that is not the open page', () => {
+  let doc;
+  beforeEach(() => {
+    loadPage();
+    doc = document.implementation.createHTMLDocument('');
+    doc.body.innerHTML = document.body.innerHTML;
+    document.body.innerHTML = '';
+  });
+
+  test('should read the works from the document it is given', () => {
+    expect(readWorks(doc).find((w) => w.name === 'SwanReady').url).toBe('https://sr.cocode.dk');
+  });
+
+  test('should read the services from the document it is given', () => {
+    expect(readServices(doc)).toHaveLength(3);
+  });
+
+  test('should read the contact details from the document it is given', () => {
+    expect(readContact(doc).email).toBe('bb@cocode.dk');
+  });
+});
