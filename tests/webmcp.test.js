@@ -82,7 +82,7 @@ describe('WebMCP', () => {
   test('should introduce Babak in the page\'s own words', async () => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
-    expect((await tool('get_services').execute({})).who).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg bygger selv det, jeg anbefaler.');
+    expect((await tool('get_services').execute({})).who).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg kan bygge det, du har brug for.');
   });
 
   test('should answer get_about from the page', async () => {
