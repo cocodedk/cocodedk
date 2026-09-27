@@ -43,7 +43,7 @@ describe('what the page says about itself', () => {
   });
 
   test('should introduce Babak the way the page does', () => {
-    expect(readIntro()).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg bygger selv det, jeg anbefaler.');
+    expect(readIntro()).toBe('Babak Bandpey, AI-konsulent. Jeg hjælper virksomheder med at bruge AI. Og jeg kan bygge det, du har brug for.');
   });
 
   test('should read the letter in Om mig, paragraph by paragraph', () => {
