@@ -6,8 +6,8 @@
 
 <br>
 
-<p align="center"><img src="readme/img/heading-works.svg" width="520" alt="Selected works"></p>
-<p align="center"><i>Six things I'm especially glad I made.</i></p>
+<h3 align="center"><img src="readme/img/heading-works.svg" width="520" alt="Selected works"></h3>
+<p align="center"><i>The things I'm most glad I made.</i></p>
 
 <p align="center">
 <a href="https://weather.cocode.dk"><img src="readme/img/work-weather.svg" width="400" alt="No. 1, Weather. Android app. The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today."></a>
@@ -20,7 +20,7 @@
 
 <br>
 
-<p align="center"><img src="readme/img/heading-catalogue.svg" width="520" alt="The rest of the catalogue"></p>
+<h3 align="center"><img src="readme/img/heading-catalogue.svg" width="520" alt="The rest of the catalogue"></h3>
 <p align="center"><i>Small things, fun things and a few very big ones.</i></p>
 
 <p align="center"><b>Android apps</b><br>
@@ -61,7 +61,7 @@
 
 <br>
 
-<p align="center"><img src="readme/img/heading-services.svg" width="520" alt="What I can help you with"></p>
+<h3 align="center"><img src="readme/img/heading-services.svg" width="520" alt="What I can help you with"></h3>
 
 <p align="center"><b>Advice</b><br>
 Where does AI make sense for you, and where doesn't it? You get an honest answer and a plan you can use.</p>
@@ -74,7 +74,7 @@ A machine can often handle the dull work that eats your time. I find it and get 
 
 <br>
 
-<p align="center"><img src="readme/img/heading-about.svg" width="520" alt="A few words from me"></p>
+<h3 align="center"><img src="readme/img/heading-about.svg" width="520" alt="A few words from me"></h3>
 
 <p align="center">My trade is building software. I've done it for more than 25 years, and today most of it is about AI: I advise on it, and I build with it.</p>
 

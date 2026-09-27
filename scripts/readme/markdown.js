@@ -11,8 +11,10 @@ const center = (inner) => `<p align="center">${inner}</p>`;
 // +4553737514 → +45 53 73 75 14; anything else as the page writes it.
 const phone = (p) => (/^\+45\d{8}$/.test(p) ? `+45 ${p.slice(3).match(/../g).join(' ')}` : p);
 
+// A real heading around the picture, so a screen reader can jump from section to section. h3, because
+// GitHub rules a line under h1 and h2.
 function section(heading, file) {
-  const title = center(img(file, 520, heading.title));
+  const title = `<h3 align="center">${img(file, 520, heading.title)}</h3>`;
   return heading.note ? `${title}\n${center(`<i>${esc(heading.note)}</i>`)}` : title;
 }
 

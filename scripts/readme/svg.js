@@ -29,6 +29,7 @@ export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ENTITIES[c]);
 export function wrap(text, maxChars, maxLines, label) {
   const out = [];
   text.split(/\s+/).forEach((word) => {
+    if (word.length > maxChars) throw new Error(`"${label}" has a word wider than a line`);
     const last = out.at(-1);
     if (last !== undefined && `${last} ${word}`.length <= maxChars) out[out.length - 1] = `${last} ${word}`;
     else out.push(word);

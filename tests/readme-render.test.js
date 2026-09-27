@@ -33,6 +33,10 @@ describe('the README', () => {
     expect(readme.match(/<img [^>]*>/g).filter((img) => !/alt="[^"]+"/.test(img))).toEqual([]);
   });
 
+  test('should mark every section title as a heading', () => {
+    expect(readme.match(/<h3 align="center"><img src="readme\/img\/heading-/g)).toHaveLength(4);
+  });
+
   test('should show one card per featured work', () => {
     expect(readme.match(/readme\/img\/work-[a-z0-9-]+\.svg/g)).toHaveLength(model.works.length);
   });

@@ -9,8 +9,8 @@ describe('the README drawing helpers', () => {
     expect(wrap('one two three four', 9, 3, 'x')).toEqual(['one two', 'three', 'four']);
   });
 
-  test('should keep a word longer than the budget whole', () => {
-    expect(wrap('a extraordinarily b', 5, 3, 'x')).toEqual(['a', 'extraordinarily', 'b']);
+  test('should stop and name text with a word wider than a line', () => {
+    expect(() => wrap('a extraordinarily b', 5, 3, 'Weather')).toThrow('"Weather" has a word wider than a line');
   });
 
   test('should stop and name text that needs more lines than it has', () => {

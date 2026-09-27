@@ -2,8 +2,8 @@ name: README
 
 # The profile README is drawn from the page (npm run readme). When a PR changes the page, this
 # rebuilds the README and commits it to the PR branch, so what gets merged is always current.
-# A push made with GITHUB_TOKEN starts no workflows, so the bot's commit carries no checks of its
-# own; fine while main requires none, and something to revisit if it ever does.
+# Runs that the bot's own push starts wait for a manual approval ("action required"). That is fine
+# while main requires no checks; if it ever does, push with a GitHub App token instead.
 on:
   pull_request:
     branches: [main]
