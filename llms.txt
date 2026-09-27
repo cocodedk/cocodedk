@@ -1,6 +1,6 @@
 # cocode.dk
 
-> Babak Bandpey is an AI consultant in Copenhagen, Denmark. He helps businesses put AI to work, and he builds what he recommends himself. cocode.dk is one person, and the site shows what he has built.
+> Babak Bandpey is an AI consultant in Copenhagen, Denmark. He helps businesses put AI to work, and he can help build what they need. cocode.dk is one person, and the site shows what he has built.
 
 Babak has built software for more than 25 years. Today most of his work is about AI: he advises on it and he builds with it. Much of what is on the site was made with the same AI tools he recommends to clients, so his advice comes from practice. Clients always talk to him directly; there is no sales team. He works in Danish, English and Persian.
 
