@@ -66,7 +66,7 @@ describe('the pictures', () => {
 
   test('should put the title in the hero', () => {
     loadPage();
-    expect(hero(buildModel(document, copy), '', '')).toContain('And I build what I');
+    expect(hero(buildModel(document, copy), '', '')).toContain('And I can help build');
   });
 });
 
