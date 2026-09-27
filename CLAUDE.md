@@ -106,7 +106,7 @@ npm run dev           # Dev server localhost:8080
 npm run build         # Production build → /dist
 npm test              # Jest (jsdom)
 npm run lint:length   # Check 200-line file limit
-npm run readme        # Rebuild README.md + readme/img/ from the page (the PR bot does it too)
+npm run readme        # Rebuild README.md + readme/img/ from the page (the PR bot does it too; needs Node ≥ 20.19)
 npm ci && npm run build && npm test  # Full smoke check — used in CI and pre-commit
 ```
 

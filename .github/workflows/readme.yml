@@ -2,6 +2,8 @@ name: README
 
 # The profile README is drawn from the page (npm run readme). When a PR changes the page, this
 # rebuilds the README and commits it to the PR branch, so what gets merged is always current.
+# A push made with GITHUB_TOKEN starts no workflows, so the bot's commit carries no checks of its
+# own; fine while main requires none, and something to revisit if it ever does.
 on:
   pull_request:
     branches: [main]
@@ -28,7 +30,9 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - run: npm ci
+      # No install scripts: `prepare` would drop a stale pre-commit hook into .git/hooks and fail
+      # the bot's commit, and nothing the generator needs builds on install.
+      - run: npm ci --ignore-scripts
 
       - run: npm run readme
 

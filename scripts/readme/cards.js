@@ -6,6 +6,7 @@ const label = (url) => (url.startsWith('mailto:') ? 'Ask for a demo' : new URL(u
 
 export function workCard(work, fontCss, platesMarkup) {
   const text = wrap(work.line, 48, 3, work.name);
+  const [name] = wrap(work.name, 18, 1, work.name);
   // The dotted leader runs from the number to the kind, as on the site; the kind's width is estimated
   // generously from its length, since an SVG cannot measure text before it is drawn.
   const leaderEnd = 740 - work.kind.length * 24 * 0.72 - 18;
@@ -21,7 +22,7 @@ export function workCard(work, fontCss, platesMarkup) {
 <text class="no" x="60" y="808">No. ${work.no}</text>
 <line x1="170" y1="798" x2="${leaderEnd}" y2="798" stroke="${P.rule}" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 9"/>
 <text class="kind" x="740" y="806" text-anchor="end">${esc(work.kind)}</text>
-<text class="title" x="60" y="898">${esc(work.name)}</text>
+<text class="title" x="60" y="898">${esc(name)}</text>
 <text class="line">${lines(text, 60, 958, 42)}</text>
 <text class="link" x="60" y="1100">${esc(label(work.url))}</text>`;
   const title = `No. ${work.no}, ${work.name}. ${work.kind}. ${work.line}`;

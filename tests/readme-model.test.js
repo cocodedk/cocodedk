@@ -64,3 +64,11 @@ describe('the English model of the page', () => {
     expect(model.contact.email).toBe('bb@cocode.dk');
   });
 });
+
+describe('the English model when the page is missing something', () => {
+  test('should stop when the page has no contact email', () => {
+    loadPage();
+    document.querySelector('#kontakt a[href^="mailto:"]').remove();
+    expect(() => buildModel(document, copy)).toThrow('The contact section on the page has no email');
+  });
+});

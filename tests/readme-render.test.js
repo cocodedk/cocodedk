@@ -65,3 +65,9 @@ describe('the pictures', () => {
     expect(hero(buildModel(document, copy), '', '')).toContain('And I build what I');
   });
 });
+
+describe('a work card title', () => {
+  test('should refuse a name too long for one line', () => {
+    expect(() => workCard({ ...card, name: 'Klinik for Manuel Terapi' }, '', '')).toThrow('"Klinik for Manuel Terapi" needs more than 1 lines');
+  });
+});

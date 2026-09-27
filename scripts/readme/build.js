@@ -1,5 +1,6 @@
-// npm run readme: rebuilds README.md and readme/img/ from the page. The pictures folder is emptied
-// first, so a work that leaves the page takes its card with it.
+// npm run readme: rebuilds README.md and readme/img/ from the page. Everything is drawn and checked
+// before anything is written; then the pictures folder is replaced whole, so a work that leaves the
+// page takes its card with it, and a build that fails halfway leaves the old README standing.
 import fs from 'fs';
 import path from 'path';
 import { JSDOM } from 'jsdom';
@@ -21,15 +22,18 @@ const model = buildModel(doc, JSON.parse(read(path.join(root, 'readme/copy.en.js
 const art = plates(read(path.join(partials, 'sprite.html')));
 
 // Each picture carries only the letters it shows. Drawing once without fonts tells us which.
-const words = (draw) => draw('').replace(/<[^>]+>/g, ' ');
+const DECODE = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"' };
+const words = (draw) => draw('').replace(/<[^>]+>/g, ' ').replace(/&(amp|lt|gt|quot);/g, (e) => DECODE[e]);
+
+// GitHub shows a malformed SVG as a broken image; parsing it as XML here stops the build instead.
+const pictures = new Map();
 async function picture(file, faces, draw) {
-  const css = await fontCss(faces, words(draw));
-  fs.writeFileSync(path.join(out, file), draw(css));
+  const drawn = draw(await fontCss(faces, words(draw)));
+  new JSDOM(drawn, { contentType: 'image/svg+xml' });
+  pictures.set(file, drawn);
 }
 
 const { serif, serifItalic, sans, sc } = FACES;
-fs.rmSync(out, { recursive: true, force: true });
-fs.mkdirSync(out, { recursive: true });
 
 await picture('hero.svg', [serif, sc], (css) => hero(model, css, art));
 for (const work of model.works) {
@@ -40,5 +44,9 @@ for (const key of Object.keys(model.headings)) {
 }
 await picture('contact.svg', [serif, sans], (css) => contactCard(model.contact, css));
 
-fs.writeFileSync(path.join(root, 'README.md'), renderReadme(model));
-console.log(`README.md and ${fs.readdirSync(out).length} pictures in readme/img/`);
+const readme = renderReadme(model);
+fs.rmSync(out, { recursive: true, force: true });
+fs.mkdirSync(out, { recursive: true });
+pictures.forEach((drawn, file) => fs.writeFileSync(path.join(out, file), drawn));
+fs.writeFileSync(path.join(root, 'README.md'), readme);
+console.log(`README.md and ${pictures.size} pictures in readme/img/`);

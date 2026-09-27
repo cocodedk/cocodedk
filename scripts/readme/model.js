@@ -11,9 +11,9 @@ function english(table, what, name) {
 
 const plateOf = (scene) => scene.querySelector('use').getAttribute('href').slice(1);
 
-function featured(doc, copy, contact) {
+function featured(doc, works, copy, contact) {
   const plates = Array.from(doc.querySelectorAll('.scene')).map(plateOf);
-  return readWorks(doc)
+  return works
     .filter((w) => w.featured)
     .map((w, i) => {
       const words = english(copy.works, 'work', w.name);
@@ -29,9 +29,9 @@ function featured(doc, copy, contact) {
     });
 }
 
-function catalogue(doc, copy) {
+function catalogue(works, copy) {
   const groups = [];
-  readWorks(doc)
+  works
     .filter((w) => !w.featured)
     .forEach((w) => {
       const words = english(copy.works, 'work', w.name);
@@ -42,13 +42,23 @@ function catalogue(doc, copy) {
   return groups;
 }
 
-export function buildModel(doc, copy) {
+// The README links all three; a missing one would print "null" on the profile.
+function contactOf(doc) {
   const contact = readContact(doc);
+  Object.entries(contact).forEach(([field, value]) => {
+    if (!value) throw new Error(`The contact section on the page has no ${field}`);
+  });
+  return contact;
+}
+
+export function buildModel(doc, copy) {
+  const contact = contactOf(doc);
+  const works = readWorks(doc);
   return {
     intro: copy.intro,
     headings: copy.headings,
-    works: featured(doc, copy, contact),
-    groups: catalogue(doc, copy),
+    works: featured(doc, works, copy, contact),
+    groups: catalogue(works, copy),
     services: readServices(doc).map((s) => english(copy.services, 'service', s.name)),
     about: copy.about,
     contact: { ...contact, ...copy.contact },

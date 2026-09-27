@@ -43,7 +43,7 @@ export function renderReadme(m) {
     center(`<i>${esc(about.signature)}</i><br>\n<sub>${esc(about.notes)}</sub>`),
     '<br>',
     center(link(`mailto:${c.email}`, img('contact.svg', 400, `${c.heading}. ${c.lead} ${c.email}`))),
-    center(`<a href="https://cocode.dk">cocode.dk</a> · <a href="${esc(c.linkedin)}">LinkedIn</a> · ${phone(c.phone)}`),
+    center(`<a href="https://cocode.dk">cocode.dk</a> · <a href="${esc(c.linkedin)}">LinkedIn</a> · ${esc(phone(c.phone))}`),
     '',
   ].join('\n\n');
 }
