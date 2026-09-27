@@ -2,10 +2,10 @@
   "intro": {
     "kicker": "Babak Bandpey, AI consultant",
     "title": ["I help businesses put AI to work.", "And I build what I recommend."],
-    "lead": "This is what I have made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it."
+    "lead": "This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it."
   },
   "headings": {
-    "works": { "title": "Selected works", "note": "Six things I am especially glad I made." },
+    "works": { "title": "Selected works", "note": "Six things I'm especially glad I made." },
     "catalogue": { "title": "The rest of the catalogue", "note": "Small things, fun things and a few very big ones." },
     "services": { "title": "What I can help you with" },
     "about": { "title": "A few words from me" }
@@ -26,9 +26,9 @@
   "works": {
     "Weather": { "line": "The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today." },
     "Metrologist": { "line": "Take one photo and get the measurements. Handy when the tape measure is at home." },
-    "SwanReady": { "line": "My own AI agent for makers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time." },
+    "SwanReady": { "line": "My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time." },
     "Parvaz": { "line": "Parvaz means flight in Persian. The app gives people in Iran a way around the censorship." },
-    "claude-email": { "line": "I send an email with a task. An AI agent does the work and replies when it is done." },
+    "claude-email": { "line": "I send an email with a task. An AI agent does the work and replies when it's done." },
     "lpterapi.dk": { "line": "A website for a couples therapist. Calm and simple, so the first step is easier to take." },
     "Chess Puzzles": { "line": "Real chess puzzles, offline too." },
     "Battleship": { "line": "Sink the battleships, just like you remember." },
@@ -38,8 +38,8 @@
     "LifeMeter": { "line": "Your life in numbers." },
     "Calendar": { "line": "A Persian calendar." },
     "TMS Measurement": { "line": "Measuring for TMS treatment." },
-    "Dansk-Persisk": { "name": "Danish–Persian", "line": "Language lessons on the web." },
-    "Dansk-Japansk": { "name": "Danish–Japanese", "line": "Language lessons on the web." },
+    "Dansk-Persisk": { "name": "Danish-Persian", "line": "Language lessons on the web." },
+    "Dansk-Japansk": { "name": "Danish-Japanese", "line": "Language lessons on the web." },
     "7kasif": { "line": "A card game for several players." },
     "Dune": { "line": "A strategy game in the browser." },
     "TIE Fighter": { "line": "A 3D game in the browser." },
@@ -58,13 +58,13 @@
     "FITS.DK": { "line": "A compliance platform. More than 3,000 hours of work." }
   },
   "services": {
-    "Rådgivning": { "name": "Advice", "line": "Where does AI make sense for you, and where does it not? You get an honest answer and a plan you can use." },
-    "AI-agenter": { "name": "AI agents", "line": "Agents that do real work: they read, sort, reply and follow up. Built for your everyday work." },
+    "Rådgivning": { "name": "Advice", "line": "Where does AI make sense for you, and where doesn't it? You get an honest answer and a plan you can use." },
+    "AI-agenter": { "name": "AI agents", "line": "Agents that do real work: they read, sort, reply and follow up. Built for your day-to-day." },
     "Automatisering": { "name": "Automation", "line": "A machine can often handle the dull work that eats your time. I find it and get it running." }
   },
   "about": {
     "paragraphs": [
-      "My trade is building software. I have done it for more than 25 years, and today most of it is about AI: I advise on it, and I build with it.",
+      "My trade is building software. I've done it for more than 25 years, and today most of it is about AI: I advise on it, and I build with it.",
       "Much of what you see here was made with the same AI tools I recommend to my clients. So I know what works in practice, and what only looks good in a slide deck.",
       "You always talk to me. Not to a salesperson."
     ],
@@ -72,7 +72,7 @@
     "notes": "Copenhagen · Danish, English and Persian"
   },
   "contact": {
-    "heading": "Let’s talk",
-    "lead": "Tell me briefly what you are working on. I reply myself."
+    "heading": "Let's talk",
+    "lead": "Tell me briefly what you're working on. I'll reply myself."
   }
 }

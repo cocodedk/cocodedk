@@ -41,7 +41,7 @@ describe('the English model of the page', () => {
   });
 
   test('should use an English name where the copy gives one', () => {
-    expect(model.groups[1].items.map((i) => i.name)).toContain('Danish–Persian');
+    expect(model.groups[1].items.map((i) => i.name)).toContain('Danish-Persian');
   });
 
   test('should send a featured work without a site to a demo mail', () => {
