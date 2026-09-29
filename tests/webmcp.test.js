@@ -94,7 +94,7 @@ describe('WebMCP', () => {
   test('should only narrow list_works for a real true', async () => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
-    expect((await tool('list_works').execute({ featured_only: 'false' })).works.length).toBeGreaterThan(6);
+    expect((await tool('list_works').execute({ featured_only: 'false' })).works.length).toBeGreaterThan(7);
   });
 
   test('should answer list_works from the page', async () => {
@@ -106,7 +106,7 @@ describe('WebMCP', () => {
   test('should narrow list_works to the featured ones on request', async () => {
     const reg = registry(); put(document, reg);
     const tool = await start(reg);
-    expect((await tool('list_works').execute({ featured_only: true })).works).toHaveLength(6);
+    expect((await tool('list_works').execute({ featured_only: true })).works).toHaveLength(7);
   });
 
   test('should scroll to a place that exists', async () => {

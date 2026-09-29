@@ -6,12 +6,16 @@ const work = (name) => readWorks().find((w) => w.name === name);
 describe('what the page says about itself', () => {
   beforeEach(loadPage);
 
-  test('should list the six featured works first', () => {
-    expect(readWorks().map((w) => w.featured).join('').startsWith('true'.repeat(6) + 'false')).toBe(true);
+  test('should list the seven featured works first', () => {
+    expect(readWorks().map((w) => w.featured).join('').startsWith('true'.repeat(7) + 'false')).toBe(true);
+  });
+
+  test('should put Cocode Guard on top of the stack', () => {
+    expect(readWorks()[0].name).toBe('Cocode Guard');
   });
 
   test('should list the whole catalogue after them', () => {
-    expect(readWorks().slice(6).filter((w) => !w.featured).length).toBe(document.querySelectorAll('.index__list > li').length);
+    expect(readWorks().slice(7).filter((w) => !w.featured).length).toBe(document.querySelectorAll('.index__list > li').length);
   });
 
   test('should give a featured work its kind', () => {
