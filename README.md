@@ -2,7 +2,7 @@
 
 <p align="center"><a href="https://cocode.dk"><img src="readme/img/hero.svg" width="100%" alt="Babak Bandpey, AI consultant. I help businesses put AI to work. And I can help build what you need."></a></p>
 
-<p align="center">This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it.</p>
+<p align="center">This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it. It has grown to more than 100 repositories on GitHub, public and private.</p>
 
 <br>
 
@@ -10,12 +10,13 @@
 <p align="center"><i>The things I'm most glad I made.</i></p>
 
 <p align="center">
-<a href="https://weather.cocode.dk"><img src="readme/img/work-weather.svg" width="400" alt="No. 1, Weather. Android app. The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today."></a>
-<a href="https://measure.cocode.dk"><img src="readme/img/work-metrologist.svg" width="400" alt="No. 2, Metrologist. Android app. Take one photo and get the measurements. Handy when the tape measure is at home."></a>
-<a href="https://sr.cocode.dk"><img src="readme/img/work-swanready.svg" width="400" alt="No. 3, SwanReady. My own product. My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time."></a>
-<a href="https://parvaz.cocode.dk"><img src="readme/img/work-parvaz.svg" width="400" alt="No. 4, Parvaz. Android app. Parvaz means flight in Persian. The app gives people in Iran a way around the censorship."></a>
-<a href="mailto:bb@cocode.dk?subject=claude-email"><img src="readme/img/work-claude-email.svg" width="400" alt="No. 5, claude-email. AI tool. I send an email with a task. An AI agent does the work and replies when it's done."></a>
-<a href="https://lpterapi.dk"><img src="readme/img/work-lpterapi-dk.svg" width="400" alt="No. 6, lpterapi.dk. Client project. A website for a couples therapist. Calm and simple, so the first step is easier to take."></a>
+<a href="https://guard.cocode.dk"><img src="readme/img/work-cocode-guard.svg" width="400" alt="No. 1, Cocode Guard. My own product. A small box by the router that guards the home network. It blocks dangerous sites and ads, and messages you when something suspicious shows up."></a>
+<a href="https://weather.cocode.dk"><img src="readme/img/work-weather.svg" width="400" alt="No. 2, Weather. Android app. The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today."></a>
+<a href="https://measure.cocode.dk"><img src="readme/img/work-metrologist.svg" width="400" alt="No. 3, Metrologist. Android app. Take one photo and get the measurements. Handy when the tape measure is at home."></a>
+<a href="https://sr.cocode.dk"><img src="readme/img/work-swanready.svg" width="400" alt="No. 4, SwanReady. My own product. My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time."></a>
+<a href="https://parvaz.cocode.dk"><img src="readme/img/work-parvaz.svg" width="400" alt="No. 5, Parvaz. Android app. Parvaz means flight in Persian. The app gives people in Iran a way around the censorship."></a>
+<a href="mailto:bb@cocode.dk?subject=claude-email"><img src="readme/img/work-claude-email.svg" width="400" alt="No. 6, claude-email. AI tool. I send an email with a task. An AI agent does the work and replies when it's done."></a>
+<a href="https://lpterapi.dk"><img src="readme/img/work-lpterapi-dk.svg" width="400" alt="No. 7, lpterapi.dk. Client project. A website for a couples therapist. Calm and simple, so the first step is easier to take."></a>
 </p>
 
 <br>

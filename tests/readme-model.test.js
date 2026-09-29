@@ -17,7 +17,7 @@ describe('the English model of the page', () => {
   });
 
   test('should hold the featured works in page order', () => {
-    expect(model.works.map((w) => w.name)).toEqual(['Weather', 'Metrologist', 'SwanReady', 'Parvaz', 'claude-email', 'lpterapi.dk']);
+    expect(model.works.map((w) => w.name)).toEqual(['Cocode Guard', 'Weather', 'Metrologist', 'SwanReady', 'Parvaz', 'claude-email', 'lpterapi.dk']);
   });
 
   test('should hold every catalogue entry exactly once', () => {
@@ -29,15 +29,15 @@ describe('the English model of the page', () => {
   });
 
   test('should give a featured work its kind in English', () => {
-    expect(model.works[2].kind).toBe('My own product');
+    expect(model.works[3].kind).toBe('My own product');
   });
 
   test('should give a featured work its plate from the page', () => {
-    expect(model.works[2].plate).toBe('art-swan');
+    expect(model.works[3].plate).toBe('art-swan');
   });
 
   test('should number the featured works from one', () => {
-    expect(model.works.map((w) => w.no)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(model.works.map((w) => w.no)).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 
   test('should use an English name where the copy gives one', () => {
@@ -45,7 +45,7 @@ describe('the English model of the page', () => {
   });
 
   test('should send a featured work without a site to a demo mail', () => {
-    expect(model.works[4].url).toBe('mailto:bb@cocode.dk?subject=claude-email');
+    expect(model.works[5].url).toBe('mailto:bb@cocode.dk?subject=claude-email');
   });
 
   test('should leave a catalogue entry without a site unlinked', () => {
