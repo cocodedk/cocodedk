@@ -27,7 +27,7 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 
 ## Featured work
 
-- [Cocode Guard](https://guard.cocode.dk): His own product. A small box that sits by the home router and watches over the whole home network. It blocks dangerous sites and ads on every device, and sends a Telegram message when a new device joins, something pretends to be the router, the router's settings change or a new port opens. Delivered ready to plug in; write for a price.
+- [Cocode Guard](https://guard.cocode.dk): His own product. A small box that sits by the home router and watches over the whole home network. It blocks dangerous sites and ads on every device, and sends a Telegram message when a new device joins, something pretends to be the router, the router's settings change or a new port opens. Delivered ready to plug in, for 2,995 DKK including installation.
 - [SwanReady](https://sr.cocode.dk): His own product. An AI agent for manufacturers who want the Nordic Swan Ecolabel. You describe the product in a conversation; the agent finds the right product category, goes through the requirements with you one at a time, keeps track of the documentation, shows what is missing and writes the summary for the application.
 - [SwanReady in two minutes](https://swanready.cocode.dk): A short visual story of how SwanReady takes a product from documentation to an ecolabel-ready report.
 - [Weather](https://weather.cocode.dk): Free, open-source Android weather app. Search any city or use GPS, and read the forecast in that place's own local time. No API key, account or tracking.

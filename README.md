@@ -10,7 +10,7 @@
 <p align="center"><i>The things I'm most glad I made.</i></p>
 
 <p align="center">
-<a href="https://guard.cocode.dk"><img src="readme/img/work-cocode-guard.svg" width="400" alt="No. 1, Cocode Guard. My own product. A small box by the router that guards the home network. It blocks dangerous sites and ads, and messages you when something suspicious shows up."></a>
+<a href="https://guard.cocode.dk"><img src="readme/img/work-cocode-guard.svg" width="400" alt="No. 1, Cocode Guard. My own product. A small box by the router that guards the home network. Blocks bad sites and ads, and tells you about anything odd. 2,995 DKK installed."></a>
 <a href="https://weather.cocode.dk"><img src="readme/img/work-weather.svg" width="400" alt="No. 2, Weather. Android app. The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today."></a>
 <a href="https://measure.cocode.dk"><img src="readme/img/work-metrologist.svg" width="400" alt="No. 3, Metrologist. Android app. Take one photo and get the measurements. Handy when the tape measure is at home."></a>
 <a href="https://sr.cocode.dk"><img src="readme/img/work-swanready.svg" width="400" alt="No. 4, SwanReady. My own product. My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time."></a>
