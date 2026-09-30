@@ -10,6 +10,10 @@ describe('what the page says about itself', () => {
     expect(readWorks().map((w) => w.featured).join('').startsWith('true'.repeat(7) + 'false')).toBe(true);
   });
 
+  test('should say what Cocode Guard costs', () => {
+    expect(work('Cocode Guard').description).toContain('2.995 kr. med installation');
+  });
+
   test('should put Cocode Guard on top of the stack', () => {
     expect(readWorks()[0].name).toBe('Cocode Guard');
   });
