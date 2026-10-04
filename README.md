@@ -51,7 +51,8 @@
 
 <p align="center"><b>For Samsung TV</b><br>
 <a href="https://tv-vejr.cocode.dk"><b>Copenhagen Weather</b></a> · The weather on the big screen.<br>
-<a href="https://nightgallery.cocode.dk"><b>Night Gallery</b></a> · A gallery for the living room.</p>
+<a href="https://nightgallery.cocode.dk"><b>Night Gallery</b></a> · A gallery for the living room.<br>
+<a href="https://breakout.cocode.dk"><b>Breakout</b></a> · The classic arcade game, with a UFO behind the wall.</p>
 
 <p align="center"><b>AI tools</b><br>
 <a href="https://jev-bench.cocode.dk"><b>Jev Bench</b></a> · Measures how fast and how accurately AI models sort, and compares them.<br>
