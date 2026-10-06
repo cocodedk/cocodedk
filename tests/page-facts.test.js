@@ -14,6 +14,22 @@ describe('what the page says about itself', () => {
     expect(work('Cocode Guard').description).toContain('2.995 kr. med installation');
   });
 
+  test('should list Guard for Android with its own site among the Android apps', () => {
+    expect(work('Guard for Android')).toMatchObject({ kind: 'Apps til Android', url: 'https://android.guard.cocode.dk' });
+  });
+
+  test('should say that Guard for Android is free', () => {
+    expect(work('Guard for Android').description).toContain('Gratis');
+  });
+
+  test('should call Guard for Android the companion of the Cocode Guard box', () => {
+    expect(work('Guard for Android').description).toMatch(/^Følgeappen til Cocode Guard\./);
+  });
+
+  test('should say that the first release of Guard for Android is still on its way', () => {
+    expect(work('Guard for Android').description).toContain('Første version er på vej');
+  });
+
   test('should put Cocode Guard on top of the stack', () => {
     expect(readWorks()[0].name).toBe('Cocode Guard');
   });

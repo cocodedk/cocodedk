@@ -25,6 +25,7 @@
 <p align="center"><i>Small things, fun things and a few very big ones.</i></p>
 
 <p align="center"><b>Android apps</b><br>
+<a href="https://android.guard.cocode.dk"><b>Guard for Android</b></a> · The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. The first release is on its way.<br>
 <a href="https://chess.cocode.dk"><b>Chess Puzzles</b></a> · Real chess puzzles, offline too.<br>
 <a href="https://battleship.cocode.dk"><b>Battleship</b></a> · Sink the battleships, just like you remember.<br>
 <a href="https://cast.cocode.dk"><b>BabakCast</b></a> · Fetch a video and get a summary.<br>
