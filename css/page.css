@@ -43,8 +43,9 @@ figcaption.sc{margin-top:12px}
 .scene__dots{flex:1;min-width:16px;border-bottom:2px dotted currentColor;opacity:.4;transform:translateY(-4px)}
 .scene__title{font-size:clamp(2.5rem,11vw,3.4rem);line-height:1.02;letter-spacing:-.012em;margin:14px 0 10px;text-wrap:balance}
 .scene__desc{max-width:30em;font-size:1.0625rem;line-height:1.5}
-.work__link{display:inline-flex;align-items:center;min-height:48px;margin-top:4px;font-weight:520;text-decoration-color:var(--accent)}
-.scene .work__link:hover{text-decoration-thickness:2px}
+.work__link,.work__get{display:inline-flex;align-items:center;min-height:48px;margin-top:4px;font-weight:520;text-decoration-color:var(--accent)}
+.scene .work__link:hover,.scene .work__get:hover{text-decoration-thickness:2px}
+.work__get{display:flex;width:max-content;margin-top:0}
 /* SwanReady has more to say than the others: a line under its title, and two ways on */
 .scene__lead{font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.3;color:var(--ink-2);margin:-2px 0 8px}
 .scene__links{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;margin-top:8px}
@@ -74,7 +75,8 @@ figcaption.sc{margin-top:12px}
 .index__list li:last-child{border-bottom:0}
 .index__name{font-family:var(--serif);font-size:1.4rem;line-height:1.2}
 .index__desc{grid-column:1/-1;grid-row:2;color:var(--ink-2);font-size:1.0625rem;line-height:1.45;margin-top:2px}
-.index__link{font-size:1rem;font-weight:500;display:inline-flex;align-items:center;min-height:32px}
+.index__link,.index__get{font-size:1rem;font-weight:500;display:inline-flex;align-items:center;min-height:32px}
+.index__get{grid-column:2;grid-row:3;justify-self:end}
 
 /* services */
 .services{margin:0}

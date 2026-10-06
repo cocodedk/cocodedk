@@ -20,7 +20,7 @@
   html:not(.is-flat) .plate svg{width:100%;height:100%;aspect-ratio:auto}
   html:not(.is-flat) .scene__title{will-change:transform;
     transform:translateX(calc((1 - var(--enter)) * var(--dir) * min(18vw,240px)))}
-  html:not(.is-flat) .scene__lead,html:not(.is-flat) .scene__desc,html:not(.is-flat) .scene__text>.work__link,html:not(.is-flat) .scene__links{
+  html:not(.is-flat) .scene__lead,html:not(.is-flat) .scene__desc,html:not(.is-flat) .scene__text>.work__link,html:not(.is-flat) .scene__text>.work__get,html:not(.is-flat) .scene__links{
     transform:translateX(calc((1 - var(--enter)) * var(--dir) * min(8vw,100px)))}
   /* SwanReady's text is the longest, so on a short phone its plate may crop wider than the rest (the swan
      holds to about 2:1), but never to a sliver: below 120px the guard in the script lays the stack flat */

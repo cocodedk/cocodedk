@@ -47,7 +47,7 @@
   .scene__no{font-size:1.75rem}
   .scene__title{font-size:clamp(3.6rem,5.2vw,4.75rem);margin:0 0 18px}
   .scene__desc{font-size:1.1875rem;line-height:1.55}
-  .work__link{margin-top:10px;font-size:1.125rem}
+  .work__link,.work__get{margin-top:10px;font-size:1.125rem}
   .scene__lead{font-size:1.6rem;margin:-6px 0 16px}
   .scene__links{gap:0 28px;margin-top:16px}
   .scene__cta{padding-inline:20px}
@@ -58,6 +58,7 @@
   .index__list{grid-column:4/13}
   .index__list li{grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,2fr)}
   .index__link{justify-self:end}
+  .index__get{grid-column:3;grid-row:2}
   .services-wrap h2{grid-column:1/6}
   .services-wrap .services{grid-column:6/13}
   .services-wrap .section__head{display:contents}
