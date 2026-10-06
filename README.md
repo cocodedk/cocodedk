@@ -33,7 +33,10 @@
 <a href="https://qr.cocode.dk"><b>Link QR Wallet</b></a> · Your links as QR codes.<br>
 <a href="https://lifemeter.cocode.dk"><b>LifeMeter</b></a> · Your life in numbers.<br>
 <a href="https://calendar.cocode.dk"><b>Calendar</b></a> · A Persian calendar.<br>
-<a href="https://tms.cocode.dk"><b>TMS Measurement</b></a> · Measuring for TMS treatment.</p>
+<a href="https://tms.cocode.dk"><b>TMS Measurement</b></a> · Measuring for TMS treatment.<br>
+<a href="https://cocodedk.github.io/Claude-Email-App/"><b>Claude Email App</b></a> · Send tasks to claude-email from the phone.<br>
+<a href="https://cocodedk.github.io/fits-qr/"><b>FITS QR</b></a> · FITS's contact cards as QR codes.<br>
+<a href="https://markdown.cocode.dk"><b>Markdown</b></a> · Read and edit Markdown files on the phone.</p>
 
 <p align="center"><b>Web and games</b><br>
 <a href="https://persisk.cocode.dk"><b>Danish-Persian</b></a> · Language lessons on the web.<br>
