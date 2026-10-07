@@ -2,7 +2,7 @@
   "intro": {
     "kicker": "Babak Bandpey, AI consultant",
     "title": ["I help businesses put AI to work.", "And I can help build what you need."],
-    "lead": "This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it. It has grown to more than 100 repositories on GitHub, public and private."
+    "lead": "This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it. It has grown to more than 100 software projects on GitHub, public and private."
   },
   "headings": {
     "works": { "title": "Selected works", "note": "The things I'm most glad I made." },
@@ -24,14 +24,14 @@
     "AI-værktøjer": "AI tools"
   },
   "works": {
-    "Cocode Guard": { "line": "A small box by the router that guards the home network. Blocks bad sites and ads, and tells you about anything odd. 2,995 DKK installed." },
+    "Cocode Guard": { "line": "A small box by the router. Blocks bad sites and ads, and warns you about new devices and fake routers. 2,995 DKK installed." },
     "Weather": { "line": "The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today." },
-    "Metrologist": { "line": "Take one photo and get the measurements. Handy when the tape measure is at home." },
+    "Metrologist": { "line": "Estimate the size of a wall, door or window from one photo. Put a printed reference stick of known size against it and mark the corners." },
     "SwanReady": { "line": "My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time." },
     "Parvaz": { "line": "Parvaz means flight in Persian. The app gives people in Iran a way around the censorship." },
     "claude-email": { "line": "I send an email with a task. An AI agent does the work and replies when it's done." },
     "lpterapi.dk": { "line": "A website for a couples therapist. Calm and simple, so the first step is easier to take." },
-    "Guard for Android": { "line": "The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. The first release is on its way." },
+    "Guard for Android": { "line": "The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. You can download the first release from GitHub." },
     "Chess Puzzles": { "line": "Real chess puzzles, offline too." },
     "Battleship": { "line": "Sink the battleships, just like you remember." },
     "BabakCast": { "line": "Fetch a video and get a summary." },
@@ -39,7 +39,7 @@
     "Link QR Wallet": { "line": "Your links as QR codes." },
     "LifeMeter": { "line": "Your life in numbers." },
     "Calendar": { "line": "A Persian calendar." },
-    "TMS Measurement": { "line": "Measuring for TMS treatment." },
+    "TMS Measurement": { "line": "Measurements for transcranial magnetic stimulation (TMS) treatment. Works out the treatment site on the head from three measurements." },
     "Claude Email App": { "line": "Send tasks to claude-email from the phone." },
     "FITS QR": { "line": "FITS's contact cards as QR codes." },
     "Markdown": { "line": "Read and edit Markdown files on the phone." },
@@ -58,10 +58,10 @@
     "Night Gallery": { "line": "A gallery for the living room." },
     "Breakout": { "line": "The classic arcade game, with a UFO behind the wall." },
     "Jev Bench": { "line": "Measures how fast and how accurately AI models sort, and compares them." },
-    "graph-loop": { "line": "AI agents that keep working without supervision." },
+    "graph-loop": { "line": "AI agents that work on programming tasks without continuous supervision." },
     "zjm-rag": { "line": "Finds the file with the answer and answers from it." },
     "MCP-servere": { "name": "MCP servers", "line": "Give an AI access to calendars, tasks and memory." },
-    "FITS.DK": { "line": "A compliance platform. More than 3,000 hours of work." }
+    "FITS.DK": { "line": "Helps businesses write their IT security policies with AI. More than 3,000 hours of work." }
   },
   "services": {
     "Rådgivning": { "name": "Advice", "line": "Where does AI make sense for you, and where doesn't it? You get an honest answer and a plan you can use." },
