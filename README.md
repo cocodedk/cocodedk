@@ -2,7 +2,7 @@
 
 <p align="center"><a href="https://cocode.dk"><img src="readme/img/hero.svg" width="100%" alt="Babak Bandpey, AI consultant. I help businesses put AI to work. And I can help build what you need."></a></p>
 
-<p align="center">This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it. It has grown to more than 100 repositories on GitHub, public and private.</p>
+<p align="center">This is what I've made: apps, games, websites and AI tools. Have a look around, and tell me if you want something like it. It has grown to more than 100 software projects on GitHub, public and private.</p>
 
 <br>
 
@@ -10,9 +10,9 @@
 <p align="center"><i>The things I'm most glad I made.</i></p>
 
 <p align="center">
-<a href="https://guard.cocode.dk"><img src="readme/img/work-cocode-guard.svg" width="400" alt="No. 1, Cocode Guard. My own product. A small box by the router that guards the home network. Blocks bad sites and ads, and tells you about anything odd. 2,995 DKK installed."></a>
+<a href="https://guard.cocode.dk"><img src="readme/img/work-cocode-guard.svg" width="400" alt="No. 1, Cocode Guard. My own product. A small box by the router. Blocks bad sites and ads, and warns you about new devices and fake routers. 2,995 DKK installed."></a>
 <a href="https://weather.cocode.dk"><img src="readme/img/work-weather.svg" width="400" alt="No. 2, Weather. Android app. The weather anywhere. Look up a city or let the phone find you, and see if the bike stays home today."></a>
-<a href="https://measure.cocode.dk"><img src="readme/img/work-metrologist.svg" width="400" alt="No. 3, Metrologist. Android app. Take one photo and get the measurements. Handy when the tape measure is at home."></a>
+<a href="https://measure.cocode.dk"><img src="readme/img/work-metrologist.svg" width="400" alt="No. 3, Metrologist. Android app. Estimate the size of a wall, door or window from one photo. Put a printed reference stick of known size against it and mark the corners."></a>
 <a href="https://sr.cocode.dk"><img src="readme/img/work-swanready.svg" width="400" alt="No. 4, SwanReady. My own product. My own AI agent for manufacturers who want the Nordic Swan Ecolabel. It goes through the requirements with you, one at a time."></a>
 <a href="https://parvaz.cocode.dk"><img src="readme/img/work-parvaz.svg" width="400" alt="No. 5, Parvaz. Android app. Parvaz means flight in Persian. The app gives people in Iran a way around the censorship."></a>
 <a href="mailto:bb@cocode.dk?subject=claude-email"><img src="readme/img/work-claude-email.svg" width="400" alt="No. 6, claude-email. AI tool. I send an email with a task. An AI agent does the work and replies when it's done."></a>
@@ -25,15 +25,15 @@
 <p align="center"><i>Small things, fun things and a few very big ones.</i></p>
 
 <p align="center"><b>Android apps</b><br>
-<a href="https://android.guard.cocode.dk"><b>Guard for Android</b></a> · The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. The first release is on its way.<br>
+<a href="https://android.guard.cocode.dk"><b>Guard for Android</b></a> · The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. You can download the first release from GitHub.<br>
 <a href="https://chess.cocode.dk"><b>Chess Puzzles</b></a> · Real chess puzzles, offline too.<br>
 <a href="https://battleship.cocode.dk"><b>Battleship</b></a> · Sink the battleships, just like you remember.<br>
 <a href="https://cast.cocode.dk"><b>BabakCast</b></a> · Fetch a video and get a summary.<br>
 <a href="https://player.cocode.dk"><b>BabakPlayer</b></a> · The player for what BabakCast shares.<br>
 <a href="https://qr.cocode.dk"><b>Link QR Wallet</b></a> · Your links as QR codes.<br>
 <a href="https://lifemeter.cocode.dk"><b>LifeMeter</b></a> · Your life in numbers.<br>
-<a href="https://calendar.cocode.dk"><b>Calendar</b></a> · A Persian calendar.<br>
-<a href="https://tms.cocode.dk"><b>TMS Measurement</b></a> · Measuring for TMS treatment.<br>
+<a href="https://calendar.cocode.dk"><b>Jalali Persian Calendar</b></a> · A Persian calendar.<br>
+<a href="https://tms.cocode.dk"><b>TMS Measurement</b></a> · Measurements for transcranial magnetic stimulation (TMS) treatment. Works out the treatment site on the head from three measurements.<br>
 <a href="https://cocodedk.github.io/Claude-Email-App/"><b>Claude Email App</b></a> · Send tasks to claude-email from the phone.<br>
 <a href="https://cocodedk.github.io/fits-qr/"><b>FITS QR</b></a> · FITS's contact cards as QR codes.<br>
 <a href="https://markdown.cocode.dk"><b>Markdown</b></a> · Read and edit Markdown files on the phone.</p>
@@ -60,10 +60,10 @@
 
 <p align="center"><b>AI tools</b><br>
 <a href="https://jev-bench.cocode.dk"><b>Jev Bench</b></a> · Measures how fast and how accurately AI models sort, and compares them.<br>
-<a href="https://graph-loop.cocode.dk"><b>graph-loop</b></a> · AI agents that keep working without supervision.<br>
+<a href="https://graph-loop.cocode.dk"><b>graph-loop</b></a> · AI agents that work on programming tasks without continuous supervision.<br>
 <a href="https://rag.cocode.dk"><b>zjm-rag</b></a> · Finds the file with the answer and answers from it.<br>
 <b>MCP servers</b> · Give an AI access to calendars, tasks and memory.<br>
-<a href="https://fits.dk"><b>FITS.DK</b></a> · A compliance platform. More than 3,000 hours of work.</p>
+<a href="https://fits.dk"><b>FITS.DK</b></a> · Helps businesses write their IT security policies with AI. More than 3,000 hours of work.</p>
 
 <br>
 
