@@ -32,7 +32,7 @@
 <a href="https://player.cocode.dk"><b>BabakPlayer</b></a> · The player for what BabakCast shares.<br>
 <a href="https://qr.cocode.dk"><b>Link QR Wallet</b></a> · Your links as QR codes.<br>
 <a href="https://lifemeter.cocode.dk"><b>LifeMeter</b></a> · Your life in numbers.<br>
-<a href="https://calendar.cocode.dk"><b>Calendar</b></a> · A Persian calendar.<br>
+<a href="https://calendar.cocode.dk"><b>Jalali Persian Calendar</b></a> · A Persian calendar.<br>
 <a href="https://tms.cocode.dk"><b>TMS Measurement</b></a> · Measurements for transcranial magnetic stimulation (TMS) treatment. Works out the treatment site on the head from three measurements.<br>
 <a href="https://cocodedk.github.io/Claude-Email-App/"><b>Claude Email App</b></a> · Send tasks to claude-email from the phone.<br>
 <a href="https://cocodedk.github.io/fits-qr/"><b>FITS QR</b></a> · FITS's contact cards as QR codes.<br>

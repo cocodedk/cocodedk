@@ -6,7 +6,7 @@ Babak has built software for more than 25 years. Today most of his work is about
 
 The site is a single page in Danish (an English version is planned). It has five parts: selected works, the rest of the catalogue, services, an about section and contact. Every app, game, site and tool listed below is his own work. Most of the apps are free and open source, and many run offline with no account or tracking. Client work also includes websites for Klinik for Manuel Terapi and for a charity, Unity Foundation, which are not linked from the site.
 
-Babak publishes his Android apps on F-Droid, the app store for free and open-source Android software. Battleship, Chess Puzzles and LifeMeter are on F-Droid now. Weather, TMS Measurement, Link QR Wallet, Parvaz, BabakPlayer, BabakCast and Calendar are in F-Droid's review queue.
+Babak publishes his Android apps on F-Droid, the app store for free and open-source Android software. Battleship, Chess Puzzles and LifeMeter are on F-Droid now. Weather, TMS Measurement, Link QR Wallet, Parvaz, BabakPlayer, BabakCast and Jalali Persian Calendar are in F-Droid's review queue.
 
 To start a project, write or call with a short description of what you need. Babak replies himself.
 
@@ -46,7 +46,7 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 - [BabakPlayer](https://player.cocode.dk): Companion player for BabakCast; imports shared media parts in order and plays them straight through.
 - [Link QR Wallet](https://qr.cocode.dk): Keeps your links as QR codes.
 - [LifeMeter](https://lifemeter.cocode.dk): Turns your birthdate into a live dashboard of your life in numbers.
-- [Calendar](https://calendar.cocode.dk): Persian (Jalali) and Gregorian calendar with live date conversion.
+- [Jalali Persian Calendar](https://calendar.cocode.dk): Persian (Jalali) and Gregorian calendar with live date conversion.
 - [TMS Measurement](https://tms.cocode.dk): Measurements for transcranial magnetic stimulation (TMS) treatment: it works out the treatment site on the head from three measurements (the Beam F3 method).
 
 ## Web and games
