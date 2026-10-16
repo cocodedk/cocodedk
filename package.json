@@ -24,7 +24,7 @@
     "jest-environment-jsdom": "^30.4.1",
     "jsdom": "^26.1.0",
     "subset-font": "^2.9.0",
-    "webpack": "^5.106.2",
+    "webpack": "^5.111.1",
     "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^5.2.4"
   }
