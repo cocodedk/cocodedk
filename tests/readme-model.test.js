@@ -25,7 +25,7 @@ describe('the English model of the page', () => {
   });
 
   test('should name the groups in English, in page order', () => {
-    expect(model.groups.map((g) => g.name)).toEqual(['Android apps', 'Web and games', 'Client projects', 'For Samsung TV', 'AI tools']);
+    expect(model.groups.map((g) => g.name)).toEqual(['Android apps', 'Web and games', 'Client projects', 'For Samsung TV', 'AI tools', 'Small tools']);
   });
 
   test('should give a featured work its kind in English', () => {

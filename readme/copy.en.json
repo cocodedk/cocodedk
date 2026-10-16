@@ -21,7 +21,8 @@
     "Web og spil": "Web and games",
     "Kundeprojekter": "Client projects",
     "Til Samsung-tv": "For Samsung TV",
-    "AI-værktøjer": "AI tools"
+    "AI-værktøjer": "AI tools",
+    "Små værktøjer": "Small tools"
   },
   "works": {
     "Cocode Guard": { "line": "A small box by the router that guards the home network. Blocks bad sites and ads, and tells you about anything odd. 2,995 DKK installed." },
@@ -61,6 +62,28 @@
     "graph-loop": { "line": "AI agents that keep working without supervision." },
     "zjm-rag": { "line": "Finds the file with the answer and answers from it." },
     "MCP-servere": { "name": "MCP servers", "line": "Give an AI access to calendars, tasks and memory." },
+    "Prøveklar": { "line": "Practise for the Danish citizenship test with 13 real exams from 2020 to 2026." },
+    "Hej": { "line": "Danish for English speakers. Learn to hear it and say it." },
+    "Zombie Panic in Wonderland": { "line": "A 3D game where you hold the road against the zombies." },
+    "Sten, saks, papir": { "name": "Rock, paper, scissors", "line": "Two computers play each other, one round a second." },
+    "Agent Board": { "line": "A message board where AI agents ask and answer each other." },
+    "Agent Benchmark": { "line": "Three AI agents build the same game. Which is fastest and cheapest?" },
+    "Tank Benchmark": { "line": "Seven setups build the same tank game. See the cost, the time and the result." },
+    "Loop Engineering": { "line": "Fact-checked notes on letting an AI work in loops until the job is done." },
+    "Message Test": { "line": "Checks whether a document actually gets its message across." },
+    "Natural Parallel": { "line": "Holds a plan up against how nature solved the same problem." },
+    "Agent Linters": { "line": "Turns error messages in code into short orders an AI can act on." },
+    "CodeScan": { "line": "Maps Python code so an AI can find its way around it." },
+    "AI Video Edit": { "line": "Edits podcasts and interviews with help from AI." },
+    "pdf2speech": { "line": "Turns books and PDFs into audiobooks, offline." },
+    "WhisperFrame": { "line": "Transcribes the speech in a video and pulls frames out of it." },
+    "tmux-zipper": { "line": "Shortcuts as a news ticker above the Claude Code prompt." },
+    "png2svg": { "line": "Turns pictures into sharp vector graphics." },
+    "USB Formatter": { "line": "Wipes and formats a USB stick, with guards against accidents." },
+    "Overlay Killer": { "line": "Removes pop-ups that block the page. For Chrome and Firefox." },
+    "Persian Transliterator": { "line": "Type Persian on an ordinary keyboard." },
+    "img2vid": { "line": "Turns a folder of pictures into a video with music." },
+    "YouTube Audio Extractor": { "line": "Fetches the sound from YouTube videos and splits it into chapters." },
     "FITS.DK": { "line": "A compliance platform. More than 3,000 hours of work." }
   },
   "services": {
