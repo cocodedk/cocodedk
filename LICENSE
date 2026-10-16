@@ -1,8 +1,12 @@
 Copyright (c) 2024-2026 Babak Bandpey. All rights reserved.
 
-This source code and all associated files are the proprietary property of
-Babak Bandpey (cocode.dk). No part of this codebase may be reproduced,
-distributed, or transmitted in any form or by any means without the prior
-written permission of the copyright holder.
+Except for third-party materials covered by their own licences, this source
+code and associated files are the proprietary property of Babak Bandpey
+(cocode.dk). No part of this codebase may be reproduced, distributed, or
+transmitted in any form or by any means without the prior written permission
+of the copyright holder.
+
+The fonts in fonts/ are third-party materials. They keep their own licence,
+the SIL Open Font License, Version 1.1, which is set out in fonts/OFL.txt.
 
 For licensing inquiries, contact: bb@cocode.dk

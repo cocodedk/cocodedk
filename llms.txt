@@ -4,9 +4,9 @@
 
 Babak has built software for more than 25 years. Today most of his work is about AI: he advises on it and he builds with it. Much of what is on the site was made with the same AI tools he recommends to clients, so his advice comes from practice. Clients always talk to him directly; there is no sales team. He works in Danish, English and Persian.
 
-The site is a single page in Danish (an English version is planned). It has four parts: selected works, the rest of the catalogue, services, and contact. Every app, game, site and tool listed below is his own work. Most of the apps are free and open source, and many run offline with no account or tracking. Client work also includes websites for Klinik for Manuel Terapi and for a charity, Unity Foundation, which are not linked from the site.
+The site is a single page in Danish (an English version is planned). It has five parts: selected works, the rest of the catalogue, services, an about section and contact. Every app, game, site and tool listed below is his own work. Most of the apps are free and open source, and many run offline with no account or tracking. Client work also includes websites for Klinik for Manuel Terapi and for a charity, Unity Foundation, which are not linked from the site.
 
-Babak publishes his Android apps on F-Droid, the app store for free and open-source Android software. Battleship is on F-Droid now. Chess Puzzles has been accepted and appears after F-Droid's next build. Weather, TMS Measurement, LifeMeter, Link QR Wallet, Parvaz, BabakPlayer, BabakCast and Calendar are in F-Droid's review queue.
+Babak publishes his Android apps on F-Droid, the app store for free and open-source Android software. Battleship, Chess Puzzles and LifeMeter are on F-Droid now. Weather, TMS Measurement, Link QR Wallet, Parvaz, BabakPlayer, BabakCast and Jalali Persian Calendar are in F-Droid's review queue.
 
 To start a project, write or call with a short description of what you need. Babak replies himself.
 
@@ -28,12 +28,12 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 ## Featured work
 
 - [Cocode Guard](https://guard.cocode.dk): His own product. A small box that sits by the home router and watches over the whole home network. It blocks dangerous sites and ads on every device, and sends a Telegram message when a new device joins, something pretends to be the router, the router's settings change or a new port opens. Delivered ready to plug in, for 2,995 DKK including installation.
-- [Guard for Android](https://android.guard.cocode.dk): Free companion app to the Cocode Guard box. The box guards the house; the app guards the phone wherever it goes (home, mobile data, café Wi-Fi, abroad), and it works without the box. It blocks dangerous sites, ads and known dangerous IP addresses for every app on an Android phone, through a local tunnel that ends inside the app (Android's VPN feature, used only on the phone; there is no VPN server). No account, tracking, analytics, ads or Cocode server; it asks for two permissions, VPN and notifications. Free software (GPL-3.0), made for TalkBack and large text. Lookups that are not blocked still go to the network's own DNS server, and the address lists are downloaded from their publishers. Early: the first release is being built and the download is coming soon (GitHub releases; F-Droid planned). [Source](https://github.com/cocodedk/guard-android), [privacy policy](https://android.guard.cocode.dk/en/privacy/).
+- [Guard for Android](https://android.guard.cocode.dk): Free companion app to the Cocode Guard box. The box guards the house; the app guards the phone wherever it goes (home, mobile data, café Wi-Fi, abroad), and it works without the box. It filters the phone's normal DNS lookups (the way a phone finds out where a site is), which blocks dangerous sites and ads, and it refuses connections to addresses on active blocklists of known dangerous IP addresses. This runs through a local tunnel that ends inside the app (Android's VPN feature, used only on the phone; there is no VPN server). Apps that use their own encrypted DNS can bypass the domain filtering. No account, tracking, analytics, ads or Cocode server; it asks for two permissions, VPN and notifications. Free software (GPL-3.0), made for TalkBack and large text. Lookups that are not blocked still go to the network's own DNS server, and the address lists are downloaded from their publishers. Early: the first release (v0.1.0) can be downloaded from GitHub releases; F-Droid distribution is planned. [Source](https://github.com/cocodedk/guard-android), [privacy policy](https://android.guard.cocode.dk/en/privacy/).
 - [SwanReady](https://sr.cocode.dk): His own product. An AI agent for manufacturers who want the Nordic Swan Ecolabel. You describe the product in a conversation; the agent finds the right product category, goes through the requirements with you one at a time, keeps track of the documentation, shows what is missing and writes the summary for the application.
 - [SwanReady in two minutes](https://swanready.cocode.dk): A short visual story of how SwanReady takes a product from documentation to an ecolabel-ready report.
 - [Weather](https://weather.cocode.dk): Free, open-source Android weather app. Search any city or use GPS, and read the forecast in that place's own local time. No API key, account or tracking.
-- [Metrologist](https://measure.cocode.dk): Android app that turns one photo into measurements. Mark four corners and a reference, and get width, height, area, diagonal and angles, offline.
-- [Parvaz](https://parvaz.cocode.dk): Persian-first Android app that gives people in Iran a way around internet censorship, through a relay each user deploys on Google Apps Script. Parvaz means flight in Persian.
+- [Metrologist](https://measure.cocode.dk): Android app that turns one photo of a flat surface into approximate measurements. You photograph the surface with a printed reference stick of known length and width, mark the surface's four corners and the stick, and get width, height, area, diagonal and angles, offline.
+- [Parvaz](https://parvaz.cocode.dk): Persian-first Android app that gives people in Iran a way around internet censorship in Chrome and other Chromium browsers. The app connects through a Google Apps Script relay, using an access link supplied by whoever runs the relay, usually a technical helper. Whoever runs the relay can read what passes through it. Parvaz means flight in Persian.
 - [claude-email](https://claude-email.cocode.dk): Send a task by e-mail; a Claude Code agent does the work and replies when it is done. Handles several agents at once. Demo on request.
 - [lpterapi.dk](https://lpterapi.dk): Client project. A calm, simple website for LP Terapi, couples therapy in Roskilde, Slagelse and online.
 
@@ -46,8 +46,8 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 - [BabakPlayer](https://player.cocode.dk): Companion player for BabakCast; imports shared media parts in order and plays them straight through.
 - [Link QR Wallet](https://qr.cocode.dk): Keeps your links as QR codes.
 - [LifeMeter](https://lifemeter.cocode.dk): Turns your birthdate into a live dashboard of your life in numbers.
-- [Calendar](https://calendar.cocode.dk): Persian (Jalali) and Gregorian calendar with live date conversion.
-- [TMS Measurement](https://tms.cocode.dk): Measuring for TMS (transcranial magnetic stimulation) treatment, with a Beam F3 calculator.
+- [Jalali Persian Calendar](https://calendar.cocode.dk): Persian (Jalali) and Gregorian calendar with live date conversion.
+- [TMS Measurement](https://tms.cocode.dk): Measurements for transcranial magnetic stimulation (TMS) treatment: it works out the treatment site on the head from three measurements (the Beam F3 method).
 
 ## Web and games
 
@@ -68,10 +68,10 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 
 - [Jev Bench](https://jev-bench.cocode.dk): Open workbench that measures how fast and how accurately AI models classify, with repeatable datasets, named models and downloadable results.
 - [graph-loop](https://graph-loop.cocode.dk): Unattended coding loop. It breaks a large job into small tasks; one model writes the code, and a second rejects any task that could pass without the work being done.
-- [zjm-rag](https://rag.cocode.dk): Question answering over local files. zg finds candidate files, Jev judges which hold the answer, and an LLM answers from those files only, citing each path.
+- [zjm-rag](https://rag.cocode.dk): Question answering over local files. It finds the files that may hold the answer, checks that they do, then answers from those files alone and cites each one. Under the hood, zg (a search tool) finds candidate files, Jev (a fast AI model that makes quick judgments) decides which of them hold the answer, and an LLM (a large language model, the kind of AI behind chatbots) writes the answer.
 - [Calendar Consolidator MCP](https://github.com/cocodedk/calendar-consolidator-mcp): MCP server that merges Microsoft 365 and iCloud calendars into one.
 - [Planner Task Creator MCP](https://github.com/cocodedk/Planner-Task-Creator-CLI-MCP): MCP server that lets an AI create tasks in Microsoft Teams Planner.
-- [FITS.DK](https://fits.dk): FITS, a compliance platform that uses AI to write policies and find and close gaps. Danish product, hosted in Europe. More than 3,000 hours of work.
+- [FITS.DK](https://fits.dk): FITS (Framework for IT Security), a compliance platform that uses AI to write IT security policies and to find and close gaps in them. Danish product, hosted in Europe. More than 3,000 hours of work.
 
 ## Client websites
 
@@ -87,7 +87,7 @@ AI agents running in the visitor's browser can use the page's WebMCP tools (`doc
 
 ## Optional
 
-- [GitHub](https://github.com/cocodedk): Babak's repositories: more than 100, public and private.
+- [GitHub](https://github.com/cocodedk): Babak's software projects (repositories): more than 100, public and private.
 - [Source of cocode.dk](https://github.com/cocodedk/cocodedk): The homepage's own code, including the WebMCP tools.
 - [WebMCP draft](https://webmachinelearning.github.io/webmcp/): The browser API the page's tools use.
 - [Sitemap](https://cocode.dk/sitemap.xml): The site's sitemap.

@@ -2,9 +2,10 @@
 
 ## Local Setup
 
-1. Install Node.js 20+ from [nodejs.org](https://nodejs.org)
+1. Install Node.js 22 or newer from [nodejs.org](https://nodejs.org)
 2. Clone the repository: `git clone https://github.com/cocodedk/cocodedk.git`
-3. Install dependencies: `npm ci`
+3. Go into it: `cd cocodedk`
+4. Install dependencies: `npm ci`
 
 ## Install Git Hooks
 
@@ -27,7 +28,8 @@ git config init.defaultBranch main
 
 ```bash
 npm run dev           # Dev server localhost:8080
-npm run build         # Production build → /dist
+npm run build         # Build into ./dist (development mode)
+NODE_ENV=production npm run build  # Production build into ./dist
 npm test              # Jest (jsdom)
 npm run lint:length   # Check 200-line file limit
 ```
@@ -35,10 +37,10 @@ npm run lint:length   # Check 200-line file limit
 ## Coding Style
 
 - Max 200 lines per file — enforced by pre-commit hook and CI
-- New code in TypeScript (`src/ts/`)
+- New code is JavaScript ES modules in `js/`
 - One feature per commit
-- Components are self-contained in `js/components/`, attached to `window.*`
-- No hardcoded strings — use `js/data/section-translations.js` for i18n
+- Keep browser behaviour in small modules under `js/`, imported by `js/main.js`
+- Keep the Danish page copy in `templates/partials/` and the English README copy in `readme/copy.en.json`. Never edit `README.md` by hand: run `npm run readme` to regenerate it
 
 ## Branch Naming
 

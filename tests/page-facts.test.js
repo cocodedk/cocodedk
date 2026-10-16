@@ -26,8 +26,8 @@ describe('what the page says about itself', () => {
     expect(work('Guard for Android').description).toMatch(/^Følgeappen til Cocode Guard\./);
   });
 
-  test('should say that the first release of Guard for Android is still on its way', () => {
-    expect(work('Guard for Android').description).toContain('Første version er på vej');
+  test('should say that the first release of Guard for Android can be downloaded from GitHub', () => {
+    expect(work('Guard for Android').description).toContain('Første version kan hentes på GitHub');
   });
 
   test('should put Cocode Guard on top of the stack', () => {
