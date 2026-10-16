@@ -45,7 +45,11 @@
 <a href="https://dune.cocode.dk"><b>Dune</b></a> · A strategy game in the browser.<br>
 <a href="https://tiefighter.cocode.dk"><b>TIE Fighter</b></a> · A 3D game in the browser.<br>
 <a href="https://tetris.cocode.dk"><b>Tetris</b></a> · The classic block game in the browser.<br>
-<a href="https://primes.cocode.dk"><b>Reverse Prime Plot</b></a> · Prime numbers, drawn as a pattern.</p>
+<a href="https://primes.cocode.dk"><b>Reverse Prime Plot</b></a> · Prime numbers, drawn as a pattern.<br>
+<a href="https://dip.cocode.dk"><b>Prøveklar</b></a> · Practise for the Danish citizenship test with 13 real exams from 2020 to 2026.<br>
+<a href="https://hej.cocode.dk"><b>Hej</b></a> · Danish for English speakers. Learn to hear it and say it.<br>
+<a href="https://wonderland.cocode.dk"><b>Zombie Panic in Wonderland</b></a> · A 3D game where you hold the road against the zombies.<br>
+<a href="https://cocodedk.github.io/rock-paper-scissors/"><b>Rock, paper, scissors</b></a> · Two computers play each other, one round a second.</p>
 
 <p align="center"><b>Client projects</b><br>
 <a href="https://klinikvenus.dk"><b>Venus Høreklinik</b></a> · Hearing aids and hearing tests in central Copenhagen.<br>
@@ -63,7 +67,27 @@
 <a href="https://graph-loop.cocode.dk"><b>graph-loop</b></a> · AI agents that work on programming tasks without continuous supervision.<br>
 <a href="https://rag.cocode.dk"><b>zjm-rag</b></a> · Finds the file with the answer and answers from it.<br>
 <b>MCP servers</b> · Give an AI access to calendars, tasks and memory.<br>
+<a href="https://agentboard.cocode.dk"><b>Agent Board</b></a> · A message board where AI agents ask and answer each other.<br>
+<a href="https://agents.cocode.dk"><b>Agent Benchmark</b></a> · Three AI agents build the same game. Which is fastest and cheapest?<br>
+<a href="https://tanks.cocode.dk"><b>Tank Benchmark</b></a> · Seven setups build the same tank game. See the cost, the time and the result.<br>
+<a href="https://loops.cocode.dk"><b>Loop Engineering</b></a> · Fact-checked notes on letting an AI work in loops until the job is done.<br>
+<a href="https://message-test.cocode.dk"><b>Message Test</b></a> · Checks whether a document actually gets its message across.<br>
+<a href="https://natural-parallel.cocode.dk"><b>Natural Parallel</b></a> · Holds a plan up against how nature solved the same problem.<br>
+<a href="https://agent-linters.cocode.dk"><b>Agent Linters</b></a> · Turns error messages in code into short orders an AI can act on.<br>
+<a href="https://codescan.cocode.dk"><b>CodeScan</b></a> · Maps Python code so an AI can find its way around it.<br>
+<a href="https://github.com/cocodedk/ai-vid-edit"><b>AI Video Edit</b></a> · Edits podcasts and interviews with help from AI.<br>
+<a href="https://pdf2speech.cocode.dk"><b>pdf2speech</b></a> · Turns books and PDFs into audiobooks, offline.<br>
+<a href="https://whisperframe.cocode.dk"><b>WhisperFrame</b></a> · Transcribes the speech in a video and pulls frames out of it.<br>
+<a href="https://github.com/cocodedk/tmux-zipper"><b>tmux-zipper</b></a> · Shortcuts as a news ticker above the Claude Code prompt.<br>
 <a href="https://fits.dk"><b>FITS.DK</b></a> · Helps businesses write their IT security policies with AI. More than 3,000 hours of work.</p>
+
+<p align="center"><b>Small tools</b><br>
+<a href="https://png2svg.cocode.dk"><b>png2svg</b></a> · Turns pictures into sharp vector graphics.<br>
+<a href="https://usb.cocode.dk"><b>USB Formatter</b></a> · Wipes and formats a USB stick, with guards against accidents.<br>
+<a href="https://github.com/cocodedk/overlay-killer"><b>Overlay Killer</b></a> · Removes pop-ups that block the page. For Chrome and Firefox.<br>
+<a href="https://github.com/cocodedk/fa-transliterate"><b>Persian Transliterator</b></a> · Type Persian on an ordinary keyboard.<br>
+<a href="https://github.com/cocodedk/img2vid"><b>img2vid</b></a> · Turns a folder of pictures into a video with music.<br>
+<a href="https://github.com/cocodedk/youtube-audio-extractor"><b>YouTube Audio Extractor</b></a> · Fetches the sound from YouTube videos and splits it into chapters.</p>
 
 <br>
 
