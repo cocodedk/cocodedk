@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '26'
           cache: npm
 
       # No install scripts: `prepare` would drop a stale pre-commit hook into .git/hooks and fail
