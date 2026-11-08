@@ -52,7 +52,12 @@ module.exports = {
         { from: 'CNAME', to: 'CNAME', toType: 'file' },
         { from: 'llms.txt', to: 'llms.txt' },
         { from: 'robots.txt', to: 'robots.txt' },
-        { from: 'sitemap.xml', to: 'sitemap.xml' },
+        // every deploy rebuilds the page, so the build date is the page's last change
+        {
+          from: 'sitemap.xml',
+          to: 'sitemap.xml',
+          transform: (content) => content.toString().replace('BUILD_DATE', new Date().toISOString().slice(0, 10)),
+        },
       ],
     }),
   ],
