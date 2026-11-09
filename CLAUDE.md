@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-GitHub profile repository and the cocode.dk homepage for Babak Bandpey, AI consultant. One static Danish page built with Webpack 5: warm paper, serif type, illustrated plates, and featured works that slide over each other. The audience is potential clients, not developers, so nothing on the page should look technical. The design brief is `design/mockups/BRIEF.md`., and live API integrations with GitHub, YouTube, and LinkedIn.
+GitHub profile repository and the cocode.dk homepage for Babak Bandpey, AI consultant. One static Danish page built with Webpack 5: warm paper, serif type, illustrated plates, and featured works that slide over each other. The audience is potential clients, not developers, so nothing on the page should look technical. The design brief is `design/mockups/BRIEF.md`.
 
 - **Language / Runtime**: JavaScript (ES modules) / Node.js 20
 - **Framework**: none. Static HTML and CSS, three small scripts, Webpack 5
