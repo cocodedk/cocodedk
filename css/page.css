@@ -26,7 +26,7 @@ figcaption.sc{margin-top:12px}
 .scene{position:relative;isolation:isolate;overflow:hidden;overflow:clip;--enter:1;--cover:0;--dir:1;
   background-color:var(--page);background-image:var(--grain);color:var(--ink)}
 .scene--flip{--dir:-1}
-/* each plate lends its page a paper and an ink; links, small caps and focus rings follow the tokens */
+/* each plate lends its page a paper and an ink, and links, small caps and focus rings follow the tokens */
 .scene--guard{--page:#0F1E36;--ink:#F6EFE0;--ink-2:#BFD0E6;--lapis:#35C47C;--accent:#35C47C}
 .scene--weather{--page:#27446B;--ink:#F6EFE0;--ink-2:#BCD5DD;--lapis:#EDB651;--accent:#E8A63A}
 .scene--measure{--page:#F2E4BC;--ink:#1D2130;--ink-2:#4A4639;--lapis:#A5312B;--accent:#A5312B}

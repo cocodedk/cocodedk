@@ -36,6 +36,15 @@ describe('css bundle', () => {
     expect(bundleCss(dir, ['a.css']).file).toMatch(/^css\/site\.[0-9a-f]{10}\.css$/);
   });
 
+  test('should fail rather than silently drop a rule clean-css cannot parse', () => {
+    const dir = fixture({ 'a.css': '.f{--dir:-1}\n/* a; b */\n.g{--p:#000}' });
+    expect(() => bundleCss(dir, ['a.css'])).toThrow(/css bundle/);
+  });
+
+  test('should keep every plate rule from the real stylesheets', () => {
+    expect(bundleCss(path.join(__dirname, '..', 'css')).css).toContain('.scene--guard{');
+  });
+
   test('should bundle the real stylesheets in cascade order', () => {
     expect(CSS_FILES).toEqual(['fonts.css', 'base.css', 'dock.css', 'page.css', 'wide.css', 'slide.css']);
   });

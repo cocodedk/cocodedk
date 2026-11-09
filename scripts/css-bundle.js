@@ -12,8 +12,10 @@ const CSS_FILES = ['fonts.css', 'base.css', 'dock.css', 'page.css', 'wide.css', 
 function bundleCss(dir, files = CSS_FILES) {
   const paths = files.map((file) => path.join(dir, file));
   const source = paths.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-  const { styles, errors } = new CleanCSS().minify(source);
-  if (errors.length) throw new Error(`css bundle: ${errors.join('; ')}`);
+  // clean-css reports a rule it drops as a warning, not an error, so both stop the build.
+  const { styles, errors, warnings } = new CleanCSS().minify(source);
+  const problems = [...errors, ...warnings];
+  if (problems.length) throw new Error(`css bundle: ${problems.join('; ')}`);
   const hash = crypto.createHash('sha256').update(styles).digest('hex').slice(0, 10);
   return { css: styles, file: `css/site.${hash}.css`, paths };
 }
