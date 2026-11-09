@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-GitHub profile repository and the cocode.dk homepage for Babak Bandpey, AI consultant. One static Danish page built with Webpack 5: warm paper, serif type, illustrated plates, and featured works that slide over each other. The audience is potential clients, not developers, so nothing on the page should look technical. The design brief is `design/mockups/BRIEF.md`., and live API integrations with GitHub, YouTube, and LinkedIn.
+GitHub profile repository and the cocode.dk homepage for Babak Bandpey, AI consultant. One static Danish page built with Webpack 5: warm paper, serif type, illustrated plates, and featured works that slide over each other. The audience is potential clients, not developers, so nothing on the page should look technical. The design brief is `design/mockups/BRIEF.md`.
 
-- **Language / Runtime**: JavaScript (ES modules) / Node.js 20
+- **Language / Runtime**: JavaScript (ES modules) / Node.js 22.15 or newer (webpack-dev-server 6 needs it; CI uses 26)
 - **Framework**: none. Static HTML and CSS, three small scripts, Webpack 5
 - **Language of the page**: Danish. English is phase two; until it exists there is no language switch
 - **Package / Namespace**: `cocodedk`
@@ -36,7 +36,8 @@ cocodedk/
 │   ├── template.html    ← the head and the order of the page
 │   ├── partials/        ← the page in pieces, placed with <%= partials.name %>
 │   └── og-card.html     ← source of the share picture (OG_CARD=1 npm run build)
-├── css/                 ← fonts, base, dock, page, wide, slide — linked in that order; the order is the cascade
+├── css/                 ← fonts, base, dock, page, wide, slide — the order is the cascade; the build joins them in that
+│                          order into one minified, content-named css/site.<hash>.css (scripts/css-bundle.js)
 ├── js/                  ← menu.js, place-marker.js, scenes.js, webmcp.js (+ page-facts.js), wired up in main.js
 ├── fonts/               ← self-hosted woff2 (no font CDN: visitors' addresses stay here)
 ├── images/              ← favicons and the share picture
@@ -64,9 +65,8 @@ cocodedk/
   copy lives once. The API is a draft and has already moved (`navigator` → `document.modelContext`, the old alias is gone since Chrome 153); check
   https://webmachinelearning.github.io/webmcp/ before changing it. To try it:
   `google-chrome-stable --enable-features=WebMCP` (or `~/.claude-shared/skills/webmcp/scripts/probe.py https://cocode.dk/`),
-  then `await document.modelContext.getTools()` in the console. Real visitors get it through the origin-trial token in
-  `templates/template.html` (registered 2026-09-20 for https://cocode.dk, expires 2026-11-17: renew it at
-  developer.chrome.com/origintrials or remove the tag then), or without it once Chrome ships WebMCP by default
+  then `await document.modelContext.getTools()` in the console. There is no origin-trial token on the page any more (removed 2026-11-09), so real visitors get the tools
+  once Chrome ships WebMCP by default
 
 ---
 
@@ -122,7 +122,7 @@ npm ci && npm run build && npm test  # Full smoke check — used in CI and pre-c
 |------|---------|
 | `CLAUDE.md` | This file — project conventions and session startup |
 | `version.txt` | Semantic version (MAJOR.MINOR.PATCH) |
-| `.github/workflows/ci.yml` | CI on PRs and non-main branches |
+| `.github/workflows/ci.yml` | CI on PRs to main (manual run for other branches) |
 | `.github/workflows/deploy-pages.yml` | GitHub Pages deployment on push to main |
 | `.github/workflows/readme.yml` | Rebuilds the profile README on every PR and commits it to the PR branch |
 | `.githooks/pre-commit` | File length check on staged files |

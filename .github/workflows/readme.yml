@@ -30,8 +30,7 @@ jobs:
           node-version: '26'
           cache: npm
 
-      # No install scripts: `prepare` would drop a stale pre-commit hook into .git/hooks and fail
-      # the bot's commit, and nothing the generator needs builds on install.
+      # No install scripts: nothing the generator needs builds on install.
       - run: npm ci --ignore-scripts
 
       - run: npm run readme

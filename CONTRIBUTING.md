@@ -2,7 +2,7 @@
 
 ## Local Setup
 
-1. Install Node.js 22 or newer from [nodejs.org](https://nodejs.org)
+1. Install Node.js 22.15 or newer from [nodejs.org](https://nodejs.org)
 2. Clone the repository: `git clone https://github.com/cocodedk/cocodedk.git`
 3. Go into it: `cd cocodedk`
 4. Install dependencies: `npm ci`
@@ -28,8 +28,7 @@ git config init.defaultBranch main
 
 ```bash
 npm run dev           # Dev server localhost:8080
-npm run build         # Build into ./dist (development mode)
-NODE_ENV=production npm run build  # Production build into ./dist
+npm run build         # Production build into ./dist
 npm test              # Jest (jsdom)
 npm run lint:length   # Check 200-line file limit
 ```

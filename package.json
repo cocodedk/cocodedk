@@ -1,15 +1,13 @@
 {
   "name": "www.cocode.dk",
   "version": "1.0.0",
-  "description": "cocode.dk marketing site with modular frontend components",
-  "main": "dist/bundle.js",
+  "description": "The cocode.dk homepage of Babak Bandpey, AI consultant",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "dev": "webpack serve --mode development --open",
     "lint:length": "bash scripts/check-file-length.sh",
-    "prepare": "cp scripts/pre-commit .git/hooks/pre-commit 2>/dev/null || true",
     "readme": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/readme/build.js",
     "sites": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sites/run.js",
     "sites:render": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sites/run.js --offline"
@@ -19,16 +17,16 @@
     "@babel/preset-env": "^7.29.5",
     "@testing-library/jest-dom": "^6.9.1",
     "babel-jest": "^30.4.1",
-    "babel-loader": "^10.1.1",
+    "clean-css": "^5.3.3",
     "copy-webpack-plugin": "^14.0.0",
     "html-webpack-plugin": "^5.6.7",
-    "jest": "^29.7.0",
+    "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.4.1",
     "jsdom": "^26.1.0",
     "sharp": "^0.35.5",
     "subset-font": "^2.9.0",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.2.1",
-    "webpack-dev-server": "^5.2.4"
+    "webpack-dev-server": "^6.1.0"
   }
 }
