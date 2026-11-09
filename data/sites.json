@@ -1,0 +1,1149 @@
+{
+  "7kasif": {
+    "image": "https://7kasif.cocode.dk/og.png",
+    "repo": "7kasif",
+    "status": 200,
+    "url": "https://7kasif.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A card game that's basically what happens when Uno has a chaotic Danish-Persian cousin. Play online now.",
+        "title": "Hafte Kasif - The Dirty Seven 🃏🇩🇰",
+        "url": "https://7kasif.cocode.dk/"
+      }
+    }
+  },
+  "advisor": {
+    "image": "https://advisor.cocode.dk/og.png",
+    "repo": "advisor-hierarchy",
+    "status": 200,
+    "url": "https://advisor.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Opus advises. Sonnet and Haiku execute. You orchestrate. A Claude Code skill that mirrors the Anthropic Advisor Tool API pattern.",
+        "title": "advisor-hierarchy — 3-tier Claude Code skill",
+        "url": "https://advisor.cocode.dk/"
+      }
+    }
+  },
+  "agent-linters": {
+    "image": "https://agent-linters.cocode.dk/og.png",
+    "repo": "agent-linters",
+    "status": 200,
+    "url": "https://agent-linters.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "ruff and mypy spend 31 lines on three findings. lintp spends 5. One imperative line per finding, for Python, JS/TS, CSS and JSON.",
+        "title": "agent-linters: linter output your coding agent can afford",
+        "url": "https://agent-linters.cocode.dk/"
+      },
+      "fa": {
+        "description": "ruff و mypy برای سه ایراد ۳۱ خط خرج می‌کنند، lintp پنج خط. یک خط دستوری برای هر ایراد، در پایتون، JS/TS، CSS و JSON.",
+        "title": "agent-linters: خروجی لینتری که کانتکست ایجنت را نمی‌خورد",
+        "url": "https://agent-linters.cocode.dk/fa/"
+      }
+    }
+  },
+  "agentboard": {
+    "image": "https://agentboard.cocode.dk/og.png",
+    "repo": "agent-message-board",
+    "status": 200,
+    "url": "https://agentboard.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Run Agent Board, a self-hosted MCP discussion server with SQLite storage and nested replies; explore setup, nine tools, and practical examples in this guide.",
+        "title": "Agent Board: MCP discussion server documentation | Cocode",
+        "url": "https://agentboard.cocode.dk/"
+      },
+      "fa": {
+        "description": "Agent Board یک سرور MCP با ذخیره‌سازی SQLite برای موضوع‌ها و پاسخ‌های تو در تو است. راه‌اندازی، نُه ابزار و روش ثبت نتیجهٔ گفتگو را در این راهنما بخوانید.",
+        "title": "Agent Board: راهنمای سرور MCP برای گفتگوی عامل‌ها | Cocode",
+        "url": "https://agentboard.cocode.dk/fa/"
+      }
+    }
+  },
+  "agents": {
+    "image": "https://agents.cocode.dk/og.png",
+    "repo": "agent-benchmark",
+    "status": 200,
+    "url": "https://agents.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Claude Code, prime-agent and pi each build the same three.js Brick Breaker on Opus 5.5: minutes, dollars, tokens and hidden checks passed, with every game playable.",
+        "title": "Agent Harness Benchmark",
+        "url": "https://agents.cocode.dk/"
+      }
+    }
+  },
+  "android.guard": {
+    "image": "https://android.guard.cocode.dk/img/share.png",
+    "repo": "guard-android",
+    "status": 200,
+    "url": "https://android.guard.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Gratis app, der blokerer farlige sider, farlige adresser og reklamer i alle apps på Android, på alle netværk. Den virker på telefonen, uden konto og uden en server, som vi driver. Den første version er ude.",
+        "title": "Guard for Android: blokerer farlige sider og reklamer i alle apps",
+        "url": "https://android.guard.cocode.dk/"
+      },
+      "en": {
+        "description": "A free app that blocks dangerous sites, dangerous addresses and ads in every Android app, on any network. It works on the phone, with no account and no server run by us. The first version is out.",
+        "title": "Guard for Android: blocks dangerous sites and ads in every app",
+        "url": "https://android.guard.cocode.dk/en/"
+      }
+    }
+  },
+  "audio-soccer": {
+    "image": "https://cocodedk.github.io/audio-soccer/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/audio-soccer/",
+    "versions": {
+      "en": {
+        "description": "A free browser trial for blind and visually impaired players. Find the ball, score and beat a keeper using only sound.",
+        "title": "Audio Soccer Trial: play football by ear",
+        "url": "https://cocodedk.github.io/audio-soccer/"
+      }
+    }
+  },
+  "barrage": {
+    "image": "https://barrage.cocode.dk/og.png",
+    "repo": "barrage",
+    "status": 200,
+    "url": "https://barrage.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Fire bazookas, throw grenades and call in airstrikes across 15 battlefields, each with its own look. Every crater stays. Free in your browser, no install.",
+        "title": "Barrage — destructible-terrain artillery game",
+        "url": "https://barrage.cocode.dk/"
+      }
+    }
+  },
+  "battleship": {
+    "image": "https://battleship.cocode.dk/og.png",
+    "repo": "Battleship",
+    "status": 200,
+    "url": "https://battleship.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Tactical naval combat for Android. Deploy your fleet, hunt the enemy, unlock super weapons, earn medals and climb military ranks. No network required.",
+        "title": "Battleship — Naval Command Game for Android",
+        "url": "https://battleship.cocode.dk/"
+      },
+      "fa": {
+        "description": "نبرد دریایی تاکتیکی برای اندروید. ناوگان خود را مستقر کنید، دشمن را شکار کنید، سلاح‌های فوق‌العاده را باز کنید، مدال کسب کنید و رتبه نظامی بگیرید. بدون نیاز به اینترنت.",
+        "title": "بتلشیپ — بازی فرماندهی دریایی برای اندروید",
+        "url": "https://battleship.cocode.dk/fa/"
+      }
+    }
+  },
+  "brand": {
+    "image": null,
+    "repo": "brand",
+    "status": 200,
+    "url": "https://brand.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": null,
+        "title": "cocode.dk frame — every case",
+        "url": "https://brand.cocode.dk/"
+      },
+      "en": {
+        "description": null,
+        "title": "cocode.dk frame — every case",
+        "url": "https://brand.cocode.dk/?en"
+      },
+      "es": {
+        "description": null,
+        "title": "cocode.dk frame — every case",
+        "url": "https://brand.cocode.dk/?es"
+      },
+      "fa": {
+        "description": null,
+        "title": "cocode.dk frame — every case",
+        "url": "https://brand.cocode.dk/?fa"
+      }
+    }
+  },
+  "breakout": {
+    "image": "https://breakout.cocode.dk/og.png",
+    "repo": "breakout-tv",
+    "status": 200,
+    "url": "https://breakout.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "The arcade classic for 2021 Samsung TVs, played with a keyboard or the remote. Break through the bricks, hit the UFO, and every life you kept multiplies your score.",
+        "title": "Breakout for Samsung TV: break the wall, hit the UFO",
+        "url": "https://breakout.cocode.dk/"
+      },
+      "fa": {
+        "description": "آجرشکن آرکیدی برای تلویزیون‌های سامسونگ ۲۰۲۱، با کیبورد یا کنترل. از دیوار رد شوید، به بشقاب‌پرنده بزنید، و هر جانی که نگه داشته‌اید امتیازتان را چند برابر می‌کند.",
+        "title": "Breakout برای تلویزیون سامسونگ: دیوار را بشکن، به بشقاب‌پرنده بزن",
+        "url": "https://breakout.cocode.dk/fa/"
+      }
+    }
+  },
+  "calendar": {
+    "image": "https://calendar.cocode.dk/og.png",
+    "repo": "persian-calendar",
+    "status": 200,
+    "url": "https://calendar.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A modern Android calendar app with Gregorian and Persian (Jalali) support, plus real-time date conversion.",
+        "title": "Calendar App | Persian + Gregorian",
+        "url": "https://calendar.cocode.dk/"
+      }
+    }
+  },
+  "cast": {
+    "image": "https://cast.cocode.dk/img/share.png",
+    "repo": "BabakCast",
+    "status": 200,
+    "url": "https://cast.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Hent videoer fra YouTube, X (Twitter), Instagram og LinkedIn, kopiér tweet-tekst, og få resuméer af YouTube-transskriptioner med din egen AI. Ingen konti, ingen sporing.",
+        "title": "BabakCast",
+        "url": "https://cast.cocode.dk/da/"
+      },
+      "en": {
+        "description": "Download videos from YouTube, X (Twitter), Instagram and LinkedIn, copy tweet text, and summarize YouTube transcripts with your own AI. No accounts, no tracking.",
+        "title": "BabakCast",
+        "url": "https://cast.cocode.dk/"
+      },
+      "fa": {
+        "description": "دانلود ویدیوهای یوتیوب، X (توییتر)، اینستاگرام و لینکدین، کپی و اشتراک‌گذاری متن توییت، خلاصه‌سازی متن با هوش مصنوعی خودتان. بدون حساب کاربری، بدون ردیابی.",
+        "title": "BabakCast",
+        "url": "https://cast.cocode.dk/fa/"
+      }
+    }
+  },
+  "chess": {
+    "image": "https://chess.cocode.dk/og.png",
+    "repo": "chess-puzzles",
+    "status": 200,
+    "url": "https://chess.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Rigtige Lichess-opgaver og åbningstræning på Android, med mål i hver opgave. Lyst eller mørkt tema, hold din serie i live og følg din fremgang uden internet. Gratis og open source.",
+        "title": "Chess Puzzles: træn taktik på Android",
+        "url": "https://chess.cocode.dk/da/"
+      },
+      "en": {
+        "description": "Real Lichess puzzles and opening practice on Android, with goal announcements. Light or dark mode, keep your streak, track progress offline. Free & open-source.",
+        "title": "Chess Puzzles — train tactics on Android",
+        "url": "https://chess.cocode.dk/"
+      },
+      "es": {
+        "description": "Puzles reales de Lichess y práctica de aperturas en Android, con el objetivo anunciado en cada puzle. Modo claro u oscuro, mantén tu racha y sigue tu progreso sin conexión. Gratis y de código abierto.",
+        "title": "Chess Puzzles: entrena tácticas en Android",
+        "url": "https://chess.cocode.dk/es/"
+      },
+      "fa": {
+        "description": "معماهای واقعی Lichess و تمرین گشایش‌ها روی اندروید، با هدف اعلام‌شده. حالت روشن یا تیره، تمرین پیاپی را حفظ کنید و پیشرفت را آفلاین دنبال کنید. رایگان و متن‌باز.",
+        "title": "معمای شطرنج — تمرین تاکتیک روی اندروید",
+        "url": "https://chess.cocode.dk/fa/"
+      },
+      "zh-Hans": {
+        "description": "Android上的真实Lichess谜题和开局练习，每道谜题都会报出目标。浅色或深色模式，保持连续解题纪录，离线记录进度。免费开源。",
+        "title": "Chess Puzzles：在Android上训练战术",
+        "url": "https://chess.cocode.dk/zh/"
+      }
+    }
+  },
+  "claude-email": {
+    "image": "https://claude-email.cocode.dk/og.png",
+    "repo": "claude-email",
+    "status": 200,
+    "url": "https://claude-email.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Email-driven wrapper for the Claude Code CLI with integrated MCP chat relay for managing multiple Claude Code agents.",
+        "title": "claude-email — Control Claude Code Agents via Email",
+        "url": "https://claude-email.cocode.dk/"
+      },
+      "fa": {
+        "description": "پوشش ایمیل‌محور برای Claude Code CLI با رله چت MCP یکپارچه برای مدیریت چندین عامل Claude Code.",
+        "title": "claude-email — کنترل عامل‌های Claude Code از طریق ایمیل",
+        "url": "https://claude-email.cocode.dk/fa/"
+      }
+    }
+  },
+  "claude-email-app": {
+    "image": "https://cocodedk.github.io/Claude-Email-App/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/Claude-Email-App/",
+    "versions": {
+      "en": {
+        "description": "Focused Android email client for the claude-email backend. IMAP/SMTP, encrypted credential storage, command-and-reply UX.",
+        "title": "Claude Email — Android mail client for claude-email agents",
+        "url": "https://cocodedk.github.io/Claude-Email-App/"
+      },
+      "fa": {
+        "description": "کلاینت ایمیل اندرویدی متمرکز برای بک‌اند claude-email. IMAP/SMTP، credential رمزشده، تجربه دستور و پاسخ.",
+        "title": "کلود ایمیل — کلاینت اندروید برای سرویس claude-email",
+        "url": "https://cocodedk.github.io/Claude-Email-App/fa/"
+      }
+    }
+  },
+  "codescan": {
+    "image": "https://codescan.cocode.dk/og.png",
+    "repo": "codescan",
+    "status": 200,
+    "url": "https://codescan.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Extract call graphs, test coverage, and code relationships from Python codebases. Neo4j integration with MCP server for Cursor IDE.",
+        "title": "CodeScan — Python Static Code Analyzer with Neo4j",
+        "url": "https://codescan.cocode.dk/"
+      },
+      "fa": {
+        "description": "استخراج گراف فراخوانی، پوشش تست، و روابط کد از پایگاه‌های کد پایتون. یکپارچه‌سازی Neo4j با سرور MCP برای Cursor IDE.",
+        "title": "کدسکن — تحلیلگر استاتیک پایتون با Neo4j",
+        "url": "https://codescan.cocode.dk/fa/"
+      }
+    }
+  },
+  "cv": {
+    "image": "https://cv.cocode.dk/og-image.png",
+    "repo": "cv-generator",
+    "status": 200,
+    "url": "https://cv.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Create professional CVs and resumes with AI-powered assistance. Multiple themes and export formats.",
+        "title": "CV Generator - Professional Resume Builder",
+        "url": "https://cv.cocode.dk/"
+      }
+    }
+  },
+  "d7": {
+    "image": "https://d7.cocode.dk/assets/og-image.svg",
+    "repo": "D7",
+    "status": 200,
+    "url": "https://d7.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A tournament tracking app for Hafte Kasif — a card game that's basically what happens when Uno has a chaotic Danish-Persian cousin.",
+        "title": "D7 - Hafte Kasif Tournament Tracker 🃏🇩🇰",
+        "url": "https://d7.cocode.dk/"
+      }
+    }
+  },
+  "dip": {
+    "image": "https://dip.cocode.dk/og.png?v=8f7c4a0d0e9c",
+    "repo": "dip",
+    "status": 200,
+    "url": "https://dip.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Øv dig til indfødsretsprøven med 570 spørgsmål fra tidligere prøver. Træn danske værdier, tag prøver på tid og gem fremskridt lokalt – gratis og offline.",
+        "title": "Indfødsretsprøven: gratis øvelse med arkiv | Prøveklar",
+        "url": "https://dip.cocode.dk/"
+      }
+    }
+  },
+  "dune": {
+    "image": "https://dune.cocode.dk/og.png",
+    "repo": "Dune-Browser-Game",
+    "status": 200,
+    "url": "https://dune.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A browser-based strategy game set in Frank Herbert's Dune universe. Harvest spice, forge Fremen alliances, and outmanoeuvre rival Houses on Arrakis.",
+        "title": "Dune Browser Game — Rule Arrakis, Control the Spice",
+        "url": "https://dune.cocode.dk/"
+      },
+      "fa": {
+        "description": "یک بازی استراتژی مبتنی بر مرورگر در دنیای دیون اثر فرانک هربرت. ادویه برداشت کن، با فریمن‌ها پیمان ببند و خانه‌های رقیب را شکست بده.",
+        "title": "بازی مرورگر دیون — بر آراکیس فرمان بران، ادویه را مهار کن",
+        "url": "https://dune.cocode.dk/fa/"
+      }
+    }
+  },
+  "fits": {
+    "image": "https://fits.dk/og-image.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://fits.dk",
+    "versions": {
+      "da": {
+        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
+        "title": "FITS - AI-Powered Policy Automation",
+        "url": "https://fits.dk/da/"
+      },
+      "en": {
+        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
+        "title": "FITS - AI-Powered Policy Automation",
+        "url": "https://fits.dk"
+      }
+    }
+  },
+  "fits-qr": {
+    "image": "https://cocodedk.github.io/fits-qr/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/fits-qr/",
+    "versions": {
+      "da": {
+        "description": "En open source Android-app til FITS. Skift mellem tre FITS-kontaktkort og scan QR-koden for at gemme kontakten — offline, uden tilladelser, uden sporing.",
+        "title": "FITS QR — tre FITS-kontakter, ét scan",
+        "url": "https://cocodedk.github.io/fits-qr/da/"
+      },
+      "en": {
+        "description": "An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.",
+        "title": "FITS QR — three FITS contacts, one scan",
+        "url": "https://cocodedk.github.io/fits-qr/"
+      }
+    }
+  },
+  "glasswing": {
+    "image": "https://glasswing.cocode.dk/og.png",
+    "repo": "glasswing",
+    "status": 200,
+    "url": "https://glasswing.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Dragonflies fly through the reeds. Zoom in close on one in this small interactive garden scene.",
+        "title": "Glasswing — dragonflies in a garden",
+        "url": "https://glasswing.cocode.dk/"
+      }
+    }
+  },
+  "graph-loop": {
+    "image": "https://graph-loop.cocode.dk/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://graph-loop.cocode.dk",
+    "versions": {
+      "en": {
+        "description": "Two models that never trust each other: one builds a task, the other refuses work that only looks done. The backlog is a folder of linked notes.",
+        "title": "graph-loop: an unattended agent coding loop",
+        "url": "https://graph-loop.cocode.dk"
+      },
+      "fa": {
+        "description": "دو مدل که به یکدیگر اعتماد نمی‌کنند: یکی کار را می‌سازد و دیگری کاری را که فقط تمام‌شده به نظر می‌رسد رد می‌کند.",
+        "title": "graph-loop: حلقه‌ای که بدون نظارت کد می‌سازد",
+        "url": "https://graph-loop.cocode.dk/fa/"
+      }
+    }
+  },
+  "hej": {
+    "image": "https://hej.cocode.dk/og.png",
+    "repo": "English-Danish-Lessons",
+    "status": 200,
+    "url": "https://hej.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A free, private way for English speakers to learn Danish: hear each word, say it out loud and light a window on your street. No account, no ads.",
+        "title": "Hej. Learn Danish by hearing it and saying it",
+        "url": "https://hej.cocode.dk/"
+      }
+    }
+  },
+  "in-optimizer": {
+    "image": "https://in-optimizer.cocode.dk/og.png",
+    "repo": "in-optimizer",
+    "status": 200,
+    "url": "https://in-optimizer.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A local Playwright tool that deletes your own LinkedIn comments slowly, against your own logged-in browser. No tokens, no third-party server.",
+        "title": "in-optimizer: delete your LinkedIn comments, slowly",
+        "url": "https://in-optimizer.cocode.dk/"
+      },
+      "fa": {
+        "description": "ابزاری محلی مبتنی بر Playwright که کامنت‌های لینکدین شما را آرام، علیه مرورگر باز خودتان حذف می‌کند.",
+        "title": "in-optimizer: کامنت‌های لینکدین خود را آرام حذف کنید",
+        "url": "https://in-optimizer.cocode.dk/fa/"
+      }
+    }
+  },
+  "invaders": {
+    "image": "https://invaders.cocode.dk/og.png",
+    "repo": "invaders",
+    "status": 200,
+    "url": "https://invaders.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Fly free, break alien formations and beat a boss in each of 18 worlds. Every level you clear becomes a movie trailer of your run, and the Cinema keeps your best. Free in your browser.",
+        "title": "Invaders — the arcade shooter that cuts a trailer of your run",
+        "url": "https://invaders.cocode.dk/"
+      }
+    }
+  },
+  "japansk": {
+    "image": "https://japansk.cocode.dk/og.png",
+    "repo": "Danish-Japanese-Lessons",
+    "status": 200,
+    "url": "https://japansk.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Du behøver ikke kunne japansk. Begynd med de 46 hiragana, de seks tegn, der ændrer lyde, udtalehjælp og ord som みず.",
+        "title": "Lær japansk skrift: de 46 hiragana og de seks tegn fra bunden",
+        "url": "https://japansk.cocode.dk/da/"
+      },
+      "en": {
+        "description": "No Japanese required. Start with the 46 hiragana, the six marks that change sounds, pronunciation help, and words like みず.",
+        "title": "Learn to read and write Japanese: the 46 hiragana",
+        "url": "https://japansk.cocode.dk/"
+      },
+      "ja": {
+        "description": "ひらがな46文字から日本語を学ぶ、デンマーク語話者のための無料のアプリです。",
+        "title": "ひらがなから始める日本語レッスン",
+        "url": "https://japansk.cocode.dk/ja/"
+      }
+    }
+  },
+  "jev-bench": {
+    "image": "https://jev-bench.cocode.dk/og-image.png",
+    "repo": "jev-bench",
+    "status": 200,
+    "url": "https://jev-bench.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Same cases. Named models. Measured latency and accuracy. Explore the results and reproduce the experiments.",
+        "title": "Jev Bench — a classifier workbench",
+        "url": "https://jev-bench.cocode.dk/"
+      }
+    }
+  },
+  "job-jagger": {
+    "image": "https://job-jagger.cocode.dk/og.png",
+    "repo": "job-jagger",
+    "status": 200,
+    "url": "https://job-jagger.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Automate your job search with Claude Code. Generate tailored CVs + cover letters, optimize your LinkedIn profile, and land interviews. Free, open source.",
+        "title": "job-jagger: AI-Powered Job Application Toolkit",
+        "url": "https://job-jagger.cocode.dk/?lang=da"
+      },
+      "en": {
+        "description": "Automate your job search with Claude Code. Generate tailored CVs + cover letters, optimize your LinkedIn profile, and land interviews. Free, open source.",
+        "title": "job-jagger: AI-Powered Job Application Toolkit",
+        "url": "https://job-jagger.cocode.dk/"
+      },
+      "fa": {
+        "description": "Automate your job search with Claude Code. Generate tailored CVs + cover letters, optimize your LinkedIn profile, and land interviews. Free, open source.",
+        "title": "job-jagger: AI-Powered Job Application Toolkit",
+        "url": "https://job-jagger.cocode.dk/?lang=fa"
+      }
+    }
+  },
+  "klinikvenus": {
+    "image": "https://klinikvenus.dk/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://klinikvenus.dk",
+    "versions": {
+      "da": {
+        "description": "Høreklinik i København K (Indre By/Old City) – høretest, høreapparater og rådgivning. Borgergade 20, 1300 København.",
+        "title": "Venus Høreklinik | Høreapparater & Høretest i København K (Indre By)",
+        "url": "https://klinikvenus.dk"
+      }
+    }
+  },
+  "lifemeter": {
+    "image": "https://lifemeter.cocode.dk/og.png",
+    "repo": "lifemeter",
+    "status": 200,
+    "url": "https://lifemeter.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "How many days have you been alive? LifeMeter turns your birthdate into a live dashboard — days, seconds, food consumed, global deaths and births. Free Android app.",
+        "title": "LifeMeter — Your Life, by the Numbers",
+        "url": "https://lifemeter.cocode.dk/"
+      }
+    }
+  },
+  "linkedin-editor": {
+    "image": "https://linkedin-editor.cocode.dk/assets/og-image.png",
+    "repo": "linkedin-profile-editor",
+    "status": 200,
+    "url": "https://linkedin-editor.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "browser-use MCP + Playwright MCP skill for LinkedIn's React SPA. Add experience, skills, edit entries — from Claude Code.",
+        "title": "LinkedIn Profile Editor",
+        "url": "https://linkedin-editor.cocode.dk/"
+      }
+    }
+  },
+  "linkedin-extension": {
+    "image": "https://linkedin-extension.cocode.dk/og.png",
+    "repo": "linkedin-extension",
+    "status": 200,
+    "url": "https://linkedin-extension.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Extract, evaluate, and export LinkedIn leads with AI-powered scoring and Danish CVR enrichment.",
+        "title": "LinkedIn Lead Exporter - Chrome Extension",
+        "url": "https://linkedin-extension.cocode.dk/"
+      },
+      "fa": {
+        "description": "افزونه رایگان کروم برای جمع‌آوری و ارزیابی داده‌های لید از نتایج جستجوی لینکدین.",
+        "title": "افزونه لینکدین — جمع‌آوری و ارزیابی لیدهای لینکدین",
+        "url": "https://linkedin-extension.cocode.dk/fa/"
+      }
+    }
+  },
+  "loops": {
+    "image": "https://loops.cocode.dk/og.png",
+    "repo": "loop-engineering",
+    "status": 200,
+    "url": "https://loops.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A fact-checked field guide to loop engineering: how Claude Code creator Boris Cherny stopped prompting and started writing autonomous agent loops.",
+        "title": "Loop Engineering — Boris Cherny's Claude Code Methodology",
+        "url": "https://loops.cocode.dk/"
+      }
+    }
+  },
+  "markdown": {
+    "image": "https://markdown.cocode.dk/og.png",
+    "repo": "markdown",
+    "status": 200,
+    "url": "https://markdown.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Tap a .md file in any app and read it, rendered, or edit it. Tables, task lists, light and dark. No permissions, no network.",
+        "title": "Markdown — read and edit .md files on Android",
+        "url": "https://markdown.cocode.dk/"
+      },
+      "fa": {
+        "description": "روی یک فایل md در هر برنامه‌ای بزنید و آن را مرتب و خوانا ببینید. بدون مجوز، بدون اینترنت.",
+        "title": "مارک‌داون — خواندن و ویرایش فایل‌های md در اندروید",
+        "url": "https://markdown.cocode.dk/fa/"
+      }
+    }
+  },
+  "measure": {
+    "image": "https://measure.cocode.dk/og.png",
+    "repo": "Metrologist",
+    "status": 200,
+    "url": "https://measure.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Single-view planar metrology from a photo. Mark corners + reference stick → get width, height, area, diagonal, angles. Free, offline, open-source.",
+        "title": "Measure with Your Phone — Metrologist Android App",
+        "url": "https://measure.cocode.dk/"
+      },
+      "fa": {
+        "description": "اندازه‌گیری دقیق سطوح صاف از یک عکس. چهار گوشه و چوب مرجع را علامت بزنید — عرض، ارتفاع، مساحت، قطر و زوایا را دریافت کنید. رایگان، آفلاین، اوپن‌سورس.",
+        "title": "اندازه‌گیری با گوشی — اپ اندرویدی متروژیست",
+        "url": "https://measure.cocode.dk/fa/"
+      }
+    }
+  },
+  "message-test": {
+    "image": "https://message-test.cocode.dk/og.png",
+    "repo": "message-test",
+    "status": 200,
+    "url": "https://message-test.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A Claude Code plugin that measures whether a document delivers its message: a scored clarity index, a fresh-reader test that catches drift, and a cloze test.",
+        "title": "message-test: does your document deliver its message?",
+        "url": "https://message-test.cocode.dk/"
+      },
+      "fa": {
+        "description": "افزونه‌ای برای Claude Code که اندازه می‌گیرد سند شما پیامش را می‌رساند یا نه: شاخص شفافیت با نمره، آزمون خوانندهٔ ناآشنا برای گرفتن واگرایی، و آزمون کلوز.",
+        "title": "message-test · سند شما واقعاً چه چیزی را می‌رساند؟",
+        "url": "https://message-test.cocode.dk/fa/"
+      }
+    }
+  },
+  "natural-parallel": {
+    "image": "https://natural-parallel.cocode.dk/og.png",
+    "repo": "natural-parallel-test",
+    "status": 200,
+    "url": "https://natural-parallel.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A Claude Code plugin that tests a plan against nature by shared mechanism, not resemblance: ten mechanisms, seven levels, twelve principles, four verdicts.",
+        "title": "Natural Parallel Test: stress-test plans against nature",
+        "url": "https://natural-parallel.cocode.dk/"
+      },
+      "fa": {
+        "description": "افزونه‌ای برای Claude Code که طرح را با سازوکار مشترک با طبیعت می‌سنجد، نه با شباهت ظاهری: ده سازوکار، هفت سطح، دوازده اصل امتیازی و چهار حکم روشن.",
+        "title": "آزمون موازی طبیعی: سنجش ساختاری طرح‌ها با سازوکار طبیعت",
+        "url": "https://natural-parallel.cocode.dk/fa/"
+      }
+    }
+  },
+  "nightgallery": {
+    "image": "https://nightgallery.cocode.dk/og.png",
+    "repo": "night-gallery",
+    "status": 200,
+    "url": "https://nightgallery.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "En skærm, der lærer fra sig uden at kræve opmærksomhed: 121 skakopgaver, 59 skakstillinger, 585 videnskort i 14 emner og langsomt, roligt lys. Gratis og open source.",
+        "title": "Night Gallery: stille læring på dit tv",
+        "url": "https://nightgallery.cocode.dk/da/"
+      },
+      "en": {
+        "description": "A screen that teaches without asking for attention: 121 chess puzzles, 59 chess positions, 585 concept cards, and slow ambient light. Free, open source, offline.",
+        "title": "Night Gallery — an ambient learning canvas for your TV",
+        "url": "https://nightgallery.cocode.dk/"
+      },
+      "fa": {
+        "description": "صفحه‌ای که یاد می‌دهد بدون اینکه توجهی بخواهد؛ ۱۲۱ پازل شطرنج، ۵۹ موقعیت شطرنج، ۵۸۵ کارت مفهومی در چهارده موضوع، و نوری آرام و کند. رایگان، متن‌باز و کاملاً آفلاین.",
+        "title": "Night Gallery — یادگیری آرام روی تلویزیون",
+        "url": "https://nightgallery.cocode.dk/fa/"
+      }
+    }
+  },
+  "parvaz": {
+    "image": "https://parvaz.cocode.dk/og.png",
+    "repo": "parvaz",
+    "status": 200,
+    "url": "https://parvaz.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Farsi-first Android browser tunnel for Iranian users. Routes Chrome (and other Chromium browsers) through a user-deployed Google Apps Script relay with TLS SNI concealment.",
+        "title": "Parvaz — A flight over the filter",
+        "url": "https://parvaz.cocode.dk/"
+      },
+      "fa": {
+        "description": "تونل مرورگر اندروید با اولویت فارسی — ترافیک Chrome از طریق رلهٔ Google Apps Script شخصی شما با پنهان‌سازی SNI. یک APK، یک گواهی، بدون تنظیم اضافه.",
+        "title": "پرواز — پرواز از روی فیلتر",
+        "url": "https://parvaz.cocode.dk/fa/"
+      }
+    }
+  },
+  "pdf2speech": {
+    "image": "https://pdf2speech.cocode.dk/og.png",
+    "repo": "pdf2speech",
+    "status": 200,
+    "url": "https://pdf2speech.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "pdf2speech converts a PDF or chapter Markdown into an audiobook MP3 and a YouTube-ready MP4, narrated offline with Kokoro and Piper neural voices.",
+        "title": "PDF to Audiobook Converter: Offline, Chapter-Aware TTS",
+        "url": "https://pdf2speech.cocode.dk/"
+      },
+      "fa": {
+        "description": "pdf2speech هر فایل PDF یا پوشه‌ای از فصل‌های مارک‌داون را آفلاین، با صداهای طبیعی Kokoro و Piper، به یک کتاب صوتی MP3 و ویدیوی آماده یوتیوب تبدیل می‌کند.",
+        "title": "تبدیل PDF به کتاب صوتی: گفتار مصنوعی آفلاین و فصل‌محور",
+        "url": "https://pdf2speech.cocode.dk/fa/"
+      }
+    }
+  },
+  "persia": {
+    "image": "https://persia.cocode.dk/og.png",
+    "repo": "persia-game",
+    "status": 200,
+    "url": "https://persia.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Shoot down waves of angry animals and ten giants: a cat, a mouse, a fish, a bird, a cow, a dog, a horse, a lion, a camel and a fox. You hear each animal's name in Persian when it shows up. Free in your browser.",
+        "title": "Persia: an arcade shooter",
+        "url": "https://persia.cocode.dk/"
+      }
+    }
+  },
+  "persisk": {
+    "image": "https://persisk.cocode.dk/og.png",
+    "repo": "Danish-Persian-Lessons",
+    "status": 200,
+    "url": "https://persisk.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Du behøver ikke kunne persisk. Begynd med højre mod venstre, alfabetet, udtalehjælp og ord som آب.",
+        "title": "Lær persisk skrift: alfabetet og vokaltegnene fra bunden",
+        "url": "https://persisk.cocode.dk/da/"
+      },
+      "en": {
+        "description": "No Persian required. Start with right-to-left reading, the alphabet, pronunciation help, and words like آب.",
+        "title": "Learn to read Persian: the alphabet and vowel marks",
+        "url": "https://persisk.cocode.dk/"
+      },
+      "fa": {
+        "description": "فارسی حرف می‌زنید ولی خواندنش سخت است؟ از همان‌جا شروع کنید که بچه‌های ایران شروع می‌کنند: الفبا، شش نشانهٔ صدا و کلمه‌هایی مثل آب.",
+        "title": "آموزش خواندن و نوشتن فارسی برای فارسی‌زبانان دانمارک",
+        "url": "https://persisk.cocode.dk/fa/"
+      }
+    }
+  },
+  "player": {
+    "image": "https://player.cocode.dk/img/share.png",
+    "repo": "BabakPlayer",
+    "status": 200,
+    "url": "https://player.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Companion app for BabakCast with ordered import and continuous playback.",
+        "title": "BabakPlayer",
+        "url": "https://player.cocode.dk/"
+      },
+      "fa": {
+        "description": "اپلیکیشن همراه BabakCast با وارد کردن مرتب و پخش پیوسته.",
+        "title": "BabakPlayer",
+        "url": "https://player.cocode.dk/fa/"
+      }
+    }
+  },
+  "png2svg": {
+    "image": "https://png2svg.cocode.dk/og.png",
+    "repo": "png2svg",
+    "status": 200,
+    "url": "https://png2svg.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A lossless Python CLI for converting icons, sprites, and pixel art into vector-only SVG paths.",
+        "title": "png2svg — PNG pixels in, SVG paths out",
+        "url": "https://png2svg.cocode.dk/"
+      },
+      "fa": {
+        "description": "ردیابی دقیق و محلی پیکسل‌ها برای آیکون، لوگو و پیکسل‌آرت.",
+        "title": "png2svg — تبدیل پیکسل‌های PNG به مسیرهای SVG",
+        "url": "https://png2svg.cocode.dk/fa/"
+      }
+    }
+  },
+  "portguard": {
+    "image": "https://portguard.cocode.dk/og.png",
+    "repo": "portguard",
+    "status": 200,
+    "url": "https://portguard.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A cron-driven bash script that tests your listening ports from a throwaway network namespace and blocks the ones the firewall let through.",
+        "title": "portguard: close the ports ufw and Docker leave open",
+        "url": "https://portguard.cocode.dk/"
+      },
+      "fa": {
+        "description": "اسکریپت bash که با cron اجرا می‌شود، پورت‌های در حال گوش‌دادن را از یک network namespace موقت آزمایش می‌کند و پورت‌های بازمانده از فایروال را می‌بندد.",
+        "title": "portguard: بستن پورت‌هایی که ufw و Docker باز می‌گذارند",
+        "url": "https://portguard.cocode.dk/fa/"
+      }
+    }
+  },
+  "primes": {
+    "image": "https://primes.cocode.dk/og.png",
+    "repo": "reverse-prime-plot",
+    "status": 200,
+    "url": "https://primes.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Plot every number against its digit reversal and see which of the pair are prime. Any interval up to ten million, drawn live in the browser.",
+        "title": "Reverse Prime Plot — plot every number against its digit reversal",
+        "url": "https://primes.cocode.dk/"
+      },
+      "fa": {
+        "description": "هر عدد را در برابر وارونهٔ رقم‌هایش رسم کنید و ببینید کدام‌یک از این دو اول است. هر بازه‌ای تا ده میلیون، همان‌جا در مرورگر.",
+        "title": "نمودار اعداد اول وارونه — هر عدد در برابر وارونهٔ رقم‌هایش",
+        "url": "https://primes.cocode.dk/fa/"
+      }
+    }
+  },
+  "qr": {
+    "image": "https://qr.cocode.dk/img/share.png",
+    "repo": "LinkQRWallet",
+    "status": 200,
+    "url": "https://qr.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": null,
+        "title": "Link QR Wallet",
+        "url": "https://qr.cocode.dk/"
+      }
+    }
+  },
+  "rag": {
+    "image": "https://rag.cocode.dk/og.png",
+    "repo": "zjm-rag",
+    "status": 200,
+    "url": "https://rag.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "zg searches your folders, Jev judges which files actually hold the answer, and an LLM answers from those files only, with the paths cited. Open source, early.",
+        "title": "zjm-rag: find the file that holds the answer",
+        "url": "https://rag.cocode.dk/"
+      },
+      "fa": {
+        "description": "zg پوشه‌هایتان را می‌گردد، Jev می‌سنجد کدام فایل‌ها واقعاً پاسخ را دارند و یک LLM فقط از روی همان فایل‌ها با ذکر مسیرشان جواب می‌دهد. متن‌باز، در مرحلهٔ اولیه.",
+        "title": "zjm-rag: فایلی را پیدا کنید که پاسخ در آن است",
+        "url": "https://rag.cocode.dk/fa/"
+      }
+    }
+  },
+  "swanready": {
+    "image": "https://swanready.cocode.dk/og.png",
+    "repo": "swanready-story",
+    "status": 200,
+    "url": "https://swanready.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Watch SwanReady take a product from a folder of documents to an eco-label-ready report — two minutes, with music. English · Dansk · Español.",
+        "title": "SwanReady — eco-label compliance, walked through",
+        "url": "https://swanready.cocode.dk/"
+      }
+    }
+  },
+  "tanks": {
+    "image": "https://tanks.cocode.dk/og.png",
+    "repo": "tank-benchmark",
+    "status": 200,
+    "url": "https://tanks.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Which AI build setup a coding loop should use: cost, minutes, repairs and hidden checks for every run of one three.js tank game, playable here.",
+        "title": "AI coding loop benchmark: Tank Duel results · Cocode",
+        "url": "https://tanks.cocode.dk/"
+      },
+      "fa": {
+        "description": "کدام روش ساخت با هوش مصنوعی را یک حلقه‌ی کدنویسی باید به کار ببرد: هزینه، زمان، اصلاح‌ها و بررسی‌های پنهان هر اجرا روی یک بازی سه‌بعدی تانک.",
+        "title": "معیار حلقهٔ کدنویسی با هوش مصنوعی: نتایج Tank Duel · Cocode",
+        "url": "https://tanks.cocode.dk/fa/"
+      }
+    }
+  },
+  "tetris": {
+    "image": "https://tetris.cocode.dk/og.png",
+    "repo": "tetris",
+    "status": 200,
+    "url": "https://tetris.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Classic Tetris with neon visual effects. Play free in your browser, on keyboard or touch.",
+        "title": "Tetris — neon block puzzle in your browser",
+        "url": "https://tetris.cocode.dk/"
+      },
+      "es": {
+        "description": "Tetris clásico con efectos visuales de neón. Juega gratis en tu navegador, en el teclado o en la pantalla táctil.",
+        "title": "Tetris — rompecabezas de bloques de neón en tu navegador",
+        "url": "https://tetris.cocode.dk/es/"
+      },
+      "fa": {
+        "description": "تتریس کلاسیک با جلوه‌های نئونی. رایگان در مرورگر، با صفحه‌کلید یا لمس.",
+        "title": "تتریس — بازی پازل نئونی در مرورگر",
+        "url": "https://tetris.cocode.dk/fa/"
+      }
+    }
+  },
+  "tiefighter": {
+    "image": "https://tiefighter.cocode.dk/og.png",
+    "repo": "tie-fighter",
+    "status": 200,
+    "url": "https://tiefighter.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Play the TIE Fighter game in your browser. Fly a low-poly ship, shoot X-wings, and defend your sector with keyboard or touch controls. Launch your fighter.",
+        "title": "TIE Fighter game: low-poly space combat in your browser",
+        "url": "https://tiefighter.cocode.dk/"
+      },
+      "fa": {
+        "description": "بازی تای فایتر را در مرورگر اجرا کن. با جنگنده‌ای سه‌بعدی و کم‌پلی‌گان به ایکس‌وینگ‌ها شلیک کن و با صفحه‌کلید یا کنترل لمسی از این بخش دفاع کن. آمادهٔ پروازی؟",
+        "title": "بازی تای فایتر: نبرد فضایی سه‌بعدی در مرورگر | Cocode",
+        "url": "https://tiefighter.cocode.dk/fa/"
+      }
+    }
+  },
+  "tms": {
+    "image": "https://tms.cocode.dk/images/beamf3-eeg-map.jpg",
+    "repo": "tms-measurement-app",
+    "status": 200,
+    "url": "https://tms.cocode.dk/",
+    "versions": {
+      "ar": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=ar"
+      },
+      "de": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=de"
+      },
+      "en": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/"
+      },
+      "es": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=es"
+      },
+      "fa": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=fa"
+      },
+      "fr": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=fr"
+      },
+      "ja": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=ja"
+      },
+      "zh-Hant": {
+        "description": "Calculate Beam F3 targeting distances from head measurements and map the F3 site for TMS.",
+        "title": "TMS Measurement App | Beam F3 Calculator",
+        "url": "https://tms.cocode.dk/?lang=zh-TW"
+      }
+    }
+  },
+  "transliterate": {
+    "image": "https://transliterate.cocode.dk/og.png",
+    "repo": "babak-transliterate",
+    "status": 200,
+    "url": "https://transliterate.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Free Chrome extension that uses AI to transliterate Latin text to Persian and generate ASCII art.",
+        "title": "Babak Transliterate — AI-Powered Persian Transliteration",
+        "url": "https://transliterate.cocode.dk/"
+      },
+      "fa": {
+        "description": "افزونه رایگان کروم برای تبدیل هوشمند متن لاتین به فارسی و ساخت ASCII Art.",
+        "title": "ترانسلیتریت بابک — فارسی‌نویسی با هوش مصنوعی",
+        "url": "https://transliterate.cocode.dk/fa/"
+      }
+    }
+  },
+  "tv-vejr": {
+    "image": "https://tv-vejr.cocode.dk/og.png",
+    "repo": "copenhagen-weather-tv",
+    "status": 200,
+    "url": "https://tv-vejr.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "1920×1080, styret med fjernbetjeningen, ingen API-nøgle og intet byggetrin.",
+        "title": "Copenhagen Weather — vejr-app til Samsung TV med Tizen",
+        "url": "https://tv-vejr.cocode.dk/da/"
+      },
+      "en": {
+        "description": "1920×1080, driven by the remote, no API key and no build step. See the live forecast and put the signed .wgt on your own set.",
+        "title": "Copenhagen Weather — a Samsung TV weather app for Tizen",
+        "url": "https://tv-vejr.cocode.dk/"
+      },
+      "fa": {
+        "description": "تمام‌صفحه ۱۹۲۰×۱۰۸۰، کنترل با ریموت، بدون کلید API و بدون مرحله‌ی بیلد.",
+        "title": "Copenhagen Weather — اپلیکیشن آب‌وهوا برای تلویزیون سامسونگ",
+        "url": "https://tv-vejr.cocode.dk/fa/"
+      }
+    }
+  },
+  "usb": {
+    "image": "https://usb.cocode.dk/og.png",
+    "repo": "usb-formatter",
+    "status": 200,
+    "url": "https://usb.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Bash script to wipe and reformat a USB stick on Linux as NTFS or exFAT. Removable-only checks, dry-run preview, udisksctl unmount, auto-diagnose on failure.",
+        "title": "Format USB on Linux: NTFS or exFAT - usb-formatter",
+        "url": "https://usb.cocode.dk/"
+      },
+      "fa": {
+        "description": "اسکریپت Bash برای پاک کردن و فرمت کردن فلش USB در لینوکس به صورت NTFS یا exFAT. با محافظ‌های ایمنی و حالت پیش‌نمایش.",
+        "title": "فرمت فلش USB در لینوکس: NTFS یا exFAT - usb-formatter",
+        "url": "https://usb.cocode.dk/fa/"
+      }
+    }
+  },
+  "weather": {
+    "image": "https://weather.cocode.dk/og.png",
+    "repo": "weather-android",
+    "status": 200,
+    "url": "https://weather.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "Søg efter enhver by i verden, eller brug telefonens GPS. Hver prognose vises i stedets egen lokale tid.",
+        "title": "Weather — en vejr-app til Android for ethvert sted",
+        "url": "https://weather.cocode.dk/da/"
+      },
+      "en": {
+        "description": "Search any city on Earth or use your phone's GPS. Every forecast reads in that place's own local time. Free, open source, no API key.",
+        "title": "Weather: an Android forecast app for any location",
+        "url": "https://weather.cocode.dk/"
+      },
+      "fa": {
+        "description": "هر شهری روی زمین را جست‌وجو کنید یا از GPS گوشی استفاده کنید. هر پیش‌بینی به وقت محلی همان‌جا خوانده می‌شود.",
+        "title": "Weather — اپ هواشناسی اندروید برای هر نقطه‌ای",
+        "url": "https://weather.cocode.dk/fa/"
+      }
+    }
+  },
+  "whisperframe": {
+    "image": "https://cocodedk.github.io/whisperframe/og.png",
+    "repo": "whisperframe",
+    "status": 200,
+    "url": "https://whisperframe.cocode.dk/",
+    "versions": {
+      "da": {
+        "description": "AI-drevet videotransskription med Whisper og intelligent frame-udtrækning. Gratis og open source.",
+        "title": "WhisperFrame — AI-videotransskription & frame-udtrækning",
+        "url": "https://cocodedk.github.io/whisperframe/da/"
+      },
+      "en": {
+        "description": "AI-powered video transcription with Whisper and intelligent frame extraction. Free and open-source.",
+        "title": "WhisperFrame — AI Video Transcription & Frame Extraction",
+        "url": "https://whisperframe.cocode.dk/"
+      },
+      "fa": {
+        "description": "ابزار رایگان Python برای رونویسی هوشمند ویدیو با OpenAI Whisper و استخراج فریم‌های کلیدی.",
+        "title": "WhisperFrame — رونویسی هوشمند ویدیو با Whisper",
+        "url": "https://cocodedk.github.io/whisperframe/fa/"
+      }
+    }
+  },
+  "wonderland": {
+    "image": "https://wonderland.cocode.dk/og.png",
+    "repo": "zombie-panic-wonderland",
+    "status": 200,
+    "url": "https://wonderland.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Zombies have risen in Wonderland. Grab a scattergun, blow up gas canisters and hold the road — free, in your browser.",
+        "title": "Zombie Panic in Wonderland",
+        "url": "https://wonderland.cocode.dk/"
+      }
+    }
+  },
+  "x-cleaner": {
+    "image": "https://x-cleaner.cocode.dk/og.png",
+    "repo": "x-cleaner",
+    "status": 200,
+    "url": "https://x-cleaner.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "Local Node.js + Playwright tool that deletes your own X.com replies through your logged-in browser. No API tokens, no third-party servers.",
+        "title": "x-cleaner — Delete your own X.com replies, slowly and locally",
+        "url": "https://x-cleaner.cocode.dk/"
+      },
+      "fa": {
+        "description": "ابزار محلی Node.js و Playwright که پاسخ‌های خودتان در X.com را از طریق مرورگر شخصی شما حذف می‌کند.",
+        "title": "x-cleaner — حذف آهسته و محلی پاسخ‌های خودتان در X.com",
+        "url": "https://x-cleaner.cocode.dk/fa/"
+      }
+    }
+  },
+  "xlook": {
+    "image": "https://xlook.cocode.dk/og.png",
+    "repo": "x-look",
+    "status": 200,
+    "url": "https://xlook.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "One calm column instead of three busy ones. No nav, no trends, no ads, and pictures stay grey until you ask for them.",
+        "title": "X Look — read X at work without the noise",
+        "url": "https://xlook.cocode.dk/"
+      },
+      "fa": {
+        "description": "یک ستون آرام به‌جای سه ستون شلوغ. بی‌منو، بی‌ترند، بی‌تبلیغ، و عکس‌ها تا وقتی بازشان نکنید خاکستری می‌مانند.",
+        "title": "X Look — X را سر کار بی‌سروصدا بخوانید",
+        "url": "https://xlook.cocode.dk/fa/"
+      }
+    }
+  }
+}

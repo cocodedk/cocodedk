@@ -25,7 +25,7 @@ describe('the English model of the page', () => {
   });
 
   test('should name the groups in English, in page order', () => {
-    expect(model.groups.map((g) => g.name)).toEqual(['Android apps', 'Web and games', 'Client projects', 'For Samsung TV', 'AI tools', 'Small tools']);
+    expect(model.groups.map((g) => g.name)).toEqual(['Android apps', 'For blind and partially sighted players', 'For the TV in the living room', 'Games in the browser', 'Learn a language', 'AI tools', 'Small tools', 'Client projects']);
   });
 
   test('should give a featured work its kind in English', () => {
@@ -41,7 +41,7 @@ describe('the English model of the page', () => {
   });
 
   test('should use an English name where the copy gives one', () => {
-    expect(model.groups[1].items.map((i) => i.name)).toContain('Danish-Persian');
+    expect(model.groups[4].items.map((i) => i.name)).toContain('Danish-Persian');
   });
 
   test('should send a featured work without a site to a demo mail', () => {
@@ -49,7 +49,7 @@ describe('the English model of the page', () => {
   });
 
   test('should leave a catalogue entry without a site unlinked', () => {
-    expect(model.groups[4].items.find((i) => i.name === 'MCP servers').url).toBeNull();
+    expect(model.groups[5].items.find((i) => i.name === 'MCP servers').url).toBeNull();
   });
 
   test('should stop and name a work the English copy is missing', () => {

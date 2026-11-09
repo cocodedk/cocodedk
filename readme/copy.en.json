@@ -18,11 +18,13 @@
   },
   "groups": {
     "Apps til Android": "Android apps",
-    "Web og spil": "Web and games",
-    "Kundeprojekter": "Client projects",
-    "Til Samsung-tv": "For Samsung TV",
+    "Til blinde og svagtseende": "For blind and partially sighted players",
+    "Til tv'et i stuen": "For the TV in the living room",
+    "Spil i browseren": "Games in the browser",
+    "Lær et sprog": "Learn a language",
     "AI-værktøjer": "AI tools",
-    "Små værktøjer": "Small tools"
+    "Små værktøjer": "Small tools",
+    "Kundeprojekter": "Client projects"
   },
   "works": {
     "Cocode Guard": { "line": "A small box by the router. Blocks bad sites and ads, and warns you about new devices and fake routers. 2,995 DKK installed." },
@@ -33,7 +35,7 @@
     "claude-email": { "line": "I send an email with a task. An AI agent does the work and replies when it's done." },
     "lpterapi.dk": { "line": "A website for a couples therapist. Calm and simple, so the first step is easier to take." },
     "Guard for Android": { "line": "The companion app to Cocode Guard. Blocks bad sites and ads on the phone, even away from home. Free, no account, no tracking. You can download the first release from GitHub." },
-    "Chess Puzzles": { "line": "Real chess puzzles, offline too." },
+    "Chess Puzzles": { "line": "Real chess puzzles, offline too. I'm making it ready for blind and partially sighted players." },
     "Battleship": { "line": "Sink the battleships, just like you remember." },
     "BabakCast": { "line": "Fetch a video and get a summary." },
     "BabakPlayer": { "line": "The player for what BabakCast shares." },
@@ -46,7 +48,7 @@
     "Markdown": { "line": "Read and edit Markdown files on the phone." },
     "Dansk-Persisk": { "name": "Danish-Persian", "line": "Language lessons on the web." },
     "Dansk-Japansk": { "name": "Danish-Japanese", "line": "Language lessons on the web." },
-    "7kasif": { "line": "A card game for several players." },
+    "7kasif": { "line": "A card game for several players, with its own tournament app." },
     "Dune": { "line": "A strategy game in the browser." },
     "TIE Fighter": { "line": "A 3D game in the browser." },
     "Tetris": { "line": "The classic block game in the browser." },
@@ -84,7 +86,21 @@
     "Persian Transliterator": { "line": "Type Persian on an ordinary keyboard." },
     "img2vid": { "line": "Turns a folder of pictures into a video with music." },
     "YouTube Audio Extractor": { "line": "Fetches the sound from YouTube videos and splits it into chapters." },
-    "FITS.DK": { "line": "Helps businesses write their IT security policies with AI. More than 3,000 hours of work." }
+    "FITS.DK": { "line": "Helps businesses write their IT security policies with AI. More than 3,000 hours of work." },
+    "Audio Soccer": { "line": "Football you play by ear: find the ball and score using sound alone." },
+    "Barrage": { "line": "Artillery across 15 battlefields, where every crater stays." },
+    "Invaders": { "line": "Shoot down aliens across 18 worlds, and get a movie trailer of your run." },
+    "Persia": { "line": "A shooter with angry animals, where you hear each animal's name in Persian." },
+    "Glasswing": { "line": "Dragonflies in the reeds. Zoom in close on one of them." },
+    "Babak Transliterate": { "line": "Type Persian in ordinary letters, and AI turns it into Persian script. For Chrome." },
+    "advisor-hierarchy": { "line": "The strongest AI makes the plan, and cheaper models do the work." },
+    "job-jagger": { "line": "Job hunting with AI: a CV and a cover letter for each posting, and a better LinkedIn profile." },
+    "LinkedIn Profile Editor": { "line": "Lets an AI edit your LinkedIn profile for you." },
+    "portguard": { "line": "Finds the ports on a server that the firewall left open, and closes them." },
+    "X Look": { "line": "Read X in peace: one column, no ads, and grey pictures until you ask for them." },
+    "x-cleaner": { "line": "Deletes your own replies on X, slowly and from your own computer." },
+    "in-optimizer": { "line": "Deletes your own comments on LinkedIn, one at a time." },
+    "CV Generator": { "line": "Make a good-looking CV with help from AI, and pick from several templates." }
   },
   "services": {
     "Rådgivning": { "name": "Advice", "line": "Where does AI make sense for you, and where doesn't it? You get an honest answer and a plan you can use." },

@@ -142,3 +142,4 @@ dist
 .playwright-mcp/
 .mcp.json
 .claude/
+.zvec-grep/
