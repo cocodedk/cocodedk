@@ -43,6 +43,8 @@ cocodedk/
 ├── tests/               ← Jest (jsdom)
 ├── readme/              ← copy.en.json (the README's English words) and img/ (generated pictures)
 ├── scripts/readme/      ← npm run readme: README.md and readme/img/ drawn from the partials
+├── scripts/sites/       ← npm run sites: gathers the cocode.dk sites, their share pictures, and renders the catalogue
+├── data/                ← catalogue.json (hand-kept: groups, names, Danish lines) and sites.json (gathered by npm run sites)
 ├── design/mockups/      ← the brief and the single-file mockups (atelier-slide.html is the approved one); not built, not deployed,
 │                          exempt from the 200-line check
 ├── dist/                ← build output (gitignored)
@@ -55,6 +57,7 @@ cocodedk/
 - The plates live once, in `templates/partials/sprite.html`; everything else points at them with `<use>`
 - `README.md` is generated: change the partials or `readme/copy.en.json`, never the README. A work on the page
   without English copy stops the build on purpose
+- `templates/partials/catalogue.html` is generated: change `data/catalogue.json` and run `npm run sites:render`, never the partial
 - No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
 - WebMCP (`js/webmcp.js`) offers six tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
   `get_about`, `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
@@ -107,6 +110,7 @@ npm run build         # Production build → /dist
 npm test              # Jest (jsdom)
 npm run lint:length   # Check 200-line file limit
 npm run readme        # Rebuild README.md + readme/img/ from the page (the PR bot does it too; needs Node ≥ 20.19)
+npm run sites         # Gather the cocode.dk sites and their pictures, render the catalogue (sites:render = offline)
 npm ci && npm run build && npm test  # Full smoke check — used in CI and pre-commit
 ```
 

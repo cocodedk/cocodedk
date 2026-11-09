@@ -15,7 +15,7 @@ describe('what the page says about itself', () => {
   });
 
   test('should list Guard for Android with its own site among the Android apps', () => {
-    expect(work('Guard for Android')).toMatchObject({ kind: 'Apps til Android', url: 'https://android.guard.cocode.dk' });
+    expect(work('Guard for Android')).toMatchObject({ kind: 'Apps til Android', url: 'https://android.guard.cocode.dk/' });
   });
 
   test('should say that Guard for Android is free', () => {
@@ -51,11 +51,11 @@ describe('what the page says about itself', () => {
   });
 
   test('should file a catalogue entry under its group', () => {
-    expect(work('Chess Puzzles').kind).toBe('Apps til Android');
+    expect(work('Chess Puzzles').kind).toBe('Til blinde og svagtseende');
   });
 
   test('should link a catalogue entry', () => {
-    expect(work('Chess Puzzles').url).toBe('https://chess.cocode.dk');
+    expect(work('Chess Puzzles').url).toBe('https://chess.cocode.dk/');
   });
 
   test('should say so when a work has no site of its own', () => {

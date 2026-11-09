@@ -1,6 +1,6 @@
 {
   "7kasif": {
-    "image": null,
+    "image": "https://7kasif.cocode.dk/og.png",
     "repo": "7kasif",
     "status": 200,
     "url": "https://7kasif.cocode.dk/",
@@ -89,6 +89,19 @@
         "description": "A free app that blocks dangerous sites, dangerous addresses and ads in every Android app, on any network. It works on the phone, with no account and no server run by us. The first version is out.",
         "title": "Guard for Android: blocks dangerous sites and ads in every app",
         "url": "https://android.guard.cocode.dk/en/"
+      }
+    }
+  },
+  "audio-soccer": {
+    "image": "https://cocodedk.github.io/audio-soccer/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/audio-soccer/",
+    "versions": {
+      "en": {
+        "description": "A free browser trial for blind and visually impaired players. Find the ball, score and beat a keeper using only sound.",
+        "title": "Audio Soccer Trial: play football by ear",
+        "url": "https://cocodedk.github.io/audio-soccer/"
       }
     }
   },
@@ -256,6 +269,24 @@
       }
     }
   },
+  "claude-email-app": {
+    "image": "https://cocodedk.github.io/Claude-Email-App/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/Claude-Email-App/",
+    "versions": {
+      "en": {
+        "description": "Focused Android email client for the claude-email backend. IMAP/SMTP, encrypted credential storage, command-and-reply UX.",
+        "title": "Claude Email — Android mail client for claude-email agents",
+        "url": "https://cocodedk.github.io/Claude-Email-App/"
+      },
+      "fa": {
+        "description": "کلاینت ایمیل اندرویدی متمرکز برای بک‌اند claude-email. IMAP/SMTP، credential رمزشده، تجربه دستور و پاسخ.",
+        "title": "کلود ایمیل — کلاینت اندروید برای سرویس claude-email",
+        "url": "https://cocodedk.github.io/Claude-Email-App/fa/"
+      }
+    }
+  },
   "codescan": {
     "image": "https://codescan.cocode.dk/og.png",
     "repo": "codescan",
@@ -331,6 +362,42 @@
       }
     }
   },
+  "fits": {
+    "image": "https://fits.dk/og-image.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://fits.dk",
+    "versions": {
+      "da": {
+        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
+        "title": "FITS - AI-Powered Policy Automation",
+        "url": "https://fits.dk/da/"
+      },
+      "en": {
+        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
+        "title": "FITS - AI-Powered Policy Automation",
+        "url": "https://fits.dk"
+      }
+    }
+  },
+  "fits-qr": {
+    "image": "https://cocodedk.github.io/fits-qr/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://cocodedk.github.io/fits-qr/",
+    "versions": {
+      "da": {
+        "description": "En open source Android-app til FITS. Skift mellem tre FITS-kontaktkort og scan QR-koden for at gemme kontakten — offline, uden tilladelser, uden sporing.",
+        "title": "FITS QR — tre FITS-kontakter, ét scan",
+        "url": "https://cocodedk.github.io/fits-qr/da/"
+      },
+      "en": {
+        "description": "An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.",
+        "title": "FITS QR — three FITS contacts, one scan",
+        "url": "https://cocodedk.github.io/fits-qr/"
+      }
+    }
+  },
   "glasswing": {
     "image": "https://glasswing.cocode.dk/og.png",
     "repo": "glasswing",
@@ -341,6 +408,24 @@
         "description": "Dragonflies fly through the reeds. Zoom in close on one in this small interactive garden scene.",
         "title": "Glasswing — dragonflies in a garden",
         "url": "https://glasswing.cocode.dk/"
+      }
+    }
+  },
+  "graph-loop": {
+    "image": "https://graph-loop.cocode.dk/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://graph-loop.cocode.dk",
+    "versions": {
+      "en": {
+        "description": "Two models that never trust each other: one builds a task, the other refuses work that only looks done. The backlog is a folder of linked notes.",
+        "title": "graph-loop: an unattended agent coding loop",
+        "url": "https://graph-loop.cocode.dk"
+      },
+      "fa": {
+        "description": "دو مدل که به یکدیگر اعتماد نمی‌کنند: یکی کار را می‌سازد و دیگری کاری را که فقط تمام‌شده به نظر می‌رسد رد می‌کند.",
+        "title": "graph-loop: حلقه‌ای که بدون نظارت کد می‌سازد",
+        "url": "https://graph-loop.cocode.dk/fa/"
       }
     }
   },
@@ -444,6 +529,19 @@
         "description": "Automate your job search with Claude Code. Generate tailored CVs + cover letters, optimize your LinkedIn profile, and land interviews. Free, open source.",
         "title": "job-jagger: AI-Powered Job Application Toolkit",
         "url": "https://job-jagger.cocode.dk/?lang=fa"
+      }
+    }
+  },
+  "klinikvenus": {
+    "image": "https://klinikvenus.dk/og.png",
+    "repo": null,
+    "status": 200,
+    "url": "https://klinikvenus.dk",
+    "versions": {
+      "da": {
+        "description": "Høreklinik i København K (Indre By/Old City) – høretest, høreapparater og rådgivning. Borgergade 20, 1300 København.",
+        "title": "Venus Høreklinik | Høreapparater & Høretest i København K (Indre By)",
+        "url": "https://klinikvenus.dk"
       }
     }
   },
