@@ -21,11 +21,6 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     clean: true,
   },
-  module: {
-    rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: { loader: 'babel-loader' } },
-    ],
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'templates/template.html',
