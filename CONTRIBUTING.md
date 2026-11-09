@@ -2,7 +2,7 @@
 
 ## Local Setup
 
-1. Install Node.js 22 or newer from [nodejs.org](https://nodejs.org)
+1. Install Node.js 22.15 or newer from [nodejs.org](https://nodejs.org)
 2. Clone the repository: `git clone https://github.com/cocodedk/cocodedk.git`
 3. Go into it: `cd cocodedk`
 4. Install dependencies: `npm ci`
