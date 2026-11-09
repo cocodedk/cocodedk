@@ -20,8 +20,10 @@ Tasks 1–5 are committed and reviewed. Task 1's share-picture PRs (7kasif#73, c
   a GitHub 5xx/429 during discovery can make a site look gone and delete its picture). It is git-ignored, and is
   deleted after the final review.
 
-**Next:** once the three og.png files answer 200, run `npm run sites`, `npm run readme` and `npm test`, then commit Task 6
-and review it. Then Task 7 (poster CSS), Task 8 (weekly Action; the repo setting that lets Actions open PRs needs
+**Task 6 committed** (3ef5b68, 2026-11-09) after the three og.png files answered 200; 211 tests pass. The staged-work
+warning above no longer applies.
+
+**Next:** review Task 6. Then Task 7 (poster CSS), Task 8 (weekly Action; the repo setting that lets Actions open PRs needs
 Babak's OK), and the final review with one fix wave. Nothing is merged until Babak has reviewed it.
 
 Links: [[MEMORY]].
