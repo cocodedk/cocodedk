@@ -13,7 +13,7 @@ const partials = Object.fromEntries(
 );
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  // mode comes from the command line: npm run build passes production, npm run dev development
   entry: { main: './js/main.js' },
   output: {
     filename: '[name].bundle.js',
