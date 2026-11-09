@@ -28,8 +28,7 @@ git config init.defaultBranch main
 
 ```bash
 npm run dev           # Dev server localhost:8080
-npm run build         # Build into ./dist (development mode)
-NODE_ENV=production npm run build  # Production build into ./dist
+npm run build         # Production build into ./dist
 npm test              # Jest (jsdom)
 npm run lint:length   # Check 200-line file limit
 ```
