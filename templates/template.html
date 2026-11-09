@@ -34,15 +34,10 @@
 <!-- In the head, not deferred: the no-JavaScript layout must never flash before the real one. -->
 <script>document.documentElement.classList.add('js');</script>
 
-<!-- The order is the cascade: tokens and type, the dock, the page, the wider layouts, then the slide. -->
+<!-- One stylesheet: css/*.css joined in cascade order by scripts/css-bundle.js, named by its content. -->
 <link rel="preload" href="fonts/ibarra-real-nova.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/ysabeau-office.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=2.0.0">
-<link rel="stylesheet" href="css/base.css?v=2.0.0">
-<link rel="stylesheet" href="css/dock.css?v=2.0.0">
-<link rel="stylesheet" href="css/page.css?v=2.0.0">
-<link rel="stylesheet" href="css/wide.css?v=2.0.0">
-<link rel="stylesheet" href="css/slide.css?v=2.0.0">
+<link rel="stylesheet" href="<%= stylesheet %>">
 
 <script type="application/ld+json">
 {

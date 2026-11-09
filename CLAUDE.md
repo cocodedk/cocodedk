@@ -36,7 +36,8 @@ cocodedk/
 │   ├── template.html    ← the head and the order of the page
 │   ├── partials/        ← the page in pieces, placed with <%= partials.name %>
 │   └── og-card.html     ← source of the share picture (OG_CARD=1 npm run build)
-├── css/                 ← fonts, base, dock, page, wide, slide — linked in that order; the order is the cascade
+├── css/                 ← fonts, base, dock, page, wide, slide — the order is the cascade; the build joins them in that
+│                          order into one minified, content-named css/site.<hash>.css (scripts/css-bundle.js)
 ├── js/                  ← menu.js, place-marker.js, scenes.js, webmcp.js (+ page-facts.js), wired up in main.js
 ├── fonts/               ← self-hosted woff2 (no font CDN: visitors' addresses stay here)
 ├── images/              ← favicons and the share picture
