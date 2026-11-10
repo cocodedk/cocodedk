@@ -125,6 +125,7 @@ npm ci && npm run build && npm test  # Full smoke check — used in CI and pre-c
 | `.github/workflows/ci.yml` | CI on PRs to main (manual run for other branches) |
 | `.github/workflows/deploy-pages.yml` | GitHub Pages deployment on push to main |
 | `.github/workflows/readme.yml` | Rebuilds the profile README on every PR and commits it to the PR branch |
+| `.github/workflows/sites.yml` | Weekly `npm run sites`; proposes a changed catalogue as a PR from `bot/sites` |
 | `.githooks/pre-commit` | File length check on staged files |
 | `.githooks/commit-msg` | Conventional Commits enforcement |
 | `scripts/install-hooks.sh` | One-time hook installer |
