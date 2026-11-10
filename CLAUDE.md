@@ -59,6 +59,8 @@ cocodedk/
 - `README.md` is generated: change the partials or `readme/copy.en.json`, never the README. A work on the page
   without English copy stops the build on purpose
 - `templates/partials/catalogue.html` is generated: change `data/catalogue.json` and run `npm run sites:render`, never the partial
+- An entry with `"picture": "house"` gets a plate drawn by the build (`images/works/<id>.svg`); its optional `"motif"` names the drawing
+  from `scripts/sites/motifs/` (no motif gives `shapes`, an unknown one stops the run)
 - No third-party requests from the page: fonts, scripts and styles are all served from cocode.dk
 - WebMCP (`js/webmcp.js`) offers six tools to an AI agent in the visitor's browser: `list_works`, `get_services`,
   `get_about`, `get_contact`, `go_to_section`, `draft_inquiry`. They answer from the page itself through `js/page-facts.js`, so the
@@ -125,6 +127,7 @@ npm ci && npm run build && npm test  # Full smoke check — used in CI and pre-c
 | `.github/workflows/ci.yml` | CI on PRs to main (manual run for other branches) |
 | `.github/workflows/deploy-pages.yml` | GitHub Pages deployment on push to main |
 | `.github/workflows/readme.yml` | Rebuilds the profile README on every PR and commits it to the PR branch |
+| `.github/workflows/sites.yml` | Weekly `npm run sites`; proposes a changed catalogue as a PR from `bot/sites` |
 | `.githooks/pre-commit` | File length check on staged files |
 | `.githooks/commit-msg` | Conventional Commits enforcement |
 | `scripts/install-hooks.sh` | One-time hook installer |

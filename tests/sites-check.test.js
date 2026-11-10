@@ -72,6 +72,15 @@ describe('checking the catalogue data', () => {
     expect(problems({ entries: [{ ...words, picture: 'house' }], sites: {} })).toEqual([]);
   });
 
+  test('should flag a motif the library does not have', () => {
+    expect(problems({ entries: [{ ...words, picture: 'house', motif: 'kite' }], sites: {} }))
+      .toEqual(['tanks: motif "kite" is not in the motif library']);
+  });
+
+  test('should accept a motif the library has', () => {
+    expect(problems({ entries: [{ ...words, picture: 'house', motif: 'dove' }], sites: {} })).toEqual([]);
+  });
+
   test('should flag an entry whose site is gone', () => {
     expect(problems({ entries: [words], sites: {} })).toEqual(['tanks: no site with this name any more']);
   });

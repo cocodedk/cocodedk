@@ -11,13 +11,14 @@ const reply = (status, { body, headers = {} } = {}) => ({
 
 // GitHub answers the repo list one page at a time (an empty page ends it); github.io answers
 // a HEAD with the custom domain as a 301, or with a plain 200 when there is none.
-function fakeGitHub({ pages, redirects = {}, apiStatus = 200, calls = [] }) {
+function fakeGitHub({ pages, redirects = {}, statuses = {}, apiStatus = 200, calls = [] }) {
   const fetch = async (url, init = {}) => {
     calls.push({ url, init });
     const api = url.match(/^https:\/\/api\.github\.com\/users\/cocodedk\/repos\?per_page=100&page=(\d+)$/);
     if (api) return apiStatus === 200 ? reply(200, { body: pages[Number(api[1]) - 1] ?? [] }) : reply(apiStatus);
     const pagesSite = url.match(/^https:\/\/cocodedk\.github\.io\/([^/]+)\/$/);
     if (pagesSite && init.method === 'HEAD' && init.redirect === 'manual') {
+      if (statuses[pagesSite[1]]) return reply(statuses[pagesSite[1]]);
       const location = redirects[pagesSite[1]];
       return location ? reply(301, { headers: { location } }) : reply(200);
     }
@@ -100,5 +101,15 @@ describe('finding the public cocode.dk sites', () => {
 
   test('should stop when the GitHub API refuses', async () => {
     await expect(discoverSites({ fetch: fakeGitHub({ pages: [], apiStatus: 403 }) })).rejects.toThrow('403');
+  });
+
+  test('should stop when github.io answers 503 for a Pages site', async () => {
+    const fake = fakeGitHub({ pages: [[repo('chess-puzzles')]], statuses: { 'chess-puzzles': 503 } });
+    await expect(discoverSites({ fetch: fake })).rejects.toThrow('503');
+  });
+
+  test('should stop when github.io answers 429 for a Pages site', async () => {
+    const fake = fakeGitHub({ pages: [[repo('chess-puzzles')]], statuses: { 'chess-puzzles': 429 } });
+    await expect(discoverSites({ fetch: fake })).rejects.toThrow('429');
   });
 });

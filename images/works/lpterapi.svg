@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="LP Terapi">
+<title>LP Terapi</title>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0"/></filter></defs>
+<rect width="1200" height="630" fill="#1D2130"/>
+<rect width="1200" height="630" filter="url(#grain)"/>
+<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#F6EFE0" stroke-width="3" stroke-opacity=".45"/>
+<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#F6EFE0" stroke-width="1.5" stroke-opacity=".45"/>
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)"><g transform="translate(0 4)"><defs><clipPath id="talk-meet"><path d="M241.1 159.1A86 56 0 1 0 200.7 146.9L204 186Z"/></clipPath></defs>
+<circle cx="190" cy="240" r="44" fill="#F6EFE0"/><g transform="translate(176 372) skewX(-7) translate(-176 -372)"><path d="M84 372C84 314 124 290 176 290C228 290 268 314 268 372Z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M84 372C84 314 124 290 176 290C228 290 268 314 268 372Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g></g><circle cx="410" cy="240" r="44" fill="#C9705B"/><g transform="translate(424 372) skewX(7) translate(-424 -372)"><path d="M332 372C332 314 372 290 424 290C476 290 516 314 516 372Z" fill="#C9705B"/><g transform="translate(12 -12)"><path d="M332 372C332 314 372 290 424 290C476 290 516 314 516 372Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g></g>
+<path d="M241.1 159.1A86 56 0 1 0 200.7 146.9L204 186Z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M241.1 159.1A86 56 0 1 0 200.7 146.9L204 186Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g><path d="M363.9 179.2A80 52 0 1 1 401.4 167.8L400 190Z" fill="#C9705B"/><g transform="translate(12 -12)"><path d="M363.9 179.2A80 52 0 1 1 401.4 167.8L400 190Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<path d="M363.9 179.2A80 52 0 1 1 401.4 167.8L400 190Z" fill="#E8A63A" clip-path="url(#talk-meet)"/></g></g>
+</svg>

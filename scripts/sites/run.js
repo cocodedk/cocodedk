@@ -12,7 +12,6 @@ import { DATA, picturePath } from './paths.js';
 import { renderCatalogue, keptBlocks, isHidden } from './render.js';
 import { findProblems } from './check.js';
 import { report } from './report.js';
-import { FACES, fontCss } from '../readme/fonts.js';
 
 const root = path.resolve(import.meta.dirname, '../..');
 const at = (file) => path.join(root, file);
@@ -109,12 +108,12 @@ async function gatherAll(before, catalogue, notes) {
 
 const shownHouse = (entry) => entry.picture === 'house' && !isHidden(entry);
 
-// The name set on paper in the colour of its group, for the entries with no site to take one from.
-async function drawHousePictures(catalogue) {
+// A plate in the colour of its group with the drawing the entry names, for the entries with no site
+// to take one from.
+function drawHousePictures(catalogue) {
   const inks = new Map(catalogue.groups.map((group) => [group.id, group.ink]));
   for (const entry of catalogue.entries.filter((e) => shownHouse(e) && e.name && inks.has(e.group))) {
-    const css = await fontCss([FACES.serif], entry.name);
-    save(picturePath(entry), housePicture({ name: entry.name, ink: inks.get(entry.group) }, css));
+    save(picturePath(entry), housePicture({ name: entry.name, ink: inks.get(entry.group), motif: entry.motif }));
   }
 }
 
@@ -141,7 +140,7 @@ const before = readJson(DATA.sites, {});
 const notes = [];
 const after = offline ? before : await gatherAll(before, catalogue, notes);
 
-if (catalogue) await drawHousePictures(catalogue);
+if (catalogue) drawHousePictures(catalogue);
 removeOrphans(after, catalogue);
 save(DATA.sites, `${JSON.stringify(after, inOrder, 2)}\n`);
 if (catalogue) writePartial(catalogue, after);

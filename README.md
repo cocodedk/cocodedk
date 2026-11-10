@@ -103,6 +103,7 @@
 
 <p align="center"><b>Client projects</b><br>
 <a href="https://klinikvenus.dk"><b>Venus Høreklinik</b></a> · Hearing aids and hearing tests in central Copenhagen.<br>
+<a href="https://lpterapi.dk"><b>LP Terapi</b></a> · Couples therapy in Roskilde, Slagelse and online.<br>
 <a href="https://nick-autoteknik.dk"><b>Nick Autoteknik</b></a> · A car repair shop in Rødovre.<br>
 <b>Klinik for Manuel Terapi</b> · A website for a clinic.<br>
 <b>Unity Foundation</b> · A website for a charity.</p>

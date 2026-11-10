@@ -2,6 +2,7 @@
 // the problems as sentences that name the site, so a failed run says what to fix and where.
 import { picturePath } from './paths.js';
 import { isHidden } from './render.js';
+import { MOTIFS } from './motifs/index.js';
 
 const answersWell = (site) => site.status === 200 || site.stale;
 
@@ -20,6 +21,7 @@ function entryProblems(entry, groupIds, sites, hasFile) {
   const own = [];
   if (!entry.name || !entry.line || !entry.group) own.push('needs a name, a Danish line and a group');
   if (entry.group && !groupIds.has(entry.group)) own.push(`group "${entry.group}" is not in the group list`);
+  if (entry.motif && !MOTIFS[entry.motif]) own.push(`motif "${entry.motif}" is not in the motif library`);
   own.push(...pictureProblems(entry, sites[entry.id], hasFile));
   return own.map((problem) => `${entry.id}: ${problem}`);
 }

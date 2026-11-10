@@ -21,6 +21,9 @@ async function listRepos(fetch, token) {
 async function siteOf(fetch, repo) {
   const from = `https://cocodedk.github.io/${repo}/`;
   const res = await fetch(from, { method: 'HEAD', redirect: 'manual' });
+  // A failing or rate-limited github.io says nothing about the site: stop rather than drop it,
+  // or the run would delete a live site's card and picture.
+  if (res.status >= 500 || res.status === 429) throw new Error(`github.io answered ${res.status} for ${repo}`);
   const location = [301, 302].includes(res.status) && res.headers.get('location');
   if (!location) return null;
   const url = new URL(location, from);

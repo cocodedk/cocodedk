@@ -1,0 +1,74 @@
+name: Sites
+
+# Once a week this gathers the public cocode.dk sites (npm run sites) and, when the catalogue would
+# change, proposes it as a PR from bot/sites. The PR body is the run's report: a human reviews it,
+# because a site that was down at the wrong minute can still drop out. Nothing here touches main.
+# Once someone else has committed to the open PR, the bot stops pushing and only comments the report.
+# Opening the PR needs "Allow GitHub Actions to create and approve pull requests" in the repo settings.
+# Runs that the bot's PR starts wait for a manual approval ("action required"), as the README bot's do.
+on:
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: sites
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '26'
+          cache: npm
+
+      # No install scripts: nothing the gatherer needs builds on install.
+      - run: npm ci --ignore-scripts
+
+      # A crash stops the job here, so a half-gathered catalogue is never pushed.
+      - name: Gather the sites
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          npm run sites -- --report "$RUNNER_TEMP/report.md"
+          cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Propose the catalogue if it changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'chore: update the catalogue from the sites'
+        run: |
+          set -euo pipefail
+          # Exactly what a run can change.
+          paths=(data/sites.json images/works templates/partials/catalogue.html)
+          if [ -z "$(git status --porcelain -- "${paths[@]}")" ]; then echo "The catalogue is current."; exit 0; fi
+          bot='41898282+github-actions[bot]@users.noreply.github.com'
+          open=$(gh pr list --head bot/sites --base main --state open --json number --jq '.[0].number // empty')
+          # Someone has written lines or picked groups on the open PR: a force-push would wipe their
+          # commits, so leave the branch alone and post the new report as a comment instead.
+          if [ -n "$open" ]; then
+            others=$(gh pr view "$open" --json commits --jq "[.commits[].authors[].email | select(. != \"$bot\")] | length")
+            if [ "$others" != 0 ]; then
+              gh pr comment "$open" --body-file "$RUNNER_TEMP/report.md"
+              echo "PR #$open carries commits by others; posted the report as a comment."
+              exit 0
+            fi
+          fi
+          git switch -C bot/sites
+          git add -A -- "${paths[@]}"
+          git config user.name 'github-actions[bot]'
+          git config user.email "$bot"
+          git commit -m "$TITLE"
+          git push --force origin bot/sites
+          if [ -n "$open" ]; then
+            gh pr edit "$open" --body-file "$RUNNER_TEMP/report.md"
+          else
+            gh pr create --base main --head bot/sites --title "$TITLE" --body-file "$RUNNER_TEMP/report.md"
+          fi
