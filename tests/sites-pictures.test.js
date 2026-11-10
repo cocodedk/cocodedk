@@ -61,6 +61,10 @@ describe('the pictures on the catalogue cards', () => {
     expect(() => housePicture({ name: 'Unity', ink: 'ink', motif: 'kite' })).toThrow('no motif called "kite"');
   });
 
+  test('should have a drawing of two people talking for the therapist', () => {
+    expect(housePicture({ name: 'LP Terapi', ink: 'ink', motif: 'talk' })).not.toBe(housePicture({ name: 'LP Terapi', ink: 'ink' }));
+  });
+
   test.each(Object.keys(MOTIFS))('should draw the %s motif as valid SVG on every plate', (motif) => {
     const drawn = ['ink', 'saffron', 'lapis'].map((ink) => housePicture({ name: motif, ink, motif }));
     expect(() => drawn.forEach((s) => new JSDOM(s, { contentType: 'image/svg+xml' }))).not.toThrow();

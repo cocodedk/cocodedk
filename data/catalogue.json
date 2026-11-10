@@ -74,6 +74,7 @@
     { "id": "in-optimizer", "group": "tools", "name": "in-optimizer", "line": "Sletter dine egne kommentarer på LinkedIn, én ad gangen." },
     { "id": "cv", "group": "tools", "name": "CV Generator", "line": "Lav et pænt CV med hjælp fra AI, og vælg mellem flere skabeloner." },
     { "id": "klinikvenus", "group": "kunder", "name": "Venus Høreklinik", "line": "Høreapparater og høretest i København K.", "url": "https://klinikvenus.dk" },
+    { "id": "lpterapi", "group": "kunder", "name": "LP Terapi", "line": "Parterapi i Roskilde, Slagelse og online.", "url": "https://lpterapi.dk", "picture": "house", "motif": "talk" },
     { "id": "nick-autoteknik", "group": "kunder", "name": "Nick Autoteknik", "line": "Autoværksted i Rødovre.", "url": "https://nick-autoteknik.dk", "picture": "house", "motif": "workshop" },
     { "id": "manuel-terapi", "group": "kunder", "name": "Klinik for Manuel Terapi", "line": "Hjemmeside til en klinik.", "picture": "house", "motif": "back" },
     { "id": "unity", "group": "kunder", "name": "Unity Foundation", "line": "Hjemmeside til en velgørende forening.", "picture": "house", "motif": "dove" },

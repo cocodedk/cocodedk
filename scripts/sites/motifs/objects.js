@@ -79,3 +79,18 @@ ${strokes(c.dark, 6, 'M140 298h60M140 322h60M140 346h40', 'stroke-opacity=".5"')
 <g transform="translate(462 300) rotate(28) scale(.86)">${blade}<g transform="scale(-1 1)">${blade}</g>
 <circle r="7" fill="${c.dark}"/></g></g>`;
 }
+
+// Two people facing each other, their words overlapping where they meet: the couples therapist.
+export function talk(c) {
+  const left = 'M241.1 159.1A86 56 0 1 0 200.7 146.9L204 186Z';
+  const right = 'M363.9 179.2A80 52 0 1 1 401.4 167.8L400 190Z';
+  // A head and shoulders, the shoulders leaning in and the head turned a little towards the other.
+  const bust = (x, lean, fill) => `<circle cx="${x - lean * 2}" cy="240" r="44" fill="${fill}"/>`
+    + `<g transform="translate(${x} 372) skewX(${lean}) translate(${-x} -372)">`
+    + echo('path', `d="M${x - 92} 372C${x - 92} 314 ${x - 52} 290 ${x} 290C${x + 52} 290 ${x + 92} 314 ${x + 92} 372Z"`, fill, c)
+    + '</g>';
+  return `<g transform="translate(0 4)"><defs><clipPath id="talk-meet"><path d="${left}"/></clipPath></defs>
+${bust(176, -7, c.fill)}${bust(424, 7, c.acc2)}
+${echo('path', `d="${left}"`, c.fill, c)}${echo('path', `d="${right}"`, c.acc2, c)}
+<path d="${right}" fill="${c.acc}" clip-path="url(#talk-meet)"/></g>`;
+}
