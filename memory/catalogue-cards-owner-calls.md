@@ -14,7 +14,8 @@ branch `feat/poster-cards` (see [[catalogue-cards-build-state]]). Raise them aga
    old ones were paper-coloured on paper and read as missing images. This was not in the plan.
    *Settled 2026-11-10:* the owner asked for Opus models to improve them. Of three prototypes the illustrated
    plate was built (commit 4400401): each picture is a small drawing of the work, chosen by the optional
-   `motif` field in `data/catalogue.json`. The owner has not yet seen the final drawings.
+   `motif` field in `data/catalogue.json`. The owner approved the illustrated plate
+   ("go with C") the same day.
 3. **LifeMeter's picture.** Its share picture has a white band along the bottom. A worker made the shrink step
    (`scripts/sites/pictures.js`) paint over such bands; the cleaner fix is LifeMeter's own `og.png`. The owner
    decides whether the heuristic is reverted.
