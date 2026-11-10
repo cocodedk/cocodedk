@@ -1,10 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Klinik for Manuel Terapi">
 <title>Klinik for Manuel Terapi</title>
-<style>@font-face{font-family:'Ibarra Real Nova';font-style:normal;font-weight:400;src:url(data:font/woff2;base64,d09GMgABAAAAAALQAA8AAAAABjQAAAJ5AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG2ocLgZgP1NUQVReADQRCAqBHIEXCwYAATYCJAMIBCAFhFAHIAwHGyEFERWckch+HthtHBbiHnEBRbCzXOfQKfn+R6jkPDxv9+S5b2alWcDuYAZC/evERbMpiQBYnHP/lYk8gwIAnZXGGWA1/v/PzbQxKQqsjwkUaYKTxhjUywLpJsqJnwV4xNukwwPw021ihz4dgw6PkJCOEBGhaH5xgYo66CcbNWbSLLVW7t+xSa1Ny3dtUUsO/xeIjat3bFEegZBLygvlJbXkaKGBkEBwlUjhO+kkrdcgaR3kWREXlCGdSvMwUS+KJXoEcMFHId/E5yaamL373xfySXGhGZchXkwP0UwuSm8CasnQStq7dt2uwPpdyzdFOaGNOsrKhBTlQSBDiogLpI+RrLqqXzhWFuwFXSHXDLlcYOL/+f/5/90AIf6vGkggR6AH+gFyQPSoFGPfeymygy/2GRNVjHr7eWntS7f69Ikqej15//12s1a/8ExrFU+VOqyZ5cALvUdrV5SOr2z6YzN2rFTMKkrHVjYr+tb64cTx40WZ4tsj21/79v37fRalf44UUzrsuZ3VHzHo/aYrj5cKIJDoM3HA70urDfq1fJY9xXfXO5+E788OHqQdWfX0EGUlEPzAy5pekGqs2MOUsjLq00cCSQ8BAq5Vckom8gr4NMpvCM08haSq7yAzwg3IdbMOymhgilBWJy1EQWV1khDhRTmPrPhby6uIMYNc9I4xOib7C1MZ8VHHMMSXQOdGKbZeQiUOhj8RRiZ50G93u93pwHBA5MB8unuL2/22XdTYN+dlL9fkF2HnAvo0TuBzIOLcBtv/CMkSLIZlEhsURlA14tiP5p2OMmMj0duM3I4iUo6Q5MVRxxQrpKFWgdL/d/Tn78ejr+cA) format('woff2')}.initial{font:400 360px 'Ibarra Real Nova', Georgia, serif;fill:#F6EFE0}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
 <defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0"/></filter></defs>
 <rect width="1200" height="630" fill="#1D2130"/>
 <rect width="1200" height="630" filter="url(#grain)"/>
-<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#F6EFE0" stroke-width="3" stroke-opacity=".6"/>
-<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#F6EFE0" stroke-width="1.5" stroke-opacity=".6"/>
-<text class="initial" text-anchor="middle" x="600" y="433.8">K</text>
+<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#F6EFE0" stroke-width="3" stroke-opacity=".45"/>
+<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#F6EFE0" stroke-width="1.5" stroke-opacity=".45"/>
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)"><g transform="translate(300 214) scale(.92) translate(-300 -222)">
+<circle cx="300" cy="76" r="42" fill="#F6EFE0"/>
+<path d="M278 116C278 130 276 140 270 146C230 152 176 160 156 186C144 202 142 222 140 250L136 372H464L460 250C458 222 456 202 444 186C424 160 370 152 330 146C324 140 322 130 322 116Z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M278 116C278 130 276 140 270 146C230 152 176 160 156 186C144 202 142 222 140 250L136 372H464L460 250C458 222 456 202 444 186C424 160 370 152 330 146C324 140 322 130 322 116Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<ellipse cx="300" cy="326" rx="74" ry="34" fill="#C9705B" opacity=".3"/>
+<path d="M182 222C194 270 202 320 200 372M418 222C406 270 398 320 400 372" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".2"/>
+<path d="M248 196C238 222 244 248 264 260M352 196C362 222 356 248 336 260" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".2"/>
+<g fill="#E8A63A"><rect x="290.0" y="152" width="20.0" height="14" rx="7"/><rect x="289.1" y="173" width="21.8" height="14" rx="7"/><rect x="288.2" y="194" width="23.6" height="14" rx="7"/><rect x="287.3" y="215" width="25.4" height="14" rx="7"/><rect x="286.4" y="236" width="27.2" height="14" rx="7"/><rect x="285.5" y="257" width="29.0" height="14" rx="7"/><rect x="284.6" y="278" width="30.8" height="14" rx="7"/><rect x="283.7" y="299" width="32.6" height="14" rx="7"/><rect x="282.8" y="320" width="34.4" height="14" rx="7"/><rect x="281.9" y="341" width="36.2" height="14" rx="7"/></g></g></g>
 </svg>

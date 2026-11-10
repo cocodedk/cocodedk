@@ -1,7 +1,8 @@
 // The two kinds of picture a catalogue card can show: a site's own share picture, made smaller, or
-// a plate in the colour of its group, with the initial of the name, when there is no site to take one from.
+// a plate in the colour of its group, with a drawing of the work, when there is no site to take one from.
 import sharp from 'sharp';
-import { PALETTE, FONT, GRAIN, esc, svg } from '../readme/svg.js';
+import { GRAIN, svg } from '../readme/svg.js';
+import { MOTIFS, FALLBACK, THEMES } from './motifs/index.js';
 import { PICTURE } from './paths.js';
 
 const TOLERANCE = 8;
@@ -34,23 +35,20 @@ export const shrink = async (buffer) =>
     .webp({ quality: 80 })
     .toBuffer();
 
-// The first letter or digit of a name, as a capital: the name itself is set right under the picture.
-export const initial = (name) => (name.match(/[\p{L}\p{N}]/u)?.[0] ?? '?').toLocaleUpperCase('da');
-
 // The same size and ratio as the site's own share picture (templates/og-card.html): a plate in the
-// group's colour, a ruled frame and the initial, so the card has an edge against the paper of the page.
-export function housePicture({ name, ink }, css) {
-  if (!PALETTE[ink]) throw new Error(`"${name}" has no colour called "${ink}"`);
-  const plate = PALETTE[ink];
-  const mark = ink === 'saffron' ? PALETTE.ink : PALETTE.sheet;
-  const size = 360;
-  const style = `${css}.initial{font:400 ${size}px ${FONT.serif};fill:${mark}}`;
-  const frame = (inset, stroke) =>
-    `<rect x="${inset}" y="${inset}" width="${1200 - 2 * inset}" height="${630 - 2 * inset}" fill="none" stroke="${mark}" stroke-width="${stroke}" stroke-opacity=".6"/>`;
-  const body = `<rect width="1200" height="630" fill="${plate}"/>
+// group's colour, a ruled frame and a small drawing of what the work is, so the card has an edge
+// against the paper of the page. No text: the name is set right under the picture.
+export function housePicture({ name, ink, motif = FALLBACK }) {
+  const c = THEMES[ink];
+  if (!c) throw new Error(`"${name}" has no colour called "${ink}"`);
+  const draw = MOTIFS[motif];
+  if (!draw) throw new Error(`"${name}" asks for a motif, and there is no motif called "${motif}"`);
+  const frame = (inset, stroke) => `<rect x="${inset}" y="${inset}" width="${1200 - 2 * inset}" `
+    + `height="${630 - 2 * inset}" fill="none" stroke="${c.line}" stroke-width="${stroke}" stroke-opacity=".45"/>`;
+  const body = `<rect width="1200" height="630" fill="${c.plate}"/>
 <rect width="1200" height="630" filter="url(#grain)"/>
 ${frame(30, 3)}
 ${frame(44, 1.5)}
-<text class="initial" text-anchor="middle" x="600" y="${315 + size * 0.33}">${esc(initial(name))}</text>`;
-  return svg({ w: 1200, h: 630, title: name, css: style, defs: GRAIN, body });
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)">${draw(c)}</g>`;
+  return svg({ w: 1200, h: 630, title: name, defs: GRAIN, body });
 }

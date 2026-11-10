@@ -1,7 +1,8 @@
 /** @jest-environment node */
 import sharp from 'sharp';
 import { JSDOM } from 'jsdom';
-import { shrink, housePicture, initial } from '../scripts/sites/pictures';
+import { shrink, housePicture } from '../scripts/sites/pictures';
+import { MOTIFS } from '../scripts/sites/motifs/index';
 import { picturePath, PICTURE } from '../scripts/sites/paths';
 import { PALETTE } from '../scripts/readme/svg';
 
@@ -33,27 +34,40 @@ describe('the pictures on the catalogue cards', () => {
   });
 
   test('should escape the name in a house-made picture', () => {
-    expect(housePicture({ name: 'Tom & <Jerry>', ink: 'lapis' }, '')).toContain('Tom &amp; &lt;Jerry&gt;');
+    expect(housePicture({ name: 'Tom & <Jerry>', ink: 'lapis' })).toContain('Tom &amp; &lt;Jerry&gt;');
   });
 
   test('should draw a house-made picture as valid SVG', () => {
-    expect(() => new JSDOM(housePicture({ name: 'MCP-servere', ink: 'saffron' }, ''), { contentType: 'image/svg+xml' })).not.toThrow();
+    expect(() => new JSDOM(housePicture({ name: 'MCP-servere', ink: 'saffron' }), { contentType: 'image/svg+xml' })).not.toThrow();
   });
 
   test('should draw a house-made picture on a plate in the colour of its group', () => {
-    expect(housePicture({ name: 'Unity', ink: 'lapis' }, '')).toContain(`<rect width="1200" height="630" fill="${PALETTE.lapis}"/>`);
+    expect(housePicture({ name: 'Unity', ink: 'lapis' })).toContain(`<rect width="1200" height="630" fill="${PALETTE.lapis}"/>`);
   });
 
-  test('should not set the whole name again in a house-made picture', () => {
-    expect(housePicture({ name: 'Nick Autoteknik', ink: 'ink' }, '')).not.toContain('Autoteknik</tspan>');
+  test('should set no text but the title in a house-made picture', () => {
+    expect(housePicture({ name: 'Unity', ink: 'ink', motif: 'dove' })).not.toContain('<text');
   });
 
-  test('should take the first letter of a name as its initial', () => {
-    expect(initial('tmux-zipper')).toBe('T');
+  test('should draw the fallback motif for an entry that names none', () => {
+    expect(housePicture({ name: 'Unity', ink: 'ink' })).toBe(housePicture({ name: 'Unity', ink: 'ink', motif: 'shapes' }));
+  });
+
+  test('should draw the motif an entry names', () => {
+    expect(housePicture({ name: 'Unity', ink: 'ink', motif: 'dove' })).not.toBe(housePicture({ name: 'Unity', ink: 'ink' }));
+  });
+
+  test('should refuse a motif the library does not have', () => {
+    expect(() => housePicture({ name: 'Unity', ink: 'ink', motif: 'kite' })).toThrow('no motif called "kite"');
+  });
+
+  test.each(Object.keys(MOTIFS))('should draw the %s motif as valid SVG on every plate', (motif) => {
+    const drawn = ['ink', 'saffron', 'lapis'].map((ink) => housePicture({ name: motif, ink, motif }));
+    expect(() => drawn.forEach((s) => new JSDOM(s, { contentType: 'image/svg+xml' }))).not.toThrow();
   });
 
   test('should refuse a colour the palette does not have', () => {
-    expect(() => housePicture({ name: 'Unity', ink: 'mauve' }, '')).toThrow('no colour called "mauve"');
+    expect(() => housePicture({ name: 'Unity', ink: 'mauve' })).toThrow('no colour called "mauve"');
   });
 
   test('should name a house-made picture .svg', () => {

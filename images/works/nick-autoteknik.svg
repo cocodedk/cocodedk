@@ -1,10 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Nick Autoteknik">
 <title>Nick Autoteknik</title>
-<style>@font-face{font-family:'Ibarra Real Nova';font-style:normal;font-weight:400;src:url(data:font/woff2;base64,d09GMgABAAAAAALcABAAAAAABjQAAAKEAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhQbahwuBmA/U1RBVF4ANBEICnh6CwYAATYCJAMIBCAFhFAHIAwHGxgFyJ4D7s5GASQSovr4TxRitCnrBXeNUMnh6Rtrf2b3RDFJalLx0qCqNho00UQKR+ddxDJ3tNZmXx3xqYhGS66RM58/sYhXIpVmpZCfB/7v3X2L7AP9BoWDOh5tW7aAizAeUyji4pKzmXricvz29jR9LqB/0hdcs9Ix6S+LxwbKAksTH4sTyqZlnKbbZI8+gX4dIRIdIhLSWV2aBxDgBwBCt4NXgTqm23NyA7156lnQW/GBAz0W8C8GlsueAyUYnKVs4abi2ZAhlWwCCOqKErhIkXG0CRRdB2BTafigQI86BzA4t5IRawEUEhVIkT8N/hlxll7+hx3IQRqOAchJr0EaSwg3BfEMyKL7VS1gwPqGt5gLkSORkyE0uAEQYIAGkQPoGyhrS/2LTWqSKwLbSgO2EDDS0R6qyCMBEIrPo4KPABYIyAL5AMACAKnWRmbjttWDWuh9/Qtm8+rabrPq+sLjb7vPAnSdv+Vb1F9jM8b7oDPSGbyrM58jSX0m3P77FN3g4k3u4U3FaQAAAYoLmqx8aDb93MaEAaHzxQPwsbvVgbz/l2mNX8BJAQieXDLDAyhlDaE9TQ5SoBegssgKgV0+W5BI9gDvzL1IkSZMqqAQaXT4JK0ya6RDqhHCqUiGSMAvkRSCQqQLP+9/deMFE4iN5zgU4Fl0onsynUoTOCTgeTy8KzKe5QyJ8BZNkKlCFp7njszj0xEHqlCiTJmyhBw5RzZDP/T1NBpx7syujTumzXLV49tIX8rrXEUVKGqlmXKAvGSD3z/GQwwyUQC1CwU0xONDedYEAn2+daVKrdIFNCHBkkXEtmwVISqLTEEcAd+ydU49dGcZahVBrf+NRV7v8i4A) format('woff2')}.initial{font:400 360px 'Ibarra Real Nova', Georgia, serif;fill:#F6EFE0}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
 <defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0"/></filter></defs>
 <rect width="1200" height="630" fill="#1D2130"/>
 <rect width="1200" height="630" filter="url(#grain)"/>
-<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#F6EFE0" stroke-width="3" stroke-opacity=".6"/>
-<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#F6EFE0" stroke-width="1.5" stroke-opacity=".6"/>
-<text class="initial" text-anchor="middle" x="600" y="433.8">N</text>
+<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#F6EFE0" stroke-width="3" stroke-opacity=".45"/>
+<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#F6EFE0" stroke-width="1.5" stroke-opacity=".45"/>
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)"><g transform="translate(0 16)">
+<path d="M-190 0a36 36 0 1 0 72 0a36 36 0 1 0-72 0zm20 0a16 16 0 1 1 32 0a16 16 0 1 1-32 0zM-124-13H118V13H-124zM187.5-13H130A13 13 0 0 0 130 13H187.5A38 38 0 1 1 187.5-13z" fill="#E8A63A" fill-rule="evenodd" transform="translate(300 88) rotate(-12) scale(.82)"/>
+<path d="M104 286C90 286 84 276 86 262L92 228C94 214 104 208 118 206L190 198 236 148C244 140 254 136 266 136H372C386 136 396 142 404 152L444 200 494 208C508 210 516 220 516 234V266C516 278 508 286 496 286Z" fill="#C9705B"/><g transform="translate(12 -12)"><path d="M104 286C90 286 84 276 86 262L92 228C94 214 104 208 118 206L190 198 236 148C244 140 254 136 266 136H372C386 136 396 142 404 152L444 200 494 208C508 210 516 220 516 234V266C516 278 508 286 496 286Z" fill="none" stroke="#F6EFE0" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<path d="M248 158C252 152 258 150 264 150H312V202H202Z" fill="#F6EFE0"/>
+<path d="M328 150H372C378 150 384 152 388 158L424 202H328Z" fill="#F6EFE0"/>
+<path d="M318 214V270M470 228H500" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".35"/>
+<rect x="496" y="220" width="20" height="14" rx="4" fill="#E8A63A"/>
+<circle cx="196" cy="286" r="44" fill="#1D2130" stroke="#F6EFE0" stroke-width="10"/><circle cx="196" cy="286" r="17" fill="#E8A63A"/><circle cx="410" cy="286" r="44" fill="#1D2130" stroke="#F6EFE0" stroke-width="10"/><circle cx="410" cy="286" r="17" fill="#E8A63A"/></g></g>
 </svg>

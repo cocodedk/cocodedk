@@ -1,10 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Sten, saks, papir">
 <title>Sten, saks, papir</title>
-<style>@font-face{font-family:'Ibarra Real Nova';font-style:normal;font-weight:400;src:url(data:font/woff2;base64,d09GMgABAAAAAAM0ABAAAAAABnAAAALaAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhQbahwuBmA/U1RBVF4ANBEICoE0gT8LBgABNgIkAwgEIAWEUAcgDAcbXQXILgNsY4r0RVai4RYRqFFHWY8riWZtrPFHM0Ilh/9/9vu1z33viyZUpOGNTEh40xGzaJZMVgdv4yUN/7fWPmI+qM0uZjJrNrd+FyreoPEIVSuUAiETCjzAX+79f3d6ZE0vCovyjYVLjyNs+zIKcNqvB5MMVFyEDTiigC3Frwr/f/5c/IEWzdvDCWykE8zSi6JojgY6ojvhBdgRtJ3xgfh90+zgnM8hybEkLbVvtWhWIBAGAMLbIajIoITe/OouFM5jjgGFS+JZUCgR8C+WFqJjQSqMwGVj8bMjIkv5ZQOg1TC0MCU6lKUtgCZdc+NNnaaA7WwKgGG5SiPAARiTDFLkD4NvGNrJPv8Ptx/3kAGcA2hvd0CGRCJ+BmIkgBzxW1nx4gBmVsSIS0HyFEvmEAt+AAQcYEE6DbsDs77deBOETrEvIRJlIBepPppiZToLAEQpyWpwgUAbYAz4PwVAXXJV0/N2WsbL1lbonU/ybHviN9nZCf0y98KDUH7R+ctUN24kBl+3t4N9f0/1dGv851tUm5vpKdteW94iHD9ZZrmjocn2aaQ2Nf8YtC2WHlZfbq8x3RMX7ELNV8GfW7lSFS7JLBqcnSlmSsemMZt5rTY/7/TA+dKl0r3+hl480DglMQAAAobQ63abNvqfmuD8A/Yfa0cAB7edFnD6xyR7CLwMgPCqak5BFRyTEADYtVBMjAOARdMm7oxAUchRMsoDwFv5FSTDH5iofXB0eQJXBQU8kqxLXiXqZIKwOBBR++AjLHg/foJgBGUiLEs8hEHFOyBSyRSeJRzC4SC2iQjDOipAdNomkvkMhGOfyOFSURYE69JjtyBGFCNSQ3bq6xmxbsO6OSN37JrTujdnUBExzuQagqE/ANl1SDxxwO/f5KA0Ip4HmeLzKCiHC2mh8HgiXMO6dZOpPAofpwuPMnWTUZTMIJJQFo+rm0qhA71WCVjrUG2Lb3To6p4AAA==) format('woff2')}.initial{font:400 360px 'Ibarra Real Nova', Georgia, serif;fill:#1D2130}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
 <defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0"/></filter></defs>
 <rect width="1200" height="630" fill="#D8982C"/>
 <rect width="1200" height="630" filter="url(#grain)"/>
-<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#1D2130" stroke-width="3" stroke-opacity=".6"/>
-<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#1D2130" stroke-width="1.5" stroke-opacity=".6"/>
-<text class="initial" text-anchor="middle" x="600" y="433.8">S</text>
+<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#1D2130" stroke-width="3" stroke-opacity=".45"/>
+<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#1D2130" stroke-width="1.5" stroke-opacity=".45"/>
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)"><g transform="translate(275 222) scale(.92) translate(-300 -236)">
+<path d="M375 106A150 150 0 0 1 448 210M455 196L448 210 437 199" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".7"/>
+<path d="M375 366A150 150 0 0 1 225 366M232 381L225 366 241 364" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".7"/>
+<path d="M150 236A150 150 0 0 1 225 106M209 105L225 106 218 121" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".7"/>
+<g transform="translate(0 -18)"><path d="M238 134L252 84 296 58 346 70 366 112 348 148 270 152Z" fill="#A2322C"/><g transform="translate(12 -12)"><path d="M238 134L252 84 296 58 346 70 366 112 348 148 270 152Z" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<path d="M252 84L296 58 302 102Z" fill="#F6EFE0" opacity=".35"/>
+<path d="M296 58L346 70 302 102Z" fill="#F6EFE0" opacity=".18"/>
+<path d="M302 102L366 112 348 148Z" fill="#1D2130" opacity=".22"/>
+<path d="M302 102L348 148 270 152Z" fill="#1D2130" opacity=".12"/></g>
+<g transform="rotate(-8 170 311)"><path d="M122 251h72l24 24v96H122z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M122 251h72l24 24v96H122z" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<path d="M194 251v24h24" fill="#1D2130" opacity=".15"/>
+<path d="M140 298h60M140 322h60M140 346h40" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".5"/></g>
+<g transform="translate(462 300) rotate(28) scale(.86)"><path d="M-12 6L-58-116C-54-128-40-130-34-120L12-2Z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M-12 6L-58-116C-54-128-40-130-34-120L12-2Z" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g><path d="M2 4L22 44" fill="none" stroke="#1D2130" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" /><circle cx="30" cy="70" r="24" fill="none" stroke="#1D2130" stroke-width="13"/><g transform="scale(-1 1)"><path d="M-12 6L-58-116C-54-128-40-130-34-120L12-2Z" fill="#F6EFE0"/><g transform="translate(12 -12)"><path d="M-12 6L-58-116C-54-128-40-130-34-120L12-2Z" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g><path d="M2 4L22 44" fill="none" stroke="#1D2130" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" /><circle cx="30" cy="70" r="24" fill="none" stroke="#1D2130" stroke-width="13"/></g>
+<circle r="7" fill="#1D2130"/></g></g></g>
 </svg>

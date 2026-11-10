@@ -1,10 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Overlay Killer">
 <title>Overlay Killer</title>
-<style>@font-face{font-family:'Ibarra Real Nova';font-style:normal;font-weight:400;src:url(data:font/woff2;base64,d09GMgABAAAAAALEABAAAAAABiwAAAJsAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhQbahwuBmA/U1RBVF4ANBEICnCBEAsGAAE2AiQDCAQgBYRQByAMBxsuBREVlPtkPw+yc8lpqYXxSELvJ3mptz9CJefh//f3/M+1z3lmAukKoAQolDc6fvs3AxUXA2Bxzv1XJvIMCgB0VhpngD9/OT77dmPj6GECRZrgpJvUGjTWRCigw9bihPIs4zTblmiQ4Cd/PuKoiCEhI/ZcNC8IlAZEfZ2Smugk6zdg2DiV525es0zlZbPXrVBZDv/F0NL5a1YoDohyqRSKS4/IOmquT6grOJ5IYZtp5lo9iaTnIM+qxClFSEfSJAz1jWKGNsHwYEGRP80nI43MXvz/WT4sTtXiLMSddBu15EIoLqGyDPWkjQsXrQssXjd7WRQTGqiqqExIURwEMqSIOEV6hwS9Lf6HhZodNoM/IVcLuVxgZKFQLxaeBAhRKCgXjJOXzvrozmgDqXKF2Ue+GhG+EaX+Qtj12ZgwGGFmlExNu3TbqVLDd7ebOa3dlgHD2+2aOUtDw0fsQWlGu60Dh6IZe2xqDls7rveZaRN7n3Bz2BB+m7MzetVf1W/89FZAIDG+zML+M8t1+1s8y37j58Xmh+HX8e7dNC/8Sf+luygqgeDrjazeBmmOxKwVUlZEDeoMJPVDC/hUKUdkIi+BD1G8Q6jlNyRl/YRMH5cg18oiKKKmEY6imqnjFJRWFUJZP6GY0kr+1+JKYowhF71jjI7J/sJURnzUMQzxJdC5UYqtl1CJg+FPhJFJHvTb3W73gA6ig7iDYOjrLW7323bxjllYLXtyTX4R3hyFPuUm8BkwseIFv/8RkiVYDMskNiiMoGrEsR/NOx1lxkaitxm5HUWkHCHJi6OOKWpI2VrFPBWu6de/isL+R/lx) format('woff2')}.initial{font:400 360px 'Ibarra Real Nova', Georgia, serif;fill:#1D2130}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
 <defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .11 0"/></filter></defs>
 <rect width="1200" height="630" fill="#D8982C"/>
 <rect width="1200" height="630" filter="url(#grain)"/>
-<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#1D2130" stroke-width="3" stroke-opacity=".6"/>
-<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#1D2130" stroke-width="1.5" stroke-opacity=".6"/>
-<text class="initial" text-anchor="middle" x="600" y="433.8">O</text>
+<rect x="30" y="30" width="1140" height="570" fill="none" stroke="#1D2130" stroke-width="3" stroke-opacity=".45"/>
+<rect x="44" y="44" width="1112" height="542" fill="none" stroke="#1D2130" stroke-width="1.5" stroke-opacity=".45"/>
+<g transform="translate(600 315) scale(1.22) translate(-300 -200)"><g transform="translate(-14 4)">
+<rect x="70" y="70" width="380" height="270" rx="12" fill="#F6EFE0"/><g transform="translate(12 -12)"><rect x="70" y="70" width="380" height="270" rx="12" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<circle cx="98" cy="96" r="7" fill="#1D2130" opacity=".35"/><circle cx="120" cy="96" r="7" fill="#1D2130" opacity=".35"/>
+<path d="M106 150h190M106 182h250M106 214h220M106 246h250M106 278h140" fill="none" stroke="#1D2130" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".28"/>
+<g transform="rotate(9 400 170)"><rect x="290" y="100" width="230" height="150" rx="10" fill="#A2322C"/><g transform="translate(12 -12)"><rect x="290" y="100" width="230" height="150" rx="10" fill="none" stroke="#1D2130" stroke-width="5" stroke-opacity=".75" stroke-linejoin="round"/></g>
+<path d="M318 150h120M318 178h90" fill="none" stroke="#F6EFE0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".7"/>
+<circle cx="500" cy="118" r="34" fill="#1D2130"/><path d="M486 104l28 28M514 104l-28 28" fill="none" stroke="#F6EFE0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /></g>
+<path d="M540 262l32 14M528 292l36 6M546 232l24 22" fill="none" stroke="#1D2130" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".6"/></g></g>
 </svg>
