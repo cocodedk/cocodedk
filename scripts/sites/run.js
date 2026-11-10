@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { discoverSites } from './discover.js';
 import { gatherSite, settle } from './gather.js';
-import { shrink, housePicture } from './pictures.js';
+import { shrink, housePicture, initial } from './pictures.js';
 import { DATA, picturePath } from './paths.js';
 import { renderCatalogue, keptBlocks, isHidden } from './render.js';
 import { findProblems } from './check.js';
@@ -109,11 +109,11 @@ async function gatherAll(before, catalogue, notes) {
 
 const shownHouse = (entry) => entry.picture === 'house' && !isHidden(entry);
 
-// The name set on paper in the colour of its group, for the entries with no site to take one from.
+// A plate in the colour of its group, for the entries with no site to take one from.
 async function drawHousePictures(catalogue) {
   const inks = new Map(catalogue.groups.map((group) => [group.id, group.ink]));
   for (const entry of catalogue.entries.filter((e) => shownHouse(e) && e.name && inks.has(e.group))) {
-    const css = await fontCss([FACES.serif], entry.name);
+    const css = await fontCss([FACES.serif], initial(entry.name));
     save(picturePath(entry), housePicture({ name: entry.name, ink: inks.get(entry.group) }, css));
   }
 }
