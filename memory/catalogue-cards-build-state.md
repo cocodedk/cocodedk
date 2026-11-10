@@ -1,26 +1,25 @@
 ---
 name: catalogue-cards-build-state
-description: Where the catalogue-cards build stands: all eight tasks built, what still waits for Babak
+description: Catalogue-cards build is merged and live (PR #97 and #99); the small leftovers nobody has fixed yet
 metadata:
   type: state
-  updated: 2026-11-10
+  updated: 2026-11-11
 ---
-The catalogue rebuilt as poster cards from Babak's public *.cocode.dk sites
-(spec `docs/superpowers/specs/2026-11-09-catalogue-cards-design.md`, plan `docs/superpowers/plans/2026-11-09-catalogue-cards.md`).
+The catalogue as poster cards from the public *.cocode.dk sites is merged and live: Tasks 1–6 in PR #97
+(2026-11-09), Tasks 7–8, the drawn house pictures and the LP Terapi card in PR #99 (2026-11-11). What still
+waits for the owner is in [[catalogue-cards-owner-calls]].
 
-- Tasks 1–6 were merged on 2026-11-09 (PR #97). The pictures then showed out of proportion on the live page,
-  because `.index__pic` had no CSS rule yet.
-- Tasks 7 (poster CSS) and 8 (weekly `sites.yml`) and the final review's fix wave are on branch `feat/poster-cards`
-  (2026-11-10), reviewed, 228 tests. A github.io 5xx/429 now stops the gathering run instead of dropping the site.
+The weekly `sites.yml` has never run. After the repo setting is allowed, run it once by hand
+(`gh workflow run sites.yml`).
 
-**Waits for Babak:**
-- The repo setting that lets Actions open PRs (plan Task 8 Step 2). Without it the weekly run pushes `bot/sites`
-  and then fails at `gh pr create`.
-- Two changes a worker made beyond the plan: house-made pictures are coloured plates with the name's initial,
-  and `shrink()` paints over a plain bottom band in a share picture (LifeMeter's). The cleaner fix for the second is
-  LifeMeter's own og.png.
+**Small leftovers, deferred during the build:**
+- `discoverSites` rejects the whole run on one failed HEAD and never retries; a failed alternate language
+  silently drops that version.
+- WebP bytes may differ between machines or sharp versions, so the weekly run may rewrite every picture.
+- `.index{grid-template-columns}` in `css/wide.css` does nothing; the group heading sits 14px below the picture
+  tops on desktop.
+- Motifs `gear` and `browser` are drawn and unused.
+- The `talk` drawing (LP Terapi) is close to a stock "user" icon; its Danish line has not been through `humanizer-da`.
+- jsdom prints CSS parse errors in the tests; a silent VirtualConsole would quiet them.
 
-`.superpowers/sdd/2026-11-09-catalogue-cards/` (git-ignored ledger with every ruling and deferred minor) is deleted
-once the branch is merged.
-
-Links: [[MEMORY]].
+Links: [[catalogue-cards-owner-calls]], [[MEMORY]].

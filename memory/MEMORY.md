@@ -4,7 +4,7 @@ This vault is committed to a public repo. Never save PII or secrets in it: no em
 addresses, personal details of others, passwords, tokens or keys.
 
 ## Now
-- [[catalogue-cards-owner-calls]] — four decisions waiting for the owner, to raise on the afternoon of 2026-11-10
-- [[catalogue-cards-build-state]] — catalogue-cards build: all eight tasks built on feat/poster-cards, what waits for the owner
+- [[catalogue-cards-owner-calls]] — three catalogue decisions still waiting for the owner, plus the roitankerne.dk card
+- [[catalogue-cards-build-state]] — catalogue-cards build merged and live (PR #99), the small leftovers
 
 ## Kept

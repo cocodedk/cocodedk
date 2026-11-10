@@ -1,12 +1,14 @@
 ---
 name: catalogue-cards-owner-calls
-description: Four decisions on the catalogue cards that wait for the owner, to raise on the afternoon of 2026-11-10
+description: Three decisions on the catalogue cards that still wait for the owner (one of four is settled)
 metadata:
   type: task
-  updated: 2026-11-10
+  updated: 2026-11-11
 ---
 The owner asked on the morning of 2026-11-10 to be reminded of these **later that afternoon**. They concern
-branch `feat/poster-cards` (see [[catalogue-cards-build-state]]). Raise them again; none is decided unless noted.
+the catalogue work merged in PR #99 on 2026-11-11 (see [[catalogue-cards-build-state]]). Items 1, 3 and 4 are still
+open; raise them again. The owner also wants roitankerne.dk as a card, but that address does not resolve: it
+waits for the right address and a Danish line.
 
 1. **Repo setting.** Actions still may not open PRs. Until the owner allows it, a weekly run with changes pushes
    `bot/sites` and then fails at `gh pr create`.
