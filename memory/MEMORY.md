@@ -4,7 +4,7 @@ This vault is committed to a public repo. Never save PII or secrets in it: no em
 addresses, personal details of others, passwords, tokens or keys.
 
 ## Now
-- [[catalogue-cards-owner-calls]] — three catalogue decisions still waiting for the owner, plus the roitankerne.dk card
+- [[catalogue-cards-owner-calls]] — four open questions for the owner on the catalogue (repo setting, LifeMeter band, phone columns, roitankerne.dk)
 - [[catalogue-cards-build-state]] — catalogue-cards build merged and live (PR #99), the small leftovers
 
 ## Kept

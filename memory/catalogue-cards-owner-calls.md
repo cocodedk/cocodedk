@@ -6,9 +6,8 @@ metadata:
   updated: 2026-11-11
 ---
 The owner asked on the morning of 2026-11-10 to be reminded of these **later that afternoon**. They concern
-the catalogue work merged in PR #99 on 2026-11-11 (see [[catalogue-cards-build-state]]). Items 1, 3 and 4 are still
-open; raise them again. The owner also wants roitankerne.dk as a card, but that address does not resolve: it
-waits for the right address and a Danish line.
+the catalogue work merged in PR #99 on 2026-11-11 (see [[catalogue-cards-build-state]]). Items 1, 3, 4 and 5 are still
+open. On 2026-11-11 the owner asked to have the questions kept ("maybe I answer them"): raise them again, without pressing.
 
 1. **Repo setting.** Actions still may not open PRs. Until the owner allows it, a weekly run with changes pushes
    `bot/sites` and then fails at `gh pr create`.
@@ -23,7 +22,10 @@ waits for the right address and a Danish line.
    decides whether the heuristic is reverted.
 4. **Phone length.** With one card per row the catalogue is about 28 screens tall on a phone. Two columns would
    halve it.
+5. **roitankerne.dk.** The owner wants it as a catalogue card, but the address does not resolve (nor `www.` or
+   `ro-i-tankerne.dk`). Needed: the correct address, or word that the site is not live yet, and one Danish line
+   on what it is.
 
-Delete this note once all four are settled.
+Delete this note once all five are settled.
 
 Links: [[catalogue-cards-build-state]], [[MEMORY]].
