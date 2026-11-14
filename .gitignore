@@ -143,3 +143,6 @@ dist
 .mcp.json
 .claude/
 .zvec-grep/
+
+# Project notes live in the private vaults repo; memory is a symlink to them
+memory
