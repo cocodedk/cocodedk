@@ -93,7 +93,7 @@
     }
   },
   "audio-soccer": {
-    "image": "https://cocodedk.github.io/audio-soccer/og.png",
+    "image": "https://soccer.cocode.dk/og.png",
     "repo": null,
     "status": 200,
     "url": "https://cocodedk.github.io/audio-soccer/",
@@ -369,13 +369,13 @@
     "url": "https://fits.dk",
     "versions": {
       "da": {
-        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
-        "title": "FITS - AI-Powered Policy Automation",
-        "url": "https://fits.dk/da/"
+        "description": "FITS tjekker jeres politikker mod hvert krav i NIS2, ISO 27001 og GDPR. I ser, hvad der er dækket, og hvad der mangler, med forslag til at lukke hullerne.",
+        "title": "FITS | NIS2- og ISO 27001-gap-analyse af jeres politikker",
+        "url": "https://fits.dk/da"
       },
       "en": {
-        "description": "Generate policies in less than an hour. What takes months manually, FITS does in minutes. Danish product with European hosting.",
-        "title": "FITS - AI-Powered Policy Automation",
+        "description": "FITS checks your policies against every requirement of NIS2, ISO 27001 and GDPR. See what's covered and what's missing, with suggested fixes for the gaps.",
+        "title": "FITS | NIS2 and ISO 27001 gap analysis of your policies",
         "url": "https://fits.dk"
       }
     }
@@ -467,7 +467,7 @@
     "url": "https://invaders.cocode.dk/",
     "versions": {
       "en": {
-        "description": "Fly free, break alien formations and beat a boss in each of 18 worlds. Every level you clear becomes a movie trailer of your run, and the Cinema keeps your best. Free in your browser.",
+        "description": "Fly free, break alien formations and beat a boss in each of 19 worlds. Every level you clear becomes a movie trailer of your run, and the Cinema keeps your best. Free in your browser.",
         "title": "Invaders — the arcade shooter that cuts a trailer of your run",
         "url": "https://invaders.cocode.dk/"
       }
@@ -869,6 +869,19 @@
         "description": "zg پوشه‌هایتان را می‌گردد، Jev می‌سنجد کدام فایل‌ها واقعاً پاسخ را دارند و یک LLM فقط از روی همان فایل‌ها با ذکر مسیرشان جواب می‌دهد. متن‌باز، در مرحلهٔ اولیه.",
         "title": "zjm-rag: فایلی را پیدا کنید که پاسخ در آن است",
         "url": "https://rag.cocode.dk/fa/"
+      }
+    }
+  },
+  "soccer": {
+    "image": "https://soccer.cocode.dk/og.png",
+    "repo": "audio-soccer",
+    "status": 200,
+    "url": "https://soccer.cocode.dk/",
+    "versions": {
+      "en": {
+        "description": "A free browser trial for blind and visually impaired players. Find the ball, score and beat a keeper using only sound.",
+        "title": "Audio Soccer Trial: play football by ear",
+        "url": "https://soccer.cocode.dk/"
       }
     }
   },
