@@ -72,6 +72,7 @@ offer while it runs and drop it by itself when it has closed.
   3. Du giver skriftlig tilladelse. Før det rører jeg ingenting.
   4. Jeg tester forsigtigt, så siden kan køre videre imens.
   5. Du får en rapport på almindeligt dansk, og vi gennemgår den sammen.
+- Condition (a plain paragraph after the steps): Webhotellet, hvor din hjemmeside ligger, skal også tillade tjekket. Det undersøger jeg, før jeg vælger.
 - Reservation: Et let tjek, ikke en fuld sikkerhedstest. Jeg kan ikke love, at jeg finder alt.
 - Button: "Skriv til mig om tjekket" opens a mail to bb@cocode.dk, subject "Sikkerhedstjek af min
   hjemmeside", body "Adressen på min hjemmeside: ".
@@ -93,6 +94,8 @@ Launch:
 > 4. Jeg tester forsigtigt, så siden kan køre videre imens.
 > 5. Du får en rapport på almindeligt dansk, og vi gennemgår den sammen.
 >
+> Webhotellet, hvor din hjemmeside ligger, skal også tillade tjekket. Det undersøger jeg, før jeg vælger.
+>
 > Det er et let tjek, ikke en fuld sikkerhedstest. Jeg kan ikke love, at jeg finder alt.
 >
 > Skriv til bb@cocode.dk. Det hele står også på cocode.dk.
@@ -107,6 +110,7 @@ Reminder, three days before the closing date:
 
 - One client, picked by him. A closing date about ten days after launch. Paid, not free.
 - The website hides the campaign by itself after the closing date.
+- The hosting condition must be clear before a client applies (2026-11-18): it is on the page, the poster and in the launch post.
 - He launches when he is ready; the poster is not posted before the site carries the offer.
 
 ## Calls made by Claude (Babak can overrule any of these)
