@@ -5,7 +5,7 @@ import path from 'path';
 
 const dir = path.join(__dirname, '../../templates/partials');
 const read = (name) => fs.readFileSync(path.join(dir, `${name}.html`), 'utf8');
-const MAIN = ['hero', 'works', 'catalogue', 'services', 'about', 'contact'];
+const MAIN = ['hero', 'campaign', 'works', 'catalogue', 'services', 'about', 'contact'];
 
 // Assembled the way templates/template.html assembles it.
 export function loadPage() {

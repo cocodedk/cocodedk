@@ -17,6 +17,19 @@ figcaption.sc{margin-top:12px}
 .section__head{display:grid;gap:14px;margin-bottom:40px}
 .section__head .note{max-width:24em}
 
+/* campaign: a sheet on the paper. Layout sits on the inner elements, never on .campaign, so [hidden] wins. */
+.campaign__sheet{display:grid;gap:36px;background:var(--sheet);padding:28px 22px;border:1px solid var(--rule);box-shadow:0 1px 0 rgba(74,52,20,.07),0 22px 40px -28px rgba(74,52,20,.5)}
+.campaign .sc{margin-bottom:10px}
+.campaign__lead{margin:18px 0 0;max-width:30em;font-size:1.1875rem}
+.campaign__price{margin:22px 0 14px;font-family:var(--serif);font-size:2.6rem;line-height:1.05}
+.campaign__price span{font-size:1.2rem;color:var(--ink-2)}
+.campaign__actions{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.campaign time{color:var(--lapis)}
+.campaign__how h3{font-size:1.85rem;margin-bottom:16px}
+.campaign__steps{margin:0 0 22px;padding-left:1.4em;display:grid;gap:12px;font-size:1.125rem;line-height:1.5}
+.campaign__condition{margin:0 0 22px;font-size:1.125rem;line-height:1.5}
+.campaign__steps li::marker{font-family:var(--serif);font-size:1.2em;color:var(--lapis)}
+
 /* featured works: six catalogue plates. This is the plain, stacked layout (short screens,
    reduced motion). The sliding version further down only adds to it.
    --enter rests at 1, so without JavaScript everything sits in its final place. */
