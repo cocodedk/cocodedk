@@ -36,6 +36,9 @@
   .section__head h2{grid-column:1/8}
   .section__head .note{grid-column:9/13}
   .featured__head{padding-bottom:72px}
+  .campaign__sheet{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding:56px 48px}
+  .campaign__intro{grid-column:1/7}
+  .campaign__how{grid-column:8/13}
   .scene__inner{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-block:96px 104px}
   .scene__art{grid-column:1/8;grid-row:1}
   .scene__text{grid-column:8/13;grid-row:1;padding:0 0 6px var(--gap)}
