@@ -8,10 +8,10 @@ describe('the sikkerhedstjek campaign', () => {
   beforeEach(() => { loadPage(); section = document.getElementById('sikkerhedstjek'); section.querySelector('time').dateTime = '2026-11-30'; });
 
   test('should be hidden until the script shows it', () => { expect(section.hidden).toBe(true); });
-  test('should show on the closing date', () => { initCampaign(at('2026-11-30T12:00:00Z')); expect(section.hidden).toBe(false); });
-  test('should hide the day after the closing date', () => { initCampaign(at('2026-12-01T12:00:00Z')); expect(section.hidden).toBe(true); });
+  test('should show on the closing date', () => { initCampaign(at('2026-11-30T12:00:00')); expect(section.hidden).toBe(false); });
+  test('should hide the day after the closing date', () => { initCampaign(at('2026-12-01T12:00:00')); expect(section.hidden).toBe(true); });
   test('should stay hidden when the date is not a date', () => {
-    section.querySelector('time').setAttribute('datetime', 'snart'); initCampaign(at('2026-11-20T12:00:00Z'));
+    section.querySelector('time').setAttribute('datetime', 'snart'); initCampaign(at('2026-11-20T12:00:00'));
     expect(section.hidden).toBe(true);
   });
   test('should write the closing date the way it is set', () => {
